@@ -1,0 +1,14 @@
+/build/
+
+/bin/
+
+.DS_Store
+
+*.temp
+
+.classpath
+
+testMain.java
+
+/.metadata/
+
