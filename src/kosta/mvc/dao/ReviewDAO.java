@@ -10,42 +10,42 @@ import kosta.mvc.dto.ReviewDTO;
 public interface ReviewDAO {
 
 	/**
-	  * review ÀüÃ¼ °Ë»ö 
+	  * review ì „ì²´ ê²€ìƒ‰ 
 	  * */
 	  List<ReviewDTO> selectAll() throws SQLException;
 	  
 	  /**
-	   * »óÇ°¹øÈ£¿¡ ÇØ´çÇÏ´Â review °Ë»ö
+	   * ìƒí’ˆë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” review ê²€ìƒ‰
 	   * */
-	  ReviewDTO selectByModelNum(String prodId) throws SQLException;
+	  List<ReviewDTO> selectByProdId(String prodId) throws SQLException;
 	  
 	  /**
-	   * userId ÇØ´çÇÏ´Â review °Ë»ö
+	   * userId í•´ë‹¹í•˜ëŠ” review ê²€ìƒ‰
 	   * */
-	  ReviewDTO selectByUserId(String userId) throws SQLException;
+	  List<ReviewDTO> selectByUserId(String userId) throws SQLException;
 	  
 	  /**
-	   * Á¶È¸¼ö¸¦ Áõ°¡ÇÏ´Â ±â´É
+	   * ì¡°íšŒìˆ˜ë¥¼ ì¦ê°€í•˜ëŠ” ê¸°ëŠ¥
 	   * update Electronics set readnum = readnum + 1 where model_num=?
 	   * */
 	  int increamentByReadnum(String prodId) throws SQLException;
 	  
 	  
 	  /**
-	   * review µî·Ï
-	   * @return : 1-µî·Ï¼º°ø , 0 - µî·Ï½ÇÆĞ
+	   * review ë“±ë¡
+	   * @return : 1-ë“±ë¡ì„±ê³µ , 0 - ë“±ë¡ì‹¤íŒ¨
 	   * */
 	  int insert(ReviewDTO review) throws SQLException;
 	  
 	  /**
-	   * »óÇ°¹øÈ£¿¡ ÇØ´çÇÏ´Â review »èÁ¦
-	   * @return : 1-»èÁ¦¼º°ø , 0 - »èÁ¦½ÇÆĞ
+	   * reviewë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” review ì‚­ì œ
+	   * @return : 1-ì‚­ì œì„±ê³µ , 0 - ì‚­ì œì‹¤íŒ¨
 	   * */
-	  int delete(String prodId) throws SQLException;
+	  int delete(int reviewId) throws SQLException;
 	  
 	   /**
-	    * »óÇ°¹øÈ£¿¡ ÇØ´çÇÏ´Â review ¼öÁ¤
-	    * @return : 1-¼öÁ¤¼º°ø , 0 - ¼öÁ¤½ÇÆĞ
+	    * ìƒí’ˆë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” review ìˆ˜ì •
+	    * @return : 1-ìˆ˜ì •ì„±ê³µ , 0 - ìˆ˜ì •ì‹¤íŒ¨
 	    * */
 	  int update(ReviewDTO review) throws SQLException;
 }

@@ -9,41 +9,41 @@ import kosta.mvc.dto.QuestionDTO;
 public interface QuestionDAO {
 
 	/**
-	  * Áú¹® ÀüÃ¼ °Ë»ö 
+	  * ì§ˆë¬¸ ì „ì²´ ê²€ìƒ‰ 
 	  * */
 	  List<QuestionDTO> selectAll() throws SQLException;
 	  
 	  /**
-	   * »óÇ°¹øÈ£¿¡ ÇØ´çÇÏ´Â question °Ë»ö
+	   * ìƒí’ˆë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” question ê²€ìƒ‰
 	   * */
-	  QuestionDTO selectByModelNum(String prodId) throws SQLException;
+	  List<QuestionDTO> selectByProdId(int prodId) throws SQLException;
 	  
 	  /**
-	   * È¸¿ø¾ÆÀÌµğ ÇØ´çÇÏ´Â question °Ë»ö
+	   * íšŒì›ì•„ì´ë”” í•´ë‹¹í•˜ëŠ” question ê²€ìƒ‰
 	   * */
-	  QuestionDTO selectByUserId(String userId) throws SQLException;
+	  List<QuestionDTO> selectByUserId(String userId) throws SQLException;
 	  
 	  /**
-	   * Áú¹®¹øÈ£¿¡ ÇØ´çÇÏ´Â question °Ë»ö
+	   * ì§ˆë¬¸ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” question ê²€ìƒ‰
 	   * */
-	  QuestionDTO selectByUserId(int qNum) throws SQLException;
+	  QuestionDTO selectByQNum(int qNum) throws SQLException;
 	  
 	  
 	  /**
-	   * question µî·Ï
-	   * @return : 1-µî·Ï¼º°ø , 0 - µî·Ï½ÇÆĞ
+	   * question ë“±ë¡
+	   * @return : 1-ë“±ë¡ì„±ê³µ , 0 - ë“±ë¡ì‹¤íŒ¨
 	   * */
 	  int insert(QuestionDTO question) throws SQLException;
 	  
 	  /**
-	   * Áú¹®¹øÈ£¿¡ ÇØ´çÇÏ´Â question »èÁ¦
-	   * @return : 1-»èÁ¦¼º°ø , 0 - »èÁ¦½ÇÆĞ
+	   * ì§ˆë¬¸ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” question ì‚­ì œ
+	   * @return : 1-ì‚­ì œì„±ê³µ , 0 - ì‚­ì œì‹¤íŒ¨
 	   * */
 	  int delete(int qNum) throws SQLException;
 	  
 	   /**
-	    * »óÇ°¹øÈ£¿¡ ÇØ´çÇÏ´Â question ¼öÁ¤
-	    * @return : 1-¼öÁ¤¼º°ø , 0 - ¼öÁ¤½ÇÆĞ
+	    * ìƒí’ˆë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” question ìˆ˜ì •
+	    * @return : 1-ìˆ˜ì •ì„±ê³µ , 0 - ìˆ˜ì •ì‹¤íŒ¨
 	    * */
 	  int update(QuestionDTO question) throws SQLException;
 }

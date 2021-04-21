@@ -2,6 +2,7 @@ package kosta.mvc.dto;
 
 public class QuestionDTO {
 
+	//9개
 	private int qNum;
 	private String userId;
 	private int prodId;

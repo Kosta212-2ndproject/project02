@@ -8,38 +8,38 @@ import kosta.mvc.dto.NoticeDTO;
 public interface NoticeDAO {
 
 	/**
-	  * °øÁö±Û ÀüÃ¼ °Ë»ö 
+	  * ê³µì§€ê¸€ ì „ì²´ ê²€ìƒ‰ 
 	  * */
 	  List<NoticeDTO> selectAll() throws SQLException;
 	  
 	  /**
-	   * Æ¯Á¤Å°¿öµå¿¡ ÇØ´çÇÏ´Â °øÁö±Û °Ë»ö
+	   * íŠ¹ì •í‚¤ì›Œë“œì— í•´ë‹¹í•˜ëŠ” ê³µì§€ê¸€ ê²€ìƒ‰
 	   * */
 	  List<NoticeDTO> selectByKeyword(String keyword) throws SQLException;
 	  
 	  
 	  /**
-	   * °øÁö±Û¹øÈ£¿¡ ÇØ´çÇÏ´Â °øÁö±Û °Ë»ö
+	   * ê³µì§€ê¸€ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ê³µì§€ê¸€ ê²€ìƒ‰
 	   * */
 	  NoticeDTO selectByNoticeNum(int nNum) throws SQLException;
 	  
 	  
 	  /**
-	   * °øÁö±Û µî·Ï
-	   * @return : 1-µî·Ï¼º°ø , 0 - µî·Ï½ÇÆÐ
+	   * ê³µì§€ê¸€ ë“±ë¡
+	   * @return : 1-ë“±ë¡ì„±ê³µ , 0 - ë“±ë¡ì‹¤íŒ¨
 	   * */
 	  int insert(NoticeDTO notice) throws SQLException;
 	  
 	  
 	  /**
-	   * °øÁö±Û¹øÈ£ ÇØ´çÇÏ´Â °øÁö±Û »èÁ¦
-	   * @return : 1-»èÁ¦¼º°ø , 0 - »èÁ¦½ÇÆÐ
+	   * ê³µì§€ê¸€ë²ˆí˜¸ í•´ë‹¹í•˜ëŠ” ê³µì§€ê¸€ ì‚­ì œ
+	   * @return : 1-ì‚­ì œì„±ê³µ , 0 - ì‚­ì œì‹¤íŒ¨
 	   * */
 	  int delete(int nNum) throws SQLException;
 	  
 	   /**
-	    * °øÁö±Û ÇØ´çÇÏ´Â °øÁö±Û ¼öÁ¤
-	    * @return : 1-¼öÁ¤¼º°ø , 0 - ¼öÁ¤½ÇÆÐ
+	    * ê³µì§€ê¸€ í•´ë‹¹í•˜ëŠ” ê³µì§€ê¸€ ìˆ˜ì •
+	    * @return : 1-ìˆ˜ì •ì„±ê³µ , 0 - ìˆ˜ì •ì‹¤íŒ¨
 	    * */
 	  int update(NoticeDTO notice) throws SQLException;
 }

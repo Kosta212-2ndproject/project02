@@ -7,36 +7,36 @@ import kosta.mvc.dto.AnswerDTO;
 
 public interface AnswerDAO {
 	/**
-	  * Áú¹®¹øÈ£¿¡ ´ëÇÑ ´äº¯±Û °Ë»öÇÏ±â
+	  * ì§ˆë¬¸ë²ˆí˜¸ì— ëŒ€í•œ ë‹µë³€ê¸€ ê²€ìƒ‰í•˜ê¸°
 	  * */
 	  List<AnswerDTO> selectByQNum(int qNum) throws SQLException;
 	  
 	  /**
-	   * °ü¸®ÀÚ ¾ÆÀÌµğ·Î ´äº¯ °Ë»ö
+	   * ê´€ë¦¬ì ì•„ì´ë””ë¡œ ë‹µë³€ ê²€ìƒ‰
 	   * */
 	  List<AnswerDTO> selectByUserId(String userId) throws SQLException;
 	  
 	  /**
-	   * ´äº¯¹øÈ£¿¡ ÇØ´çÇÏ´Â ´äº¯ °Ë»ö
+	   * ë‹µë³€ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ë‹µë³€ ê²€ìƒ‰
 	   * */
 	  AnswerDTO selectByANum(int aNum) throws SQLException;
 	  
 	  
 	  /**
-	   * ´äº¯ µî·Ï
-	   * @return : 1-µî·Ï¼º°ø , 0 - µî·Ï½ÇÆĞ
+	   * ë‹µë³€ ë“±ë¡
+	   * @return : 1-ë“±ë¡ì„±ê³µ , 0 - ë“±ë¡ì‹¤íŒ¨
 	   * */
 	  int insert(AnswerDTO answer) throws SQLException;
 	  
 	  /**
-	   * ´äº¯¹øÈ£¿¡ ÇØ´çÇÏ´Â ´äº¯ »èÁ¦
-	   * @return : 1-»èÁ¦¼º°ø , 0 - »èÁ¦½ÇÆĞ
+	   * ë‹µë³€ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ë‹µë³€ ì‚­ì œ
+	   * @return : 1-ì‚­ì œì„±ê³µ , 0 - ì‚­ì œì‹¤íŒ¨
 	   * */
 	  int delete(int aNum) throws SQLException;
 	  
 	   /**
-	    * ´äº¯¹øÈ£¿¡ ÇØ´çÇÏ´Â ´äº¯ ¼öÁ¤
-	    * @return : 1-¼öÁ¤¼º°ø , 0 - ¼öÁ¤½ÇÆĞ
+	    * ë‹µë³€ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ë‹µë³€ ìˆ˜ì •
+	    * @return : 1-ìˆ˜ì •ì„±ê³µ , 0 - ìˆ˜ì •ì‹¤íŒ¨
 	    * */
-	  int update(AnswerDTO question) throws SQLException;
+	  int update(AnswerDTO answer) throws SQLException;
 }
