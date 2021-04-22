@@ -18,9 +18,8 @@ public interface AnswerService {
 	  
 	  /**
 	   * 답변번호에 해당하는 답변 검색
-	   *  @param : boolean flag - 조회수 증가 여부를 판별하는 매개변수임(true이면 조회수증가 / false이면 조회수 증가 안함)
 	   * */
-	  AnswerDTO selectByANum(int aNum, boolean flag) throws SQLException;
+	  AnswerDTO selectByANum(int aNum) throws SQLException;
 	  
 	  /**
 	   * 답변 등록

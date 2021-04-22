@@ -1,5 +1,8 @@
 package kosta.mvc.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class QuestionDTO {
 
 	//9개
@@ -12,6 +15,16 @@ public class QuestionDTO {
 	private String qFiles;
 	private String qRegdate;
 	private int qShowstatus;
+	
+	private List<AnswerDTO> answerList = new ArrayList<AnswerDTO>();
+	
+	
+	public List<AnswerDTO> getAnswerList() {
+		return answerList;
+	}
+	public void setAnswerList(List<AnswerDTO> answerList) {
+		this.answerList = answerList;
+	}
 	
 	public QuestionDTO() {}
 	public QuestionDTO(int qNum, String userId, int prodId, String qField, String qTitle, String qContent,
