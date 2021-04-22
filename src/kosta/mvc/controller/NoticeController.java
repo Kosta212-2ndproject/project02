@@ -24,7 +24,7 @@ public class NoticeController implements Controller {
 		request.setAttribute("noticeList", noticeList); //${requestScope.noiceList}
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("notice2.jsp");
+		mv.setViewName("notice3.jsp");
 		
 		return mv;
 	}
