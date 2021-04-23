@@ -29,20 +29,22 @@ public class NoticeController implements Controller {
 		return mv;
 	}
 
-//	public ModelAndView selectByNoticeNum(HttpServletRequest request, HttpServletResponse response)
-//			throws Exception {
-//		
-//		String noticeNum = request.getParameter("modelNum"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+	//notice/notice-single.jsp
+	public ModelAndView selectByNoticeNum(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		String nNum = request.getParameter("nNum"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
 //		Electronics elec = elecService.selectByModelnum(modelNum, true);//조회수 증가 
-//		
-//		request.setAttribute("elec", elec);
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("elec/read.jsp");
-//		
-//				
-//		return mv;
-//		
-//	}
+		
+		NoticeDTO nDTO = nService.selectByNoticeNum(Integer.parseInt(nNum), true);
+		request.setAttribute("nDTO", nDTO); //${nDTO}
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("notice/notice-single.jsp");
+		
+				
+		return mv;
+		
+	}
 	
 	
 	@Override

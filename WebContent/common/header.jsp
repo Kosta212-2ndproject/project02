@@ -102,7 +102,7 @@
                 <a class="dropdown-item" href="checkout.html">가격대별</a>
               </div>
             </li>
-	           <li class="nav-item active"><a href="blog.html" class="nav-link">Notice</a></li>
+	           <li class="nav-item active"><a href="front?key=notice&methodName=select" class="nav-link">Notice</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 	        </ul>
 	      </div>

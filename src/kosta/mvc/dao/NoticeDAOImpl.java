@@ -180,4 +180,22 @@ public class NoticeDAOImpl implements NoticeDAO {
 		return res;
 	}
 
+	@Override
+	public int increamentByReadnum(int nNum) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int res = 0;
+		String sql = "update NOTICE set N_VIEWCOUNT = N_VIEWCOUNT+1 where N_NUM=?";
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, nNum);
+			res = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return res;
+	}
+
 }

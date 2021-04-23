@@ -23,7 +23,14 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public NoticeDTO selectByNoticeNum(int nNum) throws SQLException {
+	public NoticeDTO selectByNoticeNum(int nNum, boolean flag) throws SQLException {
+		//조회수 증가 
+		if(flag) {
+			if(nDAO.increamentByReadnum(nNum) == 0) {
+				//조회수 증가에 문제가 생김
+				throw new SQLException("조회수 증가에 오류가 있습니다.");
+			}
+		}
 		NoticeDTO notice = nDAO.selectByNoticeNum(nNum);
 		if(notice == null) {
 			throw new SQLException("정보를 검색하지 못했습니다.");

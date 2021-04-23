@@ -23,6 +23,10 @@ public interface NoticeDAO {
 	   * */
 	  NoticeDTO selectByNoticeNum(int nNum) throws SQLException;
 	  
+	  /**
+	   * 조회수를 증가하는 기능
+	   * */
+	  int increamentByReadnum(int nNum) throws SQLException;
 	  
 	  /**
 	   * 공지글 등록

@@ -48,7 +48,7 @@
 			<div class="row d-flex">
 				<div class="col-lg-6 d-flex align-items-stretch ftco-animate">
 					<div class="blog-entry d-md-flex">
-						<a href="blog-single.html" class="block-20 img"
+						<a href="front?key=notice&methodName=selectByNoticeNum&nNum=${notice.nNum}" class="block-20 img"
 							style="background-image: url('${notice.nImage}');"> </a>
 						<div class="text p-4 bg-light">
 							<div class="meta">

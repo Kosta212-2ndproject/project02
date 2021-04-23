@@ -20,8 +20,9 @@ public interface NoticeService {
 	  
 	  /**
 	   * 공지글번호에 해당하는 공지글 검색
+	   * @param : boolean flag - 조회수 증가 여부를 판별하는 매개변수임(true이면 조회수증가 / false이면 조회수 증가 안함)
 	   * */
-	  NoticeDTO selectByNoticeNum(int nNum) throws SQLException;
+	  NoticeDTO selectByNoticeNum(int nNum, boolean flag) throws SQLException;
 	  
 	  
 	  /**
