@@ -17,6 +17,11 @@ import javax.servlet.http.HttpSession;
 @WebFilter("/front")
 public class SessionCheckFilter implements Filter {
 
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+
+	}
+
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// 사전처리
 		String key = request.getParameter("key");
@@ -35,5 +40,10 @@ public class SessionCheckFilter implements Filter {
 		}
 		
 		chain.doFilter(request, response);
+	}
+
+	@Override
+	public void destroy() {
+
 	}
 }
