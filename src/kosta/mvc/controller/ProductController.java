@@ -19,7 +19,6 @@ import kosta.mvc.service.ProductServiceImpl;
 public class ProductController implements Controller {
 	private ProductService prodService = new ProductServiceImpl();
 	
-	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -162,6 +161,13 @@ public class ProductController implements Controller {
 			
 			return mv;
 		}
+
+	@Override
+	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 		
 		
 		
