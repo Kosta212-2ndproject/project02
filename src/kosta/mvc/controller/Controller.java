@@ -13,21 +13,6 @@ public interface Controller {
 	 * @throws Exception 
 	 * */
 	ModelAndView select(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception;
-	
-	/**
-	 * 등록
-	 * */
-	ModelAndView insert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-	
-	/**
-	 * 수정
-	 * */
-	ModelAndView update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-	
-	/**
-	 * 삭제
-	 * */
-	ModelAndView delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 
 }

@@ -38,14 +38,15 @@
     
 <!-- contents -->
 
-    <c:choose>
+
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row d-flex">
+	    <c:choose>
     <c:when test="${empty requestScope.noticeList}"><!--  requesScope에 저장해야 하는 이름이 list -->
 	</c:when>
     <c:otherwise>
 	<c:forEach items="${requestScope.noticeList}" var="notice" varStatus="state">
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row d-flex">
 				<div class="col-lg-6 d-flex align-items-stretch ftco-animate">
 					<div class="blog-entry d-md-flex">
 						<a href="front?key=notice&methodName=selectByNoticeNum&nNum=${notice.nNum}" class="block-20 img"
@@ -57,22 +58,23 @@
 								</p>
 							</div>
 							<h3 class="heading mb-3">
-								<a href="#"> ${notice.nTitle}</a>
+								<a href="front?key=notice&methodName=selectByNoticeNum&nNum=${notice.nNum}"> ${notice.nTitle}</a>
 							</h3>
 							<p>${notice.nContent}</p>
-							<a href="#" class="btn-custom">Continue <span
-								class="fa fa-long-arrow-right"></span></a>
+							<a href="#" class="btn-custom">views ${notice.nViewCount} <span
+							class="fa fa-eye"></span></a>
 						</div>
 					</div>
 				</div>
+			   </c:forEach>
+	</c:otherwise>
+  </c:choose>
 			</div>
+    
 		</div>
 	</section>
 
-	   </c:forEach>
-	</c:otherwise>
-  </c:choose>
-    
+
     
 
 	<div class="row mt-5">

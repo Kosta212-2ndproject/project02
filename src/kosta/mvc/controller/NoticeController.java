@@ -47,19 +47,16 @@ public class NoticeController implements Controller {
 	}
 	
 	
-	@Override
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		return null;
 	}
 
-	@Override
 	public ModelAndView update(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		return null;
 	}
 
-	@Override
 	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		return null;
