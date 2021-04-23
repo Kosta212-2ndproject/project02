@@ -52,6 +52,14 @@
 	    <div class="container">
 	      <a class="navbar-brand" href="index.jsp">JJAN <span>ㅉ ㅏ ㄴ</span></a>
 	      <div class="order-lg-last btn-group">
+	      <form action="front" method="get">
+           <input class="input" type="text" name="keyWord" placeholder="검색어를 입력해주세요.">
+           <input type="hidden"  name="key" value = "prod">
+           <input type="hidden"  name="methodName" value = "selectByModelKeyword">
+         <input type="submit" value="검색">
+
+         </form>
+	      
           <a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           	<span class="flaticon-shopping-bag"></span>
           	<div class="d-flex justify-content-center align-items-center"><small>3</small></div>
@@ -96,8 +104,8 @@
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="front?key=prod&methodName=selectAll">전체검색</a>
-                <a class="dropdown-item" href="product-single.html">국가별</a>
+              	<a class="dropdown-item" href="front?key=prod&methodName=selectAll">전체상품</a>
+              	<a class="dropdown-item" href="cart.html">국가별</a>
                 <a class="dropdown-item" href="cart.html">종류별</a>
                 <a class="dropdown-item" href="checkout.html">가격대별</a>
               </div>

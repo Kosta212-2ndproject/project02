@@ -34,7 +34,7 @@ public class ProductController implements Controller {
 		List<ProductDTO> listAll = prodService.selectAll();
 		request.setAttribute("listAll", listAll);
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("prod/list.jsp");
+		mv.setViewName("productAll.jsp");
 		return mv;
 	}
 	
@@ -46,8 +46,11 @@ public class ProductController implements Controller {
 		
 		List<ProductDTO> listKeyWord = prodService.selectByModelKeyword(keyWord);
 		
+		
+		System.out.println("메소드 진입");
 		request.setAttribute("listKeyWord", listKeyWord);
 		ModelAndView mv = new ModelAndView();
+		mv.setViewName("productKeyword.jsp");
 		return mv;
 	}
 	
@@ -100,6 +103,7 @@ public class ProductController implements Controller {
 			
 			request.setAttribute("prod", prod);
 			ModelAndView mv = new ModelAndView();
+			mv.setViewName("product-single.jsp");
 			return mv;	
 		}
 		
