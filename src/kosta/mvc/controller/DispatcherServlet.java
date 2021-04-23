@@ -40,11 +40,11 @@ public class DispatcherServlet extends HttpServlet {
 		
 		try {
 			if(key==null || key.equals("")) {
-				key = "notice";
+
 			}
 			
 			if(methodName==null || methodName.equals("")) {
-				methodName = "select";
+				methodName = "selectAll";
 			}
 			
 			Class<?> clz = clzMap.get(key);
