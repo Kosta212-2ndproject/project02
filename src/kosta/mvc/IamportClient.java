@@ -166,24 +166,6 @@ public class IamportClient {
       }
       return null;
    }
-//
-//   public String paymentAll(String paymentState) throws Exception {
-//
-//      String token = this.getToken();
-//
-//      if(token != null) {
-//         String path = "/payments/status/" + paymentState;
-//         String response = this.getRequest(path, token);
-//
-//         Type listType = new TypeToken<IamportResponse<Payment>>(){}.getType();
-//         IamportResponse<Payment> payment = gson.fromJson(response, listType);
-//
-//         return response;
-//      }
-//      return null;
-//   }
-
-
 
    public IamportResponse<Payment> paymentByMerchantUid(String merchantUid) throws Exception {
 

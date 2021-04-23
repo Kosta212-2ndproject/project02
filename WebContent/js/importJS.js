@@ -46,7 +46,8 @@ $(function () {
             IMP.request_pay({
                 pg: 'html5_inicis',   // pg사 KG이니시스
                 pay_method: 'card',   // 결제 방식
-                merchant_uid: $(this).attr("id"),  // 상품 id $(this).attr("id") + new Date().getTime()
+                // 주문번호는 : YYMMDD_{제품코드}{구매수량(3자리)}{넘버} + $(this).attr("id");
+                merchant_uid: $(this).attr("id") + new Date().getTime(),
                 name: '주문: ' + $(this).parent().prev().prev().text(),  // 주문명 주문명은 16글자 이내를 권장한다.
                 amount: $(this).parent().prev().text(), // 가격
                 display: {card_quota: [1, 2, 3, 4, 5, 6]}, // 할부개월수
@@ -55,7 +56,8 @@ $(function () {
                 buyer_name: '구매자이름',
                 buyer_tel: '010-1234-5678',
                 buyer_addr: '서울특별시 강남구 삼성동',
-                buyer_postcode: '123-456'
+                buyer_postcode: '123-456',
+                m_redirect_url: 'https://localhost:8080/successPay.jsp'
             }, function (rsp) {
                 if (rsp.success) {
                     //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
