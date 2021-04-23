@@ -29,9 +29,4 @@ public class EncodingFilter implements Filter {
 		
 		chain.doFilter(request, response);
 	}
-
-	@Override
-	public void destroy() {
-
-	}
 }
