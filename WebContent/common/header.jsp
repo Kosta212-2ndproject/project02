@@ -59,7 +59,6 @@
          <input type="submit" value="검색">
 
          </form>
-	      
           <a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           	<span class="flaticon-shopping-bag"></span>
           	<div class="d-flex justify-content-center align-items-center"><small>3</small></div>
@@ -110,7 +109,7 @@
                 <a class="dropdown-item" href="checkout.html">가격대별</a>
               </div>
             </li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+	           <li class="nav-item active"><a href="front?key=notice&methodName=select" class="nav-link">Notice</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 	        </ul>
 	      </div>
