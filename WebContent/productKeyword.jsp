@@ -47,18 +47,21 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9">
-						<div class="row mb-4">
-							<div class="col-md-12 d-flex justify-content-between align-items-center">
-								<h4 class="product-select">Select Types of Products</h4>
-								<select class="selectpicker" multiple>
-				          <option>Brandy</option>
-				          <option>Gin</option>
-				          <option>Rum</option>
-				          <option>Tequila</option>
-				          <option>Vodka</option>
-				          <option>Whiskey</option>
-				        </select>
-							</div>
+					<div class="row mb-4">
+						<div class="col-md-12 d-flex justify-content-between align-items-center">
+							<h4 class="product-select">Select Types of Products</h4>
+							<form action="#">
+							<select name = "types">
+							<option value="0">선택없음</option>
+							<option value="1">인기순</option>
+							<option value="2">신제품순</option>
+							<option value="3">별점순</option>
+							<option value="4">가격순▲</option>
+							<option value="5">가격순▼</option>
+							</select>
+							<input type="submit" value="선택">
+						</form>
+						</div>
 						</div>
 						
 						

@@ -45,7 +45,8 @@ public class ProductDAOImpl implements ProductDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
-		String sql = "select * from product where (prod_name || prod_name_en || prod_winery || prod_winery_en || prod_nation) like ?";
+		String sql = "select * from product where prod_name || upper(prod_name_en) || prod_winery || upper(prod_winery_en) || prod_nation like upper(?)";
+				
 		
 		try {
 			con = DbUtil.getConnection();

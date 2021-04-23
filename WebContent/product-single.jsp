@@ -43,7 +43,7 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="${prod.prodImgUrl}" class="image-popup prod-img-bg"><img src="${prod.prodImgUrl}" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="${prod.prodImgUrl}" class="image-popup prod-img-bg"><img src="${prod.prodImgUrl}" class="img-fluid" alt="Colorlib Template" ></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
     				<h3>${requestScope.prod.prodName} ${requestScope.prod.prodNameEng}</h3>
@@ -97,28 +97,30 @@
             <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
               <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
 
-              <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Manufacturer</a>
+              <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Taste/Food Matching </a>
 
               <a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Reviews</a>
 
             </div>
           </div>
+          
           <div class="col-md-12 tab-wrap">
             
             <div class="tab-content bg-light" id="v-pills-tabContent">
 
               <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
               	<div class="p-4">
-	              	<h3 class="mb-4">Bacardi 151 Degree</h3>
-	              	<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
+	              	<h3 class="mb-4">${requestScope.prod.prodName} ${requestScope.prod.prodNameEng}</h3>
+	              	<p>${prod.prodDetail}</p>
               	</div>
               </div>
 
               <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
               	<div class="p-4">
-	              	<h3 class="mb-4">Manufactured By Liquor Store</h3>
-	              	<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
-              	</div>
+	              	<h3 class="mb-4">Taste / Food Matching</h3>
+	              	<p>Taste : ${prod.prodTaste} <br><br>
+	              	Food matching : ${prod.prodMach}</p>
+	             </div>
               </div>
               <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
               	<div class="row p-4">

@@ -43,22 +43,26 @@
 
 	
 	
-    <section class="ftco-section">
+     <section class="ftco-section">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9">
-						<div class="row mb-4">
-							<div class="col-md-12 d-flex justify-content-between align-items-center">
-								<h4 class="product-select">Select Types of Products</h4>
-								<select class="selectpicker" multiple>
-				          <option>Brandy</option>
-				          <option>Gin</option>
-				          <option>Rum</option>
-				          <option>Tequila</option>
-				          <option>Vodka</option>
-				          <option>Whiskey</option>
-				        </select>
-							</div>
+					
+					<div class="row mb-4">
+						<div class="col-md-12 d-flex justify-content-between align-items-center">
+							<h4 class="product-select">Select Types of Products</h4>
+							<form action="#">
+							<select name = "types">
+							<option value="0">선택없음</option>
+							<option value="1">인기순</option>
+							<option value="2">신제품순</option>
+							<option value="3">별점순</option>
+							<option value="4">가격순▲</option>
+							<option value="5">가격순▼</option>
+							</select>
+							<input type="submit" value="선택">
+						</form>
+						</div>
 						</div>
 						
 						
@@ -66,6 +70,7 @@
 						<div class="row">
 							<c:choose>
     							<c:when test="${empty requestScope.listAll}"><!--  requesScope에 저장해야 하는 이름이 list -->
+									<p align="center"><b><span style="font-size:9pt;">등록된 상품이 없습니다.</span></b></p>
 								</c:when>
 								<c:otherwise>
 								<c:forEach items="${requestScope.listAll}" var="prodDto">
@@ -119,22 +124,27 @@
 		          </div>
 		        </div>
 					</div>
-
+					
+					
+    							
+								
+					
 					<div class="col-md-3">
+					
 						<div class="sidebar-box ftco-animate">
               <div class="categories">
-                <h3>Product Types</h3>
+                <h3>국가별 상품</h3>
                 <ul class="p-0">
-                	<li><a href="#">Brandy <span class="fa fa-chevron-right"></span></a></li>
-	                <li><a href="#">Gin <span class="fa fa-chevron-right"></span></a></li>
-	                <li><a href="#">Rum <span class="fa fa-chevron-right"></span></a></li>
-	                <li><a href="#">Tequila <span class="fa fa-chevron-right"></span></a></li>
-	                <li><a href="#">Vodka <span class="fa fa-chevron-right"></span></a></li>
-	                <li><a href="#">Whiskey <span class="fa fa-chevron-right"></span></a></li>
+                	<li><a href="productAll.jsp">전체상품</a></li>
+                	<li><a href="${path}/front?key=prod&methodName=selectByProductDetail&prodNation=${NationDto.prodNation}">${NationDto.prodNation} <span class="fa fa-chevron-right"></span></a></li>
+	             
                 </ul>
               </div>
+              
             </div>
-
+      
+			
+            
             <div class="sidebar-box ftco-animate">
               <h3>Recent Blog</h3>
               <div class="block-21 mb-4 d-flex">
@@ -167,10 +177,15 @@
                   </div>
                 </div>
               </div>
+              
             </div>
+            
 					</div>
+					
 				</div>
+				
 			</div>
+			
 		</section>
 		
 			

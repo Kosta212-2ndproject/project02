@@ -64,6 +64,7 @@ public class ProductController implements Controller {
 		
 		request.setAttribute("listNation", listNation);
 		ModelAndView mv = new ModelAndView();
+		mv.setViewName("productAll.jsp");
 		return mv;
 	}
 	
