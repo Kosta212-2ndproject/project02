@@ -27,7 +27,7 @@ public class PaymentHistoryDAOImpl implements PaymentHistoryDAO {
          ps.setString(3, dto.getPayStatus());
          ps.setString(4, dto.getCardNumber());
          ps.setString(5, dto.getCardName());
-         ps.setInt(6, dto.getCardQuota());
+         ps.setString(6, dto.getCardQuota());
          ps.setInt(7, dto.getPayPrice());
          result = ps.executeUpdate();
          System.out.println(result);
@@ -41,31 +41,33 @@ public class PaymentHistoryDAOImpl implements PaymentHistoryDAO {
 
    @Override
    public List<PaymentHistoryDTO> selectAll() {
-      Connection con = null;
-      PreparedStatement ps = null;
-      ResultSet rs = null;
-      List<PaymentHistoryDTO> list = new ArrayList<>();
-      try {
-         con = DbUtil.getConnection();
-         ps = con.prepareStatement("select * from payment order by pay_price");
-         rs = ps.executeQuery();
-         while (rs.next()) {
-            list.add(new PaymentHistoryDTO(
-                  rs.getString(1),
-                  rs.getString(2),
-                  rs.getString(3),
-                  rs.getString(4),
-                  rs.getString(5),
-                  rs.getInt(6),
-                  rs.getInt(7)
-            ));
-         }
+//      Connection con = null;
+//      PreparedStatement ps = null;
+//      ResultSet rs = null;
+//      List<PaymentHistoryDTO> list = new ArrayList<>();
+//      try {
+//         con = DbUtil.getConnection();
+//         ps = con.prepareStatement("select * from payment order by pay_price");
+//         rs = ps.executeQuery();
+//         while (rs.next()) {
+//            list.add(new PaymentHistoryDTO(
+//                  rs.getString(1),
+//                  rs.getString(2),
+//                  rs.getString(3),
+//                  rs.getString(4),
+//                  rs.getString(5),
+//                  rs.(6),
+//                  rs.getInt(7)
+//            ));
+//         }
+//
+//      } catch (SQLException e) {
+//         e.printStackTrace();
+//      } finally {
+//         DbUtil.dbClose(rs, ps, con);
+//      }
+//      return list;
 
-      } catch (SQLException e) {
-         e.printStackTrace();
-      } finally {
-         DbUtil.dbClose(rs, ps, con);
-      }
-      return list;
+      return null;
    }
 }
