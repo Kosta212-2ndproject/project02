@@ -184,6 +184,22 @@ public class IamportClient {
       return null;
    }
 
+   public IamportResponse<Payment> selectAll() throws Exception {
+
+      String token = this.getToken();
+
+      if(token != null) {
+         String path = "/payments/findAll";
+         String response = this.getRequest(path, token);
+
+         Type listType = new TypeToken<IamportResponse<Payment>>(){}.getType();
+         IamportResponse<Payment> payment = gson.fromJson(response, listType);
+
+         return payment;
+      }
+      return null;
+   }
+
    public IamportResponse<Payment> cancelPayment(CancelData cancelData) throws Exception {
 
       String token = this.getToken();

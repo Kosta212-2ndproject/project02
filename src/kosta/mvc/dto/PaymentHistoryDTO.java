@@ -6,7 +6,7 @@ public class PaymentHistoryDTO {
    private String payStatus;  // 결제상태
    private String cardNumber; // 카드번호
    private String cardName;   // 카드이름
-   private int cardQuota;  // 할부 개월수 (0이면 일시불)
+   private String cardQuota;  // 할부 개월수 (0이면 일시불)
    private int payPrice;   // 가격
 
 
@@ -16,7 +16,7 @@ public class PaymentHistoryDTO {
 
    }
 
-   public PaymentHistoryDTO(String impUid, String merchantUid, String payStatus, String cardNumber, String cardName, int cardQuota, int payPrice) {
+   public PaymentHistoryDTO(String impUid, String merchantUid, String payStatus, String cardNumber, String cardName, String cardQuota, int payPrice) {
       this.impUid = impUid;
       this.merchantUid = merchantUid;
       this.payStatus = payStatus;
@@ -66,11 +66,11 @@ public class PaymentHistoryDTO {
       this.cardName = cardName;
    }
 
-   public int getCardQuota() {
+   public String getCardQuota() {
       return cardQuota;
    }
 
-   public void setCardQuota(int cardQuota) {
+   public void setCardQuota(String cardQuota) {
       this.cardQuota = cardQuota;
    }
 
