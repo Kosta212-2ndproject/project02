@@ -18,7 +18,7 @@ public class WishController implements Controller {
 
 	private WishService wishService = new WishServiceImpl();
 	
-	@Override
+
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

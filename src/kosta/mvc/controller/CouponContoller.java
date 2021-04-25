@@ -18,7 +18,6 @@ public class CouponContoller implements Controller {
 
 	private CouponService couponService = new CouponServiceImpl();
 	
-	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
