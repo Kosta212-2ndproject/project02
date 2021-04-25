@@ -12,6 +12,11 @@ public interface ProductDAO {
 	  List<ProductDTO> selectAll() throws SQLException;
 	  
 	  /**
+	   * 상품 카테고리
+	   * */
+	  ProductDTO selectCategory() throws SQLException;
+	  
+	  /**
 	   * 상품키워드에 해당하는 상품 검색
 	   * */
 	  List<ProductDTO> selectByModelKeyword(String keyword) throws SQLException;

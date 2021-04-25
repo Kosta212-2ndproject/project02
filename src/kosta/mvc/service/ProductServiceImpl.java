@@ -15,6 +15,12 @@ public class ProductServiceImpl implements ProductService {
 		
 		return prodDAO.selectAll();
 	}
+	
+	@Override
+	public ProductDTO selectCategory() throws SQLException {
+		
+		return prodDAO.selectCategory();
+	}
 
 	@Override
 	public List<ProductDTO> selectByModelKeyword(String keyword) throws SQLException {
@@ -71,5 +77,9 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 	}
+
+
+
+	
 
 }

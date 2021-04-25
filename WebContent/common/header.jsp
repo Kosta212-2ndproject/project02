@@ -51,14 +51,18 @@
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="index.jsp">JJAN <span>ㅉ ㅏ ㄴ</span></a>
-	      <div class="order-lg-last btn-group">
 	      <form action="front" method="get">
            <input class="input" type="text" name="keyWord" placeholder="검색어를 입력해주세요.">
            <input type="hidden"  name="key" value = "prod">
            <input type="hidden"  name="methodName" value = "selectByModelKeyword">
          <input type="submit" value="검색">
-
          </form>
+	      
+	      
+	      
+	      <div class="order-lg-last btn-group">
+	      
+         
           <a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           	<span class="flaticon-shopping-bag"></span>
           	<div class="d-flex justify-content-center align-items-center"><small>3</small></div>
@@ -100,15 +104,8 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="index.jsp" class="nav-link">Home</a></li>
 	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="front?key=prod&methodName=selectAll">전체상품</a>
-              	<a class="dropdown-item" href="cart.html">국가별</a>
-                <a class="dropdown-item" href="cart.html">종류별</a>
-                <a class="dropdown-item" href="checkout.html">가격대별</a>
-              </div>
-            </li>
+	          <li class="nav-item"><a href="front?key=prod&methodName=selectAll" class="nav-link">PRODUCT</a></li>
+              
 	           <li class="nav-item active"><a href="front?key=notice&methodName=select" class="nav-link">Notice</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 	        </ul>

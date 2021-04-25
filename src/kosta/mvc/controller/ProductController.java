@@ -38,6 +38,18 @@ public class ProductController implements Controller {
 	}
 	
 	/**
+	 * 상품 카테고리 검색
+	 * */
+	public ModelAndView selectCategory(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
+		ProductDTO product = prodService.selectCategory();
+		request.setAttribute("product", product);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("productAll.jsp");
+		return mv;
+	}
+	
+	/**
 	 * 상품 키워드 검색
 	 * */
 	public ModelAndView selectByModelKeyword(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -77,6 +89,7 @@ public class ProductController implements Controller {
 		
 		request.setAttribute("listPride", listPride);
 		ModelAndView mv = new ModelAndView();
+		mv.setViewName("productAll.jsp");
 		return mv;
 	}
 	
@@ -90,6 +103,7 @@ public class ProductController implements Controller {
 			
 			request.setAttribute("listPrice", listPrice);
 			ModelAndView mv = new ModelAndView();
+			mv.setViewName("productAll.jsp");
 			return mv;	
 		}
 		
@@ -103,6 +117,7 @@ public class ProductController implements Controller {
 			
 			request.setAttribute("prod", prod);
 			ModelAndView mv = new ModelAndView();
+			
 			mv.setViewName("product-single.jsp");
 			return mv;	
 		}

@@ -43,7 +43,7 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="${prod.prodImgUrl}" class="image-popup prod-img-bg"><img src="${prod.prodImgUrl}" class="img-fluid" alt="Colorlib Template" ></a>
+    				<a href="${prod.prodImgUrl}" class="image-popup "><img src="${prod.prodImgUrl}" class="img-fluid" alt="Colorlib Template" ></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
     				<h3>${requestScope.prod.prodName} ${requestScope.prod.prodNameEng}</h3>

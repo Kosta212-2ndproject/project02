@@ -12,6 +12,11 @@ public interface ProductService {
 	List<ProductDTO> selectAll() throws SQLException;
 	
 	/**
+	 * ProductDAOImpl의 상품 카테고리 검색 메소드 호출
+	 * */
+	ProductDTO selectCategory() throws SQLException;
+	
+	/**
 	 * ProductDAOImpl의 상품키워드에 해당하는 상품 검색 메소드 호출
 	 * */
 	List<ProductDTO> selectByModelKeyword(String keyword) throws SQLException;
