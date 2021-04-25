@@ -4,13 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 import kosta.mvc.dto.CartDTO;
-import kosta.mvc.dto.ProductDTO;
 import kosta.mvc.util.DbUtil;
 
 public class CartDAOImpl implements CartDAO {
@@ -107,6 +105,25 @@ public class CartDAOImpl implements CartDAO {
 			DbUtil.dbClose(ps, con);
 		}
 		
+		return result;
+	}
+
+
+	@Override
+	public int update(int cartId, int cartQty) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		String sql = "update cart set cart_qty = ? where cart_id = ?";
+		try {
+			con=DbUtil.getConnection();
+			ps= con.prepareStatement(sql);
+			ps.setInt(1, cartQty);
+			ps.setInt(2, cartId);
+			result = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
 		return result;
 	}
 

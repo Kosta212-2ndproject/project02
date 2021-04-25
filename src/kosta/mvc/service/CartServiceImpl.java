@@ -35,4 +35,10 @@ public class CartServiceImpl implements CartService {
 
 	}
 
+	@Override
+	public void updateCart(int cartId, int cartQty) throws SQLException {
+		int result = cartDAO.update(cartId, cartQty);
+		if(result==0)throw new SQLException("업데이트되지 않았습니다.");
+	}
+
 }

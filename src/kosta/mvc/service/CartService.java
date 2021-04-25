@@ -23,4 +23,9 @@ public interface CartService {
 	
 	void deleteCart(int cartId) throws SQLException;
 	
+	/**
+	 * 카트 수량 수정
+	 */
+	void updateCart(int cartId, int cartQty) throws SQLException;
+	
 }
