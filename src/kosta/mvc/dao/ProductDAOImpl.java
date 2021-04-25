@@ -98,6 +98,8 @@ public class ProductDAOImpl implements ProductDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
+
+
 		String sql = "select * from product where prod_type = ?";
 		
 		try {
