@@ -55,7 +55,7 @@
 </table>
 
 <hr>
-<input type="button" onclick="test()" value="결제내역">
+<input type="button" value="결제내역">
 <h2> 결제 내역! </h2>
 <select name="" id="payState">
    <option value="ready">미결제</option>

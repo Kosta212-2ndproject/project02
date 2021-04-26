@@ -448,8 +448,7 @@
           </div>
           <div class="col-lg-6 d-flex align-items-stretch ftco-animate">
           	<div class="blog-entry d-flex">
-          		<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_3.jpg');">
-              </a>
+          		<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_3.jpg');"> </a>
               <div class="text p-4 bg-light">
               	<div class="meta">
               		<p><span class="fa fa-calendar"></span> 23 April 2020</p>

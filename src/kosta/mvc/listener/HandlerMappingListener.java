@@ -17,6 +17,10 @@ import kosta.mvc.controller.Controller;
  */
 @WebListener
 public class HandlerMappingListener implements ServletContextListener {
+	@Override
+	public void contextDestroyed(ServletContextEvent servletContextEvent) {
+
+	}
 
 	public void contextInitialized(ServletContextEvent sce) {
 		// 외부의 ~.properties 파일을 로딩해서 key와 value를 분리한다

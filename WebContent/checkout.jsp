@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,11 +27,6 @@
 
    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <script src="js/zipCode.js"></script>
-   <script src="js/checkoutJS.js"></script>
-   <script>
-
-
-   </script>
 </head>
 <body>
 
@@ -119,10 +117,10 @@
                   <a class="dropdown-item" href="product.html">Products</a>
                   <a class="dropdown-item" href="product-single.html">Single Product</a>
                   <a class="dropdown-item" href="cart.html">Cart</a>
-                  <a class="dropdown-item" href="checkout.html">Checkout</a>
+                  <a class="dropdown-item" href="checkout.jsp">Checkout</a>
                </div>
             </li>
-            <li class="nav-item	"><a href="blog.html" class="nav-link">Blog</a></li>
+            <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
             <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
          </ul>
       </div>
@@ -144,21 +142,83 @@
    </div>
 </section>
 
+
+<%
+   request.setCharacterEncoding("UTF-8");
+
+   String imgUrl = request.getParameter("imgUrl");
+   String name = request.getParameter("name");
+   String nameTag = request.getParameter("nameEng");
+   int price = Integer.parseInt(request.getParameter("price"));
+   int dbQty = Integer.parseInt(request.getParameter("dbQty"));
+   int qty = Integer.parseInt(request.getParameter("userInputQty"));
+
+   int totalPrice = price * qty;
+
+%>
+<!-- 장바구니 카트 -->
+<section class="ftco-intro">
+   <div class="container">
+      <div class="row">
+         <div class="table-borderless">
+            <table class="table">
+               <thead class="thead-primary">
+               <tr>
+                  <th>상품이미지</th>
+                  <th>상품이름</th>
+                  <th>가격</th>
+                  <th>수량</th>
+                  <th>총가격</th>
+                  <th>&nbsp;</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr class="alert" role="alert">
+                  <td>
+                     <div class="img"><img src="<%=imgUrl%>" width="80" height="100" /> </div>
+                  </td>
+                  <td>
+                     <div class="email">
+                        <span><%= name %></span>
+                        <span><%= nameTag %></span>
+                     </div>
+                  </td>
+                  <td><fmt:formatNumber value="<%= price %>" pattern="#,###원"/></td>
+
+                  <td class="quantity">
+                     <div class="input-group">
+                        <input type="text" class="quantity form-control-plaintext" value="<%=qty%>개" readonly/>
+                     </div>
+                  </td>
+                  <td><fmt:formatNumber value="<%= totalPrice %>" pattern="#,###원"/></td>
+               </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</section>
+
 <section class="ftco-section">
    <div class="container">
       <div class="row justify-content-center">
-         <div class="col-xl-10 ftco-animate">
+         <div class="col-md-12 ftco-animate">
             <form action="#" class="billing-form">
                <h3 class="mb-4 billing-heading">결제 세부 정보</h3>
                <div class="row align-items-end">
-                  <div class="col-md-12">
+
+                  <div class="col-md-6">
                      <div class="form-group">
                         <label for="firstname">수령인</label>
                         <input type="text" class="form-control" placeholder="">
                      </div>
                   </div>
-
-
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="emailaddress">휴대폰 번호</label>
+                        <input type="text" class="form-control" placeholder="" id="phoneNum">
+                     </div>
+                  </div>
                   <div class="w-100"></div>
                   <div class="col-md-10">
                      <div class="form-group">
@@ -168,9 +228,10 @@
                   </div>
                   <div class="col-md-2">
                      <div class="form-group">
-                        <a href="#" class="btn btn-primary py-3 px-5" onclick="DaumPostCodeFunc()">찾기</a>
+                        <a href="#" class="btn btn-outline-primary py-3 px-md-5" onclick="DaumPostCodeFunc()">찾기</a>
                      </div>
                   </div>
+
 
                   <div class="w-100"></div>
                   <div class="col-md-6">
@@ -186,18 +247,13 @@
                   </div>
 
                   <div class="w-100"></div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                      <div class="form-group">
                         <label for="phone">상세 주소</label>
                         <input type="text" class="form-control" placeholder="" id="detail-address">
                      </div>
                   </div>
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="emailaddress">휴대폰 번호</label>
-                        <input type="text" class="form-control" placeholder="" id="phoneNum">
-                     </div>
-                  </div>
+
                   <div class="w-100"></div>
                   <div class="col-md-12">
                      <label for="country">배송 메모</label>
@@ -215,8 +271,8 @@
                   <div class="col-md-12">
                      <div class="form-group mt-4">
                         <div class="radio">
-                           <label><input type="radio" name="optradio" id="address-insert"> 주소를 등록하시겠습니까? &nbsp</label>
-                           <a class="btn btn-primary py-2 px-3" href="javascript:insertAddress()">등록</a>
+                           <label><input type="radio" name="optradio"> 주소를 등록하시겠습니까? &nbsp;</label>
+                           <a class="btn btn-outline-secondary py-2 px-3" name="address-insert">등록</a>
                         </div>
                      </div>
 
@@ -231,20 +287,20 @@
                      <h3 class="billing-heading mb-4">장바구니</h3>
                      <p class="d-flex">
                         <span>상품 금액</span>
-                        <span>20,000원</span>
+                        <span><fmt:formatNumber value="<%= price %>" pattern="#,###원"/></span>
                      </p>
                      <p class="d-flex">
                         <span>배송비</span>
-                        <span>0원</span>
+                        <span>&nbsp;&nbsp;<fmt:formatNumber value="2000" pattern="#,###원"/></span>
                      </p>
-                     <p class="d-flex">
-                        <span>할인 금액</span>
-                        <span>3,000원</span>
-                     </p>
+<%--                     <p class="d-flex">--%>
+<%--                        <span>할인 금액</span>--%>
+<%--                        <span>3,000원</span>--%>
+<%--                     </p>--%>
                      <hr>
                      <p class="d-flex total-price">
                         <span>총 금액</span>
-                        <span>17,860원</span>
+                        <span><fmt:formatNumber value="<%= totalPrice+2000 %>" pattern="#,###원"/></span>
                      </p>
                   </div>
                </div>
@@ -254,15 +310,15 @@
                      <div class="form-group">
                         <div class="col-md-12" id="check_payment">
                            <div class="radio">
-                              <label><input type="radio" name="optradio" class="mr-2" id="card"> 신용카드</label>
+                              <label><input type="radio" name="optradio" class="mr-2" id="card" value="card"> 신용카드</label>
                            </div>
 
                            <div class="radio">
-                              <label><input type="radio" name="optradio" class="mr-2" id="phone"> 휴대폰 결제</label>
+                              <label><input type="radio" name="optradio" class="mr-2" id="phone" value="phone"> 휴대폰 결제</label>
                            </div>
 
                            <div class="radio">
-                              <label><input type="radio" name="optradio" class="mr-2" id="cultureland"> 문화상품권</label>
+                              <label><input type="radio" name="optradio" class="mr-2" id="cultureland" value="cultureland"> 문화상품권</label>
                            </div>
                         </div>
                      </div>
@@ -390,6 +446,7 @@
 <script src="js/google-map.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 <script src="js/main.js"></script>
+<script src="js/checkoutJS.js"></script>
 
 </body>
 </html>

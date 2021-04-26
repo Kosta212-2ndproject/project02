@@ -6,10 +6,7 @@ import com.google.gson.Gson;
 import kosta.mvc.IamportClient;
 import kosta.mvc.dao.PaymentHistoryDAO;
 import kosta.mvc.dao.PaymentHistoryDAOImpl;
-import kosta.mvc.dao.UserDAO;
-import kosta.mvc.dao.UserDAOImpl;
 import kosta.mvc.dto.PaymentHistoryDTO;
-import kosta.mvc.dto.UserDTO;
 import kosta.mvc.response.IamportResponse;
 import kosta.mvc.response.Payment;
 import net.sf.json.JSONArray;
@@ -21,11 +18,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
-import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.List;
+
 
 @WebServlet(name = "PayHistoryServlet", value = "/payHistory")
 public class PayHistoryServlet extends HttpServlet {

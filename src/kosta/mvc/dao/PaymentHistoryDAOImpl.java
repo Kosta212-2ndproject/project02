@@ -2,7 +2,6 @@ package kosta.mvc.dao;
 
 import kosta.mvc.dto.PaymentHistoryDTO;
 import kosta.mvc.dto.ProductDTO;
-import kosta.mvc.dto.UserDTO;
 import kosta.mvc.util.DbUtil;
 
 import java.sql.Connection;
@@ -15,7 +14,7 @@ import java.util.List;
 public class PaymentHistoryDAOImpl implements PaymentHistoryDAO {
 
    @Override
-   public int insert(PaymentHistoryDTO dto) {
+   public int insert(PaymentHistoryDTO dto){
       PreparedStatement ps = null;
       Connection con = null;
       int result = 0;
