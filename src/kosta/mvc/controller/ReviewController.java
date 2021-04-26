@@ -1,6 +1,7 @@
 package kosta.mvc.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import kosta.mvc.dto.NoticeDTO;
 import kosta.mvc.dto.ReviewDTO;
 import kosta.mvc.service.ReviewService;
 import kosta.mvc.service.ReviewServiceImpl;
@@ -16,10 +18,28 @@ import kosta.mvc.service.ReviewServiceImpl;
 public class ReviewController implements Controller {
 
 	private ReviewService reviewService = new ReviewServiceImpl();
-	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
+	
+	
+	public ModelAndView selectByProdId(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
-		// TODO Auto-generated method stub
-		return null;
+		String saveDir = request.getServletContext().getRealPath("/save");//★
+		String encoding = "UTF-8";
+		int maxSize = 1024*1024*100;//100MB
+		
+		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
+		String prodId = m.getParameter("prodId");
+		
+		List<ReviewDTO> reviewList = reviewService.selectByProdId(prodId);
+		for(ReviewDTO dto:reviewList) {
+			System.out.println(dto);
+		}
+		request.setAttribute("reviewListByprodId", reviewList); //${requestScope.reviewListByprodId}
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("reviewSelect.jsp");
+		
+		return mv;
+		
 	}
 
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response)
@@ -32,7 +52,7 @@ public class ReviewController implements Controller {
 		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 		
 //		String prodId = m.getParameter("prodId");
-		String prodId = "45732";
+		String prodId = "37197";
 //		String userId = m.getParameter("userId");
 		String userId = "choi";
 		
@@ -61,7 +81,7 @@ public class ReviewController implements Controller {
 		reviewService.insert(review);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("review2.jsp");
+		mv.setViewName("reviewInsert.jsp");
 		
 		return mv;
 		
@@ -76,6 +96,13 @@ public class ReviewController implements Controller {
 
 	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

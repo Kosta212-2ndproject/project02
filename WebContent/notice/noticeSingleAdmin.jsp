@@ -23,6 +23,22 @@
     
     <link rel="stylesheet" href="../css/flaticon.css">
     <link rel="stylesheet" href="../css/style.css">
+    
+    <script type="text/javascript">
+    function sendUpdate(){
+    	document.requestForm.methodName.value ="updateForm";
+    	document.requestForm.submit();
+    }
+
+    function sendDelete(){
+    	
+    	document.requestForm.methodName.value ="delete";
+    	document.requestForm.submit();
+    }
+    
+    
+    
+    </script>
   </head>
   <body>
     
@@ -43,18 +59,26 @@
 			<div class="row">
 				<div class="col-lg-8 ftco-animate">
 					<p>
-						<img src="${nDTO.nImage}" alt="" class="img-fluid">
+						<img src="${nDTO.nImage}" alt="" class="img-fluid"/>
 					</p>
 					<h2 class="mb-3">${nDTO.nTitle}</h2>
 					<p>${nDTO.nContent}</p>
 					<p>
-						<div class="col-md-2">
-						<div class="form-group">
-							<a href="${path}/front?key=notice&methodName=selectByNoticeNumAdmin&nNum=${nDTO.nNum}" class="btn btn-primary" onclick="">글 관리</a>
-						</div>
-					</div>
+					
 
-
+	<form name="requestForm" method=post action="${path}/front">
+    </tr>
+    
+    
+    <tr>
+        <td height="20" colspan="4" align="center" valign="middle">
+			<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
+				<input type=hidden name="nNum" value="${nDTO.nNum}">
+				<input type=hidden name="key" value="notice">
+				<input type=hidden name="methodName">
+				<input type=button value="수정하기" onClick="sendUpdate()">
+				<input type=button value="삭제하기" onClick="sendDelete()">
+    </form>
 
 					<div class="about-author d-flex p-4 bg-light">
               <div class="bio mr-5">

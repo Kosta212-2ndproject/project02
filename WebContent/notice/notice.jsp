@@ -1,3 +1,5 @@
+<%@page import="kosta.mvc.dao.NoticeDAOImpl"%>
+<%@page import="kosta.mvc.dao.NoticeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../common/header.jsp"/>
@@ -20,9 +22,21 @@
     
     <link rel="stylesheet" href="../css/flaticon.css">
     <link rel="stylesheet" href="../css/style.css">
-  </head>
-  <body>
 
+<script type="text/javascript">
+	function sendUpdate() {
+		document.requestForm.methodName.value = "uploadForm";
+		document.requestForm.submit();
+	}
+
+	function sendDelete() {
+
+		document.requestForm.methodName.value = "delete";
+		document.requestForm.submit();
+	}
+</script>
+</head>
+  <body>
   	
     <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -69,13 +83,15 @@
 			   </c:forEach>
 	</c:otherwise>
   </c:choose>
+
 			</div>
     
-		</div>
+		</div>  	
+
 	</section>
 
 
-    
+
 
 	<div class="row mt-5">
 		<div class="col text-center">
@@ -88,14 +104,24 @@
 					<li><a href="#">4</a></li>
 					<li><a href="#">5</a></li>
 					<li><a href="#">&gt;</a></li>
+				
+				</ul>
+				<ul>
+
+					<div class="col-md-2">
+						<div class="form-group">
+							<a href="${path}/front?key=notice&methodName=uploadForm"
+								class="btn btn-primary" onclick="">upload</a>
+						</div>
+					</div>
 				</ul>
 			</div>
 		</div>
 	</div>
 
-	
-    
-    <!-- contents -->
+
+
+	<!-- contents -->
 
     
   
