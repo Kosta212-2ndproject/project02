@@ -258,7 +258,7 @@
         </div>
     	</div>
     </section>
-
+<jsp:include page="reviewSelect.jsp"></jsp:include>
     
     
   
