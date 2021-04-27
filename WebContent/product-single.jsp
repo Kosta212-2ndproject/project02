@@ -186,7 +186,7 @@
 							   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
 								   			</p>
 								   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-								   		</div>
+								   		</div>     
 								   	</div>
 								   	<div class="review">
 								   		<div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
