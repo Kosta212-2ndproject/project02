@@ -25,6 +25,11 @@ public interface ReviewDAO {
 	  List<ReviewDTO> selectByUserId(String userId) throws SQLException;
 	  
 	  /**
+	   * 상품번호에 해당하는 review 총 count 검색
+	   * */
+	  int selectByProdIdCnt(String prodId) throws SQLException; 
+	  
+	  /**
 	   * 조회수를 증가하는 기능
 	   * update Electronics set readnum = readnum + 1 where model_num=?
 	   * */

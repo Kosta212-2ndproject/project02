@@ -66,6 +66,31 @@ public class ReviewDAOImpl implements ReviewDAO {
 		}
 		return list;
 	}
+	
+	@Override
+	public int selectByProdIdCnt(String prodId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int res =0;
+		String sql = "select count(*) from review where PROD_ID = ?";
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, prodId);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				res = rs.getInt(1);
+			}
+			
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return res;
+	}
 
 	@Override
 	public List<ReviewDTO>  selectByUserId(String userId) throws SQLException {
@@ -184,5 +209,6 @@ public class ReviewDAOImpl implements ReviewDAO {
 		
 		return res;
 	}
+
 
 }

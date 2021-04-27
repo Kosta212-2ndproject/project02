@@ -63,19 +63,19 @@ public class ReviewController implements Controller {
 		String reviewTitle = m.getParameter("reviewTitle");
 		String reviewContent = m.getParameter("reviewContent");
 		String reviewStarScope = m.getParameter("reviewStarScope");
-		String reviewImgUrl = m.getParameter("reviewImgUrl");
+		//String reviewImgUrl = m.getParameter("reviewImgUrl");
 		
 		//file관련을 null 혀옹임 입력 안해도 됨
 		
 		ReviewDTO review = new ReviewDTO(0, Integer.parseInt(prodId), userId, 
 				Integer.parseInt(oNum), reviewTitle, reviewContent, 
-				Integer.parseInt(reviewStarScope), null, reviewImgUrl,0);
+				Integer.parseInt(reviewStarScope), null, null,0);
 		
 				
 		
 		//파일 첨부가 되었다면, 
-		if(m.getFilesystemName("file") != null) {//뭔가 첨부가 되었다면
-			review.setReviewImgUrl(m.getFilesystemName("file"));
+		if(m.getFilesystemName("reviewImgUrl") != null) {//뭔가 첨부가 되었다면
+			review.setReviewImgUrl(request.getContextPath()+"/save/"+m.getFilesystemName("reviewImgUrl"));
 			
 		
 		}

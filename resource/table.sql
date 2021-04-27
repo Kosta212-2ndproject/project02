@@ -273,3 +273,12 @@ commit;
 SELECT
     *
 FROM review where PROD_ID=37198;
+
+delete review where PROD_ID=37198;
+commit≈
+
+SELECT
+    *
+FROM product where PROD_ID=37198;
+
+select count(*) from review where PROD_ID = 37198;

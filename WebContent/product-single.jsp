@@ -24,6 +24,7 @@
     
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/review.css">
   
     
  
@@ -132,128 +133,9 @@
               <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
               	<div class="row p-4">
 						   		<div class="col-md-7">
-						   			<h3 class="mb-4">23 Reviews</h3>
-						   			<div class="review">
-								   		<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-								   		<div class="desc">
-								   			<h4>
-								   				<span class="text-left">Jacob Webb</span>
-								   				<span class="text-right">25 April 2020</span>
-								   			</h4>
-								   			<p class="star">
-								   				<span>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-							   					</span>
-							   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-								   			</p>
-								   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-								   		</div>
-								   	</div>
-								   	<div class="review">
-								   		<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-								   		<div class="desc">
-								   			<h4>
-								   				<span class="text-left">Jacob Webb</span>
-								   				<span class="text-right">25 April 2020</span>
-								   			</h4>
-								   			<p class="star">
-								   				<span>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-							   					</span>
-							   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-								   			</p>
-								   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-								   		</div>
-								   	</div>
-								   	<div class="review">
-								   		<div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
-								   		<div class="desc">
-								   			<h4>
-								   				<span class="text-left">Jacob Webb</span>
-								   				<span class="text-right">25 April 2020</span>
-								   			</h4>
-								   			<p class="star">
-								   				<span>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-							   					</span>
-							   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-								   			</p>
-								   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-								   		</div>
-								   	</div>
+						   			
 						   		</div>
-						   		<div class="col-md-4">
-						   			<div class="rating-wrap">
-							   			<h3 class="mb-4">Give a Review</h3>
-							   			<p class="star">
-							   				<span>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					(98%)
-						   					</span>
-						   					<span>20 Reviews</span>
-							   			</p>
-							   			<p class="star">
-							   				<span>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					(85%)
-						   					</span>
-						   					<span>10 Reviews</span>
-							   			</p>
-							   			<p class="star">
-							   				<span>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					(98%)
-						   					</span>
-						   					<span>5 Reviews</span>
-							   			</p>
-							   			<p class="star">
-							   				<span>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					(98%)
-						   					</span>
-						   					<span>0 Reviews</span>
-							   			</p>
-							   			<p class="star">
-							   				<span>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					(98%)
-						   					</span>
-						   					<span>0 Reviews</span>
-							   			</p>
-							   		</div>
-						   		</div>
+						   		
 						   	</div>
               </div>
               
@@ -261,7 +143,9 @@
               <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-day-4-tab">
               	<div class="row p-4">
 						   		<div class="col-md-7">
-						   			<h3 class="mb-4">23 Reviews</h3>
+						   			<!-- <h3 class="mb-4">23 Reviews</h3> -->
+						   			
+						   			
 						   			<div class="review">
 								   		<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
 								   		<div class="desc">
@@ -282,6 +166,8 @@
 								   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
 								   		</div>
 								   	</div>
+								   	
+								   	
 								   	<div class="review">
 								   		<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
 								   		<div class="desc">
@@ -450,19 +336,40 @@
 		     
 			 	///////////////////////////////////////////////////
 			 	
-			alert("${prod.prodId}")
+			//alert("${prod.prodId}")
 			$(document).on("click","#v-pills-3-tab", function(){
-				alert(22)
+				//alert(22)
 				
 				$.ajax({
 	   			 url:"${path}/reviewSelect" , // 서버요청주소
 	   			 type: "post", //method방식 = 전송방식(get, post, put, delete)
 	   			 dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
-	   		     data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보
+	   		     data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보 
 	   			 success : function(result){
 	   			   //alert(result)
-	   			  
-	   				 
+	   				var str = "<table><tr>";
+	   				str += "<th> 회원아이디 </th>";
+	   				str += "<th> 제목 </th>";
+	   				str += "<th> 내용 </th>";
+	   				str += "<th> 별점 </th>";
+	   				str += "<th> 등록일 </th>";
+	   				str += "<th> 사진 </th>";
+	   				str += "<th> 조회수 </th>";
+					$.each(result, function(index, item) {
+						str += "<tr>"
+						str += "<td>" + item.userId + "</td>"
+						str += "<td>" + item.reviewTitle + "</td>"
+						str += "<td>" + item.reviewContent + "</td>"
+						str += "<td>" + item.reviewStarScope + "</td>"
+						str += "<td>" + item.reviewRegdate + "</td>"
+						str += "<td><img width='175' height='200' src='"+item.reviewImgUrl+"'></td>";
+						str += "<td>" + item.reviewVcount + "</td>"
+						str += "</tr>"
+					});
+					str += "</table>"
+
+					$(".col-md-7").after(str);
+					
 	   			 } , //성공했을때 함수
 	   			 error: function(err){
 	   				 alert(err+"발생했어요^^")
