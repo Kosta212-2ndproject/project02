@@ -122,7 +122,7 @@ public class NoticeController implements Controller {
 		
 		//파일 첨부가 되었다면, 
 		if(m.getFilesystemName("nImage") != null) {//뭔가 첨부가 되었다면
-			notice.setnImage(m.getFilesystemName("nImage")); 
+			notice.setnImage(request.getContextPath()+"/save/"+m.getFilesystemName("nImage")); 
 			
 		}
 	
@@ -150,16 +150,20 @@ public class NoticeController implements Controller {
 		String nTitle = m.getParameter("nTitle"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
 		String nContent = m.getParameter("nContent"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
 		String nField = m.getParameter("nField"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+		//String nImage = m.getParameter("nImage");
+		String nImageOrigin = m.getParameter("nImageOrigin");
 		
 		NoticeDTO notice = new NoticeDTO(Integer.parseInt(nNum), nTitle, nContent, null, null, 0, Integer.parseInt(nField));
+		
 		
 		
 		//파일 첨부가 되었다면, 
 		if(m.getFilesystemName("nImage") != null) {//뭔가 첨부가 되었다면
 			notice.setnImage(m.getFilesystemName("nImage")); 
 			
+		}else {
+			notice = new NoticeDTO(Integer.parseInt(nNum), nTitle, nContent, nImageOrigin, null, 0, Integer.parseInt(nField));
 		}
-	
 		nService.update(notice);
 		
 		

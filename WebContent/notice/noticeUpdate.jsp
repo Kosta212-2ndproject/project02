@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../common/header.jsp" />
 <!DOCTYPE html>
 <HEAD>
@@ -42,6 +43,19 @@ function checkValid() {
 	
     
 }
+
+function setThumbnail(event) {
+	var reader = new FileReader();
+	reader.onload = function(event) {
+		var img = document.createElement("img");
+		img.setAttribute("width","50");
+		img.setAttribute("height","50");
+		img.setAttribute("src", event.target.result);
+		
+		document.querySelector("div#image_container").appendChild(img);
+	};
+	reader.readAsDataURL(event.target.files[0]);
+}
 </SCRIPT>
 
 </HEAD>
@@ -78,6 +92,7 @@ function checkValid() {
 		<input type="hidden" name="key" value="notice"> <input
 			type="hidden" name="methodName" value="update"> <input
 			type='hidden' name='nNum' value="${nDTO.nNum}">
+			<input type="hidden" name="nImageOrigin" value="${nDTO.nImage}"/>
 		<table align="center" cellpadding="5" cellspacing="1" width="600"
 			border="1">
 			<tr>
@@ -129,10 +144,31 @@ function checkValid() {
 					</p>
 				</td>
 				<td width="450" height="20"><b><span
-						style="font-size: 9pt;"> <input type="file" name="nImage"
+						style="font-size: 9pt;"> <input type="file" name="nImage" id="image" accept="image/*" onchange="setThumbnail(event);"
 							maxlength="60" size="40" value="${nDTO.nImage}">
-					</span></b></td>
+					</span></b><div id="image_container"></div></td>
 			</tr>
+			
+	
+	
+	
+			<c:if test="${nDTO.nImage!=null}">
+				<tr>
+					<td width="100" height="20">
+						<p align="right">
+							<b><span style="font-size: 9pt;">다운로드</span></b>
+						</p>
+					</td>
+					<td width="450" height="20" colspan="3"><span
+						style="font-size: 9pt;"><b> <a
+								href='${path}/downLoad?fileName=${nDTO.nImage}'>
+									${nDTO.nImage} </a> 
+						</b></span></td>
+						
+				</tr>
+			</c:if>
+              
+
 			<tr>
 				<td width="450" height="20" colspan="2" align="center"><b><span
 						style="font-size: 9pt;"> <input type="submit" value="수정하기">

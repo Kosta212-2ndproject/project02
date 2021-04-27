@@ -3,6 +3,8 @@ package kosta.mvc.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kosta.mvc.dto.NoticeDTO;
 
 public interface NoticeDAO {

@@ -41,8 +41,6 @@
     	document.requestForm.submit();
     }
     
-    
-    
     </script>
 </head>
 <body>
@@ -67,6 +65,7 @@
 			</div>
 		</div>
 	</section>
+
 
 	<section class="ftco-section ftco-degree-bg">
 		<div class="container">

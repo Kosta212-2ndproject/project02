@@ -58,6 +58,9 @@
 				<div class="col-lg-8 ftco-animate">
 					<p>
 						<img src="${nDTO.nImage}" alt="" class="img-fluid">
+						
+						<!-- <img src="${nDTO.nImage}" alt="" class="img-fluid"> -->
+						
 					</p>
 					<h2 class="mb-3">${nDTO.nTitle}</h2>
 					<p>${nDTO.nContent}</p>
