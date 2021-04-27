@@ -79,7 +79,7 @@ key, methodName 은 get방식으로 별도로 전송해야 한다.
             <p align="right"><b><span style="font-size:9pt;">*파일첨부</span></b></p>
         </td>
         <td width="450" height="20">
-        	<b><span style="font-size:9pt;">
+        	<b><span style="font-size:9pt;">   
         		 <input type="file" name="reviewImgUrl" maxlength="60" size="40">
         	   </span></b>
         </td>
