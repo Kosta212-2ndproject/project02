@@ -19,28 +19,28 @@ public class ReviewController implements Controller {
 
 	private ReviewService reviewService = new ReviewServiceImpl();
 	
-	
-	public ModelAndView selectByProdId(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, Exception {
-		String saveDir = request.getServletContext().getRealPath("/save");//★
-		String encoding = "UTF-8";
-		int maxSize = 1024*1024*100;//100MB
-		
-		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
-		String prodId = m.getParameter("prodId");
-		
-		List<ReviewDTO> reviewList = reviewService.selectByProdId(prodId);
-		for(ReviewDTO dto:reviewList) {
-			System.out.println(dto);
-		}
-		request.setAttribute("reviewListByprodId", reviewList); //${requestScope.reviewListByprodId}
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("reviewSelect.jsp");
-		
-		return mv;
-		
-	}
+//	
+//	public ModelAndView selectByProdId(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException, Exception {
+//		String saveDir = request.getServletContext().getRealPath("/save");//★
+//		String encoding = "UTF-8";
+//		int maxSize = 1024*1024*100;//100MB
+//		
+//		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
+//		String prodId = m.getParameter("prodId");
+//		
+//		List<ReviewDTO> reviewList = reviewService.selectByProdId(prodId);
+//		for(ReviewDTO dto:reviewList) {
+//			System.out.println(dto);
+//		}
+//		request.setAttribute("reviewListByprodId", reviewList); //${requestScope.reviewListByprodId}
+//		
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("reviewSelect.jsp");
+//		
+//		return mv;
+//		
+//	}
 
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -52,7 +52,7 @@ public class ReviewController implements Controller {
 		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 		
 //		String prodId = m.getParameter("prodId");
-		String prodId = "37197";
+		String prodId = "37198";
 //		String userId = m.getParameter("userId");
 		String userId = "choi";
 		

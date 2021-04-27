@@ -24,13 +24,12 @@ public class ReviewSelectServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		  response.setContentType("text/html; charset=UTF-8");
 		  
-		  String proId = request.getParameter("id");
+		  String proId = request.getParameter("prodId");
 		  System.out.println(proId);
 	      // service -> dao 호출
 	      ReviewDAO dao = new ReviewDAOImpl();
-	      List<ReviewDTO> list = new ArrayList<ReviewDTO>();
+	      List<ReviewDTO> list =null;
 		try {
 			list = dao.selectByProdId(proId);
 

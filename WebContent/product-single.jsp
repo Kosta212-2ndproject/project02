@@ -97,11 +97,14 @@
     		<div class="row mt-5">
           <div class="col-md-12 nav-link-wrap">
             <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <!-- Tabmenu  -->
               <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
 
               <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Taste/Food Matching </a>
 
-             <a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Reviews</a>
+             <a class="nav-link ftco-animate mr-lg-1" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Reviews</a>
+             
+             <a class="nav-link ftco-animate" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">Q & A</a>
 
 
             </div>
@@ -110,14 +113,14 @@
           <div class="col-md-12 tab-wrap">
             
             <div class="tab-content bg-light" id="v-pills-tabContent">
-
+<!-- 1번째 탭메뉴의 contents  -->
               <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
               	<div class="p-4">
 	              	<h3 class="mb-4">${requestScope.prod.prodName} ${requestScope.prod.prodNameEng}</h3>
 	              	<p>${prod.prodDetail}</p>
               	</div>
               </div>
-
+<!-- 2번째 탭메뉴의 contents  -->
               <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
               	<div class="p-4">
 	              	<h3 class="mb-4">Taste / Food Matching</h3>
@@ -125,8 +128,137 @@
 	              	Food matching : ${prod.prodMach}</p>
 	             </div>
               </div>
-         
+<!-- 3번째 탭메뉴의 contents  -->        
               <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
+              	<div class="row p-4">
+						   		<div class="col-md-7">
+						   			<h3 class="mb-4">23 Reviews</h3>
+						   			<div class="review">
+								   		<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+								   		<div class="desc">
+								   			<h4>
+								   				<span class="text-left">Jacob Webb</span>
+								   				<span class="text-right">25 April 2020</span>
+								   			</h4>
+								   			<p class="star">
+								   				<span>
+								   					<i class="fa fa-star"></i>
+								   					<i class="fa fa-star"></i>
+								   					<i class="fa fa-star"></i>
+								   					<i class="fa fa-star"></i>
+								   					<i class="fa fa-star"></i>
+							   					</span>
+							   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+								   			</p>
+								   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+								   		</div>
+								   	</div>
+								   	<div class="review">
+								   		<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
+								   		<div class="desc">
+								   			<h4>
+								   				<span class="text-left">Jacob Webb</span>
+								   				<span class="text-right">25 April 2020</span>
+								   			</h4>
+								   			<p class="star">
+								   				<span>
+								   					<i class="fa fa-star"></i>
+								   					<i class="fa fa-star"></i>
+								   					<i class="fa fa-star"></i>
+								   					<i class="fa fa-star"></i>
+								   					<i class="fa fa-star"></i>
+							   					</span>
+							   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+								   			</p>
+								   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+								   		</div>
+								   	</div>
+								   	<div class="review">
+								   		<div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
+								   		<div class="desc">
+								   			<h4>
+								   				<span class="text-left">Jacob Webb</span>
+								   				<span class="text-right">25 April 2020</span>
+								   			</h4>
+								   			<p class="star">
+								   				<span>
+								   					<i class="fa fa-star"></i>
+								   					<i class="fa fa-star"></i>
+								   					<i class="fa fa-star"></i>
+								   					<i class="fa fa-star"></i>
+								   					<i class="fa fa-star"></i>
+							   					</span>
+							   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+								   			</p>
+								   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+								   		</div>
+								   	</div>
+						   		</div>
+						   		<div class="col-md-4">
+						   			<div class="rating-wrap">
+							   			<h3 class="mb-4">Give a Review</h3>
+							   			<p class="star">
+							   				<span>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					(98%)
+						   					</span>
+						   					<span>20 Reviews</span>
+							   			</p>
+							   			<p class="star">
+							   				<span>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					(85%)
+						   					</span>
+						   					<span>10 Reviews</span>
+							   			</p>
+							   			<p class="star">
+							   				<span>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					(98%)
+						   					</span>
+						   					<span>5 Reviews</span>
+							   			</p>
+							   			<p class="star">
+							   				<span>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					(98%)
+						   					</span>
+						   					<span>0 Reviews</span>
+							   			</p>
+							   			<p class="star">
+							   				<span>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					<i class="fa fa-star"></i>
+							   					(98%)
+						   					</span>
+						   					<span>0 Reviews</span>
+							   			</p>
+							   		</div>
+						   		</div>
+						   	</div>
+              </div>
+              
+ <!-- 4번째 탭메뉴의 contents  -->             
+              <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-day-4-tab">
               	<div class="row p-4">
 						   		<div class="col-md-7">
 						   			<h3 class="mb-4">23 Reviews</h3>
@@ -258,7 +390,6 @@
         </div>
     	</div>
     </section>
-<jsp:include page="reviewSelect.jsp"></jsp:include>
     
     
   
@@ -282,9 +413,8 @@
   <script src="js/google-map.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
   <script src="js/main.js"></script>
-
   <script>
-		$(document).ready(function(){
+	$(document).ready(function(){
 
 		var quantitiy=0;
 		   $('.quantity-right-plus').click(function(e){
@@ -317,9 +447,37 @@
 		            }
 		    });
 		    
+		     
+			 	///////////////////////////////////////////////////
+			 	
+			alert("${prod.prodId}")
+			$(document).on("click","#v-pills-3-tab", function(){
+				alert(22)
+				
+				$.ajax({
+	   			 url:"${path}/reviewSelect" , // 서버요청주소
+	   			 type: "post", //method방식 = 전송방식(get, post, put, delete)
+	   			 dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
+	   		     data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보
+	   			 success : function(result){
+	   			   //alert(result)
+	   			  
+	   				 
+	   			 } , //성공했을때 함수
+	   			 error: function(err){
+	   				 alert(err+"발생했어요^^")
+	   			 } //오류발생했을때 함수 
+	   			 
+	   		 });//ajax끝
+			})
+			 	///////////////////////////////////////////////////
+		     
 		});
-	</script>
 
+		
+		
+		
+</script>
 
 </body>
 </html>

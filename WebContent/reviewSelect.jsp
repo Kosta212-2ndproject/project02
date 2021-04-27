@@ -37,7 +37,7 @@
     		<div class="row mt-5">
           <div class="col-md-12 nav-link-wrap">
             <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-1" aria-selected="true">Q & A</a>
+              <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-1" aria-selected="true">Review</a>
 
 
 
@@ -84,5 +84,7 @@
   <script src="js/google-map.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
   <script src="js/main.js"></script>
+  <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+ 
 </body>
 </html>
