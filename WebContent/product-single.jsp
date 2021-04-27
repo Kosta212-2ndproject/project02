@@ -4,6 +4,11 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <jsp:include page="common/header.jsp"/>
 
+<%
+   String prodId = request.getParameter("prodId");
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,13 +102,15 @@
                </div>
                <div class="w-100"></div>
                <div class="col-md-12">
-                  <p style="color: #000;"><input type="text" id="prodQty" value="${prod.prodQty}"/> piece available</p>
+                  <p style="color: #000;"><input type="text" class="text-center" id="prodQty" value="${prod.prodQty}"/>
+                     piece available</p>
                </div>
             </div>
             <p><a href="#" name="ordersCart" class="btn btn-primary py-3 px-5 mr-2">장바구니</a>
                <a href="#" name="buyNow" class="btn btn-primary py-3 px-5">구매하기</a>
 
             <form action="checkout.jsp" id="checkout" method="post">
+               <input type="hidden" name="prodId" value="<%= prodId %>"/>
                <input type="hidden" name="imgUrl" value="${prod.prodImgUrl}"/>
                <input type="hidden" name="name" value="${prod.prodName}"/>
                <input type="hidden" name="nameEng" value="${prod.prodNameEng}"/>
@@ -338,7 +345,7 @@
             // Get the field name
             var quantity = parseInt($('[name=qty]').val());
 
-            if(quantity == $("#prodQty").val()) {
+            if (quantity == $("#prodQty").val()) {
                 $('.quantity-right-plus').prop('disabled', true);
             } else {
                 $('[name=qty]').val(quantity + 1);
@@ -361,7 +368,7 @@
             // Increment
             if (quantity <= 1) {
                 alert(quantity + "개 이상부터 구매하실 수 있습니다.");
-            }else {
+            } else {
                 $('[name=qty]').val(quantity - 1);
             }
 

@@ -146,6 +146,7 @@
 <%
    request.setCharacterEncoding("UTF-8");
 
+   String prodId = request.getParameter("prodId");
    String imgUrl = request.getParameter("imgUrl");
    String name = request.getParameter("name");
    String nameTag = request.getParameter("nameEng");
@@ -155,6 +156,7 @@
 
    int totalPrice = price * qty;
 
+   System.out.println(prodId);
 %>
 <!-- 장바구니 카트 -->
 <section class="ftco-intro">
@@ -330,7 +332,7 @@
                            </div>
                         </div>
                      </div>
-                     <p><a class="btn btn-primary py-3 px-4" onclick="isChecked();">결제하기</a></p>
+                     <p><a class="btn btn-primary py-3 px-4" id="payment">결제하기</a></p>
                   </div>
                </div>
             </div>
