@@ -27,26 +27,7 @@ public class ProductController implements Controller {
 		return null;
 	}
 
-	/**
-	 * 상품전체 검색(user)
-	 */
-	public ModelAndView selectAll(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String pageNo = request.getParameter("pageNo");
-		if (pageNo == null || pageNo.equals("")) {
-			pageNo = "1";
-		}
-
-		// 서비스 호출
-		/* List<ProductDTO> list = prodService.selectAll(); */
-
-		List<ProductDTO> listAll = prodService.selectAll(Integer.parseInt(pageNo));
-
-		request.setAttribute("listAll", listAll);
-		request.setAttribute("pageNo", pageNo);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("productAll.jsp");
-		return mv;
-	}
+	
 
 	/**
 	 * 상품전체 검색(admin)
@@ -65,6 +46,22 @@ public class ProductController implements Controller {
 		mv.setViewName("productManage.jsp");
 		return mv;
 	}
+	
+	/**
+	 * 상품보여주기(main창)
+	 */
+	public ModelAndView selectAllMain(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		
+		List<ProductDTO> listAll = prodService.selectAll();
+
+		request.setAttribute("listAll", listAll);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index.jsp");
+		return mv;
+	}
+	
 
 	/**
 	 * 상품 키워드 검색(user)
@@ -83,6 +80,9 @@ public class ProductController implements Controller {
 		mv.setViewName("productAll.jsp");
 		return mv;
 	}
+	
+	
+	
 
 	/**
 	 * 상품 키워드 검색(admin)
@@ -99,6 +99,27 @@ public class ProductController implements Controller {
 		mv.setViewName("productManage.jsp");
 		return mv;
 	}
+	
+	/**
+	 * 상품전체 검색(user)
+	 */
+	public ModelAndView selectAll(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String pageNo = request.getParameter("pageNo");
+		String prodNation = request.getParameter("prodNation");
+		
+		if (pageNo == null || pageNo.equals("")) {
+			pageNo = "1";
+		}
+		
+		List<ProductDTO> listAll = prodService.selectAll(Integer.parseInt(pageNo));
+
+		request.setAttribute("listAll", listAll);
+		request.setAttribute("pageNo", pageNo);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("productAll.jsp");
+		return mv;
+	}
+	
 
 	/**
 	 * 나라별 상품 검색
@@ -109,6 +130,7 @@ public class ProductController implements Controller {
 		List<ProductDTO> listAll = prodService.selectByNation(prodNation);
 
 		request.setAttribute("listAll", listAll);
+		request.setAttribute("prodNation", prodNation);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("productAll.jsp");
 		return mv;

@@ -365,5 +365,36 @@ public class ProductDAOImpl implements ProductDAO {
 
 		return result;
 	}
-
+	
+	/**
+	 * 가격순= P, 인기순-A , 별점순- S 가져오기
+	 * */
+     public List<ProductDTO> test(String type , String nation, String price ){
+    	 String sql="";
+    	 if(type.equals("P")) {
+    		 sql="????";
+    	 }
+    	 
+    	 return null;
+    	 
+     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

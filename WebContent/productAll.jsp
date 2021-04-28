@@ -156,7 +156,7 @@
 
 								<ul>
 									<c:if test="${(startPage-p.blockcount) > 0}">
-										<li><a href="front?key=prod&methodName=selectAll&pageNo=${startPage-1}">&lt;</a></li>
+										<li><a href="front?key=prod&methodName=selectAll&pageNo=${startPage-1}&prodNation=${prodNation}">&lt;</a></li>
 									</c:if>
 
 									<c:forEach var='i' begin='${startPage}' end='${(startPage-1)+p.blockcount}'>
@@ -164,12 +164,12 @@
 											<c:set var="doneLoop" value="true" />
 										</c:if>
 										<c:if test="${not doneLoop}">
-											<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=prod&methodName=selectAll&pageNo=${i}">${i}</a>
+											<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=prod&methodName=selectAll&pageNo=${i}&prodNation=${prodNation}">${i}</a>
 										</c:if>
 
 									</c:forEach>
 									<c:if test="${(startPage+p.blockcount)<=p.pageCnt}">
-										<li><a href="front?key=prod&methodName=selectAll&pageNo=${startPage+p.blockcount}">&gt;</a></li>
+										<li><a href="front?key=prod&methodName=selectAll&pageNo=${startPage+p.blockcount}&prodNation=${prodNation}">&gt;</a></li>
 									</c:if>
 								</ul>
 							</div>
