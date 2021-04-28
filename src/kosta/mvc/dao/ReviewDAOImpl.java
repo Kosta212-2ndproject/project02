@@ -120,15 +120,15 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public int increamentByReadnum(String prodId) throws SQLException {
+	public int increamentByReadnum(int reviewId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int res = 0;
-		String sql = "update review set REVIEW_VCOUNT = REVIEW_VCOUNT+1 where PROD_ID=?";
+		String sql = "update review set REVIEW_VCOUNT = REVIEW_VCOUNT+1 where review_ID=?";
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, prodId);
+			ps.setInt(1, reviewId);
 			res = ps.executeUpdate();
 		}finally {
 			DbUtil.dbClose(ps, con);

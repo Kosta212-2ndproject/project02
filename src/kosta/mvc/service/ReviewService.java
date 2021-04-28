@@ -3,6 +3,7 @@ package kosta.mvc.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import kosta.mvc.dto.NoticeDTO;
 import kosta.mvc.dto.ReviewDTO;
 
 public interface ReviewService {
@@ -21,11 +22,13 @@ public interface ReviewService {
 	   * */
 	  List<ReviewDTO> selectByUserId(String userId) throws SQLException;
 	  
-	  
 	  /**
-	   * reviewId로 리뷰검색 
+	   * 리뷰번호에 해당하는 리 검색
+	   * @param : boolean flag - 조회수 증가 여부를 판별하는 매개변수임(true이면 조회수증가 / false이면 조회수 증가 안함)
 	   * */
-	  ReviewDTO selectReview(int reviewId) throws SQLException;
+	  ReviewDTO selectReview(int reviewId, boolean flag) throws SQLException;
+	  
+	  
 	  /**
 	   * review 등록
 	   * @return : 1-등록성공 , 0 - 등록실패

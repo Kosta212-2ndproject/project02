@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import kosta.mvc.dto.NoticeDTO;
 import kosta.mvc.dto.ReviewDTO;
 import kosta.mvc.service.ReviewService;
 import kosta.mvc.service.ReviewServiceImpl;
@@ -56,7 +57,7 @@ public class ReviewController implements Controller {
 //		String reviewId = m.getParameter("reviewId");
 		String reviewId =request.getParameter("reviewId");
 		
-		ReviewDTO review = reviewService.selectReview(Integer.parseInt(reviewId));
+		ReviewDTO review = reviewService.selectReview(Integer.parseInt(reviewId), true);
 		request.setAttribute("review", review); //${requestScope.review}
 		
 		ModelAndView mv = new ModelAndView();
@@ -126,21 +127,21 @@ public class ReviewController implements Controller {
 	public ModelAndView updateForm(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
-		String userId = request.getParameter("userId"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
-		String prodId = request.getParameter("prodId"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+//		String userId = request.getParameter("userId"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+//		String prodId = request.getParameter("prodId"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+		String reviewId = request.getParameter("reviewId"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
 		
 		
-//		Electronics elec = elecService.selectByModelnum(modelNum, true);//조회수 증가 
-		List<ReviewDTO> reviewList = reviewService.selectByUserId(userId);
+		 ReviewDTO review = reviewService.selectReview(Integer.parseInt(reviewId), false);
 //		
 //		for(ReviewDTO reviewDTO :reviewList) {
 //			if(reviewDTO.getProdId() == Integer.parseInt(prodId)) {
 //				ReviewDTO review = new 
 //			}
 //		}
-//		request.setAttribute("review", review); //${review}
+		request.setAttribute("review", review); //${review}
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("notice/noticeUpdate.jsp");
+		mv.setViewName("reviewUpdate.jsp");
 		
 				
 		return mv;
@@ -148,9 +149,47 @@ public class ReviewController implements Controller {
 	}
 
 	public ModelAndView update(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+			throws ServletException, IOException, Exception {
+		
+		
+		String saveDir = request.getServletContext().getRealPath("/save");//★
+		String encoding = "UTF-8";
+		int maxSize = 1024*1024*100;//100MB
+		
+		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
+		
+		
+		
+		String prodId = m.getParameter("prodId"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+		String reviewId = m.getParameter("reviewId"); 
+		String userId = m.getParameter("userId"); 
+		String reviewTitle = m.getParameter("reviewTitle");
+		String reviewStarScope = m.getParameter("reviewStarScope"); 
+		String reviewRegdate = m.getParameter("reviewRegdate"); 
+		
+		String reviewImgUrlOrigin = m.getParameter("reviewImgUrlOrigin"); 
+		String reviewContent = m.getParameter("reviewContent");
+		String reviewVcount = m.getParameter("reviewVcount"); 
+		
+		ReviewDTO review = new ReviewDTO(Integer.parseInt(reviewId), Integer.parseInt(prodId), userId, 
+				0, reviewTitle, reviewContent, Integer.parseInt(reviewStarScope), reviewRegdate, null, Integer.parseInt(reviewVcount));
+				
+		//파일 첨부가 되었다면, 
+		if(m.getFilesystemName("reviewImgUrl") != null) {//뭔가 첨부가 되었다면
+			review.setReviewImgUrl(request.getContextPath()+"/save/"+m.getFilesystemName("reviewImgUrl")); 
+			
+		}else {
+			review = new ReviewDTO(Integer.parseInt(reviewId), Integer.parseInt(prodId), userId, 
+					0, reviewTitle, reviewContent, Integer.parseInt(reviewStarScope), 
+					reviewRegdate, reviewImgUrlOrigin, Integer.parseInt(reviewVcount));
+		}
+	
+		reviewService.update(review);
+		request.setAttribute("review", review);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("reviewRead.jsp");
+		return mv;
 	}
 
 	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response)

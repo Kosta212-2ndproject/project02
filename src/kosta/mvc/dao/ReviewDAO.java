@@ -38,7 +38,7 @@ public interface ReviewDAO {
 	   * 조회수를 증가하는 기능
 	   * update Electronics set readnum = readnum + 1 where model_num=?
 	   * */
-	  int increamentByReadnum(String prodId) throws SQLException;
+	  int increamentByReadnum(int reviewId) throws SQLException;
 	  
 	  
 	  /**

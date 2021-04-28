@@ -74,7 +74,7 @@
               <div class="comment-form-wrap pt-5">
                 
                 
-                <form action="#" class="p-5 bg-light">
+                <form name="requestForm" method=post action="${path}/front" class="p-5 bg-light">
                 
                   <div class="form-group">
 <!-- review image and text -->
