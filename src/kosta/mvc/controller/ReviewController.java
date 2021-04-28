@@ -11,13 +11,17 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kosta.mvc.dto.NoticeDTO;
+import kosta.mvc.dto.ProductDTO;
 import kosta.mvc.dto.ReviewDTO;
+import kosta.mvc.service.ProductService;
+import kosta.mvc.service.ProductServiceImpl;
 import kosta.mvc.service.ReviewService;
 import kosta.mvc.service.ReviewServiceImpl;
 
 public class ReviewController implements Controller {
 
 	private ReviewService reviewService = new ReviewServiceImpl();
+	private ProductService productService = new ProductServiceImpl();
 	
 //	
 //	public ModelAndView selectByProdId(HttpServletRequest request, HttpServletResponse response)
@@ -193,9 +197,19 @@ public class ReviewController implements Controller {
 	}
 
 	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+			throws ServletException, IOException, Exception {
+		String reviewId = request.getParameter("reviewId");
+		reviewService.delete(Integer.parseInt(reviewId));
+		
+
+		String prodId = request.getParameter("prodId");
+		
+		ProductDTO prod = productService.selectByProductDetail(Integer.parseInt(prodId));
+		
+		request.setAttribute("prod", prod);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("product-single.jsp");
+		return mv;	
 	}
 
 	@Override

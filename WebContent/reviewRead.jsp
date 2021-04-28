@@ -103,6 +103,7 @@
 					</div>
 				</div>
 
+                    <input type=hidden name="prodId" value="${review.prodId}"> 
                     <input type=hidden name="reviewId" value="${review.reviewId}"> 
 					<input type=hidden name="key" value="review"> 
 					<input type=hidden name="methodName"> 
