@@ -23,6 +23,10 @@ public interface ReviewService {
 	  
 	  
 	  /**
+	   * reviewId로 리뷰검색 
+	   * */
+	  ReviewDTO selectReview(int reviewId) throws SQLException;
+	  /**
 	   * review 등록
 	   * @return : 1-등록성공 , 0 - 등록실패
 	   * */

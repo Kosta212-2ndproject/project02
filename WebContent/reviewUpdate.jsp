@@ -29,7 +29,7 @@
 
 <SCRIPT language=javascript>
 function checkValid() {
-    var f = window.document.writeForm;
+    var f = window.document.updateForm;
 		
 	if ( f.reviewTitle.value == "") {
 	    alert( "제목을 입력해 주세요." );
@@ -64,7 +64,7 @@ function checkValid() {
 					<p class="breadcrumbs mb-0">
 						<span class="mr-2"><a href="index.jsp">Home <i
 								class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a
-							href="front?key=notice&methodName=select">Mypage <i
+							href="front?key=notice&methodName=select">Review <i
 								class="fa fa-chevron-right"></i></a></span> <span>Review Single <i
 							class="fa fa-chevron-right"></i></span>
 					</p>

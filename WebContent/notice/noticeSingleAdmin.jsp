@@ -83,13 +83,15 @@
 
 						<tr>
 							<td height="20" colspan="4" align="center" valign="middle">
-								<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. --> <input
-								type=hidden name="nNum" value="${nDTO.nNum}"> <input
-								type=hidden name="key" value="notice"> <input
-								type=hidden name="methodName"> <input type=button
-								value="수정하기" onClick="sendUpdate()"> <input type=button
-								value="삭제하기" onClick="sendDelete()">
+								<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. --> 
+								<input type=hidden name="nNum" value="${nDTO.nNum}"> 
+								<input type=hidden name="key" value="notice"> 
+								<input type=hidden name="methodName"> 
+								<input type=button value="수정하기" onClick="sendUpdate()"> 
+								<input type=button value="삭제하기" onClick="sendDelete()">
 					</form>
+
+
 
 					<div class="about-author d-flex p-4 bg-light">
 						<div class="bio mr-5">

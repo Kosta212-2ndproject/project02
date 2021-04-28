@@ -353,16 +353,16 @@
 	   				str += "<th> 내용 </th>";
 	   				str += "<th> 별점 </th>";
 	   				str += "<th> 등록일 </th>";
-	   				str += "<th> 사진 </th>";
+	   				//str += "<th> 사진 </th>";
 	   				str += "<th> 조회수 </th>";
 					$.each(result, function(index, item) {
 						str += "<tr>"
 						str += "<td>" + item.userId + "</td>"
-						str += "<td>" + item.reviewTitle + "</td>"
+						str += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"'>" + item.reviewTitle + "</td>"
 						str += "<td>" + item.reviewContent + "</td>"
 						str += "<td>" + item.reviewStarScope + "</td>"
 						str += "<td>" + item.reviewRegdate + "</td>"
-						str += "<td><img width='175' height='200' src='"+item.reviewImgUrl+"'></td>";
+						//str += "<td><img width='175' height='200' src='"+item.reviewImgUrl+"'></td>";
 						str += "<td>" + item.reviewVcount + "</td>"
 						str += "</tr>"
 					});

@@ -272,10 +272,26 @@ commit;
 --product
 SELECT
     *
-FROM review where PROD_ID=37198;
+FROM review;
+where PROD_ID=45732;
 
-delete review where PROD_ID=37198;
-commit≈
+SELECT
+    *
+FROM  review join ordert
+using(O_NO);
+
+
+SELECT
+    *
+FROM  payment join ordert
+using(O_NO) join userlist
+using(user_id) join ORDERLINE
+using(o_no);
+
+
+
+delete review where PROD_ID=45732;
+commit
 
 SELECT
     *

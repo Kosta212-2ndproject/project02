@@ -54,4 +54,12 @@ public class ReviewServiceImpl implements ReviewService {
 		
 	}
 
+
+	@Override
+	public ReviewDTO selectReview(int reviewId) throws SQLException {
+		ReviewDTO rDTO = rDAO.selectReview(reviewId);
+		
+		return rDTO;
+	}
+
 }

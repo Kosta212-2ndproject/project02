@@ -15,6 +15,11 @@ public interface ReviewDAO {
 	  List<ReviewDTO> selectAll() throws SQLException;
 	  
 	  /**
+	   * reviewNum  검색 
+	   * */
+	  ReviewDTO selectReview(int reviewId) throws SQLException;
+	  
+	  /**
 	   * 상품번호에 해당하는 review 검색
 	   * */
 	  List<ReviewDTO> selectByProdId(String prodId) throws SQLException;

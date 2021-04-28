@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import kosta.mvc.dto.NoticeDTO;
 import kosta.mvc.dto.ReviewDTO;
 import kosta.mvc.service.ReviewService;
 import kosta.mvc.service.ReviewServiceImpl;
@@ -43,6 +42,31 @@ public class ReviewController implements Controller {
 	
 //		
 //	}
+	
+	/**
+	 * reviewId로 검색하기 
+	 * */
+	public ModelAndView selectByReviewId(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
+//		String saveDir = request.getServletContext().getRealPath("/save");//★
+//		String encoding = "UTF-8";
+//		int maxSize = 1024*1024*100;//100MB
+//		
+//		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
+//		String reviewId = m.getParameter("reviewId");
+		String reviewId =request.getParameter("reviewId");
+		
+		ReviewDTO review = reviewService.selectReview(Integer.parseInt(reviewId));
+		request.setAttribute("review", review); //${requestScope.review}
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("reviewRead.jsp");
+		
+		return mv;
+	
+	
+		
+	}
 
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -54,12 +78,12 @@ public class ReviewController implements Controller {
 		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 		
 //		String prodId = m.getParameter("prodId");
-		String prodId = "37198";
+		String prodId = "37197";
 //		String userId = m.getParameter("userId");
-		String userId = "choi";
+		String userId = "kim";
 		
 //		String oNum = m.getParameter("oNum");
-		String oNum = "37197";
+		String oNum = "50524";
 		String reviewTitle = m.getParameter("reviewTitle");
 		String reviewContent = m.getParameter("reviewContent");
 		String reviewStarScope = m.getParameter("reviewStarScope");
@@ -87,6 +111,39 @@ public class ReviewController implements Controller {
 		
 		return mv;
 		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * review 수정하는 form
+	 * */
+	public ModelAndView updateForm(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		String userId = request.getParameter("userId"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+		String prodId = request.getParameter("prodId"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+		
+		
+//		Electronics elec = elecService.selectByModelnum(modelNum, true);//조회수 증가 
+		List<ReviewDTO> reviewList = reviewService.selectByUserId(userId);
+//		
+//		for(ReviewDTO reviewDTO :reviewList) {
+//			if(reviewDTO.getProdId() == Integer.parseInt(prodId)) {
+//				ReviewDTO review = new 
+//			}
+//		}
+//		request.setAttribute("review", review); //${review}
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("notice/noticeUpdate.jsp");
+		
+				
+		return mv;
 		
 	}
 
