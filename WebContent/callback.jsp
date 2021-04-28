@@ -7,16 +7,18 @@
 <%@ page import="java.io.InputStreamReader" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <html>
-  <head>
-    <title>네이버로그인</title>
-  </head>
+<head>
+<title>네이버로그인</title>
+<script src="js/jquery-3.6.0.min.js"></script>
+
+</head>
   <body>
 	<%
-	String clientId = "02aCnvQyzJ_ywbAK8xrZ";//애플리케이션 클라이언트 아이디값";
+			String clientId = "02aCnvQyzJ_ywbAK8xrZ";//애플리케이션 클라이언트 아이디값";
 			String clientSecret = "0lBeAhGWLC";//애플리케이션 클라이언트 시크릿값";
 			String code = request.getParameter("code");
 			String state = request.getParameter("state");
-			String redirectURI = URLEncoder.encode("http://localhost:80/callback_naver.jsp", "UTF-8");
+			String redirectURI = URLEncoder.encode("http://localhost/callback.jsp", "UTF-8");
 			
 			String apiURL;
 			apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
@@ -104,17 +106,51 @@
 					//왼쪽 변수 이름은 원하는 대로 정하면 된다. 
 					//단, 우측의 get()안에 들어가는 값은 와인색 상자 안의 값을 그대로 적어주어야 한다.
 					String naverCode = (String)resObj.get("id");
-					String email = (String)resObj.get("email");
 					String name = (String)resObj.get("name");
+					String email = (String)resObj.get("email");
+					String gender = (String)resObj.get("gender");
+					String birthday = (String)resObj.get("birthday");
+					String age = (String)resObj.get("age");
+					String birthyear = (String)resObj.get("birthyear");
+					String mobile = (String)resObj.get("mobile");
 					
-					System.out.println("naverCode" + naverCode + "\n");
-					System.out.println("email" + email + "\n");
-					System.out.println("name" + name + "\n");
+					String birth = birthyear + "-" + birthday;
+					
+					System.out.println("naverCode : " + naverCode + "\n");
+					System.out.println("name : " + name + "\n");
+					System.out.println("email : " + email + "\n");
+					System.out.println("gender : " + gender + "\n");
+					System.out.println("birthday : " + birthday + "\n");
+					System.out.println("age : " + age + "\n");
+					System.out.println("birthyear : " + birthyear + "\n");
+					System.out.println("mobile : " + mobile + "\n");
+					
 					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 	%>
+	
+<form action="front" method="post" id="user_form">
+	<input type="hidden" name="naverCode" value="${naverCode}">
+	<input type="hidden" name="name" value="${name}">
+	<input type="hidden" name="email" value="${email}">
+	<input type="hidden" name="gender" value="${gender}">
+	<input type="hidden" name="birth" value="${birth}">
+	<input type="hidden" name="mobile" value="${mobile}">
+	<input type="hidden" name="birthyear" value="${birthyear}">
+</form>
+${naverCode}
+<script type="text/javascript">
+    
+    // document.fr.submit();
+
+	$(document).ready(function() {
+		alert(1);
+		$("#user_form").submit();
+	});
+
+</script>
 </body>
 </html>

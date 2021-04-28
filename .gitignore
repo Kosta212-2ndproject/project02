@@ -15,3 +15,4 @@ testMain.java
 context.xml
 
 /.settings/
+/.tern-project
