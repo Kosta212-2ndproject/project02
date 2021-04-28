@@ -28,6 +28,20 @@
 
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/style.css">
+
+<SCRIPT language=javascript>
+	function checkValid() {
+		var f = window.document.optionForm;
+
+		if (f.choice.value == "0") {
+			alert("선택해 주세요.");
+			f.choice.focus();
+			return false;
+		}
+		return true;
+	}
+</SCRIPT>
+
 </head>
 <body>
 
@@ -56,11 +70,15 @@
 			<div class="row">
 				<div class="col-md-9">
 
+
+
 					<div class="row mb-4">
 						<div class="col-md-12 d-flex justify-content-between align-items-center">
 							<h4 class="product-select">Select Types of Products</h4>
-							<form action="#">
-								<select name="types">
+							<form name="optionForm" action="front" method="get" onSubmit='return checkValid()'>
+								<input type="hidden" name="key" value="prod">
+								<input type="hidden" name="methodName" value="order">
+								<select name="choice">
 									<option value="0">선택없음</option>
 									<option value="1">인기순</option>
 									<option value="2">신제품순</option>
@@ -123,19 +141,36 @@
 
 
 
-
+					<!-- 페이징처리 -->
+					<jsp:useBean class="kosta.mvc.dto.PageCntProduct" id="p" />
+					<!-- 블럭당 -->
 					<div class="row mt-6">
 						<div class="col text-center">
 							<div class="block-27">
+								<c:set var="doneLoop" value="false" />
+								<c:set var="temp" value="${(pageNo-1) % p.blockcount}" />
+								<!-- (1-1)%2   , (2-1)%2    1 , (3-1)%2  0 -->
+								<c:set var="startPage" value="${pageNo - temp}" />
+								<!--   1- 1 -->
+
+
 								<ul>
-									<li><a href="#">&lt;</a></li>
-									<li class="active"><span>1</span></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">6</a></li>
-									<li><a href="#">&gt;</a></li>
+									<c:if test="${(startPage-p.blockcount) > 0}">
+										<li><a href="front?key=prod&methodName=selectAll&pageNo=${startPage-1}">&lt;</a></li>
+									</c:if>
+
+									<c:forEach var='i' begin='${startPage}' end='${(startPage-1)+p.blockcount}'>
+										<c:if test="${(i-1)>=p.pageCnt}">
+											<c:set var="doneLoop" value="true" />
+										</c:if>
+										<c:if test="${not doneLoop}">
+											<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=prod&methodName=selectAll&pageNo=${i}">${i}</a>
+										</c:if>
+
+									</c:forEach>
+									<c:if test="${(startPage+p.blockcount)<=p.pageCnt}">
+										<li><a href="front?key=prod&methodName=selectAll&pageNo=${startPage+p.blockcount}">&gt;</a></li>
+									</c:if>
 								</ul>
 							</div>
 						</div>
@@ -145,9 +180,9 @@
 
 
 
-				
 
-				
+
+
 
 				<script src="jquery-3.6.0.min.js" type="text/javascript"></script>
 				<script>
@@ -194,43 +229,56 @@
 														});
 									});
 				</script>
-				
-				
+
+
 
 
 
 				<div class="col-md-3">
-					
-					
+
+
 					<div class="sidebar-box ftco-animate">
+
 						<a href="front?key=prod&methodName=selectAll">전체상품</a>
+
+
 						<p class="menus">국가별</p>
-						
-						
+
 						<div class="menuitems">
 							<ul>
-								<li><a href="example.com">${requestScope.prodcategory.prodNation}</a></li>
-								
+								<li><a href="front?key=prod&methodName=selectByNation&prodNation=France">프랑스</a></li>
+								<li><a href="front?key=prod&methodName=selectByNation&prodNation=Chile">칠레</a></li>
+								<li><a href="front?key=prod&methodName=selectByNation&prodNation=Italy">이탈리아</a></li>
+								<li><a href="front?key=prod&methodName=selectByNation&prodNation=Argentina">아르헨티나</a></li>
+								<li><a href="front?key=prod&methodName=selectByNation&prodNation=Australia">호주</a></li>
+								<li><a href="front?key=prod&methodName=selectByNation&prodNation=Spain">스페인</a></li>
+								<li><a href="front?key=prod&methodName=selectByNation&prodNation=U.S.A">미국</a></li>
+								<li><a href="front?key=prod&methodName=selectByNation&prodNation=Germany">독일</a></li>
+								<li><a href="front?key=prod&methodName=selectByNation&prodNation=New Zealand">뉴질랜드</a></li>
 							</ul>
+
 						</div>
-						
+
+
 						<p class="menus">종류별</p>
 						<div class="menuitems">
 							<ul>
-								<li><a href="example.com">red</a></li>
-								<li><a href="example.com">white</a></li>
-								<li><a href="example.com"></a></li>
+								<li><a href="front?key=prod&methodName=selectByType&prodType=Red">Red</a></li>
+								<li><a href="front?key=prod&methodName=selectByType&prodType=Sparkling">Sparkling</a></li>
+								<li><a href="front?key=prod&methodName=sselectByType&prodType=White">White</a></li>
 							</ul>
 						</div>
+
 						<p class="menus">가격대별</p>
 						<div class="menuitems">
 							<ul>
-								<li><a href="example.com">Latest Movie Trailers</a></li>
-								<li><a href="example.com">Movie Reviews</a></li>
-								<li><a href="example.com">Celebrity Interviews</a></li>
+								<li><a href="front?key=prod&methodName=selectByPrice&prodPrice=cheap">5만원 이하</a></li>
+								<li><a href="front?key=prod&methodName=selectByPrice&prodPrice=middle">5만원 ~ 10만원</a></li>
+								<li><a href="front?key=prod&methodName=selectByPrice&prodPrice=expensive">10만원 ~ 20만원</a></li>
+								<li><a href="front?key=prod&methodName=selectByPrice&prodPrice=luxury">20만원 이상</a></li>
 							</ul>
 						</div>
-						
+
 					</div>
 
 

@@ -20,9 +20,9 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style.css">
     
-       <SCRIPT language=javascript>
+    <SCRIPT language=javascript>
 function checkValid() {
-    var f = window.document.searchForm;
+    var f = window.document.searchFrom;
 		
 	if ( f.keyWord.value == "") {
 	    alert( "검색어를 입력해 주세요." );
@@ -64,12 +64,12 @@ function checkValid() {
     
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.jsp">JJAN <span>ㅉ ㅏ ㄴ</span></a>
+	      <a class="navbar-brand" href="indexAdmin.jsp">JJAN <span>ㅉ ㅏ ㄴ</span></a>
 	      
-	      <form name="searchForm" action="front" method="get" onSubmit='return checkValid()'>
+	      <form name="searchFrom" action="front" method="get" onSubmit='return checkValid()'>
            <input class="input" type="text" name="keyWord" placeholder="상품명 또는 국가 입력">
            <input type="hidden"  name="key" value = "prod">
-           <input type="hidden"  name="methodName" value = "selectByModelKeyword">
+           <input type="hidden"  name="methodName" value = "selectByModelKeywordAdmin">
          <input type="submit" value="검색">
          </form>
 	      
@@ -121,7 +121,7 @@ function checkValid() {
               <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="front?key=prod&methodName=selectAll">Products</a>
+              	<a class="dropdown-item" href="front?key=prod&methodName=selectAllByAdmin">상품관리</a>
                 <a class="dropdown-item" href="product-single.html">Single Product</a>
                 <a class="dropdown-item" href="cart.html">Cart</a>
                 <a class="dropdown-item" href="checkout.html">Checkout</a>

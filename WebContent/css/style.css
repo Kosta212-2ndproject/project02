@@ -4,39 +4,6 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
- .menus{
-	width: 200px;
-	padding:5px;
-	margin:1px;
-	font-weight:bold;
-	background-color: green;
-}
-
-.menuitems{
-	display:none;
-}
-
-.menuitems a:hover {
-  background: #000;
-}
- 
-li {
-display:inline;
-}
-
-ul{display:inline;} 
- 
-a{
-  display:block;
-  border-bottom: 1px solid #fff; 
-  text-decoration: none;
-	background: #ddd;
-  color: #fff;	
-  padding:10px;
-  font-weight:bold;
-	width: 190px;
-} 
- 
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
