@@ -26,7 +26,25 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/review.css">
   
+    <style type="text/css">
+    textarea { box-sizing: border-box; resize: none; }
+    </style>
+    <script type="text/javascript">
+
+    		function setThumbnail(event) {
+    			var reader = new FileReader();
+    			reader.onload = function(event) {
+    				var img = document.createElement("img");
+    				img.setAttribute("width","50");
+    				img.setAttribute("height","50");
+    				img.setAttribute("src", event.target.result);
+    				
+    				document.querySelector("div#image_container").appendChild(img);
+    			};
+    			reader.readAsDataURL(event.target.files[0]);
+    		}
     
+    </script>
  
   </head>
 <body>
@@ -129,151 +147,111 @@
 	              	Food matching : ${prod.prodMach}</p>
 	             </div>
               </div>
-<!-- 3번째 탭메뉴의 contents  -->        
-              <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
-              	<div class="row p-4">
-						   		<div class="col-md-7">
-						   			
-						   		</div>
-						   		
-						   	</div>
-              </div>
-              
- <!-- 4번째 탭메뉴의 contents  -->             
+<!-- 3번째 탭메뉴의 contents  -->
+						<div class="tab-pane fade" id="v-pills-3" role="tabpanel"
+							aria-labelledby="v-pills-day-3-tab">
+							<div class="row p-4">
+								<div class="col-md-7"></div>
+							</div>
+						</div>
+
+<!-- 4번째 탭메뉴의 contents  -->             
               <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-day-4-tab">
               	<div class="row p-4">
-						   		<div class="col-md-7">
-						   			<!-- <h3 class="mb-4">23 Reviews</h3> -->
+						   	<!-- 	<div class="col-md-8"> -->
+						   			 <!-- <h3 class="mb-4">23 Reviews</h3>  -->
 						   			
 						   			
-						   			<div class="review">
-								   		<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-								   		<div class="desc">
-								   			<h4>
-								   				<span class="text-left">Jacob Webb</span>
-								   				<span class="text-right">25 April 2020</span>
-								   			</h4>
-								   			<p class="star">
-								   				<span>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-							   					</span>
-							   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-								   			</p>
-								   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-								   		</div>
-								   	</div>
+						  
 								   	
 								   	
-								   	<div class="review">
-								   		<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-								   		<div class="desc">
-								   			<h4>
-								   				<span class="text-left">Jacob Webb</span>
-								   				<span class="text-right">25 April 2020</span>
-								   			</h4>
-								   			<p class="star">
-								   				<span>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-							   					</span>
-							   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-								   			</p>
-								   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-								   		</div>     
-								   	</div>
-								   	<div class="review">
-								   		<div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
-								   		<div class="desc">
-								   			<h4>
-								   				<span class="text-left">Jacob Webb</span>
-								   				<span class="text-right">25 April 2020</span>
-								   			</h4>
-								   			<p class="star">
-								   				<span>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-								   					<i class="fa fa-star"></i>
-							   					</span>
-							   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-								   			</p>
-								   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-								   		</div>
-								   	</div>
-						   		</div>
-						   		<div class="col-md-4">
-						   			<div class="rating-wrap">
-							   			<h3 class="mb-4">Give a Review</h3>
-							   			<p class="star">
-							   				<span>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					(98%)
-						   					</span>
-						   					<span>20 Reviews</span>
-							   			</p>
-							   			<p class="star">
-							   				<span>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					(85%)
-						   					</span>
-						   					<span>10 Reviews</span>
-							   			</p>
-							   			<p class="star">
-							   				<span>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					(98%)
-						   					</span>
-						   					<span>5 Reviews</span>
-							   			</p>
-							   			<p class="star">
-							   				<span>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					(98%)
-						   					</span>
-						   					<span>0 Reviews</span>
-							   			</p>
-							   			<p class="star">
-							   				<span>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					<i class="fa fa-star"></i>
-							   					(98%)
-						   					</span>
-						   					<span>0 Reviews</span>
-							   			</p>
-							   		</div>
-						   		</div>
-						   	</div>
+								   	
+						   		<!-- </div> -->
+						   		
+						   		
+<!-- 질문등록  영역  -->
+						   	<!-- 	<div class="col-md-4"> -->
+						   						   	
+								 <!--   	<div class="col-lg-6"> -->
+							<div class="review_box">
+								<h4>Post a question</h4>
+								<form class="row contact_form" name="uploadForm" 
+								action="${path}/front?key=question&methodName=insert" method="post" 
+								onSubmit='return checkValid()' enctype="multipart/form-data" id="contactForm" novalidate="novalidate">
+									<input type="hidden" name="prodId" value="${prod.prodId}"/>
+									
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" id="qTitle" name="qTitle" placeholder="Title">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+												<fieldset>
+													<legend>Category</legend>
+
+													<input type="radio" id="product" name="qField" value="0"> 
+													<label for="product"> 상품 문의 </label><br /> 
+													<input type="radio" id="order" name="qField" value="1"> 
+													<label for="order">	주문 문의 </label><br /> 
+													<input type="radio" id="delivery" name="qField" value="2"> 
+													<label for="delivery"> 배송문의 </label>
+												</fieldset>
+											</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+												<fieldset>
+													<legend> 공개 / 비공개 </legend>
+													<input type="radio" id="product" name="qShowstatus" value="0"> 
+													<label for="product"> 비공개 </label><br /> 
+													<input type="radio" id="order" name="qShowstatus" value="1"> 
+													<label for="order">	공개 </label><br /> 
+												</fieldset>
+											</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="file" class="form-control" id="qFiles" name="qFiles" 
+											id="image" accept="image/*" onchange="setThumbnail(event);" placeholder="Upload file">
+											<div id="image_container"></div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<textarea  data-autoresize rows="2" class="wrap"  name="qContent" id="qContent" rows="1" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<div class="col-md-12 text-right">
+										<button type="submit" value="submit" class="btn submit_btn">Submit Now</button>
+									</div>
+								</form>
+							</div>
+					<!-- 	</div> -->
+						   		
+						   		
+						   		
+						   		
+							   		
+							   		
+						   	<!-- 	</div> -->
+				</div>
               </div>
             </div>
           </div>
         </div>
+        
+        
+        <div class="row mt-6">
+        <div class="col-md-13 tab-wrap">
+        	<div class="tab-content bg-light" id="v-pills-tabContent2">
+        
+      					  
+							
+				</div>			
+			</div>
+        </div>
+        
     	</div>
     </section>
     
@@ -376,11 +354,22 @@
 	   			 } //오류발생했을때 함수 
 	   			 
 	   		 });//ajax끝
-			})
+			})//end of on
 			 	///////////////////////////////////////////////////
+			 	jQuery.each(jQuery('textarea[data-autoresize]'), function() { 
+			 		var offset = this.offsetHeight - this.clientHeight; 
+			 		var resizeTextarea = function(el) { 
+			 			jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset); }; 
+			 			jQuery(this).on('keyup input', function() { 
+			 				resizeTextarea(this); }).removeAttr('data-autoresize'); 
+			 			});
 		     
-		});
-
+			 	///////////////////////////////////////////////////
+		});//end of ready
+		
+		
+		
+		
 		
 		
 		

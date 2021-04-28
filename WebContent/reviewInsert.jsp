@@ -77,66 +77,60 @@ function checkValid() {
 	<br>
 	<br>
 	<br>
- <form name="writeForm" method="post" action="front?key=review&methodName=insert" 
-  onSubmit='return checkValid()' enctype="multipart/form-data">
-<!-- 
-아래문장으로 전송하면, post방식으로 전송이 되고, 현재 파일업로드 때문에 enctype="multipart/form-data" 으로 설정돼 있기 때문에 
-request로 값을 받을 수가 없다. (MultipartRequest로 받아야 한다.) 
-그런데, Controller 로 가기 전에 Controller를 찾기 위해서 DispatcherServlet 에서 request로 두 개의 값을 받고 있기 때문에 
-key, methodName 은 get방식으로 별도로 전송해야 한다.
-<input type="hidden" name="key" value = "elec" /> 
-<input type="hidden" name="methodName" value = "insert" /> 
- -->
-<table align="center" cellpadding="5" cellspacing="2" width="600" border="1" >
+	
+	
+<!-- review update form  -->
 
-    <tr>
-        <td width="1220" height="20" colspan="2" bgcolor="#00cc00">
-            <p align="center"><font color="white" size="3"><b> 후기등록 </b></font></p>
-        </td>
-    </tr>
-    
-    <tr>
-        <td width="150" height="20" >
-            <p align="right"><b><span style="font-size:9pt;">제목</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<input type=text name="reviewTitle" size="30"></span></b></td>
-    </tr>
-    
-       <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">내용</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<textarea name="reviewContent" cols="50" rows="10"></textarea></span></b></td>
-    </tr>
-    
-    <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">별점</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<input type=text name="reviewStarScope" size="30"></span></b></td>
-    </tr>
-    
-     <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">*파일첨부</span></b></p>
-        </td>
-        <td width="450" height="20">
-        	<b><span style="font-size:9pt;">   
-        		 <input type="file" name="reviewImgUrl" maxlength="60" size="40">
-        	   </span></b>
-        </td>
-    </tr>
-    
-    <tr>
-        <td width="450" height="20" colspan="2" align="center"><b><span style="font-size:9pt;"><input type=submit value=글쓰기> 
-        <input type=reset value=다시쓰기></span></b></td>
-    </tr>
-</table>
+      <form name="writeForm" method="post" action="front?key=review&methodName=insert" 
+  		onSubmit='return checkValid()' enctype="multipart/form-data"class="p-5 bg-light">
+        <div class="comment-form-wrap pt-5">
+                <h3 class="mb-5">Post a comment</h3>
+  				
+  				<!-- 나중에 session 으로 ID check 해야 할 부분  -->	
+                  <%-- <div class="form-group">
+                    <label for="name">User ID </label>
+                    <input type="text" name="userId"class="form-control" id="name" value="${review.userId}" readonly>
+                  </div> --%>
+                  
+                  
+                  <div class="form-group">
+                    <label for="title">Title *</label>
+                    <input type="text" name="reviewTitle" class="form-control" id="reviewTitle">
+                  </div>
+                  <div class="form-group">
+                    <label for="star">Star * ( 1 | 2 | 3 | 4 | 5 )</label>
+                    <input type="text" name="reviewStarScope" class="form-control" id="reviewStarScope">
+                  </div>
+                  <div class="form-group">
+                    <label for="file">file Upload</label>
+                  </div>
+                  <div class="form-group">
+                    <input type="file" name="reviewImgUrl" maxlength="60" size="40">
+                  </div>
+                  <div class="form-group">
+                    <label for="message">Contents *</label>
+                    <textarea name="reviewContent" id="message" cols="30" rows="10" class="form-control"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                    <input type="reset" value="reset" class="btn py-3 px-4 btn-primary">
+                  </div>
+					
+					
+					
+					<input type="hidden" name="reviewId" value = "${review.reviewId}" /> 
+        			<input type="hidden" name="prodId" value = "${review.prodId}"/> 
+      				<input type="hidden" name="reviewVcount" value = "${review.reviewVcount}" /> 
+  					<input type="hidden" name="reviewImgUrlOrigin" value="${review.reviewImgUrl}"/>
+  					<input type="hidden" name="reviewRegdate" value="${review.reviewRegdate}"/>
+              </div>
+            </form>
+	
+	
+	
+	
+	
 
-</form>
 <p>
 		<br> <br> <br> <br>
 		<!-- loader -->

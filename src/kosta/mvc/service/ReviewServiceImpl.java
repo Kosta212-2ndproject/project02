@@ -18,7 +18,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<ReviewDTO> selectByProdId(String prodId) throws SQLException {
+	public List<ReviewDTO> selectByProdId(int prodId) throws SQLException {
 		List<ReviewDTO> list = rDAO.selectByProdId(prodId);
 		return list;
 	}

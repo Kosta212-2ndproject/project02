@@ -22,7 +22,7 @@ public interface ReviewDAO {
 	  /**
 	   * 상품번호에 해당하는 review 검색
 	   * */
-	  List<ReviewDTO> selectByProdId(String prodId) throws SQLException;
+	  List<ReviewDTO> selectByProdId(int prodId) throws SQLException;
 	  
 	  /**
 	   * userId 해당하는 review 검색
@@ -32,7 +32,7 @@ public interface ReviewDAO {
 	  /**
 	   * 상품번호에 해당하는 review 총 count 검색
 	   * */
-	  int selectByProdIdCnt(String prodId) throws SQLException; 
+	  int selectByProdIdCnt(int prodId) throws SQLException; 
 	  
 	  /**
 	   * 조회수를 증가하는 기능

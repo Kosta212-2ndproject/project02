@@ -29,7 +29,7 @@
 
 <SCRIPT language=javascript>
 function checkValid() {
-    var f = window.document.updateForm;
+    var f = window.document.writeForm;
 		
 	if ( f.reviewTitle.value == "") {
 	    alert( "제목을 입력해 주세요." );

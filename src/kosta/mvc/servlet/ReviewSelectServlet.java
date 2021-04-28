@@ -31,7 +31,7 @@ public class ReviewSelectServlet extends HttpServlet {
 	      ReviewDAO dao = new ReviewDAOImpl();
 	      List<ReviewDTO> list =null;
 		try {
-			list = dao.selectByProdId(proId);
+			list = dao.selectByProdId(Integer.parseInt(proId));
 
 		      // list를 javascript 해석할 수 있는 json형태로 변환!!
 		      JSONArray arr = JSONArray.fromObject(list);

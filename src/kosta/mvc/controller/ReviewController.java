@@ -82,6 +82,14 @@ public class ReviewController implements Controller {
 		
 		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 		
+		/*
+		 * 나중에 세션연결되면 수정해야 할 부분 
+		 * 상품아이디, 유저아이디, 오더넘버 조인해서 컨트롤 /dao 부분 수정해야 함.
+		 * 
+		 * 
+		 * */
+		
+		
 //		String prodId = m.getParameter("prodId");
 		String prodId = "37197";
 //		String userId = m.getParameter("userId");
@@ -110,9 +118,8 @@ public class ReviewController implements Controller {
 		}
 		
 		reviewService.insert(review);
-		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("reviewInsert.jsp");
+		mv.setViewName("index.jsp");
 		
 		return mv;
 		

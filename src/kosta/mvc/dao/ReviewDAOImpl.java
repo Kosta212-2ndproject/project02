@@ -41,7 +41,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public List<ReviewDTO>  selectByProdId(String prodId) throws SQLException {
+	public List<ReviewDTO>  selectByProdId(int prodId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -50,7 +50,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, prodId);
+			ps.setInt(1, prodId);
 			
 			rs = ps.executeQuery();
 			
@@ -68,7 +68,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 	
 	@Override
-	public int selectByProdIdCnt(String prodId) throws SQLException {
+	public int selectByProdIdCnt(int prodId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -77,7 +77,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, prodId);
+			ps.setInt(1, prodId);
 			
 			rs = ps.executeQuery();
 			
