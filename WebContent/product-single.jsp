@@ -313,79 +313,89 @@
 		            $('#quantity').val(quantity - 1);
 		            }
 		    });
-		    
-		     
-			 	///////////////////////////////////////////////////
-			 	
-			//alert("${prod.prodId}")
-			//var isRun=false;
-			$(document).on("click","#v-pills-3-tab", function(){
-				//alert(22)
-					/* if(isRun){
-						//alert("processing...");
-						return;
-					}
-					isRun = true; */
-				$.ajax({
-	   			 url:"${path}/reviewSelect" , // 서버요청주소
-	   			 type: "post", //method방식 = 전송방식(get, post, put, delete)
-	   			 dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
-	   		     data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보 
-	   			 success : function(result){
-	   			   //alert(result)
-	   			  /* 	setTimeout(function () {
-	   			  		isRun = false;
-					},10000000); */
-	   				var str = "<table id='table'><tr>";
-	   				str += "<th> 회원아이디 </th>";
-	   				str += "<th> 제목 </th>";
-	   				str += "<th> 내용 </th>";
-	   				str += "<th> 별점 </th>";
-	   				str += "<th> 등록일 </th>";
-	   				//str += "<th> 사진 </th>";
-	   				str += "<th> 조회수 </th>";
-					$.each(result, function(index, item) {
-						str += "<tr>"
-						str += "<td>" + item.userId + "</td>"
-						str += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"'>" + item.reviewTitle + "</td>"
-						str += "<td>" + item.reviewContent + "</td>"
-						str += "<td>" + item.reviewStarScope + "</td>"
-						str += "<td>" + item.reviewRegdate + "</td>"
-						//str += "<td><img width='175' height='200' src='"+item.reviewImgUrl+"'></td>";
-						str += "<td>" + item.reviewVcount + "</td>"
-						//str += "<td><input type='button' value='delete'/></td>"
-						str += "</tr>"
-					});
-					str += "</table>"
+	});//end of ready
+</script>	    
 
-					
-					//겹치는 css클래스 명이 있을 경우 , id 를 줘서 unique 하게 처리하면 됨 
-					//브라우저에서 지원하는 소스코드 활용해서 css 적용해보면서 할 것!  
-					//->미리 어떤식으로 적용되는지 확인 후, 실제 코드에서 변경해 주면됨 
-					//$(".col-md-7").after(str);//형제노드로추가되는 것. 
-					$("#minjoo").html(str);// 해당영역 안에 추가되는 것 , 덮어쓰기됨  
-					
-					
-	   			 } , //성공했을때 함수
-	   			 error: function(err){
-	   				 alert(err+"발생했어요^^")
-	   			 } //오류발생했을때 함수 
-	   			 
-	   		 });//ajax끝
-				
-				
-				
-	   		 
+<script type="text/javascript">
 	
+	
+	$(document).ready(function() {
+		
 		
 		///////////////////////////////////////////////////
+	 	
+		//alert("${prod.prodId}")
+		//var isRun=false;
+		$(document).on("click","#v-pills-3-tab", function(){
+			//alert(22)
+				/* if(isRun){
+					//alert("processing...");
+					return;
+				}
+				isRun = true; */
+			$.ajax({
+   			 url:"${path}/reviewSelect" , // 서버요청주소
+   			 type: "post", //method방식 = 전송방식(get, post, put, delete)
+   			 dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
+   		     data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보 
+   			 success : function(result){
+   			   //alert(result)
+   			  /* 	setTimeout(function () {
+   			  		isRun = false;
+				},10000000); */
+   				let str = "<table id='table'><tr>";
+   				str += "<th> 회원아이디 </th>";
+   				str += "<th> 제목 </th>";
+   				str += "<th> 내용 </th>";
+   				str += "<th> 별점 </th>";
+   				str += "<th> 등록일 </th>";
+   				//str += "<th> 사진 </th>";
+   				str += "<th> 조회수 </th>";
+				$.each(result, function(index, item) {
+					str += "<tr>"
+					str += "<td>" + item.userId + "</td>"
+					str += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"'>" + item.reviewTitle + "</td>"
+					str += "<td>" + item.reviewContent + "</td>"
+					str += "<td>" + item.reviewStarScope + "</td>"
+					str += "<td>" + item.reviewRegdate + "</td>"
+					//str += "<td><img width='175' height='200' src='"+item.reviewImgUrl+"'></td>";
+					str += "<td>" + item.reviewVcount + "</td>"
+					//str += "<td><input type='button' value='delete'/></td>"
+					str += "</tr>"
+				});
+				str += "</table>"
+
+				
+				//겹치는 css클래스 명이 있을 경우 , id 를 줘서 unique 하게 처리하면 됨 
+				//브라우저에서 지원하는 소스코드 활용해서 css 적용해보면서 할 것!  
+				//->미리 어떤식으로 적용되는지 확인 후, 실제 코드에서 변경해 주면됨 
+				//$(".col-md-7").after(str);//형제노드로추가되는 것. 
+				$("#minjoo").html(str);// 해당영역 안에 추가되는 것 , 덮어쓰기됨  
+				
+				
+   			 } , //성공했을때 함수
+   			 error: function(err){
+   				 alert(err+"발생했어요^^")
+   			 } //오류발생했을때 함수 
+   			 
+   		 });//ajax끝
+			
+		})//end of on		
+		
+	})//end of ready
+
+</script> 
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		
+///////////////////////////////////////////////////
 		
 		//Q&A Board
 			 	
 		//alert("${prod.prodId}")
 			$(document).on("click","#v-pills-5-tab", function(){ 
-				//alert(22)
-				
+								
 				$.ajax({
 	   			 		url:"${path}/boardSelect" , // 서버요청주소 
 	   			 		type: "post", //method방식 = 전송방식(get, post, put, delete)
@@ -394,12 +404,12 @@
 	   			 		success : function(result){
 	   			   		//alert(result)
 
-						var text = "<table><tr>";
+						let text = "<table><tr>";
 							text += "<th> No. </th>";
 							text += "<th> ID </th>";
 							text += "<th> Category </th>";
 							text += "<th> Title </th>";
-							text += "<th> Content </th>";
+							//text += "<th> Content </th>";
 							text += "<th> Date </th>";
 		   					//text += "<th> 사진 </th>";
 		   					text += "<th> public | private </th>";
@@ -408,8 +418,8 @@
 								text += "<td>" + item.qNum + "</td>"
 								text += "<td>" + item.userId + "</td>"
 								text += "<td>" + item.qField + "</td>"
-								text += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"'>" + item.qTitle + "</td>"
-								text += "<td>" + item.qContent + "</td>"
+								text += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+item.qNum+"&prodId="+item.prodId+"'>" + item.qTitle + "</td>"
+								//text += "<td>" + item.qContent + "</td>"
 								text += "<td>" + item.qRegdate + "</td>"
 								text += "<td>" + item.qShowstatus + "</td>"
 							//text += "<td><img width='175' height='200' src='"+item.reviewImgUrl+"'></td>";
@@ -430,35 +440,45 @@
 	   			 	error: function(err){
 	   				 alert(err+"발생했어요^^")
 	   			 	} //오류발생했을때 함수 
-				});
+				});//ajax끝
 	   			 
-	   		 });//ajax끝
-		})//end of on
+	   		 }); // end of on
+	   		 
+	   		 
+	   		
+	 		///////////////////////////////////////////////////
+	 			 	
+	 			 	jQuery.each(jQuery('textarea[data-autoresize]'), function() { 
+	 			 		var offset = this.offsetHeight - this.clientHeight; 
+	 			 		var resizeTextarea = function(el) { 
+	 			 			jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset); }; 
+	 			 			jQuery(this).on('keyup input', function() { 
+	 			 				resizeTextarea(this); }).removeAttr('data-autoresize'); 
+	 			 			});
+	 		     
+	 			 	///////////////////////////////////////////////////
+		
+	})//end of ready
+
+
+
+
+
+
+</script>			 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		///////////////////////////////////////////////////
 			 	
-			 	jQuery.each(jQuery('textarea[data-autoresize]'), function() { 
-			 		var offset = this.offsetHeight - this.clientHeight; 
-			 		var resizeTextarea = function(el) { 
-			 			jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset); }; 
-			 			jQuery(this).on('keyup input', function() { 
-			 				resizeTextarea(this); }).removeAttr('data-autoresize'); 
-			 			});
-		     
-			 	///////////////////////////////////////////////////
-			 	
-	});//end of ready
+
 		
 		
 		
@@ -466,7 +486,7 @@
 		
 		
 		
-</script>
+
 
 </body>
 </html>

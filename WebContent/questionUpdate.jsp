@@ -81,55 +81,60 @@ function checkValid() {
 
 <!-- review update form  -->
 
-      <form name="writeForm" method="post" action="front?key=review&methodName=update" 
+      <form name="writeForm" method="post" action="front?key=question&methodName=update" 
   		onSubmit='return checkValid()' enctype="multipart/form-data"class="p-5 bg-light">
         <div class="comment-form-wrap pt-5">
-                <h3 class="mb-5">Update a comment</h3>
+                <h3 class="mb-5">Update a Question</h3>
   					
                   <div class="form-group">
                     <label for="name">User ID </label>
-                    <input type="text" name="userId"class="form-control" id="name" value="${review.userId}" readonly>
+                    <input type="text" name="userId"class="form-control" id="name" value="${question.userId}" readonly>
                   </div>
                   <div class="form-group">
                     <label for="title">Title *</label>
-                    <input type="text" name="reviewTitle" class="form-control" id="email">
+                    <input type="text" name="qTitle" class="form-control" id="qTitle">
                   </div>
-                  <div class="form-group">
-                    <label for="star">Star * ( 1 | 2 | 3 | 4 | 5 )</label>
-                    <input type="text" name="reviewStarScope" class="form-control" id="website">
-                  </div>
+                  
                   <div class="form-group">
                     <label for="file">file Upload</label>
                   </div>
                   <div class="form-group">
-                    <input type="file" name="reviewImgUrl" maxlength="60" size="40">
+                    <input type="file" name="qFiles" maxlength="60" size="40">
                   </div>
                   <div class="form-group">
                     <label for="message">Contents *</label>
-                    <textarea name="reviewContent" id="message" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name="qContent" id="message" cols="30" rows="10" class="form-control"></textarea>
                   </div>
-                  <div>
-					<c:if test="${review.reviewImgUrl != null}">
-						<label for="reviewTitle">Download </label>
-						<p>
-						<a href='${path}/downLoad?fileName=${review.reviewImgUrl}'>
-									${review.reviewImgUrl} </a> 
-						<hr>
-					</c:if> 
+				<div class="form-group">
+				<fieldset>
+					<legend> 공개 / 비공개 </legend>
+					<input type="radio" id="product" name="qShowstatus" value="0">
+					<label for="product"> 비공개 </label><br /> <input type="radio"
+						id="order" name="qShowstatus" value="1"> <label
+						for="order"> 공개 </label><br />
+				</fieldset>
 				</div>
-				
-                  <div class="form-group">
-                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+				<div>
+				<c:if test="${question.qFiles != null}">
+					<label for="reviewTitle">Download </label>
+					<p>
+						<a href='${path}/downLoad?fileName=${question.qFiles}'>
+							${question.qFiles} </a>
+					<hr>
+				</c:if>
+			</div>
+
+			<div class="form-group">
+                    <input type="submit" value="PUpdate" class="btn py-3 px-4 btn-primary">
                     <input type="reset" value="reset" class="btn py-3 px-4 btn-primary">
                   </div>
 					
 					
 					
-					<input type="hidden" name="reviewId" value = "${review.reviewId}" /> 
-        			<input type="hidden" name="prodId" value = "${review.prodId}"/> 
-      				<input type="hidden" name="reviewVcount" value = "${review.reviewVcount}" /> 
-  					<input type="hidden" name="reviewImgUrlOrigin" value="${review.reviewImgUrl}"/>
-  					<input type="hidden" name="reviewRegdate" value="${review.reviewRegdate}"/>
+        			<input type="hidden" name="qNum" value = "${question.qNum}"/> 
+        			<input type="hidden" name="prodId" value = "${question.prodId}"/> 
+  					<input type="hidden" name="qFilesOrigin" value="${question.qFilesOrigin}"/>
+  					<input type="hidden" name="qRegdate" value="${question.qRegdate}"/>
               </div>
             </form>
 

@@ -224,9 +224,9 @@ public class QuestionDAOImpl implements QuestionDAO {
 			ps.setString(1, question.getqField());
 			ps.setString(2, question.getqTitle());
 			ps.setString(3, question.getqContent());
-			ps.setString(4, question.getqContent());
-			ps.setString(5, question.getqFiles());
-			ps.setInt(6, question.getqShowstatus());
+			ps.setString(4, question.getqFiles());
+			ps.setInt(5, question.getqShowstatus());
+			ps.setInt(6, question.getqNum());
 			
 			res = ps.executeUpdate();
 			
