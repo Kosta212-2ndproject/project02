@@ -231,17 +231,12 @@
               
                 <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-day-5-tab">
               	<div class="row p-4">
-							<div class="review_box">
 							<div class="col-md-12" id="minjoo2">
-							
-							
-							
 							</div>
 								
-							</div>
 							
 							
-							
+<!-- end of 5th -->							
 							
 				</div>
               </div>
@@ -381,11 +376,64 @@
 				
 				
 	   		 
-		})//end of on
+	
 		
 		///////////////////////////////////////////////////
 		
-		
+		//Q&A Board
+			 	
+		//alert("${prod.prodId}")
+			$(document).on("click","#v-pills-5-tab", function(){ 
+				//alert(22)
+				
+				$.ajax({
+	   			 		url:"${path}/boardSelect" , // 서버요청주소 
+	   			 		type: "post", //method방식 = 전송방식(get, post, put, delete)
+	   			 		dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
+	   		     		data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보 
+	   			 		success : function(result){
+	   			   		//alert(result)
+
+						var text = "<table><tr>";
+							text += "<th> No. </th>";
+							text += "<th> ID </th>";
+							text += "<th> Category </th>";
+							text += "<th> Title </th>";
+							text += "<th> Content </th>";
+							text += "<th> Date </th>";
+		   					//text += "<th> 사진 </th>";
+		   					text += "<th> public | private </th>";
+						$.each(result, function(index, item) {
+								text += "<tr>"
+								text += "<td>" + item.qNum + "</td>"
+								text += "<td>" + item.userId + "</td>"
+								text += "<td>" + item.qField + "</td>"
+								text += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"'>" + item.qTitle + "</td>"
+								text += "<td>" + item.qContent + "</td>"
+								text += "<td>" + item.qRegdate + "</td>"
+								text += "<td>" + item.qShowstatus + "</td>"
+							//text += "<td><img width='175' height='200' src='"+item.reviewImgUrl+"'></td>";
+							//text += "<td><input type='button' value='delete'/></td>"
+							text += "</tr>"
+							});
+						text += "</table>"
+					
+					//겹치는 css클래스 명이 있을 경우 , id 를 줘서 unique 하게 처리하면 됨 
+					//브라우저에서 지원하는 소스코드 활용해서 css 적용해보면서 할 것!  
+					//->미리 어떤식으로 적용되는지 확인 후, 실제 코드에서 변경해 주면됨 
+					//$(".col-md-7").after(str);//형제노드로추가되는 것. 
+					$("#minjoo2").html(text);// 해당영역 안에 추가되는 것 , 덮어쓰기됨  
+
+					
+					
+	   				 }, //성공했을때 함수
+	   			 	error: function(err){
+	   				 alert(err+"발생했어요^^")
+	   			 	} //오류발생했을때 함수 
+				});
+	   			 
+	   		 });//ajax끝
+		})//end of on
 	
 		
 		
