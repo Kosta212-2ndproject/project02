@@ -116,14 +116,16 @@
     		<div class="row mt-5">
           <div class="col-md-12 nav-link-wrap">
             <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <!-- Tabmenu  -->
+<!-- Tabmenu  -->
               <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
 
               <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Taste/Food Matching </a>
 
              <a class="nav-link ftco-animate mr-lg-1" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Reviews</a>
              
-             <a class="nav-link ftco-animate" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">Q & A</a>
+             <a class="nav-link ftco-animate mr-lg-1" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">Q & A</a>
+            
+             <a class="nav-link ftco-animate" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="false">Q & A Board</a>
 
 
             </div>
@@ -147,7 +149,7 @@
 	              	Food matching : ${prod.prodMach}</p>
 	             </div>
               </div>
-<!-- 3번째 탭메뉴의 contents  -->
+<!-- 3번째 탭메뉴의 contents /review -->
 						<div class="tab-pane fade" id="v-pills-3" role="tabpanel"
 							aria-labelledby="v-pills-day-3-tab">
 							<div class="row p-4">
@@ -155,21 +157,14 @@
 							</div>
 						</div>
 
-<!-- 4번째 탭메뉴의 contents  -->             
+<!-- 4번째 탭메뉴의 contents /Question Form -->             
               <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-day-4-tab">
               	<div class="row p-4">
 						   	<!-- 	<div class="col-md-8"> -->
 						   			 <!-- <h3 class="mb-4">23 Reviews</h3>  -->
-						   			
-						   			
-						  
-								   	
-								   	
-								   	
 						   		<!-- </div> -->
-						   		
-						   		
-<!-- 질문등록  영역  -->
+						
+						<!-- 질문등록  영역  -->
 						   	<!-- 	<div class="col-md-4"> -->
 						   						   	
 								 <!--   	<div class="col-lg-6"> -->
@@ -228,13 +223,26 @@
 								</form>
 							</div>
 					<!-- 	</div> -->
-						   		
-						   		
-						   		
-						   		
-							   		
-							   		
 						   	<!-- 	</div> -->
+				</div>
+              </div>
+              
+<!-- 5번째 탭메뉴의 contents / Q&A Board -->
+              
+                <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-day-5-tab">
+              	<div class="row p-4">
+							<div class="review_box">
+							<div class="col-md-12" id="minjoo2">
+							
+							
+							
+							</div>
+								
+							</div>
+							
+							
+							
+							
 				</div>
               </div>
             </div>
@@ -315,7 +323,7 @@
 			 	///////////////////////////////////////////////////
 			 	
 			//alert("${prod.prodId}")
-			var isRun=false;
+			//var isRun=false;
 			$(document).on("click","#v-pills-3-tab", function(){
 				//alert(22)
 					/* if(isRun){
@@ -350,6 +358,7 @@
 						str += "<td>" + item.reviewRegdate + "</td>"
 						//str += "<td><img width='175' height='200' src='"+item.reviewImgUrl+"'></td>";
 						str += "<td>" + item.reviewVcount + "</td>"
+						//str += "<td><input type='button' value='delete'/></td>"
 						str += "</tr>"
 					});
 					str += "</table>"
@@ -371,8 +380,26 @@
 				
 				
 				
-	})//end of on
-			 	///////////////////////////////////////////////////
+	   		 
+		})//end of on
+		
+		///////////////////////////////////////////////////
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		///////////////////////////////////////////////////
+			 	
 			 	jQuery.each(jQuery('textarea[data-autoresize]'), function() { 
 			 		var offset = this.offsetHeight - this.clientHeight; 
 			 		var resizeTextarea = function(el) { 
@@ -382,7 +409,8 @@
 			 			});
 		     
 			 	///////////////////////////////////////////////////
-		});//end of ready
+			 	
+	});//end of ready
 		
 		
 		

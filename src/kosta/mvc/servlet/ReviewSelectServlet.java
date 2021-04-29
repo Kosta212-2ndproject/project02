@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kosta.mvc.dao.QuestionDAO;
+import kosta.mvc.dao.QuestionDAOImpl;
 import kosta.mvc.dao.ReviewDAO;
 import kosta.mvc.dao.ReviewDAOImpl;
+import kosta.mvc.dto.QuestionDTO;
 import kosta.mvc.dto.ReviewDTO;
 import net.sf.json.JSONArray;
 
@@ -28,10 +31,12 @@ public class ReviewSelectServlet extends HttpServlet {
 		  String proId = request.getParameter("prodId");
 		  System.out.println(proId);
 	      // service -> dao 호출
-	      ReviewDAO dao = new ReviewDAOImpl();
-	      List<ReviewDTO> list =null;
+	     
+		  QuestionDAO question = new QuestionDAOImpl();
+		  
+	      List<QuestionDTO> list =null;
 		try {
-			list = dao.selectByProdId(Integer.parseInt(proId));
+			list = question.selectByProdId(Integer.parseInt(proId));
 
 		      // list를 javascript 해석할 수 있는 json형태로 변환!!
 		      JSONArray arr = JSONArray.fromObject(list);
