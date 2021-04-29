@@ -414,18 +414,20 @@
 								text += "<td>" + item.qField + "</td>"
 								text += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+item.qNum+"&prodId="+item.prodId+"'>" + item.qTitle + "</td>"
 								text += "<td>" + item.qRegdate + "</td>"
-								text += "<td>" + item.qShowstatus + "</td>"
+								if(item.qShowstatus == '0'){
+									text += "<td id='securityCheck'><img src='images/security.png' width='20' height='20'/></td>"	
+								}else{
+									text += "<td id='securityCheck'><img src='images/public.svg' width='20' height='20'/></td>"	
+								}
 								text += "</tr>"
 							});
 								text += "</table>"
-					
+							let show = ""
 					//겹치는 css클래스 명이 있을 경우 , id 를 줘서 unique 하게 처리하면 됨 
 					//브라우저에서 지원하는 소스코드 활용해서 css 적용해보면서 할 것!  
 					//->미리 어떤식으로 적용되는지 확인 후, 실제 코드에서 변경해 주면됨 
 					//$(".col-md-7").after(str);//형제노드로추가되는 것. 
 					$("#minjoo2").html(text);// 해당영역 안에 추가되는 것 , 덮어쓰기됨  
-
-					
 					
 	   				 }, //성공했을때 함수
 	   			 	error: function(err){

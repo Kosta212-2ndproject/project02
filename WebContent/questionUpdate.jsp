@@ -31,21 +31,17 @@
 function checkValid() {
     var f = window.document.writeForm;
 		
-	if ( f.reviewTitle.value == "") {
+	if ( f.qTitle.value == "") {
 	    alert( "제목을 입력해 주세요." );
 	    f.model_num.focus();
 		return false;
     }
-	if ( f.reviewContent.value == "" ) {
+	if ( f.qContent.value == "" ) {
 		alert( "내용을 입력해 주세요." );
 		f.model_name.focus();
 		return false;
 	}
-	if ( f.reviewStarScope.value == "" ) {
-		alert( "별점을 입력해 주세요." );
-		f.price.focus();
-		return false;
-	}
+
 	
     return true;
 }
@@ -98,7 +94,7 @@ function checkValid() {
                   </div>
                   <div class="form-group">
                     <label for="title">Title *</label>
-                    <input type="text" name="qTitle" class="form-control" id="qTitle">
+                    <input type="text" name="qTitle" class="form-control" id="qTitle" value="${question.qTitle}">
                   </div>
                   
                   <div class="form-group">
@@ -109,7 +105,7 @@ function checkValid() {
                   </div>
                   <div class="form-group">
                     <label for="message">Contents *</label>
-                    <textarea name="qContent" id="message" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name="qContent" id="message" cols="30" rows="10" class="form-control" placeholder="${question.qContent}"></textarea>
                   </div>
 				<div class="form-group">
 				<fieldset>
