@@ -100,6 +100,7 @@
 				</div>
 
                     <input type=hidden name="qNum" value="${question.qNum}"> 
+                    <input type=hidden name="prodId" value="${question.prodId}"> 
 					<input type=hidden name="key" value="question"> 
 					<input type=hidden name="methodName"> 
 					<input type=button value="edit" onClick="sendUpdate()" class="btn py-3 px-4 btn-primary"> 

@@ -164,7 +164,7 @@ public class QuestionController implements Controller {
 		String qField = m.getParameter("qField");
 		String qTitle = m.getParameter("qTitle");
 		String qContent = m.getParameter("qContent");
-		String qFiles= m.getParameter("qFiles");
+//		String qFiles= m.getParameter("qFiles");
 		String qRegdate = m.getParameter("qRegdate");
 		String qShowstatus = m.getParameter("qShowstatus");
 		
@@ -189,5 +189,28 @@ public class QuestionController implements Controller {
 		mv.setViewName("questionRead.jsp");
 		return mv;
 	}
+	
+	
+
+	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
+		String qNum = request.getParameter("qNum");
+		questionService.delete(Integer.parseInt(qNum));
+		
+
+		String prodId = request.getParameter("prodId");
+		
+		ProductDTO prod = productService.selectByProductDetail(Integer.parseInt(prodId));
+		List<ReviewDTO> review = reviewService.selectByProdId(Integer.parseInt(prodId));
+		List<QuestionDTO> question = questionService.selectByProdId(Integer.parseInt(prodId));
+		
+		request.setAttribute("prod", prod);
+		request.setAttribute("review", review);
+		request.setAttribute("question", question);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("product-single.jsp");
+		return mv;	
+	}
+	
 
 }
