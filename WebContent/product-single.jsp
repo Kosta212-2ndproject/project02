@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="css/review.css">
   
     <style type="text/css">
-    textarea { box-sizing: border-box; resize: none; }
+    #qContent { box-sizing: border-box; resize: none; background-color: white;}
     </style>
     <script type="text/javascript">
 
@@ -151,7 +151,7 @@
 						<div class="tab-pane fade" id="v-pills-3" role="tabpanel"
 							aria-labelledby="v-pills-day-3-tab">
 							<div class="row p-4">
-								<div class="col-md-7"></div>
+								<div class="col-md-12" id="minjoo"></div>
 							</div>
 						</div>
 
@@ -318,11 +318,11 @@
 			var isRun=false;
 			$(document).on("click","#v-pills-3-tab", function(){
 				//alert(22)
-					if(isRun){
+					/* if(isRun){
 						//alert("processing...");
 						return;
 					}
-					isRun = true;
+					isRun = true; */
 				$.ajax({
 	   			 url:"${path}/reviewSelect" , // 서버요청주소
 	   			 type: "post", //method방식 = 전송방식(get, post, put, delete)
@@ -330,9 +330,9 @@
 	   		     data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보 
 	   			 success : function(result){
 	   			   //alert(result)
-	   			  	setTimeout(function () {
+	   			  /* 	setTimeout(function () {
 	   			  		isRun = false;
-					},10000000);
+					},10000000); */
 	   				var str = "<table id='table'><tr>";
 	   				str += "<th> 회원아이디 </th>";
 	   				str += "<th> 제목 </th>";
@@ -354,9 +354,13 @@
 					});
 					str += "</table>"
 
-					$(".col-md-7").after(str);
-			 		//${"#table)"}.remove(); 
-			 		//${"#table tr:eq(0)"}.after(str); 
+					
+					//겹치는 css클래스 명이 있을 경우 , id 를 줘서 unique 하게 처리하면 됨 
+					//브라우저에서 지원하는 소스코드 활용해서 css 적용해보면서 할 것!  
+					//->미리 어떤식으로 적용되는지 확인 후, 실제 코드에서 변경해 주면됨 
+					//$(".col-md-7").after(str);//형제노드로추가되는 것. 
+					$("#minjoo").html(str);// 해당영역 안에 추가되는 것 , 덮어쓰기됨  
+					
 					
 	   			 } , //성공했을때 함수
 	   			 error: function(err){
