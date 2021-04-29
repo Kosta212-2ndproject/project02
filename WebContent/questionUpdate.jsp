@@ -64,11 +64,11 @@ function checkValid() {
 					<p class="breadcrumbs mb-0">
 						<span class="mr-2"><a href="index.jsp">Home <i
 								class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a
-							href="front?key=notice&methodName=select">Review <i
-								class="fa fa-chevron-right"></i></a></span> <span>Review Single <i
+							href="front?key=notice&methodName=select">Q & A <i
+								class="fa fa-chevron-right"></i></a></span> <span>Q & A Single <i
 							class="fa fa-chevron-right"></i></span>
 					</p>
-					<h2 class="mb-0 bread">Review Upload</h2>
+					<h2 class="mb-0 bread">Q & A Update</h2>
 				</div>
 			</div>
 		</div>
@@ -81,8 +81,14 @@ function checkValid() {
 
 <!-- review update form  -->
 
-      <form name="writeForm" method="post" action="front?key=question&methodName=update" 
+      <form name="writeForm" method="post" action="${path}/front?key=question&methodName=update" 
   		onSubmit='return checkValid()' enctype="multipart/form-data"class="p-5 bg-light">
+  				    <input type="hidden" name="qNum" value = "${question.qNum}"/> 
+        			<input type="hidden" name="prodId" value = "${question.prodId}"/> 
+  					<input type="hidden" name="qFilesOrigin" value="${question.qFiles}"/>
+  					<input type="hidden" name="qRegdate" value="${question.qRegdate}"/> 
+  					<input type="hidden" name="qField" value="${question.qField}"/> 
+  					
         <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">Update a Question</h3>
   					
@@ -108,10 +114,10 @@ function checkValid() {
 				<div class="form-group">
 				<fieldset>
 					<legend> 공개 / 비공개 </legend>
-					<input type="radio" id="product" name="qShowstatus" value="0">
-					<label for="product"> 비공개 </label><br /> <input type="radio"
-						id="order" name="qShowstatus" value="1"> <label
-						for="order"> 공개 </label><br />
+					<input type="radio" id="product" name="qShowstatus" value=0>
+					<label for="product"> 비공개 </label><br /> 
+					<input type="radio"	id="order" name="qShowstatus" value=1> 
+					<label for="order"> 공개 </label><br />
 				</fieldset>
 				</div>
 				<div>
@@ -125,16 +131,13 @@ function checkValid() {
 			</div>
 
 			<div class="form-group">
-                    <input type="submit" value="PUpdate" class="btn py-3 px-4 btn-primary">
+                    <input type="submit" value="Update" class="btn py-3 px-4 btn-primary">
                     <input type="reset" value="reset" class="btn py-3 px-4 btn-primary">
                   </div>
 					
 					
 					
-        			<input type="hidden" name="qNum" value = "${question.qNum}"/> 
-        			<input type="hidden" name="prodId" value = "${question.prodId}"/> 
-  					<input type="hidden" name="qFilesOrigin" value="${question.qFilesOrigin}"/>
-  					<input type="hidden" name="qRegdate" value="${question.qRegdate}"/>
+        		
               </div>
             </form>
 

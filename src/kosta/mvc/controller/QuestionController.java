@@ -59,7 +59,7 @@ public class QuestionController implements Controller {
 		 String qField = m.getParameter("qField");
 		 String qTitle= m.getParameter("qTitle");
 		 String qContent= m.getParameter("qContent");
-//		 String qFiles= m.getParameter("qFiles");
+		 String qFiles= m.getParameter("qFiles");
 		 String qShowstatus= m.getParameter("qShowstatus");
 		 
 		 System.out.println(prodId);
@@ -70,7 +70,7 @@ public class QuestionController implements Controller {
 		 
 		 
 		 QuestionDTO  question = new QuestionDTO(0, userId, Integer.parseInt(prodId), qField, qTitle, qContent, 
-				 null, null, Integer.parseInt(qShowstatus));
+				 qFiles, null, Integer.parseInt(qShowstatus));
 		
 		
 		//파일 첨부가 되었다면, 
@@ -150,7 +150,6 @@ public class QuestionController implements Controller {
 	 * */
 	public ModelAndView update(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
-		// TODO Auto-generated method stub
 
 		String saveDir = request.getServletContext().getRealPath("/save");// ★
 		String encoding = "UTF-8";
@@ -158,25 +157,28 @@ public class QuestionController implements Controller {
 
 		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 
-		String prodId = request.getParameter("prodId");
-		String userId = request.getParameter("userId");
-		String qRegdate = request.getParameter("qRegdate");
+		
+		String qNum = m.getParameter("qNum");
+		String userId = m.getParameter("userId");
+		String prodId = m.getParameter("prodId");
+		String qField = m.getParameter("qField");
+		String qTitle = m.getParameter("qTitle");
+		String qContent = m.getParameter("qContent");
+		String qFiles= m.getParameter("qFiles");
+		String qRegdate = m.getParameter("qRegdate");
+		String qShowstatus = m.getParameter("qShowstatus");
+		
+		String qFilesOrigin = m.getParameter("qFilesOrigin");
 
-		String qNum = request.getParameter("qNum");
-		String qTitle = request.getParameter("qTitle");
-		String qContent = request.getParameter("qContent");
-		String qFilesOrigin = request.getParameter("qFilesOrigin");
-		String qShowstatus = request.getParameter("qShowstatus");
-
-		QuestionDTO question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), null, qTitle,
-				qContent, null, qRegdate, Integer.parseInt(qShowstatus));
+		QuestionDTO question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
+				null, qRegdate, Integer.parseInt(qShowstatus));
 
 		// 파일 첨부가 되었다면,
 		if (m.getFilesystemName("qFiles") != null) {// 뭔가 첨부가 되었다면
 			question.setqFiles(request.getContextPath() + "/save/" + m.getFilesystemName("qFiles"));
 
 		} else {
-			question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), null, qTitle, qContent,
+			question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
 					qFilesOrigin, qRegdate, Integer.parseInt(qShowstatus));
 		}
 

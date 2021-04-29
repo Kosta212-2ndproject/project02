@@ -185,12 +185,12 @@
 												<fieldset>
 													<legend>Category</legend>
 
-													<input type="radio" id="product" name="qField" value="0"> 
+													<input type="radio" id="product" name="qField" value="상품"> 
 													<label for="product"> 상품 문의 </label><br /> 
-													<input type="radio" id="order" name="qField" value="1"> 
+													<input type="radio" id="order" name="qField" value="주문"> 
 													<label for="order">	주문 문의 </label><br /> 
-													<input type="radio" id="delivery" name="qField" value="2"> 
-													<label for="delivery"> 배송문의 </label>
+													<input type="radio" id="delivery" name="qField" value="배송"> 
+													<label for="delivery"> 배송 문의 </label>
 												</fieldset>
 											</div>
 									</div>
@@ -388,14 +388,10 @@
 <script type="text/javascript">
 
 	$(document).ready(function() {
-		
-///////////////////////////////////////////////////
-		
 		//Q&A Board
-			 	
 		//alert("${prod.prodId}")
 			$(document).on("click","#v-pills-5-tab", function(){ 
-								
+				//alert(11)				
 				$.ajax({
 	   			 		url:"${path}/boardSelect" , // 서버요청주소 
 	   			 		type: "post", //method방식 = 전송방식(get, post, put, delete)
@@ -409,9 +405,7 @@
 							text += "<th> ID </th>";
 							text += "<th> Category </th>";
 							text += "<th> Title </th>";
-							//text += "<th> Content </th>";
 							text += "<th> Date </th>";
-		   					//text += "<th> 사진 </th>";
 		   					text += "<th> public | private </th>";
 						$.each(result, function(index, item) {
 								text += "<tr>"
@@ -419,14 +413,11 @@
 								text += "<td>" + item.userId + "</td>"
 								text += "<td>" + item.qField + "</td>"
 								text += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+item.qNum+"&prodId="+item.prodId+"'>" + item.qTitle + "</td>"
-								//text += "<td>" + item.qContent + "</td>"
 								text += "<td>" + item.qRegdate + "</td>"
 								text += "<td>" + item.qShowstatus + "</td>"
-							//text += "<td><img width='175' height='200' src='"+item.reviewImgUrl+"'></td>";
-							//text += "<td><input type='button' value='delete'/></td>"
-							text += "</tr>"
+								text += "</tr>"
 							});
-						text += "</table>"
+								text += "</table>"
 					
 					//겹치는 css클래스 명이 있을 경우 , id 를 줘서 unique 하게 처리하면 됨 
 					//브라우저에서 지원하는 소스코드 활용해서 css 적용해보면서 할 것!  
@@ -460,33 +451,7 @@
 		
 	})//end of ready
 
-
-
-
-
-
 </script>			 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-			 	
-
-		
-		
-		
-		
-		
-		
-		
-
 
 </body>
 </html>
