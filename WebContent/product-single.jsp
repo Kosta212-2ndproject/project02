@@ -315,9 +315,14 @@
 			 	///////////////////////////////////////////////////
 			 	
 			//alert("${prod.prodId}")
+			var isRun=false;
 			$(document).on("click","#v-pills-3-tab", function(){
 				//alert(22)
-				
+					if(isRun){
+						//alert("processing...");
+						return;
+					}
+					isRun = true;
 				$.ajax({
 	   			 url:"${path}/reviewSelect" , // 서버요청주소
 	   			 type: "post", //method방식 = 전송방식(get, post, put, delete)
@@ -325,7 +330,10 @@
 	   		     data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보 
 	   			 success : function(result){
 	   			   //alert(result)
-	   				var str = "<table><tr>";
+	   			  	setTimeout(function () {
+	   			  		isRun = false;
+					},10000000);
+	   				var str = "<table id='table'><tr>";
 	   				str += "<th> 회원아이디 </th>";
 	   				str += "<th> 제목 </th>";
 	   				str += "<th> 내용 </th>";
@@ -347,6 +355,8 @@
 					str += "</table>"
 
 					$(".col-md-7").after(str);
+			 		//${"#table)"}.remove(); 
+			 		//${"#table tr:eq(0)"}.after(str); 
 					
 	   			 } , //성공했을때 함수
 	   			 error: function(err){
@@ -354,7 +364,10 @@
 	   			 } //오류발생했을때 함수 
 	   			 
 	   		 });//ajax끝
-			})//end of on
+				
+				
+				
+	})//end of on
 			 	///////////////////////////////////////////////////
 			 	jQuery.each(jQuery('textarea[data-autoresize]'), function() { 
 			 		var offset = this.offsetHeight - this.clientHeight; 
