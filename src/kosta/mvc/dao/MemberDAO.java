@@ -11,12 +11,12 @@ public interface MemberDAO {
 	 * 회원가입
 	 *  : 로그인 api로 최초로 받아온 값을 등록
 	 */
-	public int insertMember(MemberDTO memberDTO) throws SQLException;
+	int insertMember(MemberDTO memberDTO) throws SQLException;
 	
 	/**
 	 * 회원정보조회
 	 */
-	public MemberDTO readMemberInfo(String nowId);
+	MemberDTO readMemberInfo(String nowId);
 	
 	/**
 	 * 회원정보수정
@@ -25,7 +25,10 @@ public interface MemberDAO {
 	/**
 	 * 관리자 : 전체 회원 조회
 	 */
-	public List<MemberDTO> printAllMember();
+	List<MemberDTO> printAllMember();
 	
-
+	/**
+	 * 회원가입 여부 체크
+	 */
+	boolean isMember(String userId) throws SQLException;
 }

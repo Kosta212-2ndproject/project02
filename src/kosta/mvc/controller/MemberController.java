@@ -34,12 +34,13 @@ public class MemberController implements Controller {
 		String userBirth=request.getParameter("birth");
 		String userHp=request.getParameter("mobile");
 		
-//		int year = Calendar.getInstance().get(Calendar.YEAR);
-//		int birthyear = Integer.parseInt(request.getParameter("birthyear"));
+		//System.out.println("Controller userId : " + userId);
 		
 		MemberDTO memberDTO = new MemberDTO(userId, userName, "1234", userHp, userEmail, userBirth, userGender, 1, "SYSDATE", 0);
 		
-		memberService.insertMember(memberDTO);
+		if(memberService.isMember(userId)==false) {
+			memberService.insertMember(memberDTO);
+		}
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("userName", userName);

@@ -20,6 +20,9 @@ public class MemberDAOImpl implements MemberDAO {
 		String sql = "INSERT INTO USERLIST(USER_ID, USER_NAME, USER_PW, USER_HP, USER_EMAIL, USER_BIRTH, USER_GENDER, USER_STATE, USER_REGDATE, USER_BUYCOUNT) "
 				+ "VALUES(?, ?, '1234', ?, ?, ?, ?, 1, SYSDATE, 0)";
 		
+		System.out.println("DAO userId : "+memberDTO.getUserId());
+
+		
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -149,9 +152,36 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		return result;
 	}
-	
-	public int deleteMember(Connection con, MemberDTO nowMemberDTO) {
+
+	@Override
+	public boolean isMember(String userId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 		
+		boolean result = false;
+		String sql = "SELECT * FROM USERLIST WHERE USER_ID=?";
 		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, userId);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				result = true;
+			}
+			
+		} finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return result;
 	}
+	
+//	public int deleteMember(Connection con, MemberDTO nowMemberDTO) {
+//		
+//		
+//	}
 }

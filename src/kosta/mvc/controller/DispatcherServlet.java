@@ -40,13 +40,13 @@ public class DispatcherServlet extends HttpServlet {
 		String methodName = request.getParameter("methodName");
 		
 		try {
-			if(key==null || key.equals("")) {
-				key = "elec";
-			}
-			
-			if(methodName==null || methodName.equals("")) {
-				methodName = "select";
-			}
+//			if(key==null || key.equals("")) {
+//				key = "elec";
+//			}
+//			
+//			if(methodName==null || methodName.equals("")) {
+//				methodName = "select";
+//			}
 			
 			Class<?> clz = clzMap.get(key);
 			Method method = clz.getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);

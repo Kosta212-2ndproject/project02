@@ -10,10 +10,19 @@
 <head>
 <title>네이버로그인</title>
 <script src="js/jquery-3.6.0.min.js"></script>
-
 </head>
   <body>
 	<%
+			String naverCode = "";
+			String name = "";
+			String email = "";
+			String gender = "";
+			String birthday = "";
+			String age = "";
+			String birthyear = "";
+			String mobile = "";
+			String birth = "";
+	
 			String clientId = "02aCnvQyzJ_ywbAK8xrZ";//애플리케이션 클라이언트 아이디값";
 			String clientSecret = "0lBeAhGWLC";//애플리케이션 클라이언트 시크릿값";
 			String code = request.getParameter("code");
@@ -105,16 +114,16 @@
 					 
 					//왼쪽 변수 이름은 원하는 대로 정하면 된다. 
 					//단, 우측의 get()안에 들어가는 값은 와인색 상자 안의 값을 그대로 적어주어야 한다.
-					String naverCode = (String)resObj.get("id");
-					String name = (String)resObj.get("name");
-					String email = (String)resObj.get("email");
-					String gender = (String)resObj.get("gender");
-					String birthday = (String)resObj.get("birthday");
-					String age = (String)resObj.get("age");
-					String birthyear = (String)resObj.get("birthyear");
-					String mobile = (String)resObj.get("mobile");
+					naverCode = (String)resObj.get("id");
+					name = (String)resObj.get("name");
+					email = (String)resObj.get("email");
+					gender = (String)resObj.get("gender");
+					birthday = (String)resObj.get("birthday");
+					age = (String)resObj.get("age");
+					birthyear = (String)resObj.get("birthyear");
+					mobile = (String)resObj.get("mobile");
 					
-					String birth = birthyear + "-" + birthday;
+					birth = birthyear + "-" + birthday;
 					
 					System.out.println("naverCode : " + naverCode + "\n");
 					System.out.println("name : " + name + "\n");
@@ -132,24 +141,26 @@
 			}
 	%>
 	
-<form action="front" method="post" id="user_form">
-	<input type="hidden" name="naverCode" value="${naverCode}">
-	<input type="hidden" name="name" value="${name}">
-	<input type="hidden" name="email" value="${email}">
-	<input type="hidden" name="gender" value="${gender}">
-	<input type="hidden" name="birth" value="${birth}">
-	<input type="hidden" name="mobile" value="${mobile}">
-	<input type="hidden" name="birthyear" value="${birthyear}">
+<form action="front" method="post" name="fr">
+	<input type="hidden" name="naverCode" value=<%=naverCode %>>
+	<input type="hidden" name="name" value="<%=name %>>">
+	<input type="hidden" name="email" value="<%=email %>">
+	<input type="hidden" name="gender" value="<%=gender %>">
+	<input type="hidden" name="birth" value="<%=birth %>">
+	<input type="hidden" name="mobile" value="<%=mobile %>">
+	<input type="hidden" name="birthyear" value="<%=birthyear %>">
+	<input type=hidden name="key" value="member">
+	<input type=hidden name="methodName" value="insertMember">
 </form>
-${naverCode}
 <script type="text/javascript">
     
-    // document.fr.submit();
+    document.fr.submit();
 
-	$(document).ready(function() {
-		alert(1);
+/* 	$(document).ready(function() {
+		
 		$("#user_form").submit();
-	});
+		alert(1);
+	}); */
 
 </script>
 </body>

@@ -17,4 +17,10 @@ public class MemberServiceImpl implements MemberService {
 		// 로그인 api에서 인증이 되면 안되니까 여기서 에러띄워야할듯
 	}
 
+	@Override
+	public boolean isMember(String userId) throws SQLException {
+		boolean result = memberDAO.isMember(userId);
+		return result;
+	}
+
 }

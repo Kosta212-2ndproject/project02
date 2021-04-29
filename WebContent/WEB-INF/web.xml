@@ -9,4 +9,10 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+
+	<!-- listener 등록하기 -->
+	<context-param>
+		<param-name>fileName</param-name>
+		<param-value>actionMapping</param-value>
+	</context-param>
 </web-app>
