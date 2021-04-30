@@ -107,12 +107,7 @@ function productBuy() {
                     //기타 필요한 데이터가 있으면 추가 전달
                 },
                 success: function (result) {
-                    const timestamp = rsp.paid_at;
-                    var myDate = new Date(timestamp * 1000);
-                    var date = myDate.getFullYear() + "-" + (myDate.getMonth()+1) + "-" + myDate.getDate() +
-                        " " + myDate.getHours() + "h" + myDate.getMinutes() + "m" + myDate.getSeconds() + "s";
-                    alert("date: " + date);
-                    orderInsert(rsp.merchant_uid, rsp.paid_amount, date);
+                    orderInsert(rsp.merchant_uid, rsp.paid_amount, rsp.paid_at);
                     //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
                 },
                 error:function(request,status,error){
@@ -120,7 +115,6 @@ function productBuy() {
                 }
             });
             alert("결제 성공");
-            alert("date: " + date);
             // location.href='../successPay.jsp';
 
         } else {
