@@ -10,12 +10,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import kosta.mvc.dto.NoticeDTO;
+import kosta.mvc.paging.PageCnt;
 import kosta.mvc.util.DbUtil;
 
 public class NoticeDAOImpl implements NoticeDAO {
 	
 	/**
-	 * 해당 테이블 총 데이터 개수 반환 
+	 * 해당 테이블 총 데이터 개수 반환  **paging**
 	 * */
 	public int selectCnt() throws SQLException {
 		Connection con = null;
@@ -41,7 +42,7 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 
 
-	public List<NoticeDTO> selectPage(int start, int end) throws SQLException {
+	public List<NoticeDTO> getNoticeList(int pageNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -55,11 +56,21 @@ public class NoticeDAOImpl implements NoticeDAO {
 				+ "    WHERE ROWNUM <= ?) B"
 				+ "WHERE B.RNUM >=?";
 		try {
+			
+			//total records
+			int totalCnt = this.selectCnt();
+			
+			PageCnt page = new PageCnt();
+			
+			page.setPageCnt(totalCnt % page.getPagesize() == 0? totalCnt / page.getPagesize() : totalCnt / page.getPagesize()+1);
+			page.setPageNo(pageNo);
+			
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, start);
-			ps.setInt(2, end);
+			ps.setInt(1, pageNo * page.getPagesize());
+			ps.setInt(2, (pageNo-1) * page.getPagesize()+1);
 			
+			//게시물 가져오기 
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
