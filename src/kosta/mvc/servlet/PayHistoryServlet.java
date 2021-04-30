@@ -6,10 +6,7 @@ import com.google.gson.Gson;
 import kosta.mvc.IamportClient;
 import kosta.mvc.dao.PaymentHistoryDAO;
 import kosta.mvc.dao.PaymentHistoryDAOImpl;
-import kosta.mvc.dao.UserDAO;
-import kosta.mvc.dao.UserDAOImpl;
 import kosta.mvc.dto.PaymentHistoryDTO;
-import kosta.mvc.dto.UserDTO;
 import kosta.mvc.response.IamportResponse;
 import kosta.mvc.response.Payment;
 import net.sf.json.JSONArray;
@@ -57,6 +54,21 @@ public class PayHistoryServlet extends HttpServlet {
          int resCardQuota = payment.getResponse().getCardQuota();
          int resPayPrice = ((BigDecimal)payment.getResponse().getAmount()).intValue();
 
+         String cardQuota = String.valueOf(resCardQuota);
+
+
+         switch (resStatus) {
+            case "paid":
+               resStatus = "결제완료";
+               break;
+         }
+
+         if(resCardQuota == 0) {
+            cardQuota = "일시불";
+         } else {
+            cardQuota += "개월";
+         }
+
          System.out.println("resImpUid: " + resImpUid);
          System.out.println("resMerchantUid: " + resMerchantUid);
          System.out.println("resStatus: " + resStatus);
@@ -65,7 +77,9 @@ public class PayHistoryServlet extends HttpServlet {
          System.out.println("resCardQuota: " + resCardQuota);
          System.out.println("resPayPrice: " + resPayPrice);
 
-         PaymentHistoryDTO dto = new PaymentHistoryDTO(resImpUid, resMerchantUid, resStatus, resCardNumber, resCardName, resCardQuota, resPayPrice);
+         System.out.println("cardQuota: " + cardQuota);
+
+         PaymentHistoryDTO dto = new PaymentHistoryDTO(resImpUid, resMerchantUid, resStatus, resCardNumber, resCardName, cardQuota, resPayPrice);
 
          System.out.println(dto);   // dto 객체
 

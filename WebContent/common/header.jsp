@@ -66,11 +66,27 @@
 							</a>
 						</p>
 					</div>
-					<div class="reg">
-						<p class="mb-0">
-							<a href="#" class="mr-2">Sign Up</a>
-							<a href="#">log in</a>
-						</p>
+					<div class="col-md-6 d-flex justify-content-md-end">
+						<div class="social-media mr-4">
+			    		<p class="mb-0 d-flex">
+			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+			    		</p>
+		        </div>
+		        <div class="reg">
+		        	<p class="mb-0">
+		        		<c:choose>
+		        			<c:when test="${not empty userId}">
+		        				<a href="${pageContext.request.contextPath}/front?key=member&methodName=logout">Logout</a>
+		        			</c:when>
+		        			<c:otherwise>
+		        			<a href="${pageContext.request.contextPath}/login.jsp">log in</a>
+		        		</c:otherwise>
+		        		</c:choose>
+		        	</p>
+		        </div>
 					</div>
 				</div>
 			</div>
