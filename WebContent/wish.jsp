@@ -151,7 +151,7 @@
 				<form action="front" method="get">
 				<input type="hidden" name="prod" value="prodId"/>
 				<input type=hidden name="insertCart" value="prodId"/> 
-					<p><a href="cart.jsp" name="buyNow" class="btn btn-primary py-3 px-5">장바구니</a></p>
+					<p><a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" name="buyNow" class="btn btn-primary py-3 px-5">장바구니</a></p>
 				</form>
 				</div>
 			</div>

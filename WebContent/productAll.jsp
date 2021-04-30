@@ -162,7 +162,7 @@
       		<input type="hidden" name="methodName" value="selectWishByUserId">
       		<c:choose>
               <c:when test="${empty requestScope.listWish}">
-              			<p align="center"><b><span style="font-size:9pt;">찜한 상품이 없습니다.</span></b></p>
+              			<p align="center"><b><span style="font-size:9pt;">찜한 상품이 없습니다.3333</span></b></p>
               </c:when>
               <c:otherwise>
 				<c:forEach items="${requestScope.listWish}" var="wishDto" varStatus="status">
@@ -186,33 +186,7 @@
             
             
             
-            <div class="sidebar-box ftco-animate">
-              <h3><a href="${path}/front?key=wish&methodName=selectWish&userId=${userId}">Wish List</a></h3>
-              <c:choose>
-              <c:when test="${empty requestScope.listWish}">
-              			<p align="center"><b><span style="font-size:9pt;">찜한 상품이 없습니다.</span></b></p>
-              </c:when>
-              <c:otherwise>
-              <c:set var="wishDto "/>
-				<c:forEach items="${requestScope.listWish}" var="wishDto">
-					<div class="block-21 mb-4 d-flex">
-						<a class="blog-img mr-4"
-							style="background-image: url('${wishDto.prodImgUrl}');"></a>
-						<div class="text">
-							<h3 class="heading">
-								<a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}">${wishDto.prodName} ${wishDto.prodNameEng}</a>
-							</h3>
-							<div class="meta">
-							</div>
-						</div>
-					</div>
-
-				</c:forEach>
-              </c:otherwise>
-              </c:choose>
-              
-              
-            </div>
+            
             
 					</div>
 					
@@ -226,15 +200,6 @@
 		
 		<!-- loader -->
 		
-		<script>
-		$(document).ready(function(){
-			let prodImgUrl = 
-			
-		});
-		
-		
-		
-		</script>
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
