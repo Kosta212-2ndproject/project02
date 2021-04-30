@@ -42,13 +42,6 @@
 <!-- contents -->
 
 	
-	<%
-	request.getSession();
-
-	String userId="cha";
-	session.setAttribute("userId", userId);
-
-%>
 	
      <section class="ftco-section">
 			<div class="container">
@@ -171,7 +164,7 @@
 							style="background-image: url('${wishDto.prodImgUrl}');"></a>
 						<div class="text">
 							<h3 class="heading">
-								<a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}">${wishDto.prodName} ${wishDto.prodNameEng}</a>
+								<a href="${path}/front?key=prod&methodName=selectByProductDetail&prodId=${wishDto.prodId}">${wishDto.prodName} ${wishDto.prodNameEng}</a>
 							</h3>
 							<div class="meta">
 							</div>

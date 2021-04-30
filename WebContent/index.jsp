@@ -23,15 +23,6 @@
   </head>
   <body>
 
-<%
-	request.getSession();
-
-	String userId = "cha";
-	session.setAttribute("userId", userId);
-	%>
-  
-  	
-    
     <div class="hero-wrap" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">

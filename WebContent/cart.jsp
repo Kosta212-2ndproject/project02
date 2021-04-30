@@ -52,26 +52,7 @@
 		</div>
 	</section>
 
-	<%
-	request.getSession();
 
-	String userId = "cha";
-	session.setAttribute("userId", userId);
-	%>
-
-	<%--
-   request.setCharacterEncoding("UTF-8");
-
-   String imgUrl = request.getParameter("imgUrl");
-   String name = request.getParameter("name");
-   String nameTag = request.getParameter("nameEng");
-   int price = Integer.parseInt(request.getParameter("price"));
-   int dbQty = Integer.parseInt(request.getParameter("dbQty"));
-   int qty = Integer.parseInt(request.getParameter("userInputQty"));
-
-   int totalPrice = price * qty;
-
---%>
 
 
 	<section class="ftco-section">
