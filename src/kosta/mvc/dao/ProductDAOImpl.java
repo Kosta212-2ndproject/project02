@@ -12,7 +12,7 @@ import kosta.mvc.dto.ProductDTO;
 import kosta.mvc.util.DbUtil;
 
 public class ProductDAOImpl implements ProductDAO {
-	
+
 	ReviewDAO reviewDao = new ReviewDAOImpl();
 	
 	@Override
