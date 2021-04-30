@@ -45,5 +45,5 @@ public interface NoticeService {
 	  void update(NoticeDTO notice) throws SQLException;
 	  
 	  public int selectCnt() throws SQLException;
-	  public List<NoticeDTO>  getNoticeList(int pageNo) throws SQLException;
+	  public List<NoticeDTO>  selectAll(int pageNo) throws SQLException;
 }

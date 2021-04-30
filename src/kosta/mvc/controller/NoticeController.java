@@ -22,13 +22,18 @@ public class NoticeController implements Controller {
 	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
 			throws Exception  {
 		
-		//String pageNo = request.getParameter("pageNo");
-//		List<NoticeDTO> noticeList = nService.getNoticeList(Integer.parseInt(pageNo));
-		List<NoticeDTO> noticeList = nService.selectAll();
+		String pageNo = request.getParameter("pageNo");
+		
+		 if(pageNo==null || pageNo.equals("")) {
+			  pageNo="1";
+		  }
+		List<NoticeDTO> noticeList = nService.selectAll(Integer.parseInt(pageNo));
+//		List<NoticeDTO> noticeList = nService.selectAll();
 		for(NoticeDTO ndto:noticeList) {
 			System.out.println(ndto);
 		}
 		request.setAttribute("noticeList", noticeList); //${requestScope.noiceList}
+		request.setAttribute("pageNo", pageNo); //${requestScope.noiceList}
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("notice/notice.jsp");
@@ -133,7 +138,9 @@ public class NoticeController implements Controller {
 		request.setAttribute("nDTO", notice);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("notice/noticeSingleAdmin.jsp");
+		mv.setViewName("front?key=notice&methodName=select");
+		mv.setRedirect(true);
+		//mv.setViewName("notice/noticeSingleAdmin.jsp");
 		return mv;
 		
 	}

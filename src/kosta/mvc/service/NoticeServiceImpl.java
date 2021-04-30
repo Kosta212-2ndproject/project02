@@ -72,8 +72,12 @@ public class NoticeServiceImpl implements NoticeService {
 
 
 	@Override
-	public List<NoticeDTO> getNoticeList(int pageNo) throws SQLException {
+	public List<NoticeDTO> selectAll(int pageNo) throws SQLException {
 		List<NoticeDTO> noticeDTO= nDAO.getNoticeList(pageNo);
+		
+		for(NoticeDTO dto :noticeDTO) {
+			System.out.println(dto);
+		}
 		if(noticeDTO == null) {
 			throw new SQLException("정보를 검색하지 못했습니다.");
 		}
