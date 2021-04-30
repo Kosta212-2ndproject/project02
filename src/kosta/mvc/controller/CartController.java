@@ -36,7 +36,7 @@ public class CartController implements Controller {
 	public ModelAndView selectCartByUserId(HttpServletRequest request, HttpServletResponse response) throws Exception{ 
 		
 		
-		String userId = request.getParameter("userId");
+		String userId = request.getParameter("userId"); 
 		String pi = request.getParameter("prodId");
 		 if(pi !=null && !pi.equals("")) {
 			 request.setAttribute("prodId", pi);
