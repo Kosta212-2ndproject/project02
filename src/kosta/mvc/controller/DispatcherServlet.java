@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,17 +35,17 @@ public class DispatcherServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//System.out.println("frontController 요청 완료!!");
 		
-		String key = request.getParameter("key"); // user 또는 elec
+		String key = request.getParameter("key");
 		String methodName = request.getParameter("methodName");
 		
 		try {
-//			if(key==null || key.equals("")) {
-//				key = "elec";
-//			}
-//			
-//			if(methodName==null || methodName.equals("")) {
-//				methodName = "select";
-//			}
+			if(key==null || key.equals("")) {
+
+			}
+			
+			if(methodName==null || methodName.equals("")) {
+				methodName = "selectAll";
+			}
 			
 			Class<?> clz = clzMap.get(key);
 			Method method = clz.getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);

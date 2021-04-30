@@ -7,5 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface Controller {
-	ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	
+	/**
+	 * 검색
+	 * @throws Exception 
+	 * */
+	ModelAndView select(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception;
+
+
 }

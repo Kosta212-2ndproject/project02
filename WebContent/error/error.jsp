@@ -3,6 +3,7 @@
  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 
+<script src="/controller/resources/js/jquery.form.min.js"></script>
 
 <div class="container">
 	<div class="col-lg-8 col-lg-offset-2 text-center">
