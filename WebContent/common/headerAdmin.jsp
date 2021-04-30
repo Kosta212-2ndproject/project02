@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>JJAN ㅉ ㅏ ㄴ </title>
+<title>Liquor Store - Free Bootstrap 4 Template by Colorlib</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -22,7 +22,7 @@
 
 <SCRIPT language=javascript>
 	function checkValid() {
-		var f = window.document.searchForm;
+		var f = window.document.searchFrom;
 
 		if (f.keyWord.value == "") {
 			alert("검색어를 입력해 주세요.");
@@ -66,27 +66,11 @@
 							</a>
 						</p>
 					</div>
-					<div class="col-md-6 d-flex justify-content-md-end">
-						<div class="social-media mr-4">
-			    		<p class="mb-0 d-flex">
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
-			    		</p>
-		        </div>
-		        <div class="reg">
-		        	<p class="mb-0">
-		        		<c:choose>
-		        			<c:when test="${not empty userId}">
-		        				<a href="${pageContext.request.contextPath}/front?key=member&methodName=logout">Logout</a>
-		        			</c:when>
-		        			<c:otherwise>
-		        			<a href="${pageContext.request.contextPath}/login.jsp">log in</a>
-		        		</c:otherwise>
-		        		</c:choose>
-		        	</p>
-		        </div>
+					<div class="reg">
+						<p class="mb-0">
+							<a href="#" class="mr-2">Sign Up</a>
+							<a href="#">log in</a>
+						</p>
 					</div>
 				</div>
 			</div>
@@ -95,14 +79,14 @@
 
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.jsp">
+			<a class="navbar-brand" href="indexAdmin.jsp">
 				JJAN <span>ㅉ ㅏ ㄴ</span>
 			</a>
 
-			<form name="searchForm" action="front" method="post" onSubmit='return checkValid()'>
+			<form name="searchFrom" action="front" method="post" onSubmit='return checkValid()'>
 				<input class="input" type="text" name="values" placeholder="상품명 또는 국가 입력">
 				<input type="hidden" name="key" value="prod">
-				<input type="hidden" name="methodName" value="selectAll">
+				<input type="hidden" name="methodName" value="selectAllByAdmin">
 				<input type="hidden" name="category" value="keyWord">
 				<input type="submit" value="검색">
 			</form>
@@ -160,9 +144,15 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="index.jsp" class="nav-link">Home</a></li>
+					<li class="nav-item active"><a href="indexAdmin.jsp" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-					<li class="nav-item active"><a href="front?key=prod&methodName=selectAll" class="nav-link">Shop</a>
+					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown04">
+							<a class="dropdown-item" href="front?key=prod&methodName=selectAllByAdmin">상품관리</a>
+							<a class="dropdown-item" href="product-single.html">Single Product</a>
+							<a class="dropdown-item" href="cart.html">Cart</a>
+							<a class="dropdown-item" href="checkout.html">Checkout</a>
+						</div></li>
 					<li class="nav-item active"><a href="front?key=notice&methodName=select" class="nav-link">Notice</a></li>
 					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 				</ul>

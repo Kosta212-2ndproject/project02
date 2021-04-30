@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<jsp:include page="common/header.jsp" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<jsp:include page="common/headerAdmin.jsp" />
 
-<!DOCTYPE html>
-<html>
-<head>
+<HEAD>
 <title>ㅉ ㅏ ㄴ</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,7 +23,23 @@
 
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/style.css">
-</head>
+<link rel="stylesheet" href="css/style.css">
+
+<SCRIPT language=javascript>
+	function sendUpdate() {
+		document.requestForm.methodName.value = "updateForm";
+		document.requestForm.submit();
+	}
+
+	function sendDelete() {
+
+		document.requestForm.methodName.value = "delete";
+		document.requestForm.submit();
+	}
+</script>
+
+
+</HEAD>
 <body>
 
 	<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
@@ -95,29 +110,18 @@
 						<br>Vintage : <b>${prod.prodVatage}</b><br>
 						<br>Alcohol : <b>${prod.prodAlcohol}</b><br>
 						<br> Sweet : <b>${prod.prodSweet}</b>
+
 					</p>
 					<div class="row mt-4">
-						<div class="input-group col-md-6 d-flex mb-3">
-							<span class="input-group-btn mr-2">
-								<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
-									<i class="fa fa-minus"></i>
-								</button>
-							</span>
-							<input type="text" id="quantity" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-							<span class="input-group-btn ml-2">
-								<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-									<i class="fa fa-plus"></i>
-								</button>
-							</span>
-						</div>
+						<div class="input-group col-md-6 d-flex mb-3"></div>
 						<div class="w-100"></div>
 						<div class="col-md-12">
 							<p style="color: #000;">${prod.prodQty}piece available</p>
 						</div>
 					</div>
 					<p>
-						<a href="cart.html" class="btn btn-primary py-3 px-5 mr-2">Add to Cart</a>
-						<a href="cart.html" class="btn btn-primary py-3 px-5">Buy now</a>
+						<a href="front?key=prod&methodName=updateForm&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">수정하기</a>
+						<a href="front?key=prod&methodName=deleteProduct&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5">삭제하기</a>
 					</p>
 				</div>
 			</div>
@@ -241,9 +245,6 @@
 	</section>
 
 
-
-
-
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">
 		<svg class="circular" width="48px" height="48px">
@@ -268,43 +269,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 	<script src="js/main.js"></script>
 
-	<script>
-		$(document).ready(function() {
-
-			var quantitiy = 0;
-			$('.quantity-right-plus').click(function(e) {
-
-				// Stop acting like a button
-				e.preventDefault();
-				// Get the field name
-				var quantity = parseInt($('#quantity').val());
-
-				// If is not undefined
-
-				$('#quantity').val(quantity + 1);
-
-				// Increment
-
-			});
-
-			$('.quantity-left-minus').click(function(e) {
-				// Stop acting like a button
-				e.preventDefault();
-				// Get the field name
-				var quantity = parseInt($('#quantity').val());
-
-				// If is not undefined
-
-				// Increment
-				if (quantity > 0) {
-					$('#quantity').val(quantity - 1);
-				}
-			});
-
-		});
-	</script>
-
-
 </body>
 </html>
-<jsp:include page="common/footer.jsp" />
+<jsp:include page="common/footerAdmin.jsp" />
+
+
+
+
