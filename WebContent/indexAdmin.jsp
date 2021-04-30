@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<jsp:include page="common/header.jsp" />
+<jsp:include page="common/headerAdmin.jsp" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,10 +32,10 @@
 				<div class="col-md-8 ftco-animate d-flex align-items-end">
 					<div class="text w-100 text-center">
 						<h1 class="mb-4">
-							Our <span>JJAN</span> for Good <span>Moments</span>.
+							Good <span>Drink</span> for Good <span>Moments</span>.
 						</h1>
 						<p>
-							<a href="front?key=prod&methodName=selectAll"  class="btn btn-primary py-2 px-4">Shop Now</a>
+							<a href="#" class="btn btn-primary py-2 px-4">Shop Now</a>
 							<a href="#" class="btn btn-white btn-outline-white py-2 px-4">Read more</a>
 						</p>
 					</div>
@@ -88,7 +87,7 @@
 	<section class="ftco-section ftco-no-pb">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url(images/image_5.jpg);"></div>
+				<div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url(images/about.jpg);"></div>
 				<div class="col-md-6 wrap-about pl-md-5 ftco-animate py-5">
 					<div class="heading-section">
 						<span class="subheading">Since 1905</span>
@@ -111,38 +110,38 @@
 			<div class="row">
 				<div class="col-lg-2 col-md-4 ">
 					<div class="sort w-100 text-center ftco-animate">
-						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=Red&category=prodType'"  style="background-image: url(images/red.jpg); cursor:pointer;"></div>
-						<h3>Red</h3>
+						<div class="img" style="background-image: url(images/kind-1.jpg);"></div>
+						<h3>Brandy</h3>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-4 ">
 					<div class="sort w-100 text-center ftco-animate">
-						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=Sparkling&category=prodType'"  style="background-image: url(images/sparkling.jpg); cursor:pointer;"></div>
-						<h3>Sparkling</h3>
+						<div class="img" style="background-image: url(images/kind-2.jpg);"></div>
+						<h3>Gin</h3>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-4 ">
 					<div class="sort w-100 text-center ftco-animate">
-						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=White&category=prodType'"  style="background-image: url(images/white.jpg); cursor:pointer;"></div>
-						<h3>White</h3>
+						<div class="img" style="background-image: url(images/kind-3.jpg);"></div>
+						<h3>Rum</h3>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-4 ">
 					<div class="sort w-100 text-center ftco-animate">
-						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=cheap&category=prodPrice'"  style="background-image: url(images/cheap.jpg); cursor:pointer;"></div>
-						<h3>Economical</h3>
+						<div class="img" style="background-image: url(images/kind-4.jpg);"></div>
+						<h3>Tequila</h3>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-4 ">
 					<div class="sort w-100 text-center ftco-animate">
-						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=luxury&category=prodPrice'"  style="background-image: url(images/premium.jpg); cursor:pointer;"></div>
-						<h3>Premium</h3>
+						<div class="img" style="background-image: url(images/kind-5.jpg);"></div>
+						<h3>Vodka</h3>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-4 ">
 					<div class="sort w-100 text-center ftco-animate">
-						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll'"  style="background-image: url(images/morewine.jpg); cursor:pointer;"></div>
-						<h3>More</h3>
+						<div class="img" style="background-image: url(images/kind-6.jpg);"></div>
+						<h3>Whiskey</h3>
 					</div>
 				</div>
 
@@ -150,7 +149,220 @@
 		</div>
 	</section>
 
-	<br>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center pb-5">
+				<div class="col-md-7 heading-section text-center ftco-animate">
+					<span class="subheading">Our Delightful offerings</span>
+					<h2>Tastefully Yours</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 d-flex">
+					<div class="product ftco-animate">
+						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-1.jpg);">
+							<div class="desc">
+								<p class="meta-prod d-flex">
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-shopping-bag"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-heart"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-visibility"></span>
+									</a>
+								</p>
+							</div>
+						</div>
+						<div class="text text-center">
+							<span class="sale">Sale</span> <span class="category">Brandy</span>
+							<h2>Bacardi 151</h2>
+							<p class="mb-0">
+								<span class="price price-sale">$69.00</span> <span class="price">$49.00</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 d-flex">
+					<div class="product ftco-animate">
+						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-2.jpg);">
+							<div class="desc">
+								<p class="meta-prod d-flex">
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-shopping-bag"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-heart"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-visibility"></span>
+									</a>
+								</p>
+							</div>
+						</div>
+						<div class="text text-center">
+							<span class="seller">Best Seller</span> <span class="category">Gin</span>
+							<h2>Jim Beam Kentucky Straight</h2>
+							<span class="price">$69.00</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 d-flex">
+					<div class="product ftco-animate">
+						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-3.jpg);">
+							<div class="desc">
+								<p class="meta-prod d-flex">
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-shopping-bag"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-heart"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-visibility"></span>
+									</a>
+								</p>
+							</div>
+						</div>
+						<div class="text text-center">
+							<span class="new">New Arrival</span> <span class="category">Rum</span>
+							<h2>Citadelle</h2>
+							<span class="price">$69.00</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 d-flex">
+					<div class="product ftco-animate">
+						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-4.jpg);">
+							<div class="desc">
+								<p class="meta-prod d-flex">
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-shopping-bag"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-heart"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-visibility"></span>
+									</a>
+								</p>
+							</div>
+						</div>
+						<div class="text text-center">
+							<span class="category">Rum</span>
+							<h2>The Glenlivet</h2>
+							<span class="price">$69.00</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 d-flex">
+					<div class="product ftco-animate">
+						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-5.jpg);">
+							<div class="desc">
+								<p class="meta-prod d-flex">
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-shopping-bag"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-heart"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-visibility"></span>
+									</a>
+								</p>
+							</div>
+						</div>
+						<div class="text text-center">
+							<span class="category">Whiskey</span>
+							<h2>Black Label</h2>
+							<span class="price">$69.00</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 d-flex">
+					<div class="product ftco-animate">
+						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-6.jpg);">
+							<div class="desc">
+								<p class="meta-prod d-flex">
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-shopping-bag"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-heart"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-visibility"></span>
+									</a>
+								</p>
+							</div>
+						</div>
+						<div class="text text-center">
+							<span class="category">Tequila</span>
+							<h2>Macallan</h2>
+							<span class="price">$69.00</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 d-flex">
+					<div class="product ftco-animate">
+						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-7.jpg);">
+							<div class="desc">
+								<p class="meta-prod d-flex">
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-shopping-bag"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-heart"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-visibility"></span>
+									</a>
+								</p>
+							</div>
+						</div>
+						<div class="text text-center">
+							<span class="category">Vodka</span>
+							<h2>Old Monk</h2>
+							<span class="price">$69.00</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 d-flex">
+					<div class="product ftco-animate">
+						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-8.jpg);">
+							<div class="desc">
+								<p class="meta-prod d-flex">
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-shopping-bag"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-heart"></span>
+									</a>
+									<a href="#" class="d-flex align-items-center justify-content-center">
+										<span class="flaticon-visibility"></span>
+									</a>
+								</p>
+							</div>
+						</div>
+						<div class="text text-center">
+							<span class="category">Whiskey</span>
+							<h2>Jameson Irish Whiskey</h2>
+							<span class="price">$69.00</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-4">
+					<a href="product.html" class="btn btn-primary d-block">
+						View All Products <span class="fa fa-long-arrow-right"></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<section class="ftco-section testimony-section img" style="background-image: url(images/bg_4.jpg);">
 		<div class="overlay"></div>
@@ -379,4 +591,4 @@
 
 </body>
 </html>
-<jsp:include page="common/footer.jsp" />
+<jsp:include page="common/footerAdmin.jsp" />
