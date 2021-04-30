@@ -33,7 +33,7 @@
 				<div class="col-md-8 ftco-animate d-flex align-items-end">
 					<div class="text w-100 text-center">
 						<h1 class="mb-4">
-							Good <span>Drink</span> for Good <span>Moments</span>.
+							Our <span>JJAN</span> for Good <span>Moments</span>.
 						</h1>
 						<p>
 							<a href="front?key=prod&methodName=selectAll"  class="btn btn-primary py-2 px-4">Shop Now</a>
@@ -88,7 +88,7 @@
 	<section class="ftco-section ftco-no-pb">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url(images/about.jpg);"></div>
+				<div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url(images/image_5.jpg);"></div>
 				<div class="col-md-6 wrap-about pl-md-5 ftco-animate py-5">
 					<div class="heading-section">
 						<span class="subheading">Since 1905</span>
@@ -111,37 +111,37 @@
 			<div class="row">
 				<div class="col-lg-2 col-md-4 ">
 					<div class="sort w-100 text-center ftco-animate">
-						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=Red&category=prodType'"  style="background-image: url(images/kind-1.jpg); cursor:pointer;"></div>
+						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=Red&category=prodType'"  style="background-image: url(images/red.jpg); cursor:pointer;"></div>
 						<h3>Red</h3>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-4 ">
 					<div class="sort w-100 text-center ftco-animate">
-						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=Sparkling&category=prodType'"  style="background-image: url(images/kind-2.jpg); cursor:pointer;"></div>
+						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=Sparkling&category=prodType'"  style="background-image: url(images/sparkling.jpg); cursor:pointer;"></div>
 						<h3>Sparkling</h3>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-4 ">
 					<div class="sort w-100 text-center ftco-animate">
-						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=White&category=prodType'"  style="background-image: url(images/kind-3.jpg); cursor:pointer;"></div>
+						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=White&category=prodType'"  style="background-image: url(images/white.jpg); cursor:pointer;"></div>
 						<h3>White</h3>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-4 ">
 					<div class="sort w-100 text-center ftco-animate">
-						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=cheap&category=prodPrice'"  style="background-image: url(images/kind-4.jpg); cursor:pointer;"></div>
+						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=cheap&category=prodPrice'"  style="background-image: url(images/cheap.jpg); cursor:pointer;"></div>
 						<h3>Economical</h3>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-4 ">
 					<div class="sort w-100 text-center ftco-animate">
-						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=luxury&category=prodPrice'"  style="background-image: url(images/kind-6.jpg); cursor:pointer;"></div>
+						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll&values=luxury&category=prodPrice'"  style="background-image: url(images/premium.jpg); cursor:pointer;"></div>
 						<h3>Premium</h3>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-4 ">
 					<div class="sort w-100 text-center ftco-animate">
-						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll'"  style="background-image: url(images/kind-5.jpg); cursor:pointer;"></div>
+						<div class="img" OnClick="location.href ='front?key=prod&methodName=selectAll'"  style="background-image: url(images/morewine.jpg); cursor:pointer;"></div>
 						<h3>More</h3>
 					</div>
 				</div>
@@ -150,66 +150,7 @@
 		</div>
 	</section>
 
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center pb-5">
-				<div class="col-md-7 heading-section text-center ftco-animate">
-					<span class="subheading">Our Delightful offerings</span>
-					<h2>Tastefully Yours</h2>
-				</div>
-			</div>
-			<div class="row">
-				<c:choose>
-					<c:when test="${empty requestScope.listAll}">
-						<!--  requesScope에 저장해야 하는 이름이 list -->
-						<p align="center">
-							<b><span style="font-size: 9pt;">등록된 상품이 없습니다.</span></b>
-						</p>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${requestScope.listAll}" var="prodDto" begin="0" end="7" step="1">
-							<div class="col-md-3 d-flex">
-								<div class="product ftco-animate">
-									<div class="img d-flex align-items-center justify-content-center" style="background-image: url('${prodDto.prodImgUrl}');">
-										<div class="desc">
-											<p class="meta-prod d-flex">
-												<a href="#" class="d-flex align-items-center justify-content-center">
-													<span class="flaticon-shopping-bag"></span>
-												</a>
-												<a href="#" class="d-flex align-items-center justify-content-center">
-													<span class="flaticon-heart"></span>
-												</a>
-												<a href="${path}/front?key=prod&methodName=selectByProductDetail&prodId=${prodDto.prodId}" class="d-flex align-items-center justify-content-center">
-													<span class="flaticon-visibility"></span>
-												</a>
-											</p>
-										</div>
-									</div>
-									<div class="text text-center">
-										<span class="category">${prodDto.prodType}</span>
-										<h2>${prodDto.prodName}</h2>
-										<h3>${prodDto.prodNameEng}</h3>
-										<p class="mb-0">
-											<fmt:formatNumber value="${prodDto.prodPrice}" pattern="#,###원" />
-										</p>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</div>
-
-
-			<div class="row justify-content-center">
-				<div class="col-md-4">
-					<a href="front?key=prod&methodName=selectAll" class="btn btn-primary d-block">
-						View All Products <span class="fa fa-long-arrow-right"></span>
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
+	<br>
 
 	<section class="ftco-section testimony-section img" style="background-image: url(images/bg_4.jpg);">
 		<div class="overlay"></div>
