@@ -33,7 +33,7 @@ public class CartController implements Controller {
 	/**
 	 * 카트검색
 	 */
-	public ModelAndView selectCartByUserId(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView selectCartByUserId(HttpServletRequest request, HttpServletResponse response) throws Exception{ 
 		
 		
 		String userId = request.getParameter("userId");
