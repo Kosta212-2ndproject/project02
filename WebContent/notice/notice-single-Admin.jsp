@@ -66,7 +66,7 @@
 					<p>${nDTO.nContent}</p>
 					<p>
 					
-					<%-- <div class="row justify-content-center">
+					<div class="row justify-content-center">
 						<div class="col-md-4">
 							<a
 								href="${path}/front?key=notice&methodName=selectByNoticeNumAdmin&nNum=${nDTO.nNum}"
@@ -74,8 +74,8 @@
 								class="fa fa-long-arrow-right"></span>
 							</a>
 						</div>
-					</div> --%>
-					<br> <br> <br> <br>
+					</div>
+					<br> <br> 
 
 
 
@@ -94,8 +94,6 @@
 							<h5> Whatever you choose,<br> you are always right.</h5>
 						</div>
 					</div>
-
-
 
 
 				</div>

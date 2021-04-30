@@ -47,6 +47,20 @@ public class ReviewController implements Controller {
 	
 //		
 //	}
+	/**
+	 * review all for admin  
+	 * selectAllforAdmin
+	 * */
+	public ModelAndView selectAllforAdmin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
+		
+		List<ReviewDTO> reviewList = reviewService.selectAll();
+		request.setAttribute("reviewList", reviewList);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("reviewSelect.jsp");
+		return mv;
+	}
+
 	
 	/**
 	 * reviewId로 검색하기 

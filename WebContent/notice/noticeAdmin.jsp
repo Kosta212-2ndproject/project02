@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:include page="../common/header.jsp" />
+<jsp:include page="../common/headerAdmin.jsp" />
 
 <!DOCTYPE html>
 <html>
@@ -79,7 +79,7 @@
 							<div class="col-lg-6 d-flex align-items-stretch ftco-animate">
 								<div class="blog-entry d-md-flex">
 									<a
-										href="front?key=notice&methodName=selectByNoticeNumforUser&nNum=${notice.nNum}"
+										href="front?key=notice&methodName=selectByNoticeNum&nNum=${notice.nNum}"
 										class="block-20 img"
 										style="background-image: url('${notice.nImage}');"> </a>
 									<div class="text p-4 bg-light">
@@ -133,7 +133,7 @@
 											<c:set var="doneLoop" value="true" />
 										</c:if>
 										<c:if test="${not doneLoop}">
-											<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=notice&methodName=select&pageNo=${i}">${i}</a>
+											<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=notice&methodName=select&pageNo=${i}"> ${i} </a>
 										</c:if>
 
 									</c:forEach>
@@ -151,7 +151,7 @@
 			<div class="block-27">
 				<ul>
 
-			<%-- 		
+					
 					<div class="row justify-content-center">
 						<div class="col-md-4">
 							<a href="${path}/front?key=notice&methodName=uploadForm"
@@ -159,7 +159,7 @@
 								class="fa fa-long-arrow-right"></span>
 							</a>
 						</div>
-					</div> --%>
+					</div>
 					<br>
 					<br>
 					<br>
@@ -167,7 +167,6 @@
 			</div>
 		</div>
 	</div>
-
 
 
 	<!-- contents -->

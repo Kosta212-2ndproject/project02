@@ -153,7 +153,16 @@
 							<a class="dropdown-item" href="cart.html">Cart</a>
 							<a class="dropdown-item" href="checkout.html">Checkout</a>
 						</div></li>
-					<li class="nav-item active"><a href="front?key=notice&methodName=select" class="nav-link">Notice</a></li>
+						
+<!-- Minjoo Notice Admin start -->	
+					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</a>					
+						<div class="dropdown-menu" aria-labelledby="dropdown04">
+							<a class="dropdown-item" href="${path}/front?key=notice&methodName=selectAdmin">Notice </a>
+							<a class="dropdown-item" href="${path}/front?key=question&methodName=selectAllforAdmin">Q & A </a>
+							<a class="dropdown-item" href="${path}/front?key=review&methodName=selectAllforAdmin">Review </a>
+						</div>
+					</li>
+<!-- Minjoo Notice Admin end -->						
 					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 				</ul>
 			</div>

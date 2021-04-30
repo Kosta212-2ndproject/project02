@@ -38,6 +38,21 @@ public class QuestionController implements Controller {
 	
 	
 	/**
+	 * 질문 전체 보기 / 관리자 
+	 * */
+	public ModelAndView selectAllforAdmin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
+
+		List<QuestionDTO> question = questionService.selectAll();
+		request.setAttribute("question", question);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("questionSelect.jsp");
+		
+		return mv;
+	}
+	
+	
+	/**
 	 * 질문등록
 	 * */
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response)

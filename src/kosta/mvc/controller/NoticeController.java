@@ -40,9 +40,55 @@ public class NoticeController implements Controller {
 		
 		return mv;
 	}
+	
+	/**
+	 * select notice for Admin
+	 * */
+	public ModelAndView selectAdmin(HttpServletRequest request, HttpServletResponse response)
+			throws Exception  {
+		
+		String pageNo = request.getParameter("pageNo");
+		
+		if(pageNo==null || pageNo.equals("")) {
+			pageNo="1";
+		}
+		List<NoticeDTO> noticeList = nService.selectAll(Integer.parseInt(pageNo));
+//		List<NoticeDTO> noticeList = nService.selectAll();
+		for(NoticeDTO ndto:noticeList) {
+			System.out.println(ndto);
+		}
+		request.setAttribute("noticeList", noticeList); //${requestScope.noiceList}
+		request.setAttribute("pageNo", pageNo); //${requestScope.noiceList}
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("notice/noticeAdmin.jsp");
+		
+		return mv;
+	}
 
-	//notice/notice-single.jsp
+	/**
+	 * 관리자를 위한 공지상세 페이
+	 * */
 	public ModelAndView selectByNoticeNum(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		String nNum = request.getParameter("nNum"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+//		Electronics elec = elecService.selectByModelnum(modelNum, true);//조회수 증가 
+		
+		NoticeDTO nDTO = nService.selectByNoticeNum(Integer.parseInt(nNum), true);
+		request.setAttribute("nDTO", nDTO); //${nDTO}
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("notice/notice-single-Admin.jsp");
+		
+				
+		return mv;
+		
+	}
+	
+	/**
+	 * 회원을 위한 공지세 페이지 
+	 * */
+	public ModelAndView selectByNoticeNumforUser(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		String nNum = request.getParameter("nNum"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
@@ -53,7 +99,7 @@ public class NoticeController implements Controller {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("notice/notice-single.jsp");
 		
-				
+		
 		return mv;
 		
 	}
@@ -138,7 +184,7 @@ public class NoticeController implements Controller {
 		request.setAttribute("nDTO", notice);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("front?key=notice&methodName=select");
+		mv.setViewName("front?key=notice&methodName=selectAdmin");
 		mv.setRedirect(true);
 		//mv.setViewName("notice/noticeSingleAdmin.jsp");
 		return mv;
@@ -186,6 +232,9 @@ public class NoticeController implements Controller {
 				
 	}
 
+	/**
+	 * Admin notice delete
+	 * */
 	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
 		String nNum = request.getParameter("nNum");
@@ -194,7 +243,7 @@ public class NoticeController implements Controller {
 		List<NoticeDTO> noticeList = nService.selectAll();
 		request.setAttribute("noticeList", noticeList);
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("notice/notice.jsp");
+		mv.setViewName("notice/noticeAdmin.jsp");
 		return mv;
 	}
 
