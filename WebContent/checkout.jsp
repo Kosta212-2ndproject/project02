@@ -156,7 +156,6 @@
 
    int totalPrice = price * qty;
 
-   System.out.println(prodId);
 %>
 <!-- 장바구니 카트 -->
 <section class="ftco-intro">
@@ -181,7 +180,8 @@
                   </td>
                   <td>
                      <div class="email">
-                        <span><%= name %></span>
+                        <input type="hidden" name="prodId" value="<%= prodId%>"/>
+                        <span><%= name %> <input type="hidden" id="prodName" value="<%=name%>"></span>
                         <span><%= nameTag %></span>
                      </div>
                   </td>
@@ -189,7 +189,7 @@
 
                   <td class="quantity">
                      <div class="input-group">
-                        <input type="text" class="quantity form-control-plaintext" value="<%=qty%>개" readonly/>
+                        <input type="text" class="quantity form-control-plaintext" name="frontQty" value="<%=qty%>" readonly/>
                      </div>
                   </td>
                   <td><fmt:formatNumber value="<%= totalPrice %>" pattern="#,###원"/></td>
@@ -212,7 +212,7 @@
                   <div class="col-md-6">
                      <div class="form-group">
                         <label for="firstname">수령인</label>
-                        <input type="text" class="form-control" placeholder="">
+                        <input type="text" class="form-control" id="userName">
                      </div>
                   </div>
                   <div class="col-md-6">
@@ -261,7 +261,7 @@
                      <label for="country">배송 메모</label>
                      <div class="select-wrap">
                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="" class="form-control">
+                        <select name="" id="baesongMemo" class="form-control">
                            <option value="">배송 전에 미리 연락 바랍니다.</option>
                            <option value="">부재시 경비실에 맡겨 주세요.</option>
                            <option value="">부재시 전화 주시거나 문자 남겨 주세요.</option>
@@ -289,7 +289,7 @@
                      <h3 class="billing-heading mb-4">장바구니</h3>
                      <p class="d-flex">
                         <span>상품 금액</span>
-                        <span><fmt:formatNumber value="<%= price %>" pattern="#,###원"/></span>
+                        <span><fmt:formatNumber value="<%= totalPrice %>" pattern="#,###원"/></span>
                      </p>
                      <p class="d-flex">
                         <span>배송비</span>
@@ -302,6 +302,7 @@
                      <hr>
                      <p class="d-flex total-price">
                         <span>총 금액</span>
+                        <input type="hidden" id="totalPrice" value="<%= totalPrice+2000 %>">
                         <span><fmt:formatNumber value="<%= totalPrice+2000 %>" pattern="#,###원"/></span>
                      </p>
                   </div>
@@ -312,15 +313,15 @@
                      <div class="form-group">
                         <div class="col-md-12" id="check_payment">
                            <div class="radio">
-                              <label><input type="radio" name="optradio" class="mr-2" id="card" value="card"> 신용카드</label>
+                              <label><input type="radio" name="optradio" class="mr-2 pay-method" value="card"> 신용카드</label>
                            </div>
 
                            <div class="radio">
-                              <label><input type="radio" name="optradio" class="mr-2" id="phone" value="phone"> 휴대폰 결제</label>
+                              <label><input type="radio" name="optradio" class="mr-2 pay-method" value="phone"> 휴대폰 결제</label>
                            </div>
 
                            <div class="radio">
-                              <label><input type="radio" name="optradio" class="mr-2" id="cultureland" value="cultureland"> 문화상품권</label>
+                              <label><input type="radio" name="optradio" class="mr-2 pay-method" value="cultureland"> 문화상품권</label>
                            </div>
                         </div>
                      </div>
@@ -332,7 +333,7 @@
                            </div>
                         </div>
                      </div>
-                     <p><a class="btn btn-primary py-3 px-4" id="payment">결제하기</a></p>
+                     <p><a class="btn btn-primary py-3 px-4" onclick="productBuy()">결제하기</a></p>
                   </div>
                </div>
             </div>
@@ -447,6 +448,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="js/google-map.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="js/main.js"></script>
 <script src="js/checkoutJS.js"></script>
 

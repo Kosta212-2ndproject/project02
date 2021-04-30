@@ -351,10 +351,6 @@
                 $('[name=qty]').val(quantity + 1);
             }
 
-            // If is not undefined
-
-
-            // Increment
         });
 
         $('.quantity-left-minus').click(function (e) {

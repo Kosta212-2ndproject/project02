@@ -59,7 +59,7 @@ public class ReviewController implements Controller {
 		}
 		
 		reviewService.insert(review);
-		
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("review2.jsp");
 		
