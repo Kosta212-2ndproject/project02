@@ -15,9 +15,14 @@ public interface ReviewDAO {
 	  List<ReviewDTO> selectAll() throws SQLException;
 	  
 	  /**
+	   * reviewNum  검색 
+	   * */
+	  ReviewDTO selectReview(int reviewId) throws SQLException;
+	  
+	  /**
 	   * 상품번호에 해당하는 review 검색
 	   * */
-	  List<ReviewDTO> selectByProdId(String prodId) throws SQLException;
+	  List<ReviewDTO> selectByProdId(int prodId) throws SQLException;
 	  
 	  /**
 	   * userId 해당하는 review 검색
@@ -25,10 +30,15 @@ public interface ReviewDAO {
 	  List<ReviewDTO> selectByUserId(String userId) throws SQLException;
 	  
 	  /**
+	   * 상품번호에 해당하는 review 총 count 검색
+	   * */
+	  int selectByProdIdCnt(int prodId) throws SQLException; 
+	  
+	  /**
 	   * 조회수를 증가하는 기능
 	   * update Electronics set readnum = readnum + 1 where model_num=?
 	   * */
-	  int increamentByReadnum(String prodId) throws SQLException;
+	  int increamentByReadnum(int reviewId) throws SQLException;
 	  
 	  
 	  /**

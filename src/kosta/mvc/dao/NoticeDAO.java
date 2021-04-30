@@ -3,6 +3,8 @@ package kosta.mvc.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kosta.mvc.dto.NoticeDTO;
 
 public interface NoticeDAO {
@@ -46,4 +48,8 @@ public interface NoticeDAO {
 	    * @return : 1-수정성공 , 0 - 수정실패
 	    * */
 	  int update(NoticeDTO notice) throws SQLException;
+	  
+	  public int selectCnt() throws SQLException;
+	  
+	  public List<NoticeDTO> getNoticeList(int pageNo) throws SQLException;
 }

@@ -27,6 +27,17 @@ public class QuestionDTO {
 	}
 	
 	public QuestionDTO() {}
+	
+
+	public QuestionDTO(int qNum, String qField, String qTitle, String qContent, String qRegdate, int qShowstatus) {
+		super();
+		this.qNum = qNum;
+		this.qField = qField;
+		this.qTitle = qTitle;
+		this.qContent = qContent;
+		this.qRegdate = qRegdate;
+		this.qShowstatus = qShowstatus;
+	}
 	public QuestionDTO(int qNum, String userId, int prodId, String qField, String qTitle, String qContent,
 			String qFiles, String qRegdate, int qShowstatus) {
 		super();

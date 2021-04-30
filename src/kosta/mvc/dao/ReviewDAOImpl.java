@@ -41,7 +41,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public List<ReviewDTO>  selectByProdId(String prodId) throws SQLException {
+	public List<ReviewDTO>  selectByProdId(int prodId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -50,7 +50,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, prodId);
+			ps.setInt(1, prodId);
 			
 			rs = ps.executeQuery();
 			
@@ -65,6 +65,31 @@ public class ReviewDAOImpl implements ReviewDAO {
 			DbUtil.dbClose(rs, ps, con);
 		}
 		return list;
+	}
+	
+	@Override
+	public int selectByProdIdCnt(int prodId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int res =0;
+		String sql = "select count(*) from review where PROD_ID = ?";
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, prodId);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				res = rs.getInt(1);
+			}
+			
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return res;
 	}
 
 	@Override
@@ -95,15 +120,15 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public int increamentByReadnum(String prodId) throws SQLException {
+	public int increamentByReadnum(int reviewId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int res = 0;
-		String sql = "update review set REVIEW_VCOUNT = REVIEW_VCOUNT+1 where PROD_ID=?";
+		String sql = "update review set REVIEW_VCOUNT = REVIEW_VCOUNT+1 where review_ID=?";
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, prodId);
+			ps.setInt(1, reviewId);
 			res = ps.executeUpdate();
 		}finally {
 			DbUtil.dbClose(ps, con);
@@ -184,5 +209,34 @@ public class ReviewDAOImpl implements ReviewDAO {
 		
 		return res;
 	}
+
+	@Override
+	public ReviewDTO selectReview(int reviewId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ReviewDTO reviewDTO = null;
+		String sql = "select * from review where REVIEW_ID=?";
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, reviewId);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+//				ReviewDTO review = new ReviewDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), 
+//						rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getInt(10));
+			  reviewDTO = new ReviewDTO(rs.getInt("REVIEW_ID"), rs.getInt("PROD_ID"), rs.getString("USER_ID"), rs.getInt("O_NO"), 
+						rs.getString("REVIEW_TITLE"), rs.getString("REVIEW_CONTENT"), rs.getInt("REVIEW_STAR_SCOPE"), 
+						rs.getString("REVIEW_REGDATE"), rs.getString("REVIEW_IMG_URL"), rs.getInt("REVIEW_VCOUNT"));
+			}
+			
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return reviewDTO;
+	}
+
 
 }
