@@ -1,6 +1,8 @@
 package kosta.mvc.dto;
 
-public class ProductDTO {
+import java.util.List;
+
+public class ProductDTO implements Comparable<ProductDTO>{
 	private int prodId;
 	private String prodName;
 	private String prodNameEng;
@@ -20,8 +22,68 @@ public class ProductDTO {
 	private String prodRegdate;
 	private int prodState;
 	
+	//페이지처리
+	private int pageCnt;
+	
+	private List<ReviewDTO> reviewList = null;
+	
+	
 	
 	public ProductDTO() {}
+	
+	
+	
+
+	public ProductDTO(String prodName, String prodNameEng, String prodWinery, String prodWineryEng, String prodVatage,
+			String prodType, String prodNation, String prodAlcohol, String prodSweet, int prodPrice, String prodMach,
+			String prodTaste, String prodDetail, int prodQty) {
+		super();
+		this.prodName = prodName;
+		this.prodNameEng = prodNameEng;
+		this.prodWinery = prodWinery;
+		this.prodWineryEng = prodWineryEng;
+		this.prodVatage = prodVatage;
+		this.prodType = prodType;
+		this.prodNation = prodNation;
+		this.prodAlcohol = prodAlcohol;
+		this.prodSweet = prodSweet;
+		this.prodPrice = prodPrice;
+		this.prodMach = prodMach;
+		this.prodTaste = prodTaste;
+		this.prodDetail = prodDetail;
+		this.prodQty = prodQty;
+	}
+
+
+
+
+
+
+
+
+
+	public ProductDTO(int prodId, String prodName, String prodNameEng, String prodWinery, String prodWineryEng, String prodVatage,
+			String prodType, String prodNation, String prodAlcohol, String prodSweet, int prodPrice, String prodMach, String prodTaste, String prodDetail,
+			int prodQty) {
+		super();
+		this.prodId = prodId;
+		this.prodName = prodName;
+		this.prodNameEng = prodNameEng;
+		this.prodWinery = prodWinery;
+		this.prodWineryEng = prodWineryEng;
+		this.prodVatage = prodVatage;
+		this.prodType = prodType;
+		this.prodNation = prodNation;
+		this.prodAlcohol = prodAlcohol;
+		this.prodSweet = prodSweet;
+		this.prodPrice = prodPrice;
+		this.prodMach = prodMach;
+		this.prodTaste = prodTaste;
+		this.prodDetail = prodDetail;
+		this.prodQty = prodQty;
+	}
+
+
 
 
 	public ProductDTO(int prodId, String prodName, String prodNameEng, String prodWinery, String prodWineryEng,
@@ -47,6 +109,17 @@ public class ProductDTO {
 		this.prodQty = prodQty;
 		this.prodRegdate = prodRegdate;
 		this.prodState = prodState;
+	}
+
+
+	public ProductDTO(String prodImgUrl, String prodName, String prodNameEng,  int prodPrice, int prodId, int prodQty) {
+		super();
+		this.prodImgUrl = prodImgUrl;
+		this.prodName = prodName;
+		this.prodNameEng = prodNameEng;
+		this.prodPrice = prodPrice;
+		this.prodId = prodId;
+		this.prodQty = prodQty;
 	}
 
 
@@ -229,7 +302,42 @@ public class ProductDTO {
 		this.prodState = prodState;
 	}
 
-	
+	public int getPageCnt() {
+		return pageCnt;
+	}
+	public void setPageCnt(int pageCnt) {
+		this.pageCnt = pageCnt;
+	}
+
+
+
+
+	public List<ReviewDTO> getReviewList() {
+		return reviewList;
+	}
+
+
+
+
+	public void setReviewList(List<ReviewDTO> reviewList) {
+		this.reviewList = reviewList;
+	}
+
+	@Override
+    public int compareTo(ProductDTO o) {
+        if(this.reviewList.size() > o.reviewList.size()) {
+            return -1; // x에 대해서는 오름차순
+        }
+        else if(this.reviewList.size() == o.reviewList.size()) {
+             // y에 대해서는 내림차순
+                return 0;
+            
+        }
+        return 1;
+    }
+
+
+
 	
 
 	

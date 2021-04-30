@@ -3,6 +3,7 @@ package kosta.mvc.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import kosta.mvc.dto.AnswerDTO;
 import kosta.mvc.dto.QuestionDTO;
 
 
@@ -12,6 +13,17 @@ public interface QuestionDAO {
 	  * 질문 전체 검색 
 	  * */
 	  List<QuestionDTO> selectAll() throws SQLException;
+	  
+	 /**
+	  * 
+	  * 질문 + 답변 전체 검색 
+	  * */
+	  List<QuestionDTO> boardAnswerSelectAll() throws SQLException;
+	  
+	 /**
+	  * 키워드 검색 
+	  * */ 
+	  List<QuestionDTO> boardSelectByKeyword(String keyWord) throws SQLException;
 	  
 	  /**
 	   * 상품번호에 해당하는 question 검색
@@ -46,4 +58,14 @@ public interface QuestionDAO {
 	    * @return : 1-수정성공 , 0 - 수정실패
 	    * */
 	  int update(QuestionDTO question) throws SQLException;
+	  
+	  /**
+	   * 부모글에 대한(질문) 답변 등록하기
+	   * */
+	  int answerBoardInsert(AnswerDTO answer) throws SQLException;
+	  
+	  /**
+	   * 부모글에 대한(질문) 답변 정보검색   
+	   * */
+	  QuestionDTO answerSelectByBoardNo(int qNum) throws SQLException;
 }

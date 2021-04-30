@@ -12,7 +12,7 @@ public interface Controller {
 	 * 검색
 	 * @throws Exception 
 	 * */
-	ModelAndView select(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception;
+	ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception;
 
 
 }
