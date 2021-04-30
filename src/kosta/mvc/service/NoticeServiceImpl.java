@@ -69,8 +69,11 @@ public class NoticeServiceImpl implements NoticeService {
 		}
 		return res;
 	}
-	public List<NoticeDTO>  selectPage(int start, int end) throws SQLException {
-		List<NoticeDTO> noticeDTO= nDAO.selectPage(start, end);
+
+
+	@Override
+	public List<NoticeDTO> getNoticeList(int pageNo) throws SQLException {
+		List<NoticeDTO> noticeDTO= nDAO.getNoticeList(pageNo);
 		if(noticeDTO == null) {
 			throw new SQLException("정보를 검색하지 못했습니다.");
 		}

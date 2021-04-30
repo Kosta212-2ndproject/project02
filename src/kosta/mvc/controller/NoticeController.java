@@ -21,6 +21,9 @@ public class NoticeController implements Controller {
 	private NoticeService nService = new NoticeServiceImpl();
 	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
 			throws Exception  {
+		
+		//String pageNo = request.getParameter("pageNo");
+//		List<NoticeDTO> noticeList = nService.getNoticeList(Integer.parseInt(pageNo));
 		List<NoticeDTO> noticeList = nService.selectAll();
 		for(NoticeDTO ndto:noticeList) {
 			System.out.println(ndto);
