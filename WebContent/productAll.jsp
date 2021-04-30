@@ -42,6 +42,13 @@
 <!-- contents -->
 
 	
+	<%
+	request.getSession();
+
+	String userId="cha";
+	session.setAttribute("userId", userId);
+
+%>
 	
      <section class="ftco-section">
 			<div class="container">
@@ -73,6 +80,8 @@
 									<p align="center"><b><span style="font-size:9pt;">등록된 상품이 없습니다.</span></b></p>
 								</c:when>
 								<c:otherwise>
+								<c:set var="prodDto "/>
+								
 								<c:forEach items="${requestScope.listAll}" var="prodDto">
 							<div class="col-md-4 d-flex">
 							
@@ -81,8 +90,8 @@
 									<div class="img d-flex align-items-center justify-content-center" style="background-image: url('${prodDto.prodImgUrl}');">
 										<div class="desc">
 											<p class="meta-prod d-flex">
-												<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-												<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
+												<a href="${path}/front?key=cart&methodName=insertCart&prodId=${prodDto.prodId}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+												<a href="${path}/front?key=wish&methodName=insertWish&prodId=${prodDto.prodId}" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
 												<a href="${path}/front?key=prod&methodName=selectByProductDetail&prodId=${prodDto.prodId}" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
 											</p>
 										</div>
@@ -98,6 +107,7 @@
 								
 							</div>
 							</c:forEach>
+							
 									</c:otherwise>
   								</c:choose>
 						</div>
@@ -142,41 +152,65 @@
               </div>
               
             </div>
+            
+            
       
-			
+      		<div class="sidebar-box ftco-animate">
+      		   <h3><a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}">Wish List</a></h3>
+      		<form action="front" method="post">
+      		<input type="hidden" name="key" value="wish">
+      		<input type="hidden" name="methodName" value="selectWishByUserId">
+      		<c:choose>
+              <c:when test="${empty requestScope.listWish}">
+              			<p align="center"><b><span style="font-size:9pt;">찜한 상품이 없습니다.</span></b></p>
+              </c:when>
+              <c:otherwise>
+				<c:forEach items="${requestScope.listWish}" var="wishDto" varStatus="status">
+					<div class="block-21 mb-4 d-flex">
+						<a class="blog-img mr-4"
+							style="background-image: url('${wishDto.prodImgUrl}');"></a>
+						<div class="text">
+							<h3 class="heading">
+								<a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}">${wishDto.prodName} ${wishDto.prodNameEng}</a>
+							</h3>
+							<div class="meta">
+							</div>
+						</div>
+					</div>
+
+				</c:forEach>
+              </c:otherwise>
+              </c:choose>
+      		</form>
+              </div>
+            
+            
             
             <div class="sidebar-box ftco-animate">
-              <h3>Recent Blog</h3>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="fa fa-calendar"></span> Apr. 18, 2020</a></div>
-                    <div><a href="#"><span class="fa fa-comment"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="fa fa-calendar"></span> Apr. 18, 2020</a></div>
-                    <div><a href="#"><span class="fa fa-comment"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="fa fa-calendar"></span> Apr. 18, 2020</a></div>
-                    <div><a href="#"><span class="fa fa-comment"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
+              <h3><a href="${path}/front?key=wish&methodName=selectWish&userId=${userId}">Wish List</a></h3>
+              <c:choose>
+              <c:when test="${empty requestScope.listWish}">
+              			<p align="center"><b><span style="font-size:9pt;">찜한 상품이 없습니다.</span></b></p>
+              </c:when>
+              <c:otherwise>
+              <c:set var="wishDto "/>
+				<c:forEach items="${requestScope.listWish}" var="wishDto">
+					<div class="block-21 mb-4 d-flex">
+						<a class="blog-img mr-4"
+							style="background-image: url('${wishDto.prodImgUrl}');"></a>
+						<div class="text">
+							<h3 class="heading">
+								<a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}">${wishDto.prodName} ${wishDto.prodNameEng}</a>
+							</h3>
+							<div class="meta">
+							</div>
+						</div>
+					</div>
+
+				</c:forEach>
+              </c:otherwise>
+              </c:choose>
+              
               
             </div>
             
@@ -191,6 +225,16 @@
 			
 		
 		<!-- loader -->
+		
+		<script>
+		$(document).ready(function(){
+			let prodImgUrl = 
+			
+		});
+		
+		
+		
+		</script>
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 

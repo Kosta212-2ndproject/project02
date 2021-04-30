@@ -3,6 +3,7 @@ package kosta.mvc.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import kosta.mvc.dto.ProductDTO;
 import kosta.mvc.dto.UserDTO;
 import kosta.mvc.dto.WishDTO;
 
@@ -11,12 +12,12 @@ public interface WishService {
 	/**
 	 * 회원별 관심조회
 	 */
-	List<WishDTO> selectWishByUserId(String userId) throws SQLException;
+	List<ProductDTO> selectWishByUserId(String userId) throws SQLException;
 	
 	/**
 	 *  상품 찜에 추가
 	 */
-	void insertWish(WishDTO wishDTO) throws SQLException;
+	void insertWish(String userId, int prodId) throws SQLException;
 	
 	/**
 	 *  찜에서 상품 삭제
@@ -26,7 +27,7 @@ public interface WishService {
 	/**
 	 * 전체 관심리스트
 	 */
-	List<WishDTO> selectWishList() throws SQLException;
+	List<WishDTO> selectWish(String userId) throws SQLException;
 	
 	/**
 	 * 관심 등록된 상품 체크
@@ -36,8 +37,12 @@ public interface WishService {
 	/**
 	 * 상품별 관심 리스트 보기
 	 */
-	List<WishDTO> searchWishByProdName(String prodName) throws SQLException;
+	/*WishDTO searchWishByProdName(String prodName) throws SQLException;*/
 	
+	/**
+	 * 카트 중복 확인
+	 */
+	void duplicateWish(String userId, int prodId) throws SQLException;
 	
 	
 }

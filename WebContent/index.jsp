@@ -23,6 +23,13 @@
   </head>
   <body>
 
+<%
+	request.getSession();
+
+	String userId = "cha";
+	session.setAttribute("userId", userId);
+	%>
+  
   	
     
     <div class="hero-wrap" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
@@ -160,7 +167,7 @@
 							<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-1.jpg);">
 								<div class="desc">
 									<p class="meta-prod d-flex">
-										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+										<a href="cart.jsp" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
 										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
 										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
 									</p>
@@ -179,7 +186,7 @@
 							<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-2.jpg);">
 								<div class="desc">
 									<p class="meta-prod d-flex">
-										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+										<a href="cart.jsp" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
 										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
 										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
 									</p>
@@ -198,7 +205,7 @@
 							<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-3.jpg);">
 								<div class="desc">
 									<p class="meta-prod d-flex">
-										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+										<a href="cart.jsp" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
 										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
 										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
 									</p>
@@ -217,7 +224,7 @@
 							<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-4.jpg);">
 								<div class="desc">
 									<p class="meta-prod d-flex">
-										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+										<a href="cart.jsp" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
 										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
 										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
 									</p>
@@ -236,7 +243,7 @@
 							<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-5.jpg);">
 								<div class="desc">
 									<p class="meta-prod d-flex">
-										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+										<a href="cart.jsp" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
 										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
 										<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
 									</p>

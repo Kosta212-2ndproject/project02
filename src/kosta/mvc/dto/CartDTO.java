@@ -6,7 +6,23 @@ public class CartDTO {
 	private String userId;
 	private int prodId;
 	
+	private String prodImgUrl;
+	private String prodName;
+	private String prodNameEng;
+	private int prodPrice;
+
 	public CartDTO() {}
+
+	public CartDTO(String prodImgUrl, String prodName, String prodNameEng, int prodPrice) {
+		super();
+		this.prodImgUrl = prodImgUrl;
+		this.prodName = prodName;
+		this.prodNameEng = prodNameEng;
+		this.prodPrice = prodPrice;
+	}
+
+
+
 
 	public CartDTO(int cartId, int cartQty, String userId, int prodId) {
 		super();
@@ -46,6 +62,62 @@ public class CartDTO {
 
 	public void setProdId(int prodId) {
 		this.prodId = prodId;
+	}
+
+
+
+
+	public String getProdImgUrl() {
+		return prodImgUrl;
+	}
+
+
+
+
+	public void setProdImgUrl(String prodImgUrl) {
+		this.prodImgUrl = prodImgUrl;
+	}
+
+
+
+
+	public String getProdName() {
+		return prodName;
+	}
+
+
+
+
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
+
+
+
+
+	public String getProdNameEng() {
+		return prodNameEng;
+	}
+
+
+
+
+	public void setProdNameEng(String prodNameEng) {
+		this.prodNameEng = prodNameEng;
+	}
+
+
+
+
+	public int getProdPrice() {
+		return prodPrice;
+	}
+
+
+
+
+	public void setProdPrice(int prodPrice) {
+		this.prodPrice = prodPrice;
 	}
 	
 	

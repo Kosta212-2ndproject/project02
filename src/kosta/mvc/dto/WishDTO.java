@@ -6,8 +6,35 @@ public class WishDTO {
 	private int prodId;
 	
 	private String prodName;
+	private String prodNameEng;
+	private String prodImgUrl;
 	
 	public WishDTO() {}
+	
+	
+
+	public WishDTO(String prodImgUrl, String prodName, String prodNameEng, int prodId) {
+		super();
+		this.prodImgUrl = prodImgUrl;
+		this.prodId = prodId;
+		this.prodName = prodName;
+		this.prodNameEng = prodNameEng;
+		
+	}
+
+
+
+	public WishDTO(int wishId, String userId, int prodId, String prodName, String prodNameEng, String prodImgUrl) {
+		super();
+		this.wishId = wishId;
+		this.userId = userId;
+		this.prodId = prodId;
+		this.prodName = prodName;
+		this.prodNameEng = prodNameEng;
+		this.prodImgUrl = prodImgUrl;
+	}
+
+
 
 	public WishDTO(int wishId, String userId, int prodId) {
 		super();
@@ -55,6 +82,30 @@ public class WishDTO {
 
 	public void setProdName(String prodName) {
 		this.prodName = prodName;
+	}
+
+
+
+	public String getProdNameEng() {
+		return prodNameEng;
+	}
+
+
+
+	public void setProdNameEng(String prodNameEng) {
+		this.prodNameEng = prodNameEng;
+	}
+
+
+
+	public String getProdImgUrl() {
+		return prodImgUrl;
+	}
+
+
+
+	public void setProdImgUrl(String prodImgUrl) {
+		this.prodImgUrl = prodImgUrl;
 	}
 	
 	

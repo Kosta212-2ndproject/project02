@@ -5,6 +5,7 @@ import java.util.List;
 
 import kosta.mvc.dao.WishDAO;
 import kosta.mvc.dao.WishDAOImpl;
+import kosta.mvc.dto.ProductDTO;
 import kosta.mvc.dto.UserDTO;
 import kosta.mvc.dto.WishDTO;
 
@@ -12,50 +13,48 @@ public class WishServiceImpl implements WishService {
 	private WishDAO wishDAO = new WishDAOImpl();
 	
 	@Override
-	public List<WishDTO> selectWishByUserId(String userId) throws SQLException {
+	public List<ProductDTO> selectWishByUserId(String userId) throws SQLException {
 		
-		List<WishDTO> wishList = wishDAO.selectWishByUserId(userId);
-		if(wishList ==null || wishList.size()==0) {
-			throw new SQLException("찜한 상품이 없습니다.");
-		}
+		List<ProductDTO> listAll = wishDAO.selectWishByUserId(userId);
 		
-		return wishList;
+		return listAll;
 	}
 
 	@Override
-	public void insertWish(WishDTO wishDTO) throws SQLException {
-		int result = wishDAO.insertWish(wishDTO);
-		if(result == 0) {
-			throw new SQLException("찜 등록 실패");
-		}
+	public void insertWish(String userId, int prodId) throws SQLException {
+		int result = wishDAO.insertWish(userId, prodId);
+		if(result == 0) throw new SQLException("찜 등록 실패");
+		
 	}
 
 	@Override
 	public void deleteWish(int wishId) throws SQLException {
 		int result = wishDAO.deleteWish(wishId);
-		if(result == 0) {
-			throw new SQLException("찜 번호["+wishId+"가 존재하지 않습니다.");
-		}
 
 	}
 
 	@Override
-	public List<WishDTO> selectWishList() throws SQLException {
-		List<WishDTO> wishList = wishDAO.selectWishList();
-		if(wishList ==null || wishList.size()==0) {
-			throw new SQLException("찜한 상품이 없습니다.");
-		}
-		return wishList;
+	public List<WishDTO> selectWish(String userId) throws SQLException {
+		List<WishDTO> listWish = wishDAO.selectWish(userId);
+		return listWish;
 	}
 
+	/*
 	@Override
-	public List<WishDTO> searchWishByProdName(String prodName) throws SQLException {
-		List<WishDTO> wishList = wishDAO.selectWishByUserId(prodName);
-		if(wishList ==null || wishList.size()==0) {
+	public WishDTO searchWishByProdName(String prodName) throws SQLException {
+		WishDTO wish = wishDAO.selectWishByUserId(prodName);
+		if(wish ==null) {
 			throw new SQLException("찜한 상품이 아닙니다.");
 		}
 		
-		return wishList;
+		return wish;
+	}*/
+
+	@Override
+	public void duplicateWish(String userId, int prodId) throws SQLException {
+		int result = wishDAO.duplicateWish(userId, prodId);
+		if(result==1) throw new SQLException("이미 찜한 상품입니다.");
+		
 	}
 
 	/*@Override

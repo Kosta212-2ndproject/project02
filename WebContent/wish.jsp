@@ -32,7 +32,6 @@
 </head>
 <body>
 
-
 	<section class="hero-wrap hero-wrap-2"
 		style="background-image: url('images/bg_2.jpg');"
 		data-stellar-background-ratio="0.5">
@@ -43,10 +42,10 @@
 				<div class="col-md-9 ftco-animate mb-5 text-center">
 					<p class="breadcrumbs mb-0">
 						<span class="mr-2"><a href="index.jsp">Home <i
-								class="fa fa-chevron-right"></i></a></span> <span>Cart <i
+								class="fa fa-chevron-right"></i></a></span> <span>Wish <i
 							class="fa fa-chevron-right"></i></span>
 					</p>
-					<h2 class="mb-0 bread">My Cart</h2>
+					<h2 class="mb-0 bread">My Wish</h2>
 				</div>
 			</div>
 		</div>
@@ -74,6 +73,7 @@
 --%>
 
 
+
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row">
@@ -85,8 +85,8 @@
 								<th>&nbsp;</th>
 								<th>Product</th>
 								<th>Price</th>
-								<th>Quantity</th>
-								<th>total</th>
+								<th>Cart</th>
+								<th>&nbsp;</th>
 								<th>&nbsp;</th>
 							</tr>
 						</thead>
@@ -123,35 +123,14 @@
 											</td>
 											<td><fmt:formatNumber value="${prodDto.prodPrice}"
 													pattern="#,###원" /></td>
-											<td class="quantity">
-											<div class="row mt-4">
-												<div class="input-group col-md-10 d-flex mb-3">
-													<span class="input-group-btn mr-2">
-														<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="" name="${prodDto.prodPrice}">
-															<i class="fa fa-minus"></i>
-														</button>
-													</span> 
-													<input type="text" id="quantity" name="quantity" size="20"
-														class="quantity form-control input-number" value="1"
-														min="1" max="100"> 
-													<span class="input-group-btn ml-2">
-														<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="" name="${prodDto.prodPrice}">
-															<i class="fa fa-plus"></i>
-														</button>
-													</span>
+											<td>
+												<div class="cart">
+													<p><a href="${path}/front?key=cart&methodName=insertCart&prodId=${prodDto.prodId}" name="buyNow" class="btn btn-primary py-3 px-2">카트담기</a></p>
 												</div>
-												<div class="w-100"></div>
-												<div class="col-md-8">
-													<p style="..."><input class="text center" id="prodQty" value="${prodDto.prodQty}"/>
-													piece available</p>
-												</div>
-											</div>
 											</td>
-											<!-- 각 상품 총 금액 -->
-											<td><span name="productPerId">${prodDto.prodPrice}</span>원</td>
 											<td><span style="color: red;" class="fa fa-close"
 												data-dismiss="alert"
-												onclick="location.href='${path}/front?key=cart&methodName=deleteCart&prodId=${prodDto.prodId}'"
+												onclick="location.href='${path}/front?key=wish&methodName=deleteWish&prodId=${prodDto.prodId}'"
 												aria-hidden="true" aria-label="Close"></span></td>
 										</tr>
 								</c:forEach>
@@ -160,43 +139,20 @@
 
 
 
-						
+
 
 						</tbody>
 					</table>
-					<!-- form action="checkout.jsp" id="checkout" method="post">
-						<input type="hidden" name="prodId" value="${prodId}"/>
-						<input type="hidden" name="imgUrl" value="${prod.prodImgUrl}"/>
-						<input type="hidden" name="name" value="${prod.prodName}"/>
-						<input type="hidden" name="nameEng" value="${prod.prodNameEng}"/>
-						<input type="hidden" name="price" value="${prod.prodPrice}"/>
-						<input type="hidden" name="dbQty" value="${prodQty}"/>
-						<input type="hidden" name="userInputQty" value=""/>
-					
-					</form-->
-					
 				</div>
 			</div>
-			<div class="row justify-content-end"> 
+			
+			<div class="row justify-content-end">
 				<div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
-					<div class="cart-total mb-3">
-						<h3>Cart Totals</h3>
-						<p class="d-flex">
-							<span>Subtotal</span> <span id="totalP">${total}</span>원
-						</p>
-						<p class="d-flex">
-							<span>Delivery</span> <span>$0.00</span>
-						</p>
-						<p class="d-flex">
-							<span>Discount</span> <span>$3.00</span>
-						</p>
-						<hr>
-						<p class="d-flex total-price">
-							<span>Total</span> <span>$17.60</span>
-						</p>
-					</div>
-					<p><a href="checkout.html" name="buyNow" class="btn btn-primary py-3 px-5">구매하기</a>
-					
+				<form action="front" method="get">
+				<input type="hidden" name="prod" value="prodId"/>
+				<input type=hidden name="insertCart" value="prodId"/> 
+					<p><a href="cart.jsp" name="buyNow" class="btn btn-primary py-3 px-5">장바구니</a></p>
+				</form>
 				</div>
 			</div>
 		</div>
@@ -233,82 +189,7 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 	<script src="js/main.js"></script>
 
-	<script>
-		$(document).ready(function() {
-
-			var quantitiy = 0;
-			
-			//수량 증가
-			$('.quantity-right-plus').click(function(e) {
-				let plusEv = $(this).parent().prev();
-				plusEv.val( (parseInt(plusEv.val()) +1) );
-
-				e.preventDefault();
-				
-				//총금액
-				let price = $(this).attr("name");
-				let tot = plusEv.val()*price;
-				
-				
-				
-				$(this).parent().parent().parent().parent().next().find("span").text(tot);
-				
-				//전체 금액
-				
-				totalCal();
-
-			});
-			
-		
-
-			//수량감소
-			$('.quantity-left-minus').click(function(e) {
-				// Stop acting like a button
-				e.preventDefault();
-				// Get the field name
-				//var quantity = parseInt($('#quantity').val());
-
-				// If is not undefined
-				
-				let minusEv = $(this).parent().next();
-				minusEv.val( (parseInt(minusEv.val()) - 1) );
-
-				
-				if (minusEv.val() == 0) {
-					alert("1 개 이상부터 구매하실 수 있습니다.");
-					minusEv.val("1")
-				}
-				
-				//총금액
-				let price = $(this).attr("name");
-				let tot = minusEv.val()*price;
-				
-				$(this).parent().parent().parent().parent().next().find("span").text(tot);
-				
-				totalCal();
-				
-			});
-			
-			//전체 금액 구하기
-			
-			function totalCal(){
-				var total=0;
-				 $("[name=productPerId]").each(function(index, item){
-					 //alert(index+" , "+ item); 
-					 total+=parseInt($(this).text())
-				 });
-				 
-				 $("#totalP").text(total);
-				 
-			}
-			
-			
-			
-			totalCal();
-
-		});
-	</script>
-
+	
 </body>
 </html>
 <jsp:include page="common/footer.jsp" />

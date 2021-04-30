@@ -21,6 +21,8 @@ public class ProductDTO {
 	private int prodState;
 	
 	
+	
+	
 	public ProductDTO() {}
 
 
@@ -47,6 +49,17 @@ public class ProductDTO {
 		this.prodQty = prodQty;
 		this.prodRegdate = prodRegdate;
 		this.prodState = prodState;
+	}
+
+
+	public ProductDTO(String prodImgUrl, String prodName, String prodNameEng,  int prodPrice, int prodId, int prodQty) {
+		super();
+		this.prodImgUrl = prodImgUrl;
+		this.prodName = prodName;
+		this.prodNameEng = prodNameEng;
+		this.prodPrice = prodPrice;
+		this.prodId = prodId;
+		this.prodQty = prodQty;
 	}
 
 

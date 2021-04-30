@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import kosta.mvc.dto.ProductDTO;
 import kosta.mvc.dto.WishDTO;
 import kosta.mvc.util.DbUtil;
 
@@ -18,13 +19,14 @@ public class WishDAOImpl implements WishDAO {
 	
 	
 	@Override
-	public List<WishDTO> selectWishByUserId(String userId) throws SQLException {
+	public List<ProductDTO> selectWishByUserId(String userId) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs = null;
-		List<WishDTO> wishList = new ArrayList<>();
-		WishDTO wishDTO = null;
-		String sql="select * from wish where user_id=?";
+		ProductDTO wish = null;
+		List<ProductDTO> listAll = new ArrayList<ProductDTO>();
+
+		String sql="select prod_img_url, prod_name, prod_name_en, prod_price, prod_id, prod_qty from product where prod_id in (select prod_id from wish where user_id = ?)";
 		
 		try {
 			con = DbUtil.getConnection();
@@ -33,32 +35,36 @@ public class WishDAOImpl implements WishDAO {
 			rs= ps.executeQuery();
 			
 			while(rs.next()) {
-				int wishId = rs.getInt("wish_id");
-				userId = rs.getString("user_id");
+				String prodImgUrl = rs.getString("prod_img_url");
+				String prodName = rs.getString("prod_name");
+				String prodNameEng = rs.getString("prod_name_en");
+				int  prodPrice = rs.getInt("prod_price");
 				int prodId = rs.getInt("prod_id");
+				int prodQty= rs.getInt("prod_qty");
 				
-				wishDTO = new WishDTO(wishId, userId, prodId);
-				wishList.add(wishDTO);
+			    ProductDTO productDTO= new ProductDTO(prodImgUrl, prodName, prodNameEng, prodPrice, prodId , prodQty);
+			    listAll.add(productDTO);
+				
 			}
 		}finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
-		return wishList;
+		return listAll;
 	}
 	
 	@Override
-	public int insertWish(WishDTO wishDTO) throws SQLException {
+	public int insertWish(String userId, int prodId) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
-		String sql="insert into wish values(wish_id_seq.currval,?, ? )";
+		String sql="insert into wish values(wish_id_seq.nextval,?, ? )";
 		
 		int result =0;
 		try {	
 			
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, wishDTO.getUserId());
-			ps.setInt(2, wishDTO.getProdId());
+			ps.setString(1, userId);
+			ps.setInt(2, prodId);
 			
 			result = ps.executeUpdate();
 			
@@ -73,7 +79,7 @@ public class WishDAOImpl implements WishDAO {
 	public int deleteWish(int wishId) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
-		String sql="delete from wish where wish_id=?";
+		String sql="delete from wish where prod_id=?";
 				
 		int result=0;
 		try {
@@ -92,33 +98,34 @@ public class WishDAOImpl implements WishDAO {
 	
 
 	@Override
-	public List<WishDTO> selectWishList() throws SQLException {
+	public List<WishDTO> selectWish(String userId) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs = null;
-		List<WishDTO> wishList = new ArrayList<>();
-		WishDTO wishDTO = null;
-		String sql="select * from wish";
+		WishDTO wish = null;
+		List<WishDTO> wishList = new ArrayList<WishDTO>();
+
+		String sql="select prod_img_url, prod_name, prod_name_en, prod_price, prod_id from product where prod_id in (select prod_id from wish where user_id = ?)";
 		
 		try {
-			
-			con=DbUtil.getConnection();
+			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
+			ps.setString(1, userId);
 			rs= ps.executeQuery();
 			
 			while(rs.next()) {
-				int wishId = rs.getInt("wish_id");
-				String userId = rs.getString("user_id");
+				String prodImgUrl = rs.getString("prod_img_url");
+				String prodName = rs.getString("prod_name");
+				String prodNameEng = rs.getString("prod_name_en");
 				int prodId = rs.getInt("prod_id");
 				
-				wishDTO = new WishDTO(wishId, userId, prodId);
-				wishList.add(wishDTO);
+			    WishDTO wishDTO= new WishDTO(prodImgUrl, prodName, prodNameEng, prodId);
+			    wishList.add(wishDTO);
+				
 			}
 		}finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
-		
-		
 		return wishList;
 	}
 
@@ -145,12 +152,11 @@ public class WishDAOImpl implements WishDAO {
 	}
 
 	@Override
-	public List<WishDTO> searchWishByProdName(String prodName) throws SQLException {
+	public WishDTO searchWishByProdName(String prodName) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs = null;
-		List<WishDTO> wishList = new ArrayList<>();
-		WishDTO wishDTO = null;
+		WishDTO wish = null;
 		String keyWord = "%" + prodName + "%";
 		String sql="select * from wish w join product p on w.prod_id=p.prod_id where prod_name || upper(prod_name_en) like upper(?)";
 
@@ -167,13 +173,31 @@ public class WishDAOImpl implements WishDAO {
 				keyWord = rs.getString("prod_name");
 				
 				
-				wishDTO = new WishDTO(wishId, userId, prodId, keyWord);
-				wishList.add(wishDTO);
+				wish = new WishDTO(wishId, userId, prodId, keyWord);
 			}
 		}finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
-		return wishList;
+		return wish;
+	}
+
+	@Override
+	public int duplicateWish(String userId, int prodId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		String sql = "select * from wish where user_id = ? and prod_id=?";
+		try {
+			con=DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			ps.setString(1, userId);
+			ps.setInt(2, prodId);
+			result = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose( ps, con);
+		}
+		
+		return result;
 	}
 		
 	

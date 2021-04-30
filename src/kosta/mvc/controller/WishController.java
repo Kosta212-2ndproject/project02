@@ -10,14 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import kosta.mvc.dto.ProductDTO;
 import kosta.mvc.dto.WishDTO;
+import kosta.mvc.service.ProductService;
+import kosta.mvc.service.ProductServiceImpl;
 import kosta.mvc.service.WishService;
 import kosta.mvc.service.WishServiceImpl;
 
 public class WishController implements Controller {
 
 	private WishService wishService = new WishServiceImpl();
-	
+	private ProductService productService = new ProductServiceImpl();
 
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -30,12 +33,17 @@ public class WishController implements Controller {
 	 */
 	public ModelAndView selectWishByUserId(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String userId = request.getParameter("userId");
+		String pi = request.getParameter("prodId");
+		if(pi !=null && !pi.equals("")) {
+			request.setAttribute("prodId", pi);
+		}
 		
-		List<WishDTO> wishList = wishService.selectWishByUserId(userId);
+		List<ProductDTO> list = wishService.selectWishByUserId(userId);
 		
-		request.setAttribute("wishList", wishList);
+		request.setAttribute("listAll", list);
+		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("cart/wish.jsp");
+		mv.setViewName("wish.jsp");
 		return mv;
 	
 	}
@@ -44,24 +52,25 @@ public class WishController implements Controller {
 	/**
 	 * 상품 찜에 추가
 	 */
-	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// 전송된 데이터 받기 -> dto로 만든다
-		String saveDir = request.getServletContext().getRealPath("/save");
-		String encoding = "UTF-8";
-		int maxSize = 1024*1024*100; // 100MB
+	public ModelAndView insertWish(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//String wishId =  (String) request.getSession().getAttribute("wishId");
+		String userId = (String) request.getSession().getAttribute("userId");
+		int prodId = Integer.parseInt(request.getParameter("prodId"));
 		
-		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
+		//등록전에 userID가 prodId에 대한 찜이 있는지를 먼저 검색해보고 없으면등록, 있으면 에러처리
+		wishService.duplicateWish(userId, prodId);
 		
-		String wishId = m.getParameter("wish_id");
-		String userId = m.getParameter("user_id");
-		String prodId = m.getParameter("prod_id");
+		//위시등록을 위한 메소드 불러오기
+		wishService.insertWish(userId, prodId);
 		
-		WishDTO wish = new WishDTO(Integer.parseInt(wishId), userId, Integer.parseInt(prodId));
-		
-		
-		wishService.insertWish(wish);
-		
-		ModelAndView mv = new ModelAndView("front", true);
+		//상품 목록을 가져오기
+		List<ProductDTO> list = wishService.selectWishByUserId(userId);
+
+		request.setAttribute("listAll", list);
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("front?key=wish&methodName=selectWishByUserId&userId="+userId+"&prodId="+prodId);
+		mv.setRedirect(true);
 		
 		return mv;
 	}
@@ -69,13 +78,21 @@ public class WishController implements Controller {
 	/**
 	 * 찜에서 상품 삭제
 	 */
-	public ModelAndView sendDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String wishId = request.getParameter("wishId");
+	public ModelAndView deleteWish(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String userId = (String) request.getSession().getAttribute("userId");
+		int prodId = Integer.parseInt(request.getParameter("prodId"));
 		
 				
-		wishService.deleteWish(Integer.parseInt(wishId));
+		wishService.deleteWish(prodId);
 		
-		ModelAndView mv = new ModelAndView("front",true);
+		List<ProductDTO> list = wishService.selectWishByUserId(userId);
+		
+		request.setAttribute("listAll", list);
+		
+		request.getAttribute("prodId");
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("wish.jsp");
 		
 		return mv;
 	}
@@ -83,14 +100,19 @@ public class WishController implements Controller {
 	/**
 	 * 전체 찜 리스트
 	 */
-	public ModelAndView select(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// service를 호출
-		List<WishDTO> wishList = wishService.selectWishList();
-		request.setAttribute("wishList", wishList); // ${requestScope.list} 사용가능
+	public ModelAndView selectWish(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String userId = request.getParameter("userId");
+		String pi = request.getParameter("prodId");
+		if(pi !=null && !pi.equals("")) {
+			request.setAttribute("prodId", pi);
+		}
+		
+		List<WishDTO> wishList = wishService.selectWish(userId);
+		
+		request.setAttribute("listWish", wishList);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("cart/wish.jsp");
-		
+		mv.setViewName("productAll.jsp");
 		return mv;
 	}
 	
@@ -101,13 +123,20 @@ public class WishController implements Controller {
 	public ModelAndView selectWishByProdName(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String prodName = request.getParameter("prodName");
 		
-		List<WishDTO> wishList = wishService.searchWishByProdName(prodName);
+		//WishDTO wishList = wishService.searchWishByProdName(prodName);
 		
-		request.setAttribute("wishList", wishList);
+		//request.setAttribute("wishList", wishList);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("cart/wish.jsp");
 		return mv;
 	
+	}
+
+	@Override
+	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -12,12 +12,12 @@ public interface WishDAO {
 	/**
 	 * 회원별 관심 조회
 	 */
-	List<WishDTO> selectWishByUserId(String userId) throws SQLException;
+	List<ProductDTO> selectWishByUserId(String userId) throws SQLException;
 	
 	/**
 	 * 상품 찜에 추가
 	 */
-	int insertWish(WishDTO wishDTO) throws SQLException;
+	int insertWish(String userId, int prodId) throws SQLException;
 	
 	/**
 	 * 찜에서 상품 삭제
@@ -28,18 +28,22 @@ public interface WishDAO {
 	 * 전체 관심리스트 
 	 */
 	
-	List<WishDTO> selectWishList() throws SQLException;
+	List<WishDTO> selectWish(String userId) throws SQLException;
 	
 	/**
 	 * 상품별 관심 검색
 	 */
-	List<WishDTO> searchWishByProdName(String prodName) throws SQLException;
+	WishDTO searchWishByProdName(String prodName) throws SQLException;
 	
 	/**
 	 * 상품별 관심수 조회
 	 */
 	int selectWishByProdName(String prodName) throws SQLException;
 	
+	/**
+	 * 찜 상품 중복 체크
+	 */
+	int duplicateWish(String userId, int prodId) throws SQLException;
 	
 	
 	
