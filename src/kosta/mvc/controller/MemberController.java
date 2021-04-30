@@ -46,8 +46,19 @@ public class MemberController implements Controller {
 		session.setAttribute("userName", userName);
 		session.setAttribute("userId", userId);
 		
-		ModelAndView mv = new ModelAndView("index.html", true);
+		ModelAndView mv = new ModelAndView("index.jsp", true);
 		return mv;
+	}
+	
+	/**
+	 * 로그아웃
+	 */
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 모든 세션의 정보 만료시키기
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		return new ModelAndView("index.jsp", true);
 	}
 	
 }
