@@ -17,9 +17,10 @@ public class OrderDTO {
 
    }
 
-   public OrderDTO(Long orderNo, String userId, int orderPrice, String orderAddr, String orderZipCode, String orderShipNo, String orderRecipientName) {
+   public OrderDTO(Long orderNo, String userId, String orderDate, int orderPrice, String orderAddr, String orderZipCode, String orderShipNo, String orderRecipientName) {
       this.orderNo = orderNo;
       this.userId = userId;
+      this.orderDate = orderDate;
       this.orderPrice = orderPrice;
       this.orderAddr = orderAddr;
       this.orderZipCode = orderZipCode;
@@ -28,7 +29,7 @@ public class OrderDTO {
    }
 
    public OrderDTO(Long orderNo, String userId, String orderDate, int orderPrice, String orderAddr, String orderZipCode, String orderShipNo, String orderRecipientName, int orderDeliveryCharge, int orderStatus) {
-      this(orderNo, userId, orderPrice, orderAddr, orderZipCode, orderShipNo, orderRecipientName);
+      this(orderNo, userId, orderDate, orderPrice, orderAddr, orderZipCode, orderShipNo, orderRecipientName);
       this.orderDeliveryCharge = orderDeliveryCharge;
       this.orderStatus = orderStatus;
    }

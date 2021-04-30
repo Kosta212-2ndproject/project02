@@ -12,9 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 @WebServlet(name = "OrderInsertServlet", value = "/orderInsert")
 public class OrderInsertServlet extends HttpServlet {
+
    @Override
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -28,7 +32,13 @@ public class OrderInsertServlet extends HttpServlet {
       String zipCode = request.getParameter("zipCode");
       String userName = request.getParameter("orderName");
       String orderShipNo = "80809";
-      String payTime = request.getParameter("payTime");
+      long payTime = Long.parseLong(request.getParameter("payTime"));
+
+      // UNIX Timestamp -> 날짜로 변환
+      Date date = new java.util.Date(payTime*1000L);
+      SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+      sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT+9"));
+      String formattedDate = sdf.format(date);
 
       System.out.println("prodId: " + prodId);
       System.out.println("userId: " + userId);
@@ -36,11 +46,11 @@ public class OrderInsertServlet extends HttpServlet {
       System.out.println("addr: " + addr);
       System.out.println("zipCode: " + zipCode);
       System.out.println("userName: " + userName);
-      System.out.println("payTime: " + payTime);
+      System.out.println("formattedDate: " + formattedDate);
 
 
       OrderDAO dao = new OrderDAOImpl();
-      OrderDTO dto = new OrderDTO(prodId, userId, orderPrice, addr, zipCode, orderShipNo, userName);
+      OrderDTO dto = new OrderDTO(prodId, userId, formattedDate, orderPrice, addr, zipCode, orderShipNo, userName);
 
       try {
          int result = dao.insertOrder(dto);

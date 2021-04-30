@@ -264,4 +264,26 @@ public class ProductDAOImpl implements ProductDAO {
 		return result;
 	}
 
+	@Override
+	public int selectByOriginPrice(int prodId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = "select prod_price from PRODUCT where PROD_ID = ?";
+
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, prodId);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return result;
+	}
+
 }

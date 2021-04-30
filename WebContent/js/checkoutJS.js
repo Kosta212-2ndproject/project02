@@ -107,15 +107,17 @@ function productBuy() {
                     //기타 필요한 데이터가 있으면 추가 전달
                 },
                 success: function (result) {
+                    alert("sucess: " + rsp.paid_at);
                     orderInsert(rsp.merchant_uid, rsp.paid_amount, rsp.paid_at);
+                    location.href='../successPay.jsp';
                     //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
                 },
                 error:function(request,status,error){
                     console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                 }
             });
-            alert("결제 성공");
-            // location.href='../successPay.jsp';
+            // alert("결제 성공");
+
 
         } else {
             var msg = '결제에 실패하였습니다.';
@@ -139,7 +141,7 @@ function orderInsert(orderNum, price, payTime) {
             addr: $('#address').val() + $('#extraAddress').val() + $('#detail-address').val(),
             zipCode: $('#post-code').val(),
             orderName: $('#userName').val(),
-            patTime: payTime
+            payTime: payTime
 
         },	// 폼전송 : 서버에게 보낼 parameter 정보
         success: function (result) { // result의 값은 가능 or 안됨

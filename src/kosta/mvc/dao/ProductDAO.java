@@ -55,4 +55,10 @@ public interface ProductDAO {
 	    * @return : 1-수정성공 , 0 - 수정실패
 	    * */
 	  int updateProduct(ProductDTO productDTO) throws SQLException;
+
+	/**
+	 * 상품 금액 가져오기
+	 */
+	int selectByOriginPrice(int prodId) throws SQLException;
+
 }

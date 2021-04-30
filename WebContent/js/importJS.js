@@ -157,8 +157,7 @@ $(function () {
     $(document).on("click", "#cancelBtn", function () {
         orderNo = $(this).attr("name");
         totalPrice = $("#totalPrice").val();
-        alert("왜이러냐 톰캣");
-        console.log(totalPrice);
+        alert("totalPrice: " + totalPrice);
     })
 
     $('#modal_btn_cancel').on('click', function (e) {    // modal 버튼
@@ -171,12 +170,11 @@ $(function () {
             data: {
                 reason: $("#cancel_reason").val(),
                 orderNo: orderNo,
-
-
             },
             success: function (data) {
                 alert("result: " + data);
-                alert("성공")
+                alert("취소가 되었습니다.");
+                $(this).modal('hide');
             }
         });
     });

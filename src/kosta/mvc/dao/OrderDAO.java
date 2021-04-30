@@ -15,6 +15,16 @@ public interface OrderDAO {
    int updateQty(int prodId, int qty) throws SQLException;
 
    /**
+    * 상품 아이디에 해당하는 주문내용을 삭제한다.
+    */
+   int deleteOrder(long proId) throws  SQLException;
+
+   /**
+    *
+    */
+   int selectByOrderIdPrice(long proId) throws  SQLException;
+
+   /**
     * 상품 아이디에 해당하는 수량을 가져와 사용자가 구매한 수량만큼 더하기
     */
    int updateQtyPlus(int prodId, int qty) throws SQLException;
