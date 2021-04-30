@@ -16,3 +16,6 @@ context.xml
 
 /.settings/
 
+/lib/
+
+/.tern-project
