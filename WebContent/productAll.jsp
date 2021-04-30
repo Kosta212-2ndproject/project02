@@ -46,7 +46,7 @@
 <body>
 
 
-	<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+	<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_4.jpg');" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -65,6 +65,7 @@
 
 
 
+
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row">
@@ -75,22 +76,28 @@
 					<div class="row mb-4">
 						<div class="col-md-12 d-flex justify-content-between align-items-center">
 							<h4 class="product-select">Select Types of Products</h4>
-							<form name="optionForm" action="front" method="get" onSubmit='return checkValid()'>
+							<form name="optionForm" action="front" method="post" onSubmit='return checkValid()'>
 								<input type="hidden" name="key" value="prod">
-								<input type="hidden" name="methodName" value="order">
-								<select name="choice">
+								<input type="hidden" name="methodName" value="selectAll">
+								<input type="hidden" name="category" value="${category}">
+								<input type="hidden" name="values" value="${values}">
+								<select name="order" id="order">
 									<option value="0">선택없음</option>
-									<option value="1">인기순</option>
-									<option value="2">신제품순</option>
-									<option value="3">별점순</option>
-									<option value="4">가격순▲</option>
-									<option value="5">가격순▼</option>
+									<option value="newProduct">신제품순</option>
+									<option value="priceHigh">가격순▲</option>
+									<option value="priceLow">가격순▼</option>
 								</select>
 								<input type="submit" value="선택">
 							</form>
 						</div>
 					</div>
-
+					<script type="text/javascript">
+						$(function() {
+							if ("${order}" != "") {
+								$("#order").val("${order}")
+							}
+						})
+					</script>
 
 
 					<div class="row">
@@ -156,7 +163,7 @@
 
 								<ul>
 									<c:if test="${(startPage-p.blockcount) > 0}">
-										<li><a href="front?key=prod&methodName=selectAll&pageNo=${startPage-1}&prodNation=${prodNation}">&lt;</a></li>
+										<li><a href="front?key=prod&methodName=selectAll&pageNo=${startPage-1}&category=${category}&values=${values}&order=${order}">&lt;</a></li>
 									</c:if>
 
 									<c:forEach var='i' begin='${startPage}' end='${(startPage-1)+p.blockcount}'>
@@ -164,12 +171,12 @@
 											<c:set var="doneLoop" value="true" />
 										</c:if>
 										<c:if test="${not doneLoop}">
-											<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=prod&methodName=selectAll&pageNo=${i}&prodNation=${prodNation}">${i}</a>
+											<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=prod&methodName=selectAll&pageNo=${i}&category=${category}&values=${values}&order=${order}">${i}</a>
 										</c:if>
 
 									</c:forEach>
 									<c:if test="${(startPage+p.blockcount)<=p.pageCnt}">
-										<li><a href="front?key=prod&methodName=selectAll&pageNo=${startPage+p.blockcount}&prodNation=${prodNation}">&gt;</a></li>
+										<li><a href="front?key=prod&methodName=selectAll&pageNo=${startPage+p.blockcount}&category=${category}&values=${values}&order=${order}">&gt;</a></li>
 									</c:if>
 								</ul>
 							</div>
@@ -246,15 +253,15 @@
 
 						<div class="menuitems">
 							<ul>
-								<li><a href="front?key=prod&methodName=selectByNation&prodNation=France">프랑스</a></li>
-								<li><a href="front?key=prod&methodName=selectByNation&prodNation=Chile">칠레</a></li>
-								<li><a href="front?key=prod&methodName=selectByNation&prodNation=Italy">이탈리아</a></li>
-								<li><a href="front?key=prod&methodName=selectByNation&prodNation=Argentina">아르헨티나</a></li>
-								<li><a href="front?key=prod&methodName=selectByNation&prodNation=Australia">호주</a></li>
-								<li><a href="front?key=prod&methodName=selectByNation&prodNation=Spain">스페인</a></li>
-								<li><a href="front?key=prod&methodName=selectByNation&prodNation=U.S.A">미국</a></li>
-								<li><a href="front?key=prod&methodName=selectByNation&prodNation=Germany">독일</a></li>
-								<li><a href="front?key=prod&methodName=selectByNation&prodNation=New Zealand">뉴질랜드</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=France&category=prodNation">프랑스</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=Chile&category=prodNation">칠레</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=Italy&category=prodNation">이탈리아</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=Argentina&category=prodNation">아르헨티나</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=Australia&category=prodNation">호주</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=Spain&category=prodNation">스페인</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=U.S.A&category=prodNation">미국</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=Germany&category=prodNation">독일</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=New Zealand&category=prodNation">뉴질랜드</a></li>
 							</ul>
 
 						</div>
@@ -263,19 +270,19 @@
 						<p class="menus">종류별</p>
 						<div class="menuitems">
 							<ul>
-								<li><a href="front?key=prod&methodName=selectByType&prodType=Red">Red</a></li>
-								<li><a href="front?key=prod&methodName=selectByType&prodType=Sparkling">Sparkling</a></li>
-								<li><a href="front?key=prod&methodName=sselectByType&prodType=White">White</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=Red&category=prodType">Red</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=Sparkling&category=prodType">Sparkling</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=White&category=prodType">White</a></li>
 							</ul>
 						</div>
 
 						<p class="menus">가격대별</p>
 						<div class="menuitems">
 							<ul>
-								<li><a href="front?key=prod&methodName=selectByPrice&prodPrice=cheap">5만원 이하</a></li>
-								<li><a href="front?key=prod&methodName=selectByPrice&prodPrice=middle">5만원 ~ 10만원</a></li>
-								<li><a href="front?key=prod&methodName=selectByPrice&prodPrice=expensive">10만원 ~ 20만원</a></li>
-								<li><a href="front?key=prod&methodName=selectByPrice&prodPrice=luxury">20만원 이상</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=cheap&category=prodPrice">5만원 이하</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=middle&category=prodPrice">5만원 ~ 10만원</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=expensive&category=prodPrice">10만원 ~ 20만원</a></li>
+								<li><a href="front?key=prod&methodName=selectAll&values=luxury&category=prodPrice">20만원 이상</a></li>
 							</ul>
 						</div>
 

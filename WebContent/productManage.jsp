@@ -29,18 +29,30 @@
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/style.css">
 
+<SCRIPT language=javascript>
+	function checkValid() {
+		var f = window.document.optionForm;
+
+		if (f.choice.value == "0") {
+			alert("선택해 주세요.");
+			f.choice.focus();
+			return false;
+		}
+		return true;
+	}
+</SCRIPT>
 
 
 </head>
 <body>
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+	<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate mb-5 text-center">
 					<p class="breadcrumbs mb-0">
-						<span class="mr-2"><a href="index.jsp">
+						<span class="mr-2"><a href="indexAdmin.jsp">
 								Home <i class="fa fa-chevron-right"></i>
 							</a></span> <span>Products <i class="fa fa-chevron-right"></i></span>
 					</p>
@@ -54,129 +66,181 @@
 
 
 
-	<caption><h1 align="center">상품 LIST</h1></caption>
-	<span style="font-size:30pt; margin:20px"><a href="product-insert.jsp" class="btn btn-primary py-3 px-5 mr-2">상품등록</a></span>
-	<table align="center" border="0" cellpadding="5" cellspacing="2" width="100%" bordercolordark="white" bordercolorlight="black">
-	
-	<colgroup>
-		<col width="15%"/>
-		<col width="30%"/>
-		<col width="16%"/>
-		<col width="16%"/>
-		<col width="7%"/>
-		<col width="7%"/>
-		<col width="7%"/>
-	</colgroup>
-	<tr>
-        <td bgcolor="#00cc00">
-            <p align="center">
-            <font color="white"><b><span style="font-size:9pt;">모델번호</span></b></font></p>
-        </td>
-        <td bgcolor="#00cc00">
-            <p align="center"><font color="white"><b><span style="font-size:9pt;">모델이름</span></b></font></p>
-        </td>
-        <td bgcolor="#00cc00">
-            <p align="center"><font color="white"><b><span style="font-size:9pt;">가격</span></b></font></p>
-        </td>
-        <td bgcolor="#00cc00">
-            <p align="center"><font color="white"><b><span style="font-size:9pt;">Vintage</span></b></font></p>
-        </td>
-        
-        <td bgcolor="#00cc00">
-            <p align="center"><font color="white"><b><span style="font-size:9pt;">원산지</span></b></font></p>
-        </td>
-        <td bgcolor="#00cc00">
-            <p align="center"><font color="white"><b><span style="font-size:9pt;">재고</span></b></font></p>
-        </td>
-       
-    </tr>
-    
-    <c:choose>
-    <c:when test="${empty requestScope.listAll}">
-	   <tr>
-        <td colspan="6">
-            <p align="center"><b><span style="font-size:9pt;">등록된 상품이 없습니다.</span></b></p>
-        </td>
-    </tr>
-    </c:when>
-    <c:otherwise>
-	<c:forEach items="${requestScope.listAll}" var="prodDto">
-		    <tr onmouseover="this.style.background='#eaeaea'"
-		        onmouseout="this.style.background='white'">
-		        <td bgcolor="">
-		            <p align="center"><span style="font-size:9pt;">
-		            ${prodDto.prodId}</span></p>
-		        </td>
-		        <td bgcolor="">
-					<p><span style="font-size:9pt;">
-					<a href="${path}/front?key=prod&methodName=selectByProductDetailByAdmin&prodId=${prodDto.prodId}">
-					  ${prodDto.prodName} / ${prodDto.prodNameEng}
-					</a>
-					</span></p>
-		        </td>
-		        
-		        <td bgcolor="">
-		            <p align="center"><span style="font-size:9pt;">
-		            <fmt:formatNumber value="${prodDto.prodPrice}"/>원</span></p>
-		        </td>
-		        <td bgcolor="">
-		            <p align="center"><span style="font-size:9pt;">
-		            ${prodDto.prodVatage}년</span></p>
-		        </td>
-		         
-		         <td bgcolor="">
-		            <p align="center"><span style="font-size:9pt;">
-		            ${prodDto.prodNation}</span></p>
-		        </td>
-		         <td bgcolor="">
-		            <p align="center"><span style="font-size:9pt;">
-		            <fmt:formatNumber value="${prodDto.prodQty}"/> 개</span></p>
-		        </td>
-		        
-		       
-		    </tr>
-    </c:forEach>
-	</c:otherwise>
-    </c:choose>
-</table>
-<hr>
-<div align=right>
+	<caption>
+		<h1 align="center">상품 LIST</h1>
+	</caption>
+	<span style="font-size: 30pt; margin: 20px"><a href="product-insert.jsp" class="btn btn-primary py-3 px-5 mr-2">상품등록</a></span>
 
-<!-- 페이징처리 -->
-					<jsp:useBean class="kosta.mvc.dto.PageCntProduct" id="p" />
-					<!-- 블럭당 -->
-					<div class="row mt-6">
-						<div class="col text-center">
-							<div class="block-27">
-								<c:set var="doneLoop" value="false" />
-								<c:set var="temp" value="${(pageNo-1) % p.blockcount}" />
-								<!-- (1-1)%2   , (2-1)%2    1 , (3-1)%2  0 -->
-								<c:set var="startPage" value="${pageNo - temp}" />
-								<!--   1- 1 -->
+	<div class="row mb-4">
+		<div class="col-md-12 d-flex justify-content-between align-items-center">
+			<h4 class="product-select"></h4>
+			<form name="optionForm" action="front" method="post" onSubmit='return checkValid()'>
+				<input type="hidden" name="key" value="prod">
+				<input type="hidden" name="methodName" value="selectAllByAdmin">
+				<input type="hidden" name="category" value="${category}">
+				<input type="hidden" name="values" value="${values}">
+				<select name="order" id="order">
+					<option value="0">선택없음</option>
+					<option value="newProduct">신제품순</option>
+					<option value="priceHigh">가격순▲</option>
+					<option value="priceLow">가격순▼</option>
+					<option value="qtyHigh">재고량▲</option>
+					<option value="qtyLow">재고량▼</option>
+				</select>
+				<input type="submit" value="선택">
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			if ("${order}" != "") {
+				$("#order").val("${order}")
+			}
+		})
+	</script>
 
 
-								<ul>
-									<c:if test="${(startPage-p.blockcount) > 0}">
-										<li><a href="front?key=prod&methodName=selectAllByAdmin&pageNo=${startPage-1}">&lt;</a></li>
-									</c:if>
 
-									<c:forEach var='i' begin='${startPage}' end='${(startPage-1)+p.blockcount}'>
-										<c:if test="${(i-1)>=p.pageCnt}">
-											<c:set var="doneLoop" value="true" />
-										</c:if>
-										<c:if test="${not doneLoop}">
-											<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=prod&methodName=selectAllByAdmin&pageNo=${i}">${i}</a>
-										</c:if>
 
-									</c:forEach>
-									<c:if test="${(startPage+p.blockcount)<=p.pageCnt}">
-										<li><a href="front?key=prod&methodName=selectAllByAdmin&pageNo=${startPage+p.blockcount}">&gt;</a></li>
-									</c:if>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>	
+	<table align="center" border="3" cellpadding="5" cellspacing="2" width="100%" bordercolordark="white" bordercolorlight="black">
+
+		<colgroup>
+			<col width="15%" />
+			<col width="30%" />
+			<col width="16%" />
+			<col width="16%" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<td bgcolor="#00cc00">
+				<p align="center">
+					<font color="white"><b><span style="font-size: 9pt;">모델번호</span></b></font>
+				</p>
+			</td>
+			<td bgcolor="#00cc00">
+				<p align="center">
+					<font color="white"><b><span style="font-size: 9pt;">모델이름</span></b></font>
+				</p>
+			</td>
+			<td bgcolor="#00cc00">
+				<p align="center">
+					<font color="white"><b><span style="font-size: 9pt;">가격</span></b></font>
+				</p>
+			</td>
+			<td bgcolor="#00cc00">
+				<p align="center">
+					<font color="white"><b><span style="font-size: 9pt;">Vintage</span></b></font>
+				</p>
+			</td>
+
+			<td bgcolor="#00cc00">
+				<p align="center">
+					<font color="white"><b><span style="font-size: 9pt;">원산지</span></b></font>
+				</p>
+			</td>
+			<td bgcolor="#00cc00">
+				<p align="center">
+					<font color="white"><b><span style="font-size: 9pt;">재고</span></b></font>
+				</p>
+			</td>
+
+		</tr>
+
+		<c:choose>
+			<c:when test="${empty requestScope.listAll}">
+				<tr>
+					<td colspan="6">
+						<p align="center">
+							<b><span style="font-size: 9pt;">등록된 상품이 없습니다.</span></b>
+						</p>
+					</td>
+				</tr>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${requestScope.listAll}" var="prodDto">
+					<tr onmouseover="this.style.background='#eaeaea'" onmouseout="this.style.background='white'">
+						<td bgcolor="">
+							<p align="center">
+								<span style="font-size: 9pt;"> ${prodDto.prodId}</span>
+							</p>
+						</td>
+						<td bgcolor="">
+							<p>
+								<span style="font-size: 9pt;"> <a href="${path}/front?key=prod&methodName=selectByProductDetailByAdmin&prodId=${prodDto.prodId}"> ${prodDto.prodName} / ${prodDto.prodNameEng} </a>
+								</span>
+							</p>
+						</td>
+
+						<td bgcolor="">
+							<p align="center">
+								<span style="font-size: 9pt;"> <fmt:formatNumber value="${prodDto.prodPrice}" />원
+								</span>
+							</p>
+						</td>
+						<td bgcolor="">
+							<p align="center">
+								<span style="font-size: 9pt;"> ${prodDto.prodVatage}년</span>
+							</p>
+						</td>
+
+						<td bgcolor="">
+							<p align="center">
+								<span style="font-size: 9pt;"> ${prodDto.prodNation}</span>
+							</p>
+						</td>
+						<td bgcolor="">
+							<p align="center">
+								<span style="font-size: 9pt;"> <fmt:formatNumber value="${prodDto.prodQty}" /> 개
+								</span>
+							</p>
+						</td>
+
+
+					</tr>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+	</table>
+	<hr>
+	<div align=right>
+
+		<!-- 페이징처리 -->
+		<jsp:useBean class="kosta.mvc.dto.PageCntProduct" id="p" />
+		<!-- 블럭당 -->
+		<div class="row mt-6">
+			<div class="col text-center">
+				<div class="block-27">
+					<c:set var="doneLoop" value="false" />
+					<c:set var="temp" value="${(pageNo-1) % p.blockcount}" />
+					<!-- (1-1)%2   , (2-1)%2    1 , (3-1)%2  0 -->
+					<c:set var="startPage" value="${pageNo - temp}" />
+					<!--   1- 1 -->
+
+
+					<ul>
+						<c:if test="${(startPage-p.blockcount) > 0}">
+							<li><a href="front?key=prod&methodName=selectAllByAdmin&pageNo=${startPage-1}&category=${category}&values=${values}&order=${order}">&lt;</a></li>
+						</c:if>
+
+						<c:forEach var='i' begin='${startPage}' end='${(startPage-1)+p.blockcount}'>
+							<c:if test="${(i-1)>=p.pageCnt}">
+								<c:set var="doneLoop" value="true" />
+							</c:if>
+							<c:if test="${not doneLoop}">
+								<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=prod&methodName=selectAllByAdmin&pageNo=${i}&category=${category}&values=${values}&order=${order}">${i}</a>
+							</c:if>
+
+						</c:forEach>
+						<c:if test="${(startPage+p.blockcount)<=p.pageCnt}">
+							<li><a href="front?key=prod&methodName=selectAllByAdmin&pageNo=${startPage+p.blockcount}&category=${category}&values=${values}&order=${order}">&gt;</a></li>
+						</c:if>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 

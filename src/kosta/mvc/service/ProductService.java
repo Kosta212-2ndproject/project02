@@ -6,35 +6,11 @@ import java.util.List;
 import kosta.mvc.dto.ProductDTO;
 
 public interface ProductService {
-	/**
-	 * ProductDAOImpl의 상품 전체 검색 메소드 호출(User)
-	 */
-	List<ProductDTO> selectAll() throws SQLException;
 
 	/**
-	 * paging처리 상품 전체 검색 메소드 호출
+	 * 상품 검색 메소드 호출
 	 */
-	List<ProductDTO> selectAll(int pageNo) throws SQLException;
-
-	/**
-	 * ProductDAOImpl의 상품키워드에 해당하는 상품 검색 메소드 호출
-	 */
-	List<ProductDTO> selectByModelKeyword(String keyword) throws SQLException;
-
-	/**
-	 * ProductDAOImpl의 국가에 해당하는 상품 검색 메소드 호출
-	 */
-	List<ProductDTO> selectByNation(String prodNation) throws SQLException;
-
-	/**
-	 * ProductDAOImpl의 종류에 해당하는 상품 검색 메소드 호출
-	 */
-	List<ProductDTO> selectByType(String prodType) throws SQLException;
-
-	/**
-	 * ProductDAOImpl의 가격에 해당하는 상품 검색 메소드 호출
-	 */
-	List<ProductDTO> selectByPrice(String prodPrice) throws SQLException;
+	List<ProductDTO> selectAll(int pageNo, String category, String order, String values) throws SQLException;
 
 	/**
 	 * ProductDAOImpl의 상품 상세 조회 메소드 호출
@@ -55,4 +31,5 @@ public interface ProductService {
 	 * ProductDAOImpl의 상품수정 메소드 호출
 	 */
 	void updateProduct(ProductDTO productDTO) throws SQLException;
+
 }

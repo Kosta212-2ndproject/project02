@@ -1,49 +1,25 @@
 package kosta.mvc.service;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import kosta.mvc.dao.ProductDAO;
 import kosta.mvc.dao.ProductDAOImpl;
+import kosta.mvc.dao.ReviewDAO;
+import kosta.mvc.dao.ReviewDAOImpl;
 import kosta.mvc.dto.ProductDTO;
+import kosta.mvc.dto.ReviewDTO;
 
 public class ProductServiceImpl implements ProductService {
 	private ProductDAO prodDAO = new ProductDAOImpl();
-
+	ReviewDAO reviewDAO = new ReviewDAOImpl();
+	
 	@Override
-	public List<ProductDTO> selectAll() throws SQLException {
-
-		return prodDAO.selectAll();
-	}
-
-	@Override
-	public List<ProductDTO> selectAll(int pageNo) throws SQLException {
-
-		return prodDAO.selectAll(pageNo);
-	}
-
-	@Override
-	public List<ProductDTO> selectByModelKeyword(String keyword) throws SQLException {
-
-		return prodDAO.selectByModelKeyword(keyword);
-	}
-
-	@Override
-	public List<ProductDTO> selectByNation(String prodNation) throws SQLException {
-
-		return prodDAO.selectByNation(prodNation);
-	}
-
-	@Override
-	public List<ProductDTO> selectByType(String prodType) throws SQLException {
-
-		return prodDAO.selectByType(prodType);
-	}
-
-	@Override
-	public List<ProductDTO> selectByPrice(String prodPrice) throws SQLException {
-
-		return prodDAO.selectByPrice(prodPrice);
+	public List<ProductDTO> selectAll(int pageNo, String category, String order, String values) throws SQLException {
+		List<ProductDTO> list = prodDAO.selectAll(pageNo, category, order, values);
+		
+		return list;
 	}
 
 	@Override

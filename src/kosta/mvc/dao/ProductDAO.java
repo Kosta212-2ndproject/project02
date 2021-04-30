@@ -6,35 +6,12 @@ import java.util.List;
 import kosta.mvc.dto.ProductDTO;
 
 public interface ProductDAO {
-	/**
-	 * 상품 전체 검색(User)
-	 */
-	List<ProductDTO> selectAll() throws SQLException;
 
 	/**
-	 * 상품 전체 검색(User)
+	 * 상품 검색 (pageNo = 페이지수, category = 검색어 또는 검색카테고리, order = 정렬항목, values=
+	 * 검색어,검색카테고리의 실제값)
 	 */
-	List<ProductDTO> selectAll(int pageNo) throws SQLException;
-
-	/**
-	 * 상품키워드에 해당하는 상품 검색
-	 */
-	List<ProductDTO> selectByModelKeyword(String keyword) throws SQLException;
-
-	/**
-	 * 국가에 해당하는 상품 검색
-	 */
-	List<ProductDTO> selectByNation(String prodNation) throws SQLException;
-
-	/**
-	 * 종류에 해당하는 상품 검색
-	 */
-	List<ProductDTO> selectByType(String prodType) throws SQLException;
-
-	/**
-	 * 가격에 해당하는 상품 검색
-	 */
-	List<ProductDTO> selectByPrice(String Prodprice) throws SQLException;
+	List<ProductDTO> selectAll(int pageNo, String category, String order, String values) throws SQLException;
 
 	/**
 	 * 상품상세 조회

@@ -1,6 +1,8 @@
 package kosta.mvc.dto;
 
-public class ProductDTO {
+import java.util.List;
+
+public class ProductDTO implements Comparable<ProductDTO>{
 	private int prodId;
 	private String prodName;
 	private String prodNameEng;
@@ -23,7 +25,7 @@ public class ProductDTO {
 	//페이지처리
 	private int pageCnt;
 	
-	
+	private List<ReviewDTO> reviewList = null;
 	
 	public ProductDTO() {}
 	
@@ -293,6 +295,36 @@ public class ProductDTO {
 	public void setPageCnt(int pageCnt) {
 		this.pageCnt = pageCnt;
 	}
+
+
+
+
+	public List<ReviewDTO> getReviewList() {
+		return reviewList;
+	}
+
+
+
+
+	public void setReviewList(List<ReviewDTO> reviewList) {
+		this.reviewList = reviewList;
+	}
+
+	@Override
+    public int compareTo(ProductDTO o) {
+        if(this.reviewList.size() > o.reviewList.size()) {
+            return -1; // x에 대해서는 오름차순
+        }
+        else if(this.reviewList.size() == o.reviewList.size()) {
+             // y에 대해서는 내림차순
+                return 0;
+            
+        }
+        return 1;
+    }
+
+
+
 	
 
 	

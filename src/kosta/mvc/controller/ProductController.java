@@ -1,7 +1,6 @@
 package kosta.mvc.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -27,140 +26,55 @@ public class ProductController implements Controller {
 		return null;
 	}
 
-	
+	// 상품검색 (user)
+	public ModelAndView selectAll(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String pageNo = request.getParameter("pageNo");
+		String category = request.getParameter("category"); // 값은 prodNation , prodType ,prodPrice,prodKeyword
+		String values = request.getParameter("values");// category에 해당하는 값....
+		String order = request.getParameter("order");
+
+		if (pageNo == null || pageNo.equals("")) {
+			pageNo = "1";
+		}
+
+		List<ProductDTO> listAll = prodService.selectAll(Integer.parseInt(pageNo), category, order, values);
+
+		request.setAttribute("listAll", listAll);
+
+		request.setAttribute("pageNo", pageNo);
+		request.setAttribute("category", category);
+		request.setAttribute("values", values);
+		request.setAttribute("order", order);
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("productAll.jsp");
+		return mv;
+	}
 
 	/**
 	 * 상품전체 검색(admin)
 	 */
 	public ModelAndView selectAllByAdmin(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String pageNo = request.getParameter("pageNo");
+		String category = request.getParameter("category"); // 값은 prodNation , prodType ,prodPrice,prodKeyword
+		String values = request.getParameter("values");// category에 해당하는 값....
+		String order = request.getParameter("order");
+
 		if (pageNo == null || pageNo.equals("")) {
 			pageNo = "1";
 		}
-		
-		List<ProductDTO> listAll = prodService.selectAll(Integer.parseInt(pageNo));
+
+		List<ProductDTO> listAll = prodService.selectAll(Integer.parseInt(pageNo), category, order, values);
 
 		request.setAttribute("listAll", listAll);
+
 		request.setAttribute("pageNo", pageNo);
+		request.setAttribute("category", category);
+		request.setAttribute("values", values);
+		request.setAttribute("order", order);
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("productManage.jsp");
-		return mv;
-	}
-	
-	/**
-	 * 상품보여주기(main창)
-	 */
-	public ModelAndView selectAllMain(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		
-		List<ProductDTO> listAll = prodService.selectAll();
-
-		request.setAttribute("listAll", listAll);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("index.jsp");
-		return mv;
-	}
-	
-
-	/**
-	 * 상품 키워드 검색(user)
-	 */
-	public ModelAndView selectByModelKeyword(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-
-		String keyWord = request.getParameter("keyWord");
-
-		List<ProductDTO> listAll = prodService.selectByModelKeyword(keyWord);
-
-		if (listAll != null) {
-			request.setAttribute("listAll", listAll);
-		}
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("productAll.jsp");
-		return mv;
-	}
-	
-	
-	
-
-	/**
-	 * 상품 키워드 검색(admin)
-	 */
-	public ModelAndView selectByModelKeywordAdmin(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String keyWord = request.getParameter("keyWord");
-
-		List<ProductDTO> listAll = prodService.selectByModelKeyword(keyWord);
-
-		if (listAll != null) {
-			request.setAttribute("listAll", listAll);
-		}
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("productManage.jsp");
-		return mv;
-	}
-	
-	/**
-	 * 상품전체 검색(user)
-	 */
-	public ModelAndView selectAll(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String pageNo = request.getParameter("pageNo");
-		String prodNation = request.getParameter("prodNation");
-		
-		if (pageNo == null || pageNo.equals("")) {
-			pageNo = "1";
-		}
-		
-		List<ProductDTO> listAll = prodService.selectAll(Integer.parseInt(pageNo));
-
-		request.setAttribute("listAll", listAll);
-		request.setAttribute("pageNo", pageNo);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("productAll.jsp");
-		return mv;
-	}
-	
-
-	/**
-	 * 나라별 상품 검색
-	 */
-	public ModelAndView selectByNation(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String prodNation = request.getParameter("prodNation");
-
-		List<ProductDTO> listAll = prodService.selectByNation(prodNation);
-
-		request.setAttribute("listAll", listAll);
-		request.setAttribute("prodNation", prodNation);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("productAll.jsp");
-		return mv;
-	}
-
-	/**
-	 * 종류별 상품 검색
-	 */
-	public ModelAndView selectByType(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String prodType = request.getParameter("prodType");
-
-		List<ProductDTO> listAll = prodService.selectByType(prodType);
-
-		request.setAttribute("listAll", listAll);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("productAll.jsp");
-		return mv;
-	}
-
-	/**
-	 * 가격별 상품 검색
-	 */
-	public ModelAndView selectByPrice(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String prodPrice = request.getParameter("prodPrice");
-
-		List<ProductDTO> listAll = prodService.selectByPrice(prodPrice);
-
-		request.setAttribute("listAll", listAll);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("productAll.jsp");
 		return mv;
 	}
 
@@ -306,19 +220,5 @@ public class ProductController implements Controller {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	/**
-	 * 상품 선택정렬하기
-	 * */
-	public ModelAndView order(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String choice = request.getParameter("choice");
-		
-		List<ProductDTO> listAll = prodService.selectByPrice(choice);
 
-		request.setAttribute("listAll", listAll);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("productAll.jsp");
-
-		return null;
-	}	
 }
