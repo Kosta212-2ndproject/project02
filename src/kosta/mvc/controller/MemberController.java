@@ -16,7 +16,7 @@ public class MemberController implements Controller {
 	
 	private MemberService memberService = new MemberServiceImpl();
 
-	@Override
+	
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		return null;
 	}
@@ -59,6 +59,14 @@ public class MemberController implements Controller {
 		session.invalidate();
 		
 		return new ModelAndView("index.jsp", true);
+	}
+
+
+	@Override
+	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

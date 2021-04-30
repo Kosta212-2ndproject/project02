@@ -41,7 +41,16 @@
 			    		</p>
 		        </div>
 		        <div class="reg">
-		        	<p class="mb-0"><a href="#" class="mr-2">Sign Up</a> <a href="#">log in</a></p>
+		        	<p class="mb-0">
+		        		<c:choose>
+		        			<c:when test="${not empty userId}">
+		        				<a href="${pageContext.request.contextPath}/front?key=member&methodName=logout">Logout</a>
+		        			</c:when>
+		        			<c:otherwise>
+		        			<a href="${pageContext.request.contextPath}/login.jsp">log in</a>
+		        		</c:otherwise>
+		        		</c:choose>
+		        	</p>
 		        </div>
 					</div>
 				</div>
