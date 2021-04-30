@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="css/animate.css">
-
 <link rel="stylesheet" href="css/owl.carousel.min.css">
 <link rel="stylesheet" href="css/owl.theme.default.min.css">
 <link rel="stylesheet" href="css/magnific-popup.css">
@@ -149,7 +148,6 @@
 			</div>
 		</div>
 	</section>
-
 	<br>
 
 	<section class="ftco-section testimony-section img" style="background-image: url(images/bg_4.jpg);">
@@ -215,6 +213,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="item">
 							<div class="testimony-wrap py-4">
 								<div class="icon d-flex align-items-center justify-content-center">
