@@ -132,7 +132,6 @@ public class WishController implements Controller {
 	
 	}
 
-	@Override
 	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
 		// TODO Auto-generated method stub
