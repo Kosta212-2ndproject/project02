@@ -399,43 +399,58 @@
 	   		     		data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보 
 	   			 		success : function(result){
 	   			   		//alert(result)
-
-						let text = "<table><tr>";
-							text += "<th> No. </th>";
-							text += "<th> ID </th>";
-							text += "<th> Category </th>";
-							text += "<th> Title </th>";
-							text += "<th> Date </th>";
-		   					text += "<th> public | private </th>";
-						$.each(result, function(index, item) {
-								text += "<tr>"
-								text += "<td>" + item.qNum + "</td>"
-								text += "<td>" + item.userId + "</td>"
-								text += "<td>" + item.qField + "</td>"
-								text += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+item.qNum+"&prodId="+item.prodId+"'>" + item.qTitle + "</td>"
-								text += "<td>" + item.qRegdate + "</td>"
-								if(item.qShowstatus == '0'){
-									text += "<td id='securityCheck'><img src='images/security.png' width='20' height='20'/></td>"	
+	   			   		var str="<table><tr>";
+	   			   		str += "<th> No. </th>";
+						str += "<th> ID </th>";
+						str += "<th> Category </th>";
+						str += "<th> Title </th>";
+						str += "<th> Date </th>";
+						str += "<th> public | private </th>";	
+						str += "</tr>"
+   							$.each(result, function(index , questionDTO){
+			   				//alert(questionDTO.qNum +"," + questionDTO.answerList)
+								str += "<tr>"
+								str += "<td>"+ questionDTO.qNum +"</td>"
+								str += "<td>"+ questionDTO.userId +"</td>"
+								str += "<td>"+ questionDTO.qField +"</td>"
+								str += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+questionDTO.qNum+"&prodId="+questionDTO.prodId+"'>" + questionDTO.qTitle + "</td>"
+								str += "<td>"+ questionDTO.qRegdate +"</td>"
+								if(questionDTO.qShowstatus == '0'){
+									str += "<td id='securityCheck'><img src='images/security.png' width='20' height='20'/></td>"	
 								}else{
-									text += "<td id='securityCheck'><img src='images/public.svg' width='20' height='20'/></td>"	
+									str += "<td id='securityCheck'><img src='images/public.svg' width='20' height='20'/></td>"	
 								}
-								text += "</tr>"
-							});
-								text += "</table>"
-							let show = ""
-					//겹치는 css클래스 명이 있을 경우 , id 를 줘서 unique 하게 처리하면 됨 
-					//브라우저에서 지원하는 소스코드 활용해서 css 적용해보면서 할 것!  
-					//->미리 어떤식으로 적용되는지 확인 후, 실제 코드에서 변경해 주면됨 
-					//$(".col-md-7").after(str);//형제노드로추가되는 것. 
-					$("#minjoo2").html(text);// 해당영역 안에 추가되는 것 , 덮어쓰기됨  
-					
-	   				 }, //성공했을때 함수
-	   			 	error: function(err){
-	   				 alert(err+"발생했어요^^")
-	   			 	} //오류발생했을때 함수 
+								str += "</tr>"
+			   					
+			   					$.each(questionDTO.answerList, function(index, answerDTO) {
+			   					  		
+									str += "<tr>"
+									str += "<td>" + answerDTO.aNum + "</td>"
+									str += "<td>" + answerDTO.aAnsId + "</td>"
+									str += "<td>" + questionDTO.qField + " 답변</td>"
+									str += "<td><a href='front?key=question&methodName=selectByAnswerNum&aNum="+answerDTO.aNum+"&qNum="+questionDTO.qNum+"'><img src='images/reply.jpeg' width='20' height='20'/>" + questionDTO.qTitle + "</td>"
+									str += "<td>" + answerDTO.aRegdate + "</td>"
+									if(questionDTO.qShowstatus == '0'){
+									str += "<td id='securityCheck'><img src='images/security.png' width='20' height='20'/></td>"	
+									}else{
+									str += "<td id='securityCheck'><img src='images/public.svg' width='20' height='20'/></td>"	
+									}
+									str += "</tr>"
+									str += "<tr>"
+									
+								})//end of 2nd each
+			   			
+			   							
+							})//end of 1st each
+	   			   			$("#minjoo2").html(str)
+	   							
+	   			 		}, //성공했을때 함수
+	   			 		error: function(err){
+	   				 	alert(err+"발생했어요^^")
+	   			 		} //오류발생했을때 함수 
 				});//ajax끝
 	   			 
-	   		 }); // end of on
+	   		}); // end of on
 	   		 
 	   		 
 	   		

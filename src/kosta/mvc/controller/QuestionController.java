@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import kosta.mvc.dto.AnswerDTO;
 import kosta.mvc.dto.ProductDTO;
 import kosta.mvc.dto.QuestionDTO;
 import kosta.mvc.dto.ReviewDTO;
+import kosta.mvc.service.AnswerService;
+import kosta.mvc.service.AnswerServiceImpl;
 import kosta.mvc.service.ProductService;
 import kosta.mvc.service.ProductServiceImpl;
 import kosta.mvc.service.QuestionService;
@@ -25,7 +28,7 @@ public class QuestionController implements Controller {
 	private QuestionService questionService = new QuestionServiceImpl();
 	private ProductService productService = new ProductServiceImpl();
 	private ReviewService reviewService = new ReviewServiceImpl();
-
+	private AnswerService answerService = new AnswerServiceImpl();
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
@@ -62,13 +65,6 @@ public class QuestionController implements Controller {
 		 String qFiles= m.getParameter("qFiles");
 		 String qShowstatus= m.getParameter("qShowstatus");
 		 
-		 System.out.println(prodId);
-		 System.out.println(qField);
-		 System.out.println(qTitle);
-		 System.out.println(qContent);
-		 System.out.println(qShowstatus);
-		 
-		 
 		 QuestionDTO  question = new QuestionDTO(0, userId, Integer.parseInt(prodId), qField, qTitle, qContent, 
 				 qFiles, null, Integer.parseInt(qShowstatus));
 		
@@ -88,7 +84,9 @@ public class QuestionController implements Controller {
 			request.setAttribute("question", question);
 			
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("product-single.jsp");
+			mv.setViewName("front?key=prod&methodName=selectByProductDetail&prodId="+prodId);
+			mv.setRedirect(true);
+			//mv.setViewName("product-single.jsp");
 			return mv;
 	}
 	
@@ -212,5 +210,127 @@ public class QuestionController implements Controller {
 		return mv;	
 	}
 	
+	
+	/**
+	 * answer insertForm
+	 * */
+	public ModelAndView answerForm(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
 
+		response.setContentType("text/html;charset=UTF-8");
+//		String userId = request.getParameter("userId"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+//		String prodId = request.getParameter("prodId"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+		String qNum = request.getParameter("qNum"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+		String aAnsId = request.getParameter("aAnsId"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+		String prodId = request.getParameter("prodId"); //front쪽을 잘 확인해서 넘어오는 값 연결해주는 그 이름을 잘 확인할 것!
+		
+		QuestionDTO question = questionService.selectByQNum(Integer.parseInt(qNum));
+		List<ReviewDTO> review = reviewService.selectByProdId(Integer.parseInt(prodId));
+		
+		request.setAttribute("question", question); //${question}
+		request.setAttribute("review", review); //${question}
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("answerInsert.jsp");
+				
+		return mv;
+	}
+	
+	/**
+	 * answer Insert
+	 * */
+	public ModelAndView answerInsert(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
+		
+
+		//session 에서 가져와야
+			String qNum = request.getParameter("qNum");
+			String aContent = request.getParameter("aContent");
+			String aAnsId = request.getParameter("aAnsId");
+			String prodId = request.getParameter("prodId");
+		
+
+			System.out.println(qNum);
+			System.out.println(aContent);
+			System.out.println(aAnsId);
+
+		 
+			AnswerDTO answer = new AnswerDTO(0, Integer.parseInt(qNum), aContent, aAnsId, null);
+			questionService.answerBoardInsert(answer);
+			
+			ProductDTO prod = productService.selectByProductDetail(Integer.parseInt(prodId));
+			List<ReviewDTO> review = reviewService.selectByProdId(Integer.parseInt(prodId));
+			List<QuestionDTO> question = questionService.selectByProdId(Integer.parseInt(prodId));
+			
+			request.setAttribute("prod", prod);
+			request.setAttribute("review", review);
+			request.setAttribute("question", question);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("front?key=prod&methodName=selectByProductDetail&prodId="+prodId);
+			mv.setRedirect(true);
+			return mv;
+	}
+	
+
+	/**
+	 * 
+	 * answer 번호로  답변 상세보기 
+	 * selectByQuestionNum
+	 * */
+	public ModelAndView selectByAnswerNum(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
+
+		// session 에서 가져와야
+		//String userId = "kim";
+
+		String qNum = request.getParameter("qNum");
+		String aNum = request.getParameter("aNum");
+		System.out.println(qNum);
+		System.out.println(aNum);
+
+		QuestionDTO question = questionService.selectByQNum(Integer.parseInt(qNum));
+		AnswerDTO answer = answerService.selectByANum(Integer.parseInt(aNum));
+		request.setAttribute("question", question);
+		request.setAttribute("answer", answer);
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("answerRead.jsp");
+		return mv;
+
+	}
+
+
+	
+	/**
+	 * 답변삭제 
+	 * deleteAnswer
+	 * */
+	public ModelAndView deleteAnswer(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
+		String qNum = request.getParameter("qNum");
+		String aNum = request.getParameter("aNum");
+		String prodId = request.getParameter("prodId");
+		
+		
+		System.out.println("minjoo");
+		System.out.println(qNum);
+		System.out.println(aNum);
+		System.out.println(prodId);
+		answerService.delete(Integer.parseInt(aNum));
+		
+
+		
+		ProductDTO prod = productService.selectByProductDetail(Integer.parseInt(prodId));
+		List<ReviewDTO> review = reviewService.selectByProdId(Integer.parseInt(prodId));
+		List<QuestionDTO> question = questionService.selectByProdId(Integer.parseInt(prodId));
+		
+		request.setAttribute("prod", prod);
+		request.setAttribute("review", review);
+		request.setAttribute("question", question);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("product-single.jsp");
+		return mv;	
+	}
+	
+	
 }

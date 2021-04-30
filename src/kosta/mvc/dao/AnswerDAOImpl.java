@@ -84,7 +84,7 @@ public class AnswerDAOImpl implements AnswerDAO {
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			
+			ps.setInt(1, aNum);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
