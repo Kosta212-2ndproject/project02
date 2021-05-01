@@ -255,105 +255,24 @@
 		</div>
 	</section>
 
+<!-- minjoo // recent notice //start -->		
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+          	<span class="subheading">Notice</span>
+            <h2>Recent Notice</h2>
+          </div>
+        </div>
+        
+        <div class="row d-flex" id="minjooRecent">
+   
+       
+        </div>
+      </div>
+    </section>	
 
-
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center mb-5">
-				<div class="col-md-7 heading-section text-center ftco-animate">
-					<span class="subheading">Blog</span>
-					<h2>Recent Blog</h2>
-				</div>
-			</div>
-			<div class="row d-flex">
-				<div class="col-lg-6 d-flex align-items-stretch ftco-animate">
-					<div class="blog-entry d-flex">
-						<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_1.jpg');"> </a>
-						<div class="text p-4 bg-light">
-							<div class="meta">
-								<p>
-									<span class="fa fa-calendar"></span> 23 April 2020
-								</p>
-							</div>
-							<h3 class="heading mb-3">
-								<a href="#">The Recipe from a Winemaker’s Restaurent</a>
-							</h3>
-							<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-							<a href="#" class="btn-custom">
-								Continue <span class="fa fa-long-arrow-right"></span>
-							</a>
-
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6 d-flex align-items-stretch ftco-animate">
-					<div class="blog-entry d-flex">
-						<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_2.jpg');"> </a>
-						<div class="text p-4 bg-light">
-							<div class="meta">
-								<p>
-									<span class="fa fa-calendar"></span> 23 April 2020
-								</p>
-							</div>
-							<h3 class="heading mb-3">
-								<a href="#">The Recipe from a Winemaker’s Restaurent</a>
-							</h3>
-							<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-							<a href="#" class="btn-custom">
-								Continue <span class="fa fa-long-arrow-right"></span>
-							</a>
-
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6 d-flex align-items-stretch ftco-animate">
-					<div class="blog-entry d-flex">
-						<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_3.jpg');"> </a>
-						<div class="text p-4 bg-light">
-							<div class="meta">
-								<p>
-									<span class="fa fa-calendar"></span> 23 April 2020
-								</p>
-							</div>
-							<h3 class="heading mb-3">
-								<a href="#">The Recipe from a Winemaker’s Restaurent</a>
-							</h3>
-							<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-							<a href="#" class="btn-custom">
-								Continue <span class="fa fa-long-arrow-right"></span>
-							</a>
-
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6 d-flex align-items-stretch ftco-animate">
-					<div class="blog-entry d-flex">
-						<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_4.jpg');"> </a>
-						<div class="text p-4 bg-light">
-							<div class="meta">
-								<p>
-									<span class="fa fa-calendar"></span> 23 April 2020
-								</p>
-							</div>
-							<h3 class="heading mb-3">
-								<a href="#">The Recipe from a Winemaker’s Restaurent</a>
-							</h3>
-							<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-							<a href="#" class="btn-custom">
-								Continue <span class="fa fa-long-arrow-right"></span>
-							</a>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-
-
-
-
+<!-- minjoo // recent notice //end -->		
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">
 		<svg class="circular" width="48px" height="48px">
@@ -376,6 +295,52 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="js/google-map.js"></script>
 	<script src="js/main.js"></script>
+
+<script type="text/javascript">
+
+$(function () {
+	
+		$.ajax({
+				url:"${path}/recentNotice" , // 서버요청주소 
+		 		type: "post", //method방식 = 전송방식(get, post, put, delete)
+		 		dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
+		 		success : function(result){
+					//alert(result)
+					let str ="";
+		 			$.each(result, function(i, notice) {
+		 				//alert(notice.nNum +" , "+ notice.nImage +" , "+ notice.nRegdate)
+		 				
+						str += `<div class="col-lg-6 d-flex align-items-stretch ftco-animate fadeInUp ftco-animated">`;
+						str += `<div class="blog-entry d-md-flex">`;
+						str += "<a href='front?key=notice&methodName=selectByNoticeNumforUser&nNum="+notice.nNum+"' class='block-20 img' style='background-image: url("+notice.nImage+");'> </a>";
+						str += `<div class="text p-4 bg-light">`;
+						str += `<div class="meta">`;
+						str += `<p>`;
+						str += "<span class='fa fa-calendar'></span>"+notice.nRegdate;
+						str += `</p>`;
+						str += `</div>`;
+						str += `<h3 class="heading mb-3">`;
+						str += "<a href='front?key=notice&methodName=selectByNoticeNum&nNum="+notice.nNum+"'>"+notice.nTitle+"</a>";
+						str += `</h3>`;
+						str += "<p>"+notice.nContent+"</p>";
+						str += `<a href="#" class="btn-custom">views  `;
+						str +=  notice.nViewCount+"  <span class='fa fa-eye'></span>";
+						str += `</a></div></div></div>`;
+		 				
+		 				
+		 			});//end of each
+		 			
+		 			$("#minjooRecent").html(str); 
+		 		},
+		 		error: function(err){
+   				 	alert(err+"발생했어요^^")
+   			 	} //
+		});//end of ajax
+})//end of function
+
+
+
+</script>
 
 </body>
 </html>

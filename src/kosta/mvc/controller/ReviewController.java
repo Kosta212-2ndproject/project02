@@ -74,7 +74,7 @@ public class ReviewController implements Controller {
 //		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 //		String reviewId = m.getParameter("reviewId");
 		String reviewId =request.getParameter("reviewId");
-		
+		//String userId = (String) request.getSession().getAttribute("userId");
 		ReviewDTO review = reviewService.selectReview(Integer.parseInt(reviewId), true);
 		request.setAttribute("review", review); //${requestScope.review}
 		

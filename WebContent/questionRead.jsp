@@ -109,9 +109,22 @@
                     <input type=hidden name="aAnsId" value="admin"> 
 					<input type=hidden name="key" value="question"> 
 					<input type=hidden name="methodName"> 
-					<input type=button value="edit" onClick="sendUpdate()" class="btn py-3 px-4 btn-primary"> 
-					<input type=button value="delete" onClick="sendDelete()" class="btn py-3 px-4 btn-primary">
-					<input type=button value="answer" onClick="sendAnswer()" class="btn py-3 px-4 btn-primary">
+					
+					<c:set var="id" value="${userId}"/>
+					<c:set var="questionUserId" value="${question.userId}"/>
+					<c:if test="${id eq questionUserId}">
+						<input type=button value="edit" onClick="sendUpdate()" class="btn py-3 px-4 btn-primary"> 
+						<input type=button value="delete" onClick="sendDelete()" class="btn py-3 px-4 btn-primary">
+                    </c:if>
+<!-- for admin -->                    
+					<c:set var="id" value="${userId}"/>
+					<c:set var="adminId" value="203448231"/>
+					<c:if test="${id eq adminId}">
+						<input type=button value="answer" onClick="sendAnswer()" class="btn py-3 px-4 btn-primary">
+                    </c:if>
+					
+					
+					
                     
                   </div>
 

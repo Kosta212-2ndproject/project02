@@ -210,6 +210,8 @@
 								action="${path}/front?key=question&methodName=insert" method="post" 
 								onSubmit='return checkValid()' enctype="multipart/form-data" id="contactForm" novalidate="novalidate">
 									<input type="hidden" name="prodId" value="${prod.prodId}"/>
+									<input type="hidden" name="userId" value="${session.userId}"/>
+									
 									
 									<div class="col-md-12">
 										<div class="form-group">
@@ -427,12 +429,13 @@
 		//Q&A Board
 		//alert("${prod.prodId}")
 			$(document).on("click","#v-pills-5-tab", function(){ 
-				//alert(11)				
+				var sessionId = "<%=session.getAttribute("userId")%>"
+				alert(sessionId)				
 				$.ajax({
 	   			 		url:"${path}/boardSelect" , // 서버요청주소 
 	   			 		type: "post", //method방식 = 전송방식(get, post, put, delete)
 	   			 		dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
-	   		     		data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보 
+	   		     		data: {prodId : "${prod.prodId}"} ,  //서버에게 보낼 parameter정보 
 	   			 		success : function(result){
 	   			   		//alert(result)
 	   			   		var str="<table><tr>";
@@ -449,7 +452,16 @@
 								str += "<td>"+ questionDTO.qNum +"</td>"
 								str += "<td>"+ questionDTO.userId +"</td>"
 								str += "<td>"+ questionDTO.qField +"</td>"
-								str += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+questionDTO.qNum+"&prodId="+questionDTO.prodId+"'>" + questionDTO.qTitle + "</td>"
+								if(questionDTO.qShowstatus == '0'){
+									if(sessionId == "203448231" || sessionId == questionDTO.userId){
+										str += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+questionDTO.qNum+"&prodId="+questionDTO.prodId+"'>" + questionDTO.qTitle + "</td>"
+										
+									}else{
+										str += "<td>" + questionDTO.qTitle + "</td>"
+									}
+								}else{
+										str += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+questionDTO.qNum+"&prodId="+questionDTO.prodId+"'>" + questionDTO.qTitle + "</td>"
+								}
 								str += "<td>"+ questionDTO.qRegdate +"</td>"
 								if(questionDTO.qShowstatus == '0'){
 									str += "<td id='securityCheck'><img src='images/security.png' width='20' height='20'/></td>"	
