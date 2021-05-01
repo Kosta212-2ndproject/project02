@@ -45,9 +45,9 @@
 				class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate mb-5 text-center">
 					<p class="breadcrumbs mb-0">
-						<span class="mr-2"><a href="index.jsp">Home <i
+						<span class="mr-2"><a href="indexAdmin.jsp">Home <i
 								class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a
-							href="front?key=notice&methodName=select">Q & A <i
+							href="front?key=question&methodName=selectAllforAdmin">Q & A <i
 								class="fa fa-chevron-right"></i></a></span> <span>Q & A List <i
 							class="fa fa-chevron-right"></i></span>
 					</p>
@@ -78,7 +78,7 @@
           		<div class="col-md-12 nav-link-wrap">
             	<div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 <!-- Tabmenu  -->
-              <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Select Menu</a>
+              <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true"> Menu</a>
 
            	 <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">All </a>
 
@@ -95,7 +95,7 @@
 <!-- 1번째 탭메뉴의 contents All -->
               <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
               	<div class="p-4" >
-              	<h2>Welcome to Admin's Menu</h2>
+              	<h2 style="text-align: center;">Welcome to Admin's Menu</h2>
               	</div>
               </div>
 <!-- 2번째 탭메뉴의 contents  -->

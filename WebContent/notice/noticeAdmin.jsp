@@ -53,7 +53,7 @@
 				class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate mb-5 text-center">
 					<p class="breadcrumbs mb-0">
-						<span class="mr-2"><a href="index.html">Home <i
+						<span class="mr-2"><a href="indexAdmin.jsp">Home <i
 								class="fa fa-chevron-right"></i></a></span> <span>Notice <i
 							class="fa fa-chevron-right"></i></span>
 					</p>
@@ -125,7 +125,7 @@
 
 								<ul>
 									<c:if test="${(startPage-p.blockcount) > 0}">
-										<li><a href="front?key=notice&methodName=select&pageNo=${startPage-1}">&lt;</a></li>
+										<li><a href="front?key=notice&methodName=selectAdmin&pageNo=${startPage-1}">&lt;</a></li>
 									</c:if>
 
 									<c:forEach var='i' begin='${startPage}' end='${(startPage-1)+p.blockcount}'>
@@ -133,12 +133,12 @@
 											<c:set var="doneLoop" value="true" />
 										</c:if>
 										<c:if test="${not doneLoop}">
-											<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=notice&methodName=select&pageNo=${i}"> ${i} </a>
+											<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=notice&methodName=selectAdmin&pageNo=${i}"> ${i} </a>
 										</c:if>
 
 									</c:forEach>
 									<c:if test="${(startPage+p.blockcount)<=p.pageCnt}">
-										<li><a href="front?key=notice&methodName=select&pageNo=${startPage+p.blockcount}">&gt;</a></li>
+										<li><a href="front?key=notice&methodName=selectAdmin&pageNo=${startPage+p.blockcount}">&gt;</a></li>
 									</c:if>
 								</ul>
 							</div>
@@ -202,4 +202,4 @@
 
 </body>
 </html>
-<jsp:include page="../common/footer.jsp" />
+<jsp:include page="../common/footerAdmin.jsp" />

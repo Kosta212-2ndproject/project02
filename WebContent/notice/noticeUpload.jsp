@@ -60,7 +60,7 @@ function checkValid() {
 					<p class="breadcrumbs mb-0">
 						<span class="mr-2"><a href="index.jsp">Home <i
 								class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a
-							href="front?key=notice&methodName=select">Notice <i
+							href="front?key=notice&methodName=selectAdmin">Notice <i
 								class="fa fa-chevron-right"></i></a></span> <span>Notice Single <i
 							class="fa fa-chevron-right"></i></span>
 					</p>

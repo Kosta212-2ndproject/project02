@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:include page="../common/header.jsp" />
+<jsp:include page="../common/headerAdmin.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +56,7 @@
 					<p class="breadcrumbs mb-0">
 						<span class="mr-2"><a href="index.jsp">Home <i
 								class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a
-							href="front?key=notice&methodName=select">Notice <i
+							href="front?key=notice&methodName=selectAdmin">Notice <i
 								class="fa fa-chevron-right"></i></a></span> <span>Notice Single <i
 							class="fa fa-chevron-right"></i></span>
 					</p>
@@ -259,4 +259,4 @@
 
 </body>
 </html>
-<jsp:include page="../common/footer.jsp" />
+<jsp:include page="../common/footerAdmin.jsp" />
