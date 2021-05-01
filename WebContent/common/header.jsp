@@ -49,23 +49,6 @@
 						</a>
 					</p>
 				</div>
-				<div class="col-md-6 d-flex justify-content-md-end">
-					<div class="social-media mr-4">
-						<p class="mb-0 d-flex">
-							<a href="#" class="d-flex align-items-center justify-content-center">
-								<span class="fa fa-facebook"><i class="sr-only">Facebook</i></span>
-							</a>
-							<a href="#" class="d-flex align-items-center justify-content-center">
-								<span class="fa fa-twitter"><i class="sr-only">Twitter</i></span>
-							</a>
-							<a href="#" class="d-flex align-items-center justify-content-center">
-								<span class="fa fa-instagram"><i class="sr-only">Instagram</i></span>
-							</a>
-							<a href="#" class="d-flex align-items-center justify-content-center">
-								<span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span>
-							</a>
-						</p>
-					</div>
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media mr-4">
 			    		<p class="mb-0 d-flex">
@@ -107,16 +90,14 @@
 				<input type="submit" value="검색">
 			</form>
 
-      <a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" class="flaticon-shopping-bag"></a><p>
-      <a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}" class="flaticon-heart"></a>
 
 			<div class="order-lg-last btn-group">
 
 
-				<a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<span class="flaticon-shopping-bag"></span>
+				<a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" class="flaticon-shopping-bag"></a><br>
+      			<a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}" class="flaticon-heart"></a>
+
 					<div class="d-flex justify-content-center align-items-center">
-						<small>3</small>
 					</div>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">
