@@ -1,7 +1,6 @@
 package kosta.mvc.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,7 +11,6 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kosta.mvc.dto.NoticeDTO;
-import kosta.mvc.dto.ReviewDTO;
 import kosta.mvc.service.NoticeService;
 import kosta.mvc.service.NoticeServiceImpl;
 
@@ -86,7 +84,7 @@ public class NoticeController implements Controller {
 	}
 	
 	/**
-	 * 회원을 위한 공지세 페이지 
+	 * 회원을 위한 공지상세 페이지 
 	 * */
 	public ModelAndView selectByNoticeNumforUser(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {

@@ -366,11 +366,7 @@
 		//var isRun=false;
 		$(document).on("click","#v-pills-3-tab", function(){
 			//alert(22)
-				/* if(isRun){
-					//alert("processing...");
-					return;
-				}
-				isRun = true; */
+			var sessionId = "<%=session.getAttribute("userId")%>"
 			$.ajax({
    			 url:"${path}/reviewSelect" , // 서버요청주소
    			 type: "post", //method방식 = 전송방식(get, post, put, delete)
@@ -430,7 +426,7 @@
 		//alert("${prod.prodId}")
 			$(document).on("click","#v-pills-5-tab", function(){ 
 				var sessionId = "<%=session.getAttribute("userId")%>"
-				alert(sessionId)				
+				//alert(sessionId)				
 				$.ajax({
 	   			 		url:"${path}/boardSelect" , // 서버요청주소 
 	   			 		type: "post", //method방식 = 전송방식(get, post, put, delete)
@@ -447,7 +443,7 @@
 						str += "<th> public | private </th>";	
 						str += "</tr>"
    							$.each(result, function(index , questionDTO){
-			   				//alert(questionDTO.qNum +"," + questionDTO.answerList)
+			   				//alert(questionDTO.qNum +"," + questionDTO.answerList) 
 								str += "<tr>"
 								str += "<td>"+ questionDTO.qNum +"</td>"
 								str += "<td>"+ questionDTO.userId +"</td>"

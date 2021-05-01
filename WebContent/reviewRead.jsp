@@ -108,14 +108,17 @@
 					<input type=hidden name="key" value="review"> 
 					<input type=hidden name="methodName"> 
 					
+					<!-- 	<input type=button value="edit" onClick="sendUpdate()" class="btn py-3 px-4 btn-primary"> 
+						<input type=button value="delete" onClick="sendDelete()" class="btn py-3 px-4 btn-primary"> -->
+					
 					<c:set var="id" value="${userId}"/>
-					<c:set var="reviewId" value="${review.reviewId}"/>
+					<c:set var="reviewId" value="${review.userId}"/>
 					<c:if test="${id eq reviewId}">
 						<input type=button value="edit" onClick="sendUpdate()" class="btn py-3 px-4 btn-primary"> 
 						<input type=button value="delete" onClick="sendDelete()" class="btn py-3 px-4 btn-primary">
-                    </c:if>
-                    
-                <%--<%
+                    </c:if> 
+                  
+          			<%-- <%
                     	String userId = (String)request.getSession().getAttribute("userId");
                     	if(userId.equals("${review.reviewId}")){
                     %>
@@ -125,7 +128,13 @@
 						
 					<%
                     	}
-					%>	 --%>
+					%>	  --%>
+					
+					
+					
+		
+					
+					
                   </div>
 
                 </form>
