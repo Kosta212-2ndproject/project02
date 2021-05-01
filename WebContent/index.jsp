@@ -151,109 +151,37 @@
 	</section>
 
 	<br>
+	
+	<!-- minjoo /review start -->
 
-	<section class="ftco-section testimony-section img" style="background-image: url(images/bg_4.jpg);">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row justify-content-center mb-5">
-				<div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-					<span class="subheading">Testimonial</span>
-					<h2 class="mb-3">Happy Clients</h2>
-				</div>
-			</div>
-			<div class="row ftco-animate">
-				<div class="col-md-12">
-					<div class="carousel-testimony owl-carousel ftco-owl">
-						<div class="item">
-							<div class="testimony-wrap py-4">
-								<div class="icon d-flex align-items-center justify-content-center">
-									<span class="fa fa-quote-left">
-								</div>
-								<div class="text">
-									<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-									<div class="d-flex align-items-center">
-										<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-										<div class="pl-3">
-											<p class="name">Roger Scott</p>
-											<span class="position">Marketing Manager</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="testimony-wrap py-4">
-								<div class="icon d-flex align-items-center justify-content-center">
-									<span class="fa fa-quote-left">
-								</div>
-								<div class="text">
-									<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-									<div class="d-flex align-items-center">
-										<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-										<div class="pl-3">
-											<p class="name">Roger Scott</p>
-											<span class="position">Marketing Manager</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="testimony-wrap py-4">
-								<div class="icon d-flex align-items-center justify-content-center">
-									<span class="fa fa-quote-left">
-								</div>
-								<div class="text">
-									<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-									<div class="d-flex align-items-center">
-										<div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
-										<div class="pl-3">
-											<p class="name">Roger Scott</p>
-											<span class="position">Marketing Manager</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="testimony-wrap py-4">
-								<div class="icon d-flex align-items-center justify-content-center">
-									<span class="fa fa-quote-left">
-								</div>
-								<div class="text">
-									<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-									<div class="d-flex align-items-center">
-										<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-										<div class="pl-3">
-											<p class="name">Roger Scott</p>
-											<span class="position">Marketing Manager</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="testimony-wrap py-4">
-								<div class="icon d-flex align-items-center justify-content-center">
-									<span class="fa fa-quote-left">
-								</div>
-								<div class="text">
-									<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-									<div class="d-flex align-items-center">
-										<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-										<div class="pl-3">
-											<p class="name">Roger Scott</p>
-											<span class="position">Marketing Manager</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <section class="ftco-section testimony-section img" style="background-image: url(images/bg_4.jpg);">
+    	<div class="overlay"></div>
+      <div class="container">
+      
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+          	<span class="subheading">Best reviews</span>
+            <h2 class="mb-3">Happy Clients</h2>
+          </div>
+        </div>
+<!-- loop -->        
+       <div class="row ftco-animate">
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+            
+<!-- contents -->            
+              <div class="item" id="minjoobestreview">
+                  </div> 
+                </div> 
+              </div>
+<!-- contents -->          
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+<!-- minjoo review end -->
 
 <!-- minjoo // recent notice //start -->		
     <section class="ftco-section">
@@ -331,6 +259,47 @@ $(function () {
 		 			});//end of each
 		 			
 		 			$("#minjooRecent").html(str); 
+		 		},
+		 		error: function(err){
+   				 	alert(err+"발생했어요^^")
+   			 	} //
+		});//end of ajax
+})//end of function
+
+
+
+</script>
+<script type="text/javascript">
+
+$(function () {
+	
+		$.ajax({
+				url:"${path}/bestReview" , // 서버요청주소 
+		 		type: "post", //method방식 = 전송방식(get, post, put, delete)
+		 		dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
+		 		success : function(result){
+					//alert(result)
+					 let str ="";
+		 			$.each(result, function(i, review) {
+		 				//alert(notice.nNum +" , "+ notice.nImage +" , "+ notice.nRegdate)
+		 				
+		 				
+		 			str += `<div class="testimony-wrap py-4">`;
+		 			str += `<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>`;
+		 			str += `<div class="text">`;
+		 			str += `<div class="d-flex align-items-center">`;
+		 			str += "<div class='user-img' style='background-image: url("+review.reviewImgUrl+");'></div>";
+		 			str += `<div class="pl-3">`
+		 			str += "<p class='mb-4'>"+review.reviewContent+"</p>";
+		 			//str += `<p class="name">Roger Scott</p>
+		 			str += "<span class='position'>"+review.userId+"</span>";
+		 			//str += `</div></div></div>`;
+		 			str += `</div></div></div></div>`;
+		 				
+		 				
+		 			});//end of each 
+		 			
+		 			$(".owl-stage-outer").html(str); 
 		 		},
 		 		error: function(err){
    				 	alert(err+"발생했어요^^")
