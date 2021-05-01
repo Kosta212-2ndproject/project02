@@ -202,7 +202,7 @@
 				$.each(result, function(index, item) {
 					str += "<tr>"
 					str += "<td>" + item.userId + "</td>"
-					str += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"'>" + item.reviewTitle + "</td>"
+					str += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"&reviewUserId="+item.userId+"'>" + item.reviewTitle + "</td>"
 					str += "<td>" + item.reviewContent + "</td>"
 					str += "<td>" + item.reviewStarScope + "</td>"
 					str += "<td>" + item.reviewRegdate + "</td>"

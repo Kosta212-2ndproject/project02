@@ -92,6 +92,9 @@
 					<label for="userId">User ID </label>
 						<h3>${question.userId}</h3>
 						<hr>
+					<label for="userId">Product ID </label>
+						<h3>${question.prodId}</h3>
+						<hr>
 					<label for="reviewRegdate">Date </label>
 						<h3>${question.qRegdate}</h3>
 						<hr>

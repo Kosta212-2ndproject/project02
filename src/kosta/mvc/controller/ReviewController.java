@@ -77,10 +77,17 @@ public class ReviewController implements Controller {
 		String userId = (String) request.getSession().getAttribute("userId");
 		System.out.println(userId);
 		String reviewId =request.getParameter("reviewId");
-		//String userId = (String) request.getSession().getAttribute("userId");
-		ReviewDTO review = reviewService.selectReview(Integer.parseInt(reviewId), true);
+		String reviewUserId =request.getParameter("reviewUserId");
+		ReviewDTO review = null;
+		if(userId.equals(reviewUserId)) {
+			
+			 review = reviewService.selectReview(Integer.parseInt(reviewId), false);
+		}else {
+			
+			 review = reviewService.selectReview(Integer.parseInt(reviewId), true);
+		}
 		request.setAttribute("review", review); //${requestScope.review}
-		request.setAttribute("userId", userId);
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("reviewRead.jsp");
 		

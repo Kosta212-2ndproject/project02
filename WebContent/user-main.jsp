@@ -99,6 +99,14 @@
 
 	             </div>
               </div>			
+
+<!-- 3번째 탭메뉴의 contents  -->
+
+              <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
+              	<div class="p-4" id="minjooQuestionAll">
+
+	             </div>
+              </div>			
               </div>
             </div>
             
@@ -231,9 +239,9 @@
 	$(document).ready(function() {
 		//Q&A Board
 			$(document).on("click","#v-pills-3-tab", function(){ 
-				//alert(11)				
+				var sessionId = "<%=session.getAttribute("userId")%>"		
 				$.ajax({
-	   			 		url:"${path}/reviewSelectByUser" , // 서버요청주소   
+	   			 		url:"${path}/questionSelectByUser" , // 서버요청주소   
 	   			 		type: "post", //method방식 = 전송방식(get, post, put, delete)
 	   			 		dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
 	   		     		//data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보 
@@ -282,7 +290,7 @@
 			   			
 			   							
 							})//end of 1st each
-	   			   			$("#minjooReviewAll").html(str)
+	   			   			$("#minjooQuestionAll").html(str)
 	   							
 	   			 		}, //성공했을때 함수
 	   			 		error: function(err){

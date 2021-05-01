@@ -371,7 +371,7 @@
    			 url:"${path}/reviewSelect" , // 서버요청주소
    			 type: "post", //method방식 = 전송방식(get, post, put, delete)
    			 dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
-   		     data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보 
+   		     data: {prodId : "${prod.prodId}"} ,  //서버에게 보낼 parameter정보 
    			 success : function(result){
    			   //alert(result)
    			  /* 	setTimeout(function () {
@@ -388,7 +388,7 @@
 				$.each(result, function(index, item) {
 					str += "<tr>"
 					str += "<td>" + item.userId + "</td>"
-					str += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"'>" + item.reviewTitle + "</td>"
+					str += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"&reviewUserId="+item.userId+"'>" + item.reviewTitle + "</td>"
 					str += "<td>" + item.reviewContent + "</td>"
 					str += "<td>" + item.reviewStarScope + "</td>"
 					str += "<td>" + item.reviewRegdate + "</td>"

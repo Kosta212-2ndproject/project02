@@ -87,6 +87,9 @@
 					<label for="userId">User ID </label>
 						<h3>${review.userId}</h3>
 						<hr>
+					<label for="prodId">Product ID </label>
+						<h3>${review.prodId}</h3>
+						<hr>
 						<c:forEach var="i" begin="1" end="${review.reviewStarScope}">
 							<i class="fa fa-star"></i>
 						</c:forEach><span>${review.reviewStarScope}.0</span>
