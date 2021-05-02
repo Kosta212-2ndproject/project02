@@ -2,6 +2,7 @@ package kosta.mvc.response;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -17,6 +18,12 @@ public class Payment {
 	
 	@SerializedName("pg_provider")
 	String pg_provider;
+
+	@SerializedName("pg_id")
+	String pg_id;
+
+	@SerializedName("channel")
+	String channel;
 	
 	@SerializedName("pg_tid")
 	String pg_tid;
@@ -35,6 +42,9 @@ public class Payment {
 	
 	@SerializedName("card_quota")
 	int card_quota;
+
+	@SerializedName("card_type")
+	int card_type;
 	
 	@SerializedName("vbank_name")
 	String vbank_name;
@@ -74,7 +84,10 @@ public class Payment {
 	
 	@SerializedName("custom_data")
 	String custom_data;
-	
+
+	@SerializedName("user_agent")
+	String user_agent;
+
 	@SerializedName("status")
 	String status;
 	
@@ -112,6 +125,10 @@ public class Payment {
 		return pg_provider;
 	}
 
+	public String getPgId() { return pg_id; }
+
+	public String getChannel() { return channel; }
+
 	public String getPgTid() {
 		return pg_tid;
 	}
@@ -131,6 +148,8 @@ public class Payment {
 	public int getCardQuota() {
 		return card_quota;
 	}
+
+	public int getCardType() { return card_type; }
 
 	public String getCardNumber() { return card_number; }
 
@@ -185,6 +204,8 @@ public class Payment {
 	public String getCustomData() {
 		return custom_data;
 	}
+
+	public String getUser_agent() { return user_agent; }
 
 	public String getStatus() {
 		return status;
