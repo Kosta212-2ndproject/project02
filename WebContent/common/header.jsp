@@ -20,13 +20,13 @@
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/style.css">
 
-<SCRIPT language=javascript>
+<SCRIPT>
 	function checkValid() {
 		var f = window.document.searchForm;
 
-		if (f.keyWord.value == "") {
+		if (f.values.value == "") {
 			alert("검색어를 입력해 주세요.");
-			f.keyWord.focus();
+			f.values.focus();
 			return false;
 		}
 		return true;
@@ -49,6 +49,7 @@
 						</a>
 					</p>
 				</div>
+					
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media mr-4">
 			    		<p class="mb-0 d-flex">
@@ -143,10 +144,9 @@
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a href="index.jsp" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 					<li class="nav-item active"><a href="front?key=prod&methodName=selectAll" class="nav-link">Shop</a>
 					<li class="nav-item active"><a href="front?key=notice&methodName=select" class="nav-link">Notice</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
 				</ul>
 			</div>
 		</div>

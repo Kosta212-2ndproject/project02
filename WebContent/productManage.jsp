@@ -29,13 +29,13 @@
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/style.css">
 
-<SCRIPT language=javascript>
+<SCRIPT>
 	function checkValid() {
 		var f = window.document.optionForm;
 
-		if (f.choice.value == "0") {
+		if (f.order.value == "0") {
 			alert("선택해 주세요.");
-			f.choice.focus();
+			f.order.focus();
 			return false;
 		}
 		return true;
@@ -46,7 +46,7 @@
 </head>
 <body>
 
-	<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+	<section class="hero-wrap hero-wrap-2" style="background-image: url('images/wineproduct.jpg');" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -54,7 +54,7 @@
 					<p class="breadcrumbs mb-0">
 						<span class="mr-2"><a href="indexAdmin.jsp">
 								Home <i class="fa fa-chevron-right"></i>
-							</a></span> <span>Products <i class="fa fa-chevron-right"></i></span>
+							</a></span> <span>상품관리 <i class="fa fa-chevron-right"></i></span>
 					</p>
 					<h2 class="mb-0 bread">Products</h2>
 				</div>
@@ -67,12 +67,13 @@
 
 
 	<caption>
+		<br>
 		<h1 align="center">상품 LIST</h1>
 	</caption>
-	<span style="font-size: 30pt; margin: 20px"><a href="product-insert.jsp" class="btn btn-primary py-3 px-5 mr-2">상품등록</a></span>
+	<span style= "margin-left: 100px; margin-bottom: 0px"><a href="product-insert.jsp" class="btn btn-primary py-3 px-5 mr-2">상품등록</a></span>
 
-	<div class="row mb-4">
-		<div class="col-md-12 d-flex justify-content-between align-items-center">
+	<div class="row mb-4" style="font-size: 16pt; margin-right: 85px">
+		<div class="col-md-12 d-flex justify-content-between align-items-center" style= "margin-bottom: 0px">
 			<h4 class="product-select"></h4>
 			<form name="optionForm" action="front" method="post" onSubmit='return checkValid()'>
 				<input type="hidden" name="key" value="prod">
@@ -90,7 +91,9 @@
 				<input type="submit" value="선택">
 			</form>
 		</div>
+	
 	</div>
+	
 	<script type="text/javascript">
 		$(function() {
 			if ("${order}" != "") {
@@ -102,47 +105,47 @@
 
 
 
-	<table align="center" border="3" cellpadding="5" cellspacing="2" width="100%" bordercolordark="white" bordercolorlight="black">
+	<table align="center" border="1" cellpadding="5" cellspacing="2" width="90%" bordercolordark="white" bordercolorlight="black" margin = "10px">
 
 		<colgroup>
 			<col width="15%" />
 			<col width="30%" />
 			<col width="16%" />
-			<col width="16%" />
+			<col width="8%" />
+			<col width="14%" />
 			<col width="7%" />
-			<col width="7%" />
-			<col width="7%" />
+			
 		</colgroup>
 		<tr>
-			<td bgcolor="#00cc00">
+			<td bgcolor="#a23f25">
 				<p align="center">
-					<font color="white"><b><span style="font-size: 9pt;">모델번호</span></b></font>
+					<font color="white"><b><span style="font-size: 11pt;">모델번호</span></b></font>
 				</p>
 			</td>
-			<td bgcolor="#00cc00">
+			<td bgcolor="#b7472a">
 				<p align="center">
-					<font color="white"><b><span style="font-size: 9pt;">모델이름</span></b></font>
+					<font color="white"><b><span style="font-size: 11pt;">모델이름</span></b></font>
 				</p>
 			</td>
-			<td bgcolor="#00cc00">
+			<td bgcolor="#a23f25">
 				<p align="center">
-					<font color="white"><b><span style="font-size: 9pt;">가격</span></b></font>
+					<font color="white"><b><span style="font-size: 11pt;">가격</span></b></font>
 				</p>
 			</td>
-			<td bgcolor="#00cc00">
+			<td bgcolor="#b7472a">
 				<p align="center">
-					<font color="white"><b><span style="font-size: 9pt;">Vintage</span></b></font>
+					<font color="white"><b><span style="font-size: 11pt;">Vintage</span></b></font>
 				</p>
 			</td>
 
-			<td bgcolor="#00cc00">
+			<td bgcolor="#a23f25">
 				<p align="center">
-					<font color="white"><b><span style="font-size: 9pt;">원산지</span></b></font>
+					<font color="white"><b><span style="font-size: 11pt;">원산지</span></b></font>
 				</p>
 			</td>
-			<td bgcolor="#00cc00">
+			<td bgcolor="#b7472a">
 				<p align="center">
-					<font color="white"><b><span style="font-size: 9pt;">재고</span></b></font>
+					<font color="white"><b><span style="font-size: 11pt;">재고</span></b></font>
 				</p>
 			</td>
 
@@ -229,7 +232,7 @@
 								<c:set var="doneLoop" value="true" />
 							</c:if>
 							<c:if test="${not doneLoop}">
-								<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=prod&methodName=selectAllByAdmin&pageNo=${i}&category=${category}&values=${values}&order=${order}">${i}</a>
+								<li class="${i==pageNo?'active':page}"><a href="${path}/front?key=prod&methodName=selectAllByAdmin&pageNo=${i}&category=${category}&values=${values}&order=${order}">${i}</a></li>
 							</c:if>
 
 						</c:forEach>
@@ -241,7 +244,7 @@
 			</div>
 		</div>
 	</div>
-
+	<br><br>
 
 
 	<!-- loader -->
