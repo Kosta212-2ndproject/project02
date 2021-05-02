@@ -10,11 +10,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 
-@WebFilter(
-		urlPatterns = { "/*" }, 
-		initParams = { 
-				@WebInitParam(name = "encoding", value = "UTF-8")
-		})
 public class EncodingFilter implements Filter {
 
 	String encoding;

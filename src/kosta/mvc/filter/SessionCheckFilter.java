@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 /**
  * 자료실에 접근하기전에 세션유무 체크하기
  */
-@WebFilter("/front")
 public class SessionCheckFilter implements Filter {
 
 	@Override

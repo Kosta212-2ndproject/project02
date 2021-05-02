@@ -205,7 +205,7 @@ public class Payment {
 		return custom_data;
 	}
 
-	public String getUser_agent() { return user_agent; }
+	public String getUserAgent() { return user_agent; }
 
 	public String getStatus() {
 		return status;

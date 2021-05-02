@@ -38,9 +38,11 @@
    </style>
    <!-- Fonts -->
    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
    <!-- Icons -->
    <link href="css/nucleo-icons.css" rel="stylesheet">
+   <link href="css/blk-design-system.css" rel="stylesheet">
    <link href="scss/blk-design-system.scss" rel="stylesheets">
    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
@@ -67,8 +69,27 @@
 
 <script>
     $(document).ready(function () {
-        let startTime = new Date();
-        let endTime = new Date();
+
+        //Get Green Time
+        var date1 = new Date(new Date(new Date().toLocaleDateString()).getTime());
+        var date2 = new Date(new Date(new Date().toLocaleDateString()).getTime()+24*60*60*1000-1);
+
+        console.log(date1);
+        console.log("moment: " + moment().format('YYYY-MM-DD 00:00:00'));
+
+//
+// //Format time 2018-06-06 00:00:00
+// //If only the simple formatting becomes 2018-6-6 0:0:0, you need to use the trinocular operation to judge and add 0 to the appropriate place to complete the required format.
+//         var startTime = date1.getFullYear() + "-" + ((date1.getMonth() + 1) < 10 ? "0" + (date1.getMonth() + 1):(date1.getMonth() + 1))+ "-" + (date1.getDate() < 10 ? "0" + date1.getDate():date1.getDate()) + " " + (date1.getHours()<10?"0"+date1.getHours():date1.getHours()) + ":" + (date1.getMinutes()<10?"0"+date1.getMinutes():date1.getMinutes()) + ":" + (date1.getSeconds()<10?"0"+date1.getSeconds():date1.getSeconds());
+
+
+//Format time 2018-06-06 23:59:59
+        var endTime = date2.getFullYear() + '-' + (date2.getMonth() + 1) + '-' + date2.getDate() + ' ' + date2.getHours() + ':' + date2.getMinutes() + ':' + date2.getSeconds()
+        // console.log(startTime);
+        // console.log(endTime);
+
+        // let startTime = new Date();
+        // let endTime = new Date();
 
         $('#startDate').datetimepicker({
             icons: {
@@ -83,8 +104,7 @@
                 close: 'fa fa-remove'
             },
             format: 'YYYY-MM-DD HH:MM:SS',
-            defaultDate: startTime.setDate(startTime.getDate() - 1),
-
+            defaultDate: moment().format('YYYY-MM-DD 00:00:00'),
         });
 
         $('#endDate').datetimepicker({
@@ -102,16 +122,14 @@
             format: 'YYYY-MM-DD HH:MM:SS',
             defaultDate: endTime,
         });
-
-    })
+    });
 
 
     $('#myModal').modal();
 
-
 </script>
-<body onload="payList(1)">
-
+<body onload="">
+<%--<i class="fa fa-clock-o"></i>--%>
 <h1 style="text-align: center; padding-top: 50px">결제 내역 조회</h1>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -157,11 +175,13 @@
                <option value="failed">결제실패</option>
                <option value="cancelled">결제취소</option>
             </select>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-
+            &nbsp;&nbsp;&nbsp;
             <input type="text" id="startDate" class="form-control datepicker" style="width: 300px; font-size: 16px"/>
             &nbsp;&nbsp;
             <input type="text" id="endDate" class="form-control datepicker" style="width: 300px; font-size: 16px"/>
+            &nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-primary" onclick="searchDateFunc(1)" style="font-size: 16px">검색
+            </button>
          </div>
       </div>
    </div>
@@ -197,18 +217,6 @@
 <!-- 페이지 버튼 -->
 <nav aria-label="Page navigation example">
    <ul id="pageBtns" class="pagination justify-content-center">
-<%--      <li class="page-item disabled">--%>
-<%--         <a class="page-link" href="#" tabindex="-1">Previous</a>--%>
-<%--      </li>--%>
-<%--      <li class="page-item">--%>
-<%--         <a class="page-link" href="#">1</a>--%>
-<%--      </li>--%>
-<%--      <li class="page-item">--%>
-<%--         <a class="page-link" href="#">2</a>--%>
-<%--      </li>--%>
-<%--      <li class="page-item">--%>
-<%--         <a class="page-link" href="#">3</a>--%>
-<%--      </li>--%>
 
    </ul>
 </nav>

@@ -146,9 +146,8 @@
 						</div>
 					</div>
 					<p>
-						<a href="cart.html" class="btn btn-primary py-3 px-5 mr-2">Add
-							to Cart</a> <a href="#" name="buyNow" class="btn btn-primary py-3 px-5">Buy
-							now</a>
+						<a href="${path}/front?key=cart&methodName=insertCart&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">Add
+							to Cart</a> <a href="#" name="buyNow" class="btn btn-primary py-3 px-5">구매하기</a>
 					</p>
 
 					<form action="checkout.jsp" id="checkout" method="post">
@@ -340,7 +339,7 @@
 
 			$("[name=buyNow]").click(function () {
 				//alert(1)
-				alert(  $("[name=qty]").val() );
+				// alert(  $("[name=qty]").val() );
 
 				$("[name=userInputQty]").val($("[name=qty]").val());
 				$("#checkout").submit();

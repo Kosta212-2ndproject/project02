@@ -45,7 +45,9 @@ public class MemberController implements Controller {
 		HttpSession session = request.getSession();
 		session.setAttribute("userName", userName);
 		session.setAttribute("userId", userId);
-		
+		session.setAttribute("userPhone", userHp);
+		session.setAttribute("userEmail", userEmail);
+
 		ModelAndView mv = new ModelAndView("index.jsp", true);
 		return mv;
 	}

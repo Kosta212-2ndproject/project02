@@ -73,12 +73,14 @@ public class PaymentCancelServlet extends HttpServlet {
             System.out.println("getQty: " + getQty + "개");
 
             int deleteResult = orderDAO.deleteOrder(productId);
-            System.out.println("deleteResult: " + deleteResult + " 이므로 삭제할 수가 없습니다.");
+
 
             if(deleteResult == 1) {
                int qtyPlusResult = orderDAO.updateQtyPlus(orderNoSplit, getQty);   // 삭제가 되었을 떄 상품테이블에 있는 재고량을 구매자가 산만큼 다시 추가한다.
-               System.out.println("qtyPlusResult: " + qtyPlusResult);
+               System.out.println("qtyPlusResult: " + qtyPlusResult + " 수량 추가가 성공했습니다.");
                System.out.println("결제취소가 되어 " + getQty + "개 만큼 다시 재고량을 추가했습니다.");
+            } else {
+               System.out.println("deleteResult: " + deleteResult + " 이므로 삭제할 수가 없습니다.");
             }
 
          }

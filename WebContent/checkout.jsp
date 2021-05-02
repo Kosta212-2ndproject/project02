@@ -156,6 +156,9 @@
 
    int totalPrice = price * qty;
 
+
+
+
 %>
 <!-- 장바구니 카트 -->
 <section class="ftco-intro">
@@ -212,13 +215,13 @@
                   <div class="col-md-6">
                      <div class="form-group">
                         <label for="firstname">수령인</label>
-                        <input type="text" class="form-control" id="userName">
+                        <input type="text" class="form-control" id="userName" value="<%= session.getAttribute("userName") == null ? "" : session.getAttribute("userName")%>">
                      </div>
                   </div>
                   <div class="col-md-6">
                      <div class="form-group">
                         <label for="emailaddress">휴대폰 번호</label>
-                        <input type="text" class="form-control" placeholder="" id="phoneNum">
+                        <input type="text" class="form-control" placeholder="" id="phoneNum" value="<%= session.getAttribute("userPhone") == null ? "" : session.getAttribute("userPhone")%>">
                      </div>
                   </div>
                   <div class="w-100"></div>
@@ -273,8 +276,8 @@
                   <div class="col-md-12">
                      <div class="form-group mt-4">
                         <div class="radio">
-                           <label><input type="radio" name="optradio"> 주소를 등록하시겠습니까? &nbsp;</label>
-                           <a class="btn btn-outline-secondary py-2 px-3" name="address-insert">등록</a>
+                           <label><input type="radio" name="optradio" id="addressInsert"> 주소를 등록하시겠습니까? &nbsp;</label>
+                           <a class="btn btn-outline-secondary py-2 px-3" onclick="addressUpdate()">등록</a>
                         </div>
                      </div>
 
@@ -333,7 +336,8 @@
                            </div>
                         </div>
                      </div>
-                     <p><a class="btn btn-primary py-3 px-4" onclick="productBuy()">결제하기</a></p>
+                     <input type="hidden" id="userId" value="<%= session.getAttribute("userId")%>">
+                     <p><a class="btn btn-primary py-3 px-4" onclick="isChecked()">결제하기</a></p>
                   </div>
                </div>
             </div>

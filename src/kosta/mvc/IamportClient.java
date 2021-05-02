@@ -187,11 +187,13 @@ public class IamportClient {
       return null;
    }
 
+   // from 은 시작날짜  to는 마지막 날짜
    public IamportResponse<PaymentAll> selectAll(String status, int page, int limit) throws Exception {
 
       String token = this.getToken();
       if(token != null) {
-         String path = "/payments/status/" + status + "?page=" + page + "&"+ "limit=" + limit;
+         String path = "/payments/status/" + status + "?page=" + page + "&limit=" + limit;
+//         String path = "/payments/status/" + status + "?page=" + page + "&limit=" + limit;
          // status <--- "Key:Value"
 
          // /payments/status/paid
@@ -211,6 +213,29 @@ public class IamportClient {
    }
 
 
+   public IamportResponse<PaymentAll> selectDateSearch(String status, int page, int limit, long from, long to) throws Exception {
+
+      String token = this.getToken();
+      if(token != null) {
+         String path = "/payments/status/" + status + "?page=" + page + "&limit=" + limit + "&from=" + from + "&to=" + to;
+//         String path = "/payments/status/" + status + "?page=" + page + "&limit=" + limit;
+         // status <--- "Key:Value"
+
+         // /payments/status/paid
+
+         //status=all
+         String response = this.getRequest(path, token);
+
+         Type listType = new TypeToken<IamportResponse<PaymentAll>>(){}.getType();
+         IamportResponse<PaymentAll> paymentAll = gson.fromJson(response, listType);
+
+
+         System.out.println("!" + paymentAll.getResponse().getList().size());
+
+         return paymentAll;
+      }
+      return null;
+   }
    
 
    public IamportResponse<Payment> cancelPayment(CancelDatas cancelDatas) throws Exception {
