@@ -2,7 +2,7 @@ package kosta.mvc.paging;
 
 public class PageCnt {
 	private static int pageCnt; // 총 페이지 수 Math.ceil(totalPage / pageSize)
-	public static  int pagesize = 3; //한페이지당 출력 게시물 수 
+	public static  int pagesize = 4; //한페이지당 출력 게시물 수 
 	public static int pageNo=1;
 	public  int blockcount=2;
 	

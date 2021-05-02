@@ -9,6 +9,7 @@
 <html>
 <head>
    <title>Title</title>
+   <meta http-equiv="refresh" content="5; url=../index.jsp">
 </head>
 <body>
 <h1> 결제가 성공했습니다.</h1>

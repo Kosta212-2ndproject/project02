@@ -65,29 +65,36 @@
 					<h2 class="mb-3">${nDTO.nTitle}</h2>
 					<p>${nDTO.nContent}</p>
 					<p>
-					<div class="col-md-2">
-						<div class="form-group">
+					
+					<%-- <div class="row justify-content-center">
+						<div class="col-md-4">
 							<a
 								href="${path}/front?key=notice&methodName=selectByNoticeNumAdmin&nNum=${nDTO.nNum}"
-								class="btn btn-primary" onclick="">글 관리</a>
+								class="btn btn-primary d-block"> Notice Update & Delete <span
+								class="fa fa-long-arrow-right"></span>
+							</a>
 						</div>
-					</div>
+					</div> --%>
+					<br> <br> <br> <br>
+
+
 
 
 
 					<div class="about-author d-flex p-4 bg-light">
 						<div class="bio mr-5">
-							<img src="images/person_1.jpg" alt="Image placeholder"
+							<img src="images/wineeditor.png" width="300" height="300" alt="Image placeholder"
 								class="img-fluid mb-4">
 						</div>
 						<div class="desc">
-							<h3>George Washington</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Ducimus itaque, autem necessitatibus voluptate quod mollitia
-								delectus aut, sunt placeat nam vero culpa sapiente consectetur
-								similique, inventore eos fugit cupiditate numquam!</p>
+							<h3> Victor Hugo </h3>
+							<p>God made only water, but man made wine.</p>
+							<h3> Charles Baudelaire </h3>
+							<p>Drink wine, drink poetry, drink virtue.</p>
+							<h5> Whatever you choose,<br> you are always right.</h5>
 						</div>
 					</div>
+
 
 
 

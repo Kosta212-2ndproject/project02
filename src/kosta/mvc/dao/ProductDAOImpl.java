@@ -12,7 +12,7 @@ import kosta.mvc.dto.ProductDTO;
 import kosta.mvc.util.DbUtil;
 
 public class ProductDAOImpl implements ProductDAO {
-	
+
 	@Override
 	public List<ProductDTO> selectAll(int pageNo, String category, String order, String values) throws SQLException {
 		Connection con = null;
@@ -33,7 +33,7 @@ public class ProductDAOImpl implements ProductDAO {
 				sql = "select * from (SELECT a.*, ROWNUM rnum FROM (SELECT * FROM product ORDER BY prod_qty desc) a) where rnum <=? and rnum>=?";
 			} else if (order.equals("qtyLow")) {// 재고적은순
 				sql = "select * from (SELECT a.*, ROWNUM rnum FROM (SELECT * FROM product ORDER BY prod_qty) a) where rnum <=? and rnum>=?";
-			} 
+			}
 		}
 
 		else if (category.equals("keyWord")) {// 검색창 검색일때
@@ -241,7 +241,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 		return result;
 	}
-	
+
 	@Override
 	public List<ProductDTO> selectAllByQty() throws SQLException {
 		Connection con = null;
@@ -272,7 +272,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 		return list;
 	}
-		
+
 
 	@Override
 	public ProductDTO selectByProductDetail(int prodId) throws SQLException {
@@ -293,7 +293,7 @@ public class ProductDAOImpl implements ProductDAO {
 							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),
 							rs.getString(10), rs.getString(11), rs.getInt(12), rs.getString(13), rs.getString(14),
 							rs.getString(15), rs.getInt(16), rs.getString(17), rs.getInt(18));
-			
+
 				}
 			}
 		} finally {
@@ -389,6 +389,28 @@ public class ProductDAOImpl implements ProductDAO {
 			DbUtil.dbClose(ps, con);
 		}
 
+		return result;
+	}
+
+	@Override
+	public int selectByOriginPrice(int prodId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = "select prod_price from PRODUCT where PROD_ID = ?";
+
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, prodId);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
 		return result;
 	}
 

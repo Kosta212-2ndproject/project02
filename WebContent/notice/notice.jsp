@@ -53,7 +53,7 @@
 				class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate mb-5 text-center">
 					<p class="breadcrumbs mb-0">
-						<span class="mr-2"><a href="index.html">Home <i
+						<span class="mr-2"><a href="index.jsp">Home <i
 								class="fa fa-chevron-right"></i></a></span> <span>Notice <i
 							class="fa fa-chevron-right"></i></span>
 					</p>
@@ -79,7 +79,7 @@
 							<div class="col-lg-6 d-flex align-items-stretch ftco-animate">
 								<div class="blog-entry d-md-flex">
 									<a
-										href="front?key=notice&methodName=selectByNoticeNum&nNum=${notice.nNum}"
+										href="front?key=notice&methodName=selectByNoticeNumforUser&nNum=${notice.nNum}"
 										class="block-20 img"
 										style="background-image: url('${notice.nImage}');"> </a>
 									<div class="text p-4 bg-light">
@@ -133,7 +133,7 @@
 											<c:set var="doneLoop" value="true" />
 										</c:if>
 										<c:if test="${not doneLoop}">
-											<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=notice&methodName=select&pageNo=${i}">${i}</a>
+											<li class="${i==pageNo? 'active':page}"><a href="${path}/front?key=notice&methodName=select&pageNo=${i}">${i}</a></li>
 										</c:if>
 
 									</c:forEach>
@@ -150,23 +150,19 @@
 		<div class="col text-center">
 			<div class="block-27">
 				<ul>
-					<li><a href="#">&lt;</a></li>
-					<li class="active"><span>1</span></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">&gt;</a></li>
 
-				</ul>
-				<ul>
-
-					<div class="col-md-2">
-						<div class="form-group">
+			<%-- 		
+					<div class="row justify-content-center">
+						<div class="col-md-4">
 							<a href="${path}/front?key=notice&methodName=uploadForm"
-								class="btn btn-primary" onclick="">upload</a>
+								class="btn btn-primary d-block"> Notice Upload <span
+								class="fa fa-long-arrow-right"></span>
+							</a>
 						</div>
-					</div>
+					</div> --%>
+					<br>
+					<br>
+					<br>
 				</ul>
 			</div>
 		</div>
