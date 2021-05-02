@@ -138,7 +138,7 @@
 						</div>
 					</div>
 					<p>
-						<a href="cart.html" class="btn btn-primary py-3 px-5 mr-2">Add
+						<a href="${path}/front?key=cart&methodName=insertCart&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">Add
 							to Cart</a> <a href="cart.html" class="btn btn-primary py-3 px-5">Buy
 							now</a>
 					</p>
