@@ -129,7 +129,7 @@
 											</div>
 											</td>
 											<!-- 각 상품 총 금액 -->
-											<td><span name="productPerId">${prodDto.prodPrice}</span>원</td>
+											<td><span name="productPerId" id="tp">${prodDto.prodPrice}</span>원</td>
 											<td><span style="color: red;" class="fa fa-close"
 												data-dismiss="alert"
 												onclick="location.href='${path}/front?key=cart&methodName=deleteCart&prodId=${prodDto.prodId}'"
@@ -163,7 +163,7 @@
 					<div class="cart-total mb-3">
 						<h3>Cart Totals</h3>
 						<p class="d-flex total-price">
-							<span>Total</span> <span name="totalP" class="commaN">${total}</span>원
+							<span>Total</span> <span id="totalP" class="commaN">${total}</span>원
 						</p>
 					</div>
 					<p><a href="#" name="buyNow" class="btn btn-primary py-3 px-5">구매하기</a>
@@ -225,8 +225,8 @@
 			} else {
 				$('[name=qty]').val(quantity + 1);
 			}
-			alert(tot);
-			$('[name=totalP]').text(total);
+			//alert(tot);
+			$("#tp").text(tot);
 			$('[name=productPerId]').val();
 			
 			//전체 금액
@@ -240,13 +240,18 @@
         e.preventDefault();
         // Get the field name
         var quantity = parseInt($('[name=qty]').val());
+        let price = $(this).attr("name");
+		let tot = (quantity-1)*price;
         // If is not undefined
         // Increment
         if (quantity <= 1) {
             alert(quantity + "개 이상부터 구매하실 수 있습니다.");
+            $('[name=qty]').val(0);
         } else {
             $('[name=qty]').val(quantity - 1);
         }
+        $("#tp").text(tot);
+        $('[name=productPerId]').val();
     });
     
     function totalCal(){
