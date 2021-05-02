@@ -110,7 +110,7 @@
 
 
 </script>
-<body onload="payList(0)">
+<body onload="payList(1)">
 
 <h1 style="text-align: center; padding-top: 50px">결제 내역 조회</h1>
 
@@ -132,8 +132,7 @@
             <p/>
             <div class="form-check form-check-radio">
                <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"
-                         checked="checked">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
                   <span style="color: black">전액 취소</span>
                   <span class="form-check-sign"></span>
                </label>

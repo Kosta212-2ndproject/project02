@@ -11,7 +11,6 @@ import java.io.IOException;
 public class OrderController implements Controller{
    private OrderService orderService = new OrderServiceImpl();
 
-   @Override
    public ModelAndView select(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
       return null;
    }
@@ -46,5 +45,10 @@ public class OrderController implements Controller{
 
 
       return mv;
+   }
+
+   @Override
+   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
+      return null;
    }
 }

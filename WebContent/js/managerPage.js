@@ -5,7 +5,7 @@ function payStateOp() {
 
 $(document).on("change", "#payState", function () {
     // let aa = $(this).val();
-    payList(0)
+    payList(1)
 });
 
 function cardStatus(status) {
@@ -216,9 +216,15 @@ function payList(e) {
                 //     return false;
                 // }
                 // form.appendChild(btn);
+                let btnNumber;
+                var currentNum = i;
+                if(e == i) {
+                    btnNumber = `<li class="page-item active"><a class="page-link" href="javascript:payList(${i});">${i}</a></li>`;
+                } else {
+                    btnNumber = `<li class="page-item"><a class="page-link" href="javascript:payList(${i});">${i}</a></li>`;
+                }
 
-
-                let btnNumber = `<li class="page-item"><a class="page-link" href="javascript:payList(${i});">${i}</a></li>`;
+                // let btnNumber = `<li class="page-item"><a class="page-link" href="javascript:payList(${i});">${i}</a></li>`;
                 $("#pageBtns").append(btnNumber);
             }
 
@@ -255,6 +261,7 @@ $(function () {
         totalPrice = $("#totalPrice").val();
         alert("orderNo: " + orderNo);
         alert("totalPrice: " + totalPrice);
+        $("#exampleRadios2").prop("checked", true);
     });
 
     $('#r_cancel_all').on('click', function (e) {    // modal 버튼

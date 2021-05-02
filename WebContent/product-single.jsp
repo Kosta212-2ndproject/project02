@@ -129,9 +129,9 @@
 									data-type="minus" data-field="">
 									<i class="fa fa-minus"></i>
 								</button>
-							</span> <input type="text" id="quantity" name="quantity"
+							</span> <input type="text" id="qty" name="qty"
 								class="quantity form-control input-number" value="1" min="1"
-								max="100"> <span class="input-group-btn ml-2">
+								max="100" readonly> <span class="input-group-btn ml-2">
 								<button type="button" class="quantity-right-plus btn"
 									data-type="plus" data-field="">
 									<i class="fa fa-plus"></i>
@@ -140,12 +140,14 @@
 						</div>
 						<div class="w-100"></div>
 						<div class="col-md-12">
-							<p style="color: #000;">${prod.prodQty}pieceavailable</p>
+							<p style="color: #000;">
+								<input type="text" class="text-center" id="prodQty" value="${prod.prodQty}"/> piece available
+							</p>
 						</div>
 					</div>
 					<p>
 						<a href="cart.html" class="btn btn-primary py-3 px-5 mr-2">Add
-							to Cart</a> <a href="cart.html" class="btn btn-primary py-3 px-5">Buy
+							to Cart</a> <a href="#" name="buyNow" class="btn btn-primary py-3 px-5">Buy
 							now</a>
 					</p>
 
@@ -338,7 +340,7 @@
 
 			$("[name=buyNow]").click(function () {
 				//alert(1)
-				// alert(  $("[name=qty]").val() );
+				alert(  $("[name=qty]").val() );
 
 				$("[name=userInputQty]").val($("[name=qty]").val());
 				$("#checkout").submit();

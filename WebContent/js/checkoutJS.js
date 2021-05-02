@@ -145,3 +145,51 @@ function orderInsert(orderNum, price, payTime) {
     });   // ajax 끝
 }
 
+
+function cartOrder() {
+    IMP.request_pay({
+        pg: 'html5_inicis',   // pg사 KG이니시스
+        pay_method: $('input[class="mr-2 pay-method"]:checked').val(),   // 결제 방식
+        merchant_uid: $('[name=prodId]').val() + new Date().getTime(),  // 전체주문번호
+        name: '주문명: ' + $('#prodName').val(),  // 주문명 주문명은 16글자 이내를 권장한다.
+        amount: $("#totalPrice").val(), // 가격
+        display: {card_quota: [1, 2, 3, 4, 5, 6]}, // 할부개월수
+        digital: true, // 휴대폰 소액결제를 위한 param속성 false 일경우 콘텐츠, true일 경우 실물
+        buyer_email: 'iampo@ggg.com',
+        buyer_name: $("#userName").val(),
+        buyer_tel: $("#phoneNum").val(),
+        buyer_addr: $("#address").val() + $("#extraAddress").val() + $("#detail-address").val(),
+        buyer_postcode: $("#post-code").val(),
+    }, function (rsp) {
+        if (rsp.success) {
+            // [1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+            $.ajax({
+                url: "../payQty", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+                type: 'get',
+                dataType: 'text',
+                data: {
+                    prodId: $('[name=prodId]').val(),
+                    qty: $('[name=frontQty]').val()
+                    //기타 필요한 데이터가 있으면 추가 전달
+                },
+                success: function (result) {
+                    alert("sucess: " + rsp.paid_at);
+                    orderInsert(rsp.merchant_uid, rsp.paid_amount, rsp.paid_at);
+                    location.href='../successPay.jsp';
+                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+                },
+                error:function(request,status,error){
+                    console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+            // alert("결제 성공");
+
+
+        } else {
+            var msg = '결제에 실패하였습니다.';
+            msg += '에러내용 : ' + rsp.error_msg;
+
+            alert(msg);
+        }
+    });
+}

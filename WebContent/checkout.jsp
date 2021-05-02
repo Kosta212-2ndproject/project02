@@ -333,7 +333,7 @@
                            </div>
                         </div>
                      </div>
-                     <p><a class="btn btn-primary py-3 px-4" onclick="isChecked()">결제하기</a></p>
+                     <p><a class="btn btn-primary py-3 px-4" onclick="productBuy()">결제하기</a></p>
                   </div>
                </div>
             </div>
