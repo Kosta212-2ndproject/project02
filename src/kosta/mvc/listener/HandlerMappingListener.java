@@ -52,4 +52,5 @@ public class HandlerMappingListener implements ServletContextListener {
 		application.setAttribute("path", application.getContextPath()); // ${path}
 		
 	}
+
 }

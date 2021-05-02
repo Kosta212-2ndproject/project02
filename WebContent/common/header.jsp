@@ -91,6 +91,8 @@
 				<input type="submit" value="검색">
 			</form>
 
+      <a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" class="flaticon-shopping-bag"></a><p>
+      <a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}" class="flaticon-heart"></a>
 
 			<div class="order-lg-last btn-group">
 
