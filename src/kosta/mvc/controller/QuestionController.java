@@ -65,10 +65,6 @@ public class QuestionController implements Controller {
 		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 		
 		
-//		 int qNum;
-//		 int prodId;
-//		 String userId;
-//		 String qRegdate;
 
 		//session 에서 가져와야
 		String userId = (String) request.getSession().getAttribute("userId");
@@ -79,10 +75,17 @@ public class QuestionController implements Controller {
 		 String qContent= m.getParameter("qContent");
 		 String qFiles= m.getParameter("qFiles");
 		 String qShowstatus= m.getParameter("qShowstatus");
-		 
-		 QuestionDTO  question = new QuestionDTO(0, userId, Integer.parseInt(prodId), qField, qTitle, qContent, 
-				 qFiles, null, Integer.parseInt(qShowstatus));
-		
+		 QuestionDTO  question = null;
+		 if(qShowstatus == null) {
+			question = new QuestionDTO(0, userId, Integer.parseInt(prodId), qField, qTitle, qContent, 
+					 qFiles, null, 1);
+			 
+		 }else {
+			 
+			 question = new QuestionDTO(0, userId, Integer.parseInt(prodId), qField, qTitle, qContent, 
+					 qFiles, null, Integer.parseInt(qShowstatus));
+		 }
+	
 		
 		//파일 첨부가 되었다면, 
 			if(m.getFilesystemName("qFiles") != null) {//뭔가 첨부가 되었다면
@@ -185,17 +188,34 @@ public class QuestionController implements Controller {
 		String qShowstatus = m.getParameter("qShowstatus");
 		
 		String qFilesOrigin = m.getParameter("qFilesOrigin");
+		
+		
+		QuestionDTO  question = null;
+		if(qShowstatus == null) {
+			
+			question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
+					null, qRegdate, 1);
+		}else {
+			
+			question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
+					null, qRegdate, Integer.parseInt(qShowstatus));
+		}
 
-		QuestionDTO question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
-				null, qRegdate, Integer.parseInt(qShowstatus));
 
 		// 파일 첨부가 되었다면,
 		if (m.getFilesystemName("qFiles") != null) {// 뭔가 첨부가 되었다면
 			question.setqFiles(request.getContextPath() + "/save/" + m.getFilesystemName("qFiles"));
 
 		} else {
-			question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
-					qFilesOrigin, qRegdate, Integer.parseInt(qShowstatus));
+			if(qShowstatus ==null) {
+				question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
+						qFilesOrigin, qRegdate, 1);
+				
+			}else {
+				
+				question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
+						qFilesOrigin, qRegdate, Integer.parseInt(qShowstatus));
+			}
 		}
 
 		questionService.update(question);
@@ -291,6 +311,7 @@ public class QuestionController implements Controller {
 			mv.setRedirect(true);
 			return mv;
 	}
+	
 	
 
 	/**

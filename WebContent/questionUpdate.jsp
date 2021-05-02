@@ -33,12 +33,12 @@ function checkValid() {
 		
 	if ( f.qTitle.value == "") {
 	    alert( "제목을 입력해 주세요." );
-	    f.model_num.focus();
+	    f.qTitle.focus();
 		return false;
     }
 	if ( f.qContent.value == "" ) {
 		alert( "내용을 입력해 주세요." );
-		f.model_name.focus();
+		f.qContent.focus();
 		return false;
 	}
 
@@ -105,9 +105,10 @@ function checkValid() {
                   </div>
                   <div class="form-group">
                     <label for="message">Contents *</label>
-                    <textarea name="qContent" id="message" cols="30" rows="10" class="form-control" placeholder="${question.qContent}"></textarea>
+                    <textarea name="qContent" id="message" cols="30" rows="10" class="form-control">${question.qContent}</textarea>
                   </div>
 				<div class="form-group">
+				<c:if test="${not empty userId}">
 				<fieldset>
 					<legend> 공개 / 비공개 </legend>
 					<input type="radio" id="product" name="qShowstatus" value=0>
@@ -115,6 +116,7 @@ function checkValid() {
 					<input type="radio"	id="order" name="qShowstatus" value=1> 
 					<label for="order"> 공개 </label><br />
 				</fieldset>
+				</c:if>
 				</div>
 				<div>
 				<c:if test="${question.qFiles != null}">
