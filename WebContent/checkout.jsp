@@ -60,7 +60,9 @@
 
    int totalPrice = price * qty;
 
+   String userName = (String) session.getAttribute("userName");
 
+   String userEmail = (String) session.getAttribute("userEmail");
 
 
 %>
@@ -117,11 +119,12 @@
                <div class="row align-items-end">
 
 
+                  <input type="hidden" id="userEmail" value="<%= userEmail %>">
 
                   <div class="col-md-6">
                      <div class="form-group">
                         <label for="firstname">수령인</label>
-                        <input type="text" class="form-control" id="userName" value="<%= session.getAttribute("userName") == null ? "" : session.getAttribute("userName")%>">
+                        <input type="text" class="form-control" id="userName" value="<%= session.getAttribute("userName") == null ? "" : userName.substring(0, 3)%>">
                      </div>
                   </div>
                   <div class="col-md-6">
@@ -202,7 +205,7 @@
                      </p>
                      <p class="d-flex">
                         <span>배송비</span>
-                        <span>&nbsp;&nbsp;<fmt:formatNumber value="2000" pattern="#,###원"/></span>
+                        <span>&nbsp;&nbsp;<fmt:formatNumber value="2500" pattern="#,###원"/></span>
                      </p>
 <%--                     <p class="d-flex">--%>
 <%--                        <span>할인 금액</span>--%>
@@ -211,8 +214,8 @@
                      <hr>
                      <p class="d-flex total-price">
                         <span>총 금액</span>
-                        <input type="hidden" id="totalPrice" value="<%= totalPrice+2000 %>">
-                        <span><fmt:formatNumber value="<%= totalPrice+2000 %>" pattern="#,###원"/></span>
+                        <input type="hidden" id="totalPrice" value="<%= totalPrice+2500 %>">
+                        <span><fmt:formatNumber value="<%= totalPrice+2500 %>" pattern="#,###원"/></span>
                      </p>
                   </div>
                </div>

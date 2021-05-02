@@ -163,7 +163,7 @@
 						</div>
 					</li>
 <!-- Minjoo Notice Admin end -->						
-					<li class="nav-item"><a href="${path}/ManagerPage.jsp" class="nav-link">Contact</a></li>
+					<li class="nav-item"><a href="${path}/ManagerPage.jsp" class="nav-link">OrderHistory</a></li>
 				</ul>
 			</div>
 		</div>

@@ -145,7 +145,7 @@
          <p/>
          <div class="modal-body">
             <label for="reasonTextarea"> <span style="font-size: 17px">환불 사유</span>
-               <textarea id="cancel_reason" rows="3" cols="50">환불 사유를 입력하세요.</textarea>
+               <textarea id="cancel_reason" rows="3" cols="50" placeholder="환불 사유를 입력하세요."></textarea>
             </label>
             <p/>
             <div class="form-check form-check-radio">
