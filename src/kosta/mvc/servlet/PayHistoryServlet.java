@@ -45,7 +45,7 @@ public class PayHistoryServlet extends HttpServlet {
          int page = Integer.parseInt(request.getParameter("buttonOption"));
 
          client = new IamportClient(api_key, api_secret);
-         IamportResponse<PaymentAll> paymentAll = client.selectAll(id, page,5);
+         IamportResponse<PaymentAll> paymentAll = client.selectAll(page,5);
 
          JSONArray arr = JSONArray.fromObject(paymentAll.getResponse().getList());
          JSONObject obj = JSONObject.fromObject(paymentAll.getResponse());

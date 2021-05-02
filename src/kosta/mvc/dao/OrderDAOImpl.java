@@ -11,6 +11,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDAOImpl implements OrderDAO {
+   @Override
+   public List<OrderDTO> printAllOrders(String userId) throws SQLException {
+      Connection con = null;
+      PreparedStatement ps = null;
+      ResultSet rs = null;
+
+      List<OrderDTO> orderDTOList = new ArrayList<OrderDTO>();
+      String sql = "SELECT o_no, o_price, o_addr, O_ZIPCODE, O_RECIPIENT_NAME from ORDERT where user_id = ?";
+
+      try {
+         con = DbUtil.getConnection();
+         ps = con.prepareStatement(sql);
+         ps.setString(1, userId);
+         rs = ps.executeQuery();
+
+         while(rs.next()) {
+            Long orderNo = rs.getLong(1);
+            int orderPrice = rs.getInt(2);
+            String orderAddr = rs.getString(3);
+            String orderZipcode = rs.getString(4);
+            String orderRecipientName = rs.getString(5);
+
+            OrderDTO orderDTO = new OrderDTO(orderNo, orderPrice, orderAddr, orderZipcode, orderRecipientName);
+
+            orderDTOList.add(orderDTO);
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         DbUtil.dbClose(rs, ps, con);
+      }
+      return orderDTOList;
+   }
 
    public int updateQty(int prodId, int qty) throws SQLException {
       Connection con = null;

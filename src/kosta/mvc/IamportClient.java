@@ -188,11 +188,11 @@ public class IamportClient {
    }
 
    // from 은 시작날짜  to는 마지막 날짜
-   public IamportResponse<PaymentAll> selectAll(String status, int page, int limit) throws Exception {
+   public IamportResponse<PaymentAll> selectAll(int page, int limit) throws Exception {
 
       String token = this.getToken();
       if(token != null) {
-         String path = "/payments/status/" + status + "?page=" + page + "&limit=" + limit;
+         String path = "/payments/status/paid" + "?page=" + page + "&limit=" + limit;
 //         String path = "/payments/status/" + status + "?page=" + page + "&limit=" + limit;
          // status <--- "Key:Value"
 
