@@ -77,7 +77,7 @@ function productBuy() {
         amount: $("#totalPrice").val(), // 가격
         display: {card_quota: [1, 2, 3, 4, 5, 6]}, // 할부개월수
         digital: true, // 휴대폰 소액결제를 위한 param속성 false 일경우 콘텐츠, true일 경우 실물
-        buyer_email: 'iampo@ggg.com',
+        buyer_email: $("#userEmail").val(),
         buyer_name: $("#userName").val(),
         buyer_tel: $("#phoneNum").val(),
         buyer_addr: $("#address").val() + $("#extraAddress").val() + '  ' + $("#detail-address").val(),
@@ -117,7 +117,6 @@ function productBuy() {
 }
 
 function orderInsert(orderNum, price, payTime, userId) {
-    alert(payTime);
     $.ajax({
         url: "../orderInsert", // 서버요청주소
         type: "get",  // 전송방식(get.post, put, delete)
