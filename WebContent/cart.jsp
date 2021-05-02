@@ -102,7 +102,7 @@
 													<span>${prodDto.prodName}</span> <span>${prodDto.prodNameEng}</span>
 												</div>
 											</td>
-											<td><fmt:formatNumber value="${prodDto.prodPrice}" pattern="#,###원" /></td>
+											<td width="150"><fmt:formatNumber value="${prodDto.prodPrice}" pattern="#,###원" /></td>
 											<td class="quantity">
 											<div class="row mt-4">
 												<div class="input-group col-md-10 d-flex mb-3">
@@ -128,7 +128,7 @@
 											</div>
 											</td>
 											<!-- 각 상품 총 금액 -->
-											<td><span name="productPerId">${prodDto.prodPrice}</span>원</td>
+											<td width="150"><span name="productPerId">${prodDto.prodPrice}</span>원</td>
 											<td><span style="color: red;" class="fa fa-close"
 												data-dismiss="alert"
 												onclick="location.href='${path}/front?key=cart&methodName=deleteCart&prodId=${prodDto.prodId}'"
@@ -214,7 +214,6 @@
 				plusEv.val( (parseInt(plusEv.val()) +1) );
 
 				e.preventDefault();
-				
 				//총금액
 				let price = $(this).attr("name");
 				let tot = plusEv.val()*price;
@@ -274,7 +273,6 @@
 				 $("#totalP").text(total);
 				 
 			}
-			
 			
 			totalCal();
 			
