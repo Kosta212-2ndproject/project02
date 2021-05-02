@@ -33,12 +33,10 @@ public class ProductController implements Controller {
 	// 상품검색 (user)
 	public ModelAndView selectAll(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//String userId = request.getSession().getAttribute("");
-		List<ProductDTO> listAll = prodService.selectAll();
 		
 		//위시리트를 가져오기
 		List<WishDTO> listWish= wishService.selectWish("cha");
 		
-		request.setAttribute("listAll", listAll);
 		request.setAttribute("listWish", listWish);
 		
 		String pageNo = request.getParameter("pageNo");
