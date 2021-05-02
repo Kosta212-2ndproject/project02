@@ -13,7 +13,6 @@ import kosta.mvc.dto.ReviewDTO;
 
 public class ProductServiceImpl implements ProductService {
 	private ProductDAO prodDAO = new ProductDAOImpl();
-	ReviewDAO reviewDAO = new ReviewDAOImpl();
 	
 	@Override
 	public List<ProductDTO> selectAll(int pageNo, String category, String order, String values) throws SQLException {
@@ -21,6 +20,13 @@ public class ProductServiceImpl implements ProductService {
 		
 		return list;
 	}
+	
+	public List<ProductDTO> selectAllByQty() throws SQLException{
+		List<ProductDTO> list = prodDAO.selectAllByQty();
+		
+		return list;
+	}
+	
 
 	@Override
 	public ProductDTO selectByProductDetail(int prodId) throws SQLException {
