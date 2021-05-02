@@ -1,20 +1,20 @@
 package kosta.mvc.filter;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
  * 자료실에 접근하기전에 세션유무 체크하기
  */
-@WebFilter("/front")
+
 public class SessionCheckFilter implements Filter {
 
 	@Override

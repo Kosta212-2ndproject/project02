@@ -93,7 +93,7 @@
 												href="front?key=notice&methodName=selectByNoticeNum&nNum=${notice.nNum}">
 												${notice.nTitle}</a>
 										</h3>
-										<p>${notice.nContent}</p>
+										 <p>${notice.nContent}</p> 
 										<a href="#" class="btn-custom">views ${notice.nViewCount}
 											<span class="fa fa-eye"></span>
 										</a>

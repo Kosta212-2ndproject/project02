@@ -588,7 +588,24 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="js/google-map.js"></script>
 	<script src="js/main.js"></script>
-
+ 
+ <!-- minjoo / userId check -->
+ <script type="text/javascript">
+ 
+ $(function () {
+	//alert(1)
+	 var sessionId = "<%=session.getAttribute("userId")%>"
+	 if(sessionId != "203448231"){
+		 alert("관리자 접근 권한이 없습니다.")
+		 location.href="index.jsp";
+	 }
+})
+ 
+ 
+ 
+ 
+ 
+ </script>
 </body>
 </html>
 <jsp:include page="common/footerAdmin.jsp" />

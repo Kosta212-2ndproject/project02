@@ -33,17 +33,17 @@ function checkValid() {
 		
 	if ( f.reviewTitle.value == "") {
 	    alert( "제목을 입력해 주세요." );
-	    f.model_num.focus();
+	    f.reviewTitle.focus();
 		return false;
     }
 	if ( f.reviewContent.value == "" ) {
 		alert( "내용을 입력해 주세요." );
-		f.model_name.focus();
+		f.reviewContent.focus();
 		return false;
 	}
 	if ( f.reviewStarScope.value == "" ) {
 		alert( "별점을 입력해 주세요." );
-		f.price.focus();
+		f.reviewStarScope.focus();
 		return false;
 	}
 	

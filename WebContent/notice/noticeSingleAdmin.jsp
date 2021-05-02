@@ -124,18 +124,11 @@
 					<div class="sidebar-box ftco-animate">
 						<div class="categories">
 							<h3>Services</h3>
-							<li><a href="#">Relation Problem <span
+							<li><a href="front?key=prod&methodName=selectAll">Shop <span
 									class="fa fa-chevron-right"></span></a></li>
-							<li><a href="#">Couples Counseling <span
+							<li><a href="front?key=notice&methodName=selectAdmin">Notice <span
 									class="fa fa-chevron-right"></span></a></li>
-							<li><a href="#">Depression Treatment <span
-									class="fa fa-chevron-right"></span></a></li>
-							<li><a href="#">Family Problem <span
-									class="fa fa-chevron-right"></span></a></li>
-							<li><a href="#">Personal Problem <span
-									class="fa fa-chevron-right"></span></a></li>
-							<li><a href="#">Business Problem <span
-									class="fa fa-chevron-right"></span></a></li>
+							
 						</div>
 					</div>
 

@@ -118,10 +118,12 @@ public class ReviewController implements Controller {
 
 
 //		String prodId = m.getParameter("prodId");
-		String prodId = "37197";
+//		String prodId = "37197";
 //		String prodId = "37198";
+		String prodId = "50488";
 //		String userId = m.getParameter("userId");
-		String userId = "188423671";
+//		String userId = "188423671"; //minjoojo
+		String userId = "203516457"; //aeternamemoria
 		
 //		String oNum = m.getParameter("oNum");
 		String oNum = "50524";
