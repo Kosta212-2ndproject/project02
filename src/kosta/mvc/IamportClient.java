@@ -3,9 +3,12 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
+import kosta.mvc.request.CancelDatas;
 import kosta.mvc.response.IamportResponse;
 import kosta.mvc.response.Payment;
+import kosta.mvc.response.PaymentAll;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -184,31 +187,47 @@ public class IamportClient {
       return null;
    }
 
-   public IamportResponse<Payment> selectAll() throws Exception {
+   public IamportResponse<PaymentAll> selectAll(String status, int page, int limit) throws Exception {
 
       String token = this.getToken();
-
       if(token != null) {
-         String path = "/payments/findAll";
+         String path = "/payments/status/" + status + "?page=" + page + "&"+ "limit=" + limit;
+         // status <--- "Key:Value"
+
+         // /payments/status/paid
+
+         //status=all
          String response = this.getRequest(path, token);
 
-         Type listType = new TypeToken<IamportResponse<Payment>>(){}.getType();
-         IamportResponse<Payment> payment = gson.fromJson(response, listType);
+         Type listType = new TypeToken<IamportResponse<PaymentAll>>(){}.getType();
+         IamportResponse<PaymentAll> paymentAll = gson.fromJson(response, listType);
 
-         return payment;
+
+         System.out.println("!" + paymentAll.getResponse().getList().size());
+
+         return paymentAll;
       }
       return null;
    }
 
-   public IamportResponse<Payment> cancelPayment(CancelData cancelData) throws Exception {
+
+   
+
+   public IamportResponse<Payment> cancelPayment(CancelDatas cancelDatas) throws Exception {
 
       String token = this.getToken();
 
       if(token != null){
-         String cancelJsonData = gson.toJson(cancelData);
-         StringEntity data = new StringEntity(cancelJsonData);
+         String cancelJsonData = gson.toJson(cancelDatas);
+         System.out.println("cancelJsonData: " + cancelJsonData);
+         StringEntity data = new StringEntity(cancelJsonData, "UTF-8");
+         System.out.println("data: " + data);
 
          String response = this.postRequest("/payments/cancel", token, data);
+
+         System.out.println("response.length(): " + response.length());
+         System.out.println("response: " + response);
+
 
          Type listType = new TypeToken<IamportResponse<Payment>>(){}.getType();
          IamportResponse<Payment> payment = gson.fromJson(response, listType);
