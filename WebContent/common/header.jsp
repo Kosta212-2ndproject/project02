@@ -49,7 +49,6 @@
 						</a>
 					</p>
 				</div>
-				<div class="col-md-6 d-flex justify-content-md-end">
 					
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media mr-4">
@@ -92,16 +91,13 @@
 				<input type="submit" value="검색">
 			</form>
 
-      <a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" class="flaticon-shopping-bag"></a><p>
-      <a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}" class="flaticon-heart"></a>
 
 			<div class="order-lg-last btn-group">
 
+				<a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" class="order-lg-last btn-group"><span class="flaticon-shopping-bag" style="width:30px"></span></a><br>
+      			<a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}" class="order-lg-last btn-group"><span class="flaticon-heart"></span></a>
 
-				<a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<span class="flaticon-shopping-bag"></span>
 					<div class="d-flex justify-content-center align-items-center">
-						<small>3</small>
 					</div>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">

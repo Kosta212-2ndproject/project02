@@ -380,30 +380,6 @@
 					</div>
 					
 
-
-
-					<div class="sidebar-box ftco-animate">
-						<h3>Recent Blog</h3>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-							<div class="text">
-								<h3 class="heading">
-									<a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#">
-											<span class="fa fa-calendar"></span> Apr. 18, 2020
-										</a>
-									</div>
-									<div>
-										<a href="#">
-											<span class="fa fa-comment"></span> 19
-										</a>
-									</div>
-								</div>
-							</div>
-					<div class="col-md-3">
       
       		<div class="sidebar-box ftco-animate">
       		   <h3><a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}">Wish List</a></h3>
@@ -412,7 +388,7 @@
       		<input type="hidden" name="methodName" value="selectWishByUserId">
       		<c:choose>
               <c:when test="${empty requestScope.listWish}">
-              			<p align="center"><b><span style="font-size:9pt;">찜한 상품이 없습니다.3333</span></b></p>
+              			<p align="center"><b><span style="font-size:9pt;">찜한 상품이 없습니다.</span></b></p>
               </c:when>
               <c:otherwise>
 				<c:forEach items="${requestScope.listWish}" var="wishDto" varStatus="status">

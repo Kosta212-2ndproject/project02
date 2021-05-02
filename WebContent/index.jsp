@@ -166,7 +166,7 @@
 						<div class="item">
 							<div class="testimony-wrap py-4">
 								<div class="icon d-flex align-items-center justify-content-center">
-									<span class="fa fa-quote-left">
+									<span class="fa fa-quote-left"> 
 								</div>
 								<div class="text">
 									<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
