@@ -25,7 +25,7 @@ function selectAll() {
                 console.log(prodId);
                 console.log(typeof prodId);
                 str += `<tr>`;
-                str += `<td style="color:black;">${dto.orderNo}(${prodId.toString().substr(0, 4)})</td>`;
+                str += `<td style="color:black;">${dto.orderNo}(${prodId.toString().substr(0, 5)})</td>`;
                 str += `<td style="color:black;">${dto.orderPrice}</td>`;
                 str += `<td style="color:black;">결제완료</td>`;
                 // str += `<td style="color:black;">${dto.orderZipCode}</td>`;

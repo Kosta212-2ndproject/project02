@@ -12,7 +12,7 @@
    <title>ㅉ ㅏ ㄴ</title>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+   <link rel="stylesheet" href="css/review.css">
    <style>
       /* 체크박스 정렬 */
       input[id="totalCancel"] {
@@ -43,7 +43,6 @@
    </style>
    <!-- Fonts -->
 
-   <link rel="stylesheet" href="css/review.css">
 
 
    <!-- Icons -->
@@ -104,7 +103,7 @@
                   String userId = (String) session.getAttribute("userId");
                %>
 
-               <input type="hidden" id="userName" value="<%= userName.substring(0,4) %>">
+               <input type="hidden" id="userName" value="<%= userName.substring(0,3) %>">
                <input type="hidden" id="userId" value="<%= userId %>">
                <!-- testTable -->
                <table class="table" id="cashListTable" style="width: 100%;">
