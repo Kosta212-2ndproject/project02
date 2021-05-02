@@ -154,9 +154,9 @@
               <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
 
               <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Taste/Food Matching </a>
-
+			<c:if test="${not empty userId}">
              <a class="nav-link ftco-animate mr-lg-1" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Reviews</a>
-
+			</c:if>
              <a class="nav-link ftco-animate mr-lg-1" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">Q & A</a>
 
              <a class="nav-link ftco-animate" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="false">Q & A Board</a>
@@ -231,6 +231,7 @@
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
+													<c:if test="${not empty userId}">
 												<fieldset>
 													<legend> 공개 / 비공개 </legend>
 													<input type="radio" id="product" name="qShowstatus" value="0">
@@ -238,6 +239,7 @@
 													<input type="radio" id="order" name="qShowstatus" value="1">
 													<label for="order">	공개 </label><br />
 												</fieldset>
+													</c:if>
 											</div>
 									</div>
 									<div class="col-md-12">
@@ -366,16 +368,20 @@
    				str += "<th> 내용 </th>";
    				str += "<th> 별점 </th>";
    				str += "<th> 등록일 </th>";
-   				//str += "<th> 사진 </th>";
+   				str += "<th> 사진 </th>";
    				str += "<th> 조회수 </th>";
 				$.each(result, function(index, item) {
 					str += "<tr>"
 					str += "<td>" + item.userId + "</td>"
-					str += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"&reviewUserId="+item.userId+"'>" + item.reviewTitle + "</td>"
+					if(sessionId != null){
+						str += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"&reviewUserId="+item.userId+"'>" + item.reviewTitle + "</td>"
+					}else{
+						str += "<td>" + item.reviewTitle + "</td>"
+					}
 					str += "<td>" + item.reviewContent + "</td>"
 					str += "<td>" + item.reviewStarScope + "</td>"
 					str += "<td>" + item.reviewRegdate + "</td>"
-					//str += "<td><img width='175' height='200' src='"+item.reviewImgUrl+"'></td>";
+					str += "<td><img width='175' height='200' src='"+item.reviewImgUrl+"'></td>";
 					str += "<td>" + item.reviewVcount + "</td>"
 					//str += "<td><input type='button' value='delete'/></td>"
 					str += "</tr>"

@@ -37,7 +37,7 @@
 						</h1>
 						<p>
 							<a href="front?key=prod&methodName=selectAll"  class="btn btn-primary py-2 px-4">Shop Now</a>
-							<a href="#" class="btn btn-white btn-outline-white py-2 px-4">Read more</a>
+							<a href="front?key=notice&methodName=select" class="btn btn-white btn-outline-white py-2 px-4">Read more</a>
 						</p>
 					</div>
 				</div>

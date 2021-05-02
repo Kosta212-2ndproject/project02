@@ -93,7 +93,7 @@
 												href="front?key=notice&methodName=selectByNoticeNum&nNum=${notice.nNum}">
 												${notice.nTitle}</a>
 										</h3>
-										<p>${notice.nContent}</p>
+										 <p>${notice.nContent}</p> 
 										<a href="#" class="btn-custom">views ${notice.nViewCount}
 											<span class="fa fa-eye"></span>
 										</a>
@@ -133,7 +133,7 @@
 											<c:set var="doneLoop" value="true" />
 										</c:if>
 										<c:if test="${not doneLoop}">
-											<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=notice&methodName=selectAdmin&pageNo=${i}"> ${i} </a>
+											<li class="${i==pageNo? 'active':page}"><a href="${path}/front?key=notice&methodName=selectAdmin&pageNo=${i}"> ${i} </a>
 										</c:if>
 
 									</c:forEach>
