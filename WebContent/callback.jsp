@@ -124,16 +124,6 @@
 					
 					birth = birthyear + "-" + birthday;
 					
-					System.out.println("naverCode : " + naverCode + "\n");
-					System.out.println("name : " + name + "\n");
-					System.out.println("email : " + email + "\n");
-					System.out.println("gender : " + gender + "\n");
-					System.out.println("birthday : " + birthday + "\n");
-					System.out.println("age : " + age + "\n");
-					System.out.println("birthyear : " + birthyear + "\n");
-					System.out.println("mobile : " + mobile + "\n");
-					
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
