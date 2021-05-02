@@ -252,6 +252,7 @@
         }
         $("#tp").text(tot);
         $('[name=productPerId]').val();
+        totalCal();
     });
     
     function totalCal(){
