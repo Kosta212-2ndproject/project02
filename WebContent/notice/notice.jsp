@@ -133,7 +133,7 @@
 											<c:set var="doneLoop" value="true" />
 										</c:if>
 										<c:if test="${not doneLoop}">
-											<a class="${i==pageNo?'pagination-active':page}" href="${path}/front?key=notice&methodName=select&pageNo=${i}">${i}</a>
+											<li class="${i==pageNo? 'active':page}"><a href="${path}/front?key=notice&methodName=select&pageNo=${i}">${i}</a></li>
 										</c:if>
 
 									</c:forEach>
