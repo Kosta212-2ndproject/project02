@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/style.css">
 
-<SCRIPT language=javascript>
+<SCRIPT>
 	function checkValid() {
 		var f = window.document.searchForm;
 
@@ -42,30 +42,13 @@
 				<div class="col-md-6 d-flex align-items-center">
 					<p class="mb-0 phone pl-md-2">
 						<a href="#" class="mr-2">
-							<span class="fa fa-phone mr-1"></span> +00 1234 567
+							<span class="fa fa-phone mr-1"></span> +82 031 123 456
 						</a>
 						<a href="#">
-							<span class="fa fa-paper-plane mr-1"></span> youremail@email.com
+							<span class="fa fa-paper-plane mr-1"></span> jjan212@naver.com
 						</a>
 					</p>
 				</div>
-				<div class="col-md-6 d-flex justify-content-md-end">
-					<div class="social-media mr-4">
-						<p class="mb-0 d-flex">
-							<a href="#" class="d-flex align-items-center justify-content-center">
-								<span class="fa fa-facebook"><i class="sr-only">Facebook</i></span>
-							</a>
-							<a href="#" class="d-flex align-items-center justify-content-center">
-								<span class="fa fa-twitter"><i class="sr-only">Twitter</i></span>
-							</a>
-							<a href="#" class="d-flex align-items-center justify-content-center">
-								<span class="fa fa-instagram"><i class="sr-only">Instagram</i></span>
-							</a>
-							<a href="#" class="d-flex align-items-center justify-content-center">
-								<span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span>
-							</a>
-						</p>
-					</div>
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media mr-4">
 			    		<p class="mb-0 d-flex">
@@ -108,16 +91,13 @@
 				<input type="submit" value="검색">
 			</form>
 
-      <a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" class="flaticon-shopping-bag"></a><p>
-      <a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}" class="flaticon-heart"></a>
 
 			<div class="order-lg-last btn-group">
 
+				<a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" class="order-lg-last btn-group"><span class="flaticon-shopping-bag" style="width:30px"></span></a><br>
+      			<a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}" class="order-lg-last btn-group"><span class="flaticon-heart"></span></a>
 
-				<a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<span class="flaticon-shopping-bag"></span>
 					<div class="d-flex justify-content-center align-items-center">
-						<small>3</small>
 					</div>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">
@@ -164,10 +144,12 @@
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a href="index.jsp" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 					<li class="nav-item active"><a href="front?key=prod&methodName=selectAll" class="nav-link">Shop</a>
 					<li class="nav-item active"><a href="front?key=notice&methodName=select" class="nav-link">Notice</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<c:if test="${not empty userId}">
+						<li class="nav-item active"><a href="front?key=user&methodName=select" class="nav-link">MyPage</a></li>
+					</c:if>
+					<li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
 				</ul>
 			</div>
 		</div>

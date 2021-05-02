@@ -29,6 +29,16 @@ public class ReviewDTO {
 		this.reviewVcount = reviewVcount;
 	}
 	
+	public ReviewDTO(int reviewId, String userId, String reviewTitle, String reviewContent, int reviewStarScope,
+			String reviewImgUrl) {
+		super();
+		this.reviewId = reviewId;
+		this.userId = userId;
+		this.reviewTitle = reviewTitle;
+		this.reviewContent = reviewContent;
+		this.reviewStarScope = reviewStarScope;
+		this.reviewImgUrl = reviewImgUrl;
+	}
 	public int getReviewId() {
 		return reviewId;
 	}

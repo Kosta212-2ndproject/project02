@@ -129,8 +129,12 @@
                     <input type=hidden name="aAnsId" value="admin"> 
 					<input type=hidden name="key" value="question"> 
 					<input type=hidden name="methodName"> 
+					
+					<c:set var="id" value="${userId}"/>
+					<c:set var="adminId" value="203448231"/>
+					<c:if test="${id eq adminId}">
 					<input type=button value="deleteAnswer" onClick="sendDelete()" class="btn py-3 px-4 btn-primary">
-                    
+                    </c:if>
                   </div>
 
                 </form>

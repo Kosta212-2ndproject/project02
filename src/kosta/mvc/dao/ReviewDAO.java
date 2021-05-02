@@ -15,6 +15,11 @@ public interface ReviewDAO {
 	  List<ReviewDTO> selectAll() throws SQLException;
 	  
 	  /**
+	   * best Review  검색 
+	   * */
+	  List<ReviewDTO> bestReviewselect() throws SQLException;
+	  
+	  /**
 	   * reviewNum  검색 
 	   * */
 	  ReviewDTO selectReview(int reviewId) throws SQLException;

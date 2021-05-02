@@ -27,7 +27,7 @@
 
 
 <SCRIPT>
-	function checkValid() {
+	function checkValid3() {
 		var f = window.document.updateForm;
 		if (f.prodName.value == "") {
 			alert("상품이름을 입력해 주세요.");
@@ -102,7 +102,7 @@
 <BODY>
 
 
-	<form name=updateForm method=post action="${path}/front" onSubmit="return checkValid()">
+	<form name=updateForm method=post action="${path}/front" onSubmit="return checkValid3()">
 		<input type="hidden" name="key" value="prod">
 		<input type="hidden" name="methodName" value="updateProduct">
 		<input type='hidden' name='prodId' value="${prod.prodId}">
@@ -175,9 +175,11 @@
 						</div>
 						<p>
 							<input type="submit" value="수정하기" class="btn btn-primary py-3 px-5 mr-2">
-							<input type="reset" value="다시쓰기" class="btn btn-primary py-3 px-5">
+							<input type="reset" value="다시쓰기" class="btn btn-primary py-3 px-5 mr-2">
+							<input type="button" value="이전" class="btn btn-primary py-3 px-5 mr-2" onClick="location.href='javascript:history.back()'">
 						</p>
 					</div>
+					
 				</div>
 
 
@@ -231,10 +233,7 @@
 
 	</form>
 	<hr>
-	<div align=right>
-		<span style="font-size: 9pt;">&lt;<a href="${path}/front?key=prod&methodName=selectAllByAdmin">리스트로 돌아가기</a>&gt;
-		</span>
-	</div>
+	
 
 
 
@@ -257,8 +256,6 @@
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/jquery.animateNumber.min.js"></script>
 	<script src="js/scrollax.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script src="js/google-map.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 	<script src="js/main.js"></script>
 

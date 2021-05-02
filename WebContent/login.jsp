@@ -47,20 +47,23 @@
          
 			 <c:choose>
 				<c:when test="${empty userId}">
-					<div class="col text-center">
-						<%
-						    String clientId = "02aCnvQyzJ_ywbAK8xrZ";//애플리케이션 클라이언트 아이디값";
-						    String redirectURI = URLEncoder.encode("http://localhost/project02/callback.jsp", "UTF-8");
-						    SecureRandom random = new SecureRandom();
-						    String state = new BigInteger(130, random).toString();
-						    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-						    apiURL += "&client_id=" + clientId;
-						    apiURL += "&redirect_uri=" + redirectURI;
-						    apiURL += "&state=" + state;
-						    session.setAttribute("state", state);
-						%>
-						<a class="col text-center" href="<%=apiURL%>"><img height="50" src="images/Naver_Green.PNG"/></a>
-					</div>
+					<fieldset>
+						<form class="form-horizontal">
+							<legend>Login</legend>
+								<%
+							    String clientId = "02aCnvQyzJ_ywbAK8xrZ";//애플리케이션 클라이언트 아이디값";
+							    String redirectURI = URLEncoder.encode("http://localhost/project02/callback.jsp", "UTF-8");
+							    SecureRandom random = new SecureRandom();
+							    String state = new BigInteger(130, random).toString();
+							    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+							    apiURL += "&client_id=" + clientId;
+							    apiURL += "&redirect_uri=" + redirectURI;
+							    apiURL += "&state=" + state;
+							    session.setAttribute("state", state);
+							 %>
+							  <a href="<%=apiURL%>"><img height="50" src="images/Naver_Green.PNG"/></a>
+						</form>
+					</fieldset>
 				</c:when>
 				<c:otherwise>
 						<legend>Login</legend>

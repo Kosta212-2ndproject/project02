@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:include page="../common/header.jsp" />
+<jsp:include page="../common/headerAdmin.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +56,7 @@
 					<p class="breadcrumbs mb-0">
 						<span class="mr-2"><a href="index.jsp">Home <i
 								class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a
-							href="front?key=notice&methodName=select">Notice <i
+							href="front?key=notice&methodName=selectAdmin">Notice <i
 								class="fa fa-chevron-right"></i></a></span> <span>Notice Single <i
 							class="fa fa-chevron-right"></i></span>
 					</p>
@@ -87,27 +87,28 @@
 								<input type=hidden name="nNum" value="${nDTO.nNum}"> 
 								<input type=hidden name="key" value="notice"> 
 								<input type=hidden name="methodName"> 
-								<input type=button value="수정하기" onClick="sendUpdate()"> 
-								<input type=button value="삭제하기" onClick="sendDelete()">
+								<div class="row justify-content-center">
+								<input type=button value="Update" class="btn btn-primary d-block" class="fa fa-long-arrow-right" onClick="sendUpdate()"><br>
+								<span></span><input type=button value="Delete" class="btn btn-primary d-block" class="fa fa-long-arrow-right" onClick="sendDelete()"><br>
+								</div>
 					</form>
+					<br>
 
 
 
 					<div class="about-author d-flex p-4 bg-light">
 						<div class="bio mr-5">
-							<img src="images/person_1.jpg" alt="Image placeholder"
+							<img src="images/wineeditor.png" width="300" height="300" alt="Image placeholder"
 								class="img-fluid mb-4">
 						</div>
 						<div class="desc">
-							<h3>George Washington</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Ducimus itaque, autem necessitatibus voluptate quod mollitia
-								delectus aut, sunt placeat nam vero culpa sapiente consectetur
-								similique, inventore eos fugit cupiditate numquam!</p>
+							<h3> Victor Hugo </h3>
+							<p>God made only water, but man made wine.</p>
+							<h3> Charles Baudelaire </h3>
+							<p>Drink wine, drink poetry, drink virtue.</p>
+							<h5> Whatever you choose,<br> you are always right.</h5>
 						</div>
 					</div>
-
-
 
 				</div>
 				<!-- .col-md-8 -->
@@ -258,4 +259,4 @@
 
 </body>
 </html>
-<jsp:include page="../common/footer.jsp" />
+<jsp:include page="../common/footerAdmin.jsp" />

@@ -9612,7 +9612,7 @@ textarea.form-control {
       width: 40px;
       height: 40px;
       line-height: 40px;
-      border-radius: 50%;
+      border-radius: 40%;
       border: 1px solid #e6e6e6; }
     .block-27 ul li.active a, .block-27 ul li.active span {
       background: #b7472a;

@@ -3,6 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="common/header.jsp" />
 
+<%
+	request.setCharacterEncoding("UTF-8");
+   String prodId = request.getParameter("prodId");
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,12 +48,12 @@
     				img.setAttribute("width","50");
     				img.setAttribute("height","50");
     				img.setAttribute("src", event.target.result);
-    				
+
     				document.querySelector("div#image_container").appendChild(img);
     			};
     			reader.readAsDataURL(event.target.files[0]);
     		}
-    
+
     </script>
 
 </head>
@@ -123,9 +129,9 @@
 									data-type="minus" data-field="">
 									<i class="fa fa-minus"></i>
 								</button>
-							</span> <input type="text" id="quantity" name="quantity"
+							</span> <input type="text" id="qty" name="qty"
 								class="quantity form-control input-number" value="1" min="1"
-								max="100"> <span class="input-group-btn ml-2">
+								max="100" readonly> <span class="input-group-btn ml-2">
 								<button type="button" class="quantity-right-plus btn"
 									data-type="plus" data-field="">
 									<i class="fa fa-plus"></i>
@@ -134,14 +140,26 @@
 						</div>
 						<div class="w-100"></div>
 						<div class="col-md-12">
-							<p style="color: #000;">${prod.prodQty}pieceavailable</p>
+
+							<p style="color: #000;">재고 : <span style="color: red; font-size:25px">${prod.prodQty} </span> 개&emsp;&emsp; 배송비 : 2500원</p>
+
 						</div>
 					</div>
 					<p>
-						<a href="cart.html" class="btn btn-primary py-3 px-5 mr-2">Add
+						<a href="${path}/front?key=cart&methodName=insertCart&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">Add
 							to Cart</a> <a href="cart.html" class="btn btn-primary py-3 px-5">Buy
 							now</a>
 					</p>
+
+					<form action="checkout.jsp" id="checkout" method="post">
+						<input type="hidden" name="prodId" value="<%= prodId %>"/>
+						<input type="hidden" name="imgUrl" value="${prod.prodImgUrl}"/>
+						<input type="hidden" name="name" value="${prod.prodName}"/>
+						<input type="hidden" name="nameEng" value="${prod.prodNameEng}"/>
+						<input type="hidden" name="price" value="${prod.prodPrice}"/>
+						<input type="hidden" name="dbQty" value="${prod.prodQty}"/>
+						<input type="hidden" name="userInputQty" value=""/>
+					</form>
 				</div>
 			</div>
 
@@ -158,9 +176,9 @@
               <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Taste/Food Matching </a>
 
              <a class="nav-link ftco-animate mr-lg-1" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Reviews</a>
-             
+
              <a class="nav-link ftco-animate mr-lg-1" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">Q & A</a>
-            
+
              <a class="nav-link ftco-animate" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="false">Q & A Board</a>
 
 
@@ -193,24 +211,25 @@
 							</div>
 						</div>
 
-<!-- 4번째 탭메뉴의 contents /Question Form -->             
+<!-- 4번째 탭메뉴의 contents /Question Form -->
               <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-day-4-tab">
               	<div class="row p-4">
 						   	<!-- 	<div class="col-md-8"> -->
 						   			 <!-- <h3 class="mb-4">23 Reviews</h3>  -->
 						   		<!-- </div> -->
-						
+
 						<!-- 질문등록  영역  -->
 						   	<!-- 	<div class="col-md-4"> -->
-						   						   	
+
 								 <!--   	<div class="col-lg-6"> -->
 							<div class="review_box">
 								<h4>Post a question</h4>
-								<form class="row contact_form" name="uploadForm" 
-								action="${path}/front?key=question&methodName=insert" method="post" 
+								<form class="row contact_form" name="uploadForm"
+								action="${path}/front?key=question&methodName=insert" method="post"
 								onSubmit='return checkValid()' enctype="multipart/form-data" id="contactForm" novalidate="novalidate">
 									<input type="hidden" name="prodId" value="${prod.prodId}"/>
-									
+									<input type="hidden" name="userId" value="${session.userId}"/>
+
 									<div class="col-md-12">
 										<div class="form-group">
 											<input type="text" class="form-control" id="qTitle" name="qTitle" placeholder="Title">
@@ -221,11 +240,11 @@
 												<fieldset>
 													<legend>Category</legend>
 
-													<input type="radio" id="product" name="qField" value="상품"> 
-													<label for="product"> 상품 문의 </label><br /> 
-													<input type="radio" id="order" name="qField" value="주문"> 
-													<label for="order">	주문 문의 </label><br /> 
-													<input type="radio" id="delivery" name="qField" value="배송"> 
+													<input type="radio" id="product" name="qField" value="상품">
+													<label for="product"> 상품 문의 </label><br />
+													<input type="radio" id="order" name="qField" value="주문">
+													<label for="order">	주문 문의 </label><br />
+													<input type="radio" id="delivery" name="qField" value="배송">
 													<label for="delivery"> 배송 문의 </label>
 												</fieldset>
 											</div>
@@ -234,16 +253,16 @@
 										<div class="form-group">
 												<fieldset>
 													<legend> 공개 / 비공개 </legend>
-													<input type="radio" id="product" name="qShowstatus" value="0"> 
-													<label for="product"> 비공개 </label><br /> 
-													<input type="radio" id="order" name="qShowstatus" value="1"> 
-													<label for="order">	공개 </label><br /> 
+													<input type="radio" id="product" name="qShowstatus" value="0">
+													<label for="product"> 비공개 </label><br />
+													<input type="radio" id="order" name="qShowstatus" value="1">
+													<label for="order">	공개 </label><br />
 												</fieldset>
 											</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="file" class="form-control" id="qFiles" name="qFiles" 
+											<input type="file" class="form-control" id="qFiles" name="qFiles"
 											id="image" accept="image/*" onchange="setThumbnail(event);" placeholder="Upload file">
 											<div id="image_container"></div>
 										</div>
@@ -262,35 +281,35 @@
 						   	<!-- 	</div> -->
 				</div>
               </div>
-              
+
 <!-- 5번째 탭메뉴의 contents / Q&A Board -->
-              
+
                 <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-day-5-tab">
               	<div class="row p-4">
 							<div class="col-md-12" id="minjoo2">
 							</div>
-								
-							
-							
-<!-- end of 5th -->							
-							
+
+
+
+<!-- end of 5th -->
+
 				</div>
               </div>
             </div>
           </div>
         </div>
-        
-        
+
+
         <div class="row mt-6">
         <div class="col-md-13 tab-wrap">
         	<div class="tab-content bg-light" id="v-pills-tabContent2">
-        
-      					  
-							
-				</div>			
+
+
+
+				</div>
 			</div>
         </div>
-        
+
     	</div>
     </section>
     
@@ -301,21 +320,7 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-  <script src="js/main.js"></script>
+
   <script>
 	$(document).ready(function(){
 
@@ -364,16 +369,12 @@
 		//var isRun=false;
 		$(document).on("click","#v-pills-3-tab", function(){
 			//alert(22)
-				/* if(isRun){
-					//alert("processing...");
-					return;
-				}
-				isRun = true; */
+			var sessionId = "<%=session.getAttribute("userId")%>"
 			$.ajax({
    			 url:"${path}/reviewSelect" , // 서버요청주소
    			 type: "post", //method방식 = 전송방식(get, post, put, delete)
    			 dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
-   		     data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보 
+   		     data: {prodId : "${prod.prodId}"} ,  //서버에게 보낼 parameter정보 
    			 success : function(result){
    			   //alert(result)
    			  /* 	setTimeout(function () {
@@ -390,7 +391,7 @@
 				$.each(result, function(index, item) {
 					str += "<tr>"
 					str += "<td>" + item.userId + "</td>"
-					str += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"'>" + item.reviewTitle + "</td>"
+					str += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"&reviewUserId="+item.userId+"'>" + item.reviewTitle + "</td>"
 					str += "<td>" + item.reviewContent + "</td>"
 					str += "<td>" + item.reviewStarScope + "</td>"
 					str += "<td>" + item.reviewRegdate + "</td>"
@@ -427,12 +428,13 @@
 		//Q&A Board
 		//alert("${prod.prodId}")
 			$(document).on("click","#v-pills-5-tab", function(){ 
-				//alert(11)				
+				var sessionId = "<%=session.getAttribute("userId")%>"
+				//alert(sessionId)				
 				$.ajax({
 	   			 		url:"${path}/boardSelect" , // 서버요청주소 
 	   			 		type: "post", //method방식 = 전송방식(get, post, put, delete)
 	   			 		dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
-	   		     		data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보 
+	   		     		data: {prodId : "${prod.prodId}"} ,  //서버에게 보낼 parameter정보 
 	   			 		success : function(result){
 	   			   		//alert(result)
 	   			   		var str="<table><tr>";
@@ -444,12 +446,21 @@
 						str += "<th> public | private </th>";	
 						str += "</tr>"
    							$.each(result, function(index , questionDTO){
-			   				//alert(questionDTO.qNum +"," + questionDTO.answerList)
+			   				//alert(questionDTO.qNum +"," + questionDTO.answerList) 
 								str += "<tr>"
 								str += "<td>"+ questionDTO.qNum +"</td>"
 								str += "<td>"+ questionDTO.userId +"</td>"
 								str += "<td>"+ questionDTO.qField +"</td>"
-								str += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+questionDTO.qNum+"&prodId="+questionDTO.prodId+"'>" + questionDTO.qTitle + "</td>"
+								if(questionDTO.qShowstatus == '0'){
+									if(sessionId == "203448231" || sessionId == questionDTO.userId){
+										str += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+questionDTO.qNum+"&prodId="+questionDTO.prodId+"'>" + questionDTO.qTitle + "</td>"
+										
+									}else{
+										str += "<td>" + questionDTO.qTitle + "</td>"
+									}
+								}else{
+										str += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+questionDTO.qNum+"&prodId="+questionDTO.prodId+"'>" + questionDTO.qTitle + "</td>"
+								}
 								str += "<td>"+ questionDTO.qRegdate +"</td>"
 								if(questionDTO.qShowstatus == '0'){
 									str += "<td id='securityCheck'><img src='images/security.png' width='20' height='20'/></td>"	
@@ -506,10 +517,70 @@
 
 </script>			 
 
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="js/google-map.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+			$("[name=buyNow]").click(function () {
+				//alert(1)
+				alert(  $("[name=qty]").val() );
+
+				$("[name=userInputQty]").val($("[name=qty]").val());
+				$("#checkout").submit();
+			});
+
+			var quantitiy = 0;
+
+			$('.quantity-right-plus').click(function (e) {
+
+				e.preventDefault();
+				// Get the field name
+				var quantity = parseInt($('[name=qty]').val());
+
+				if (quantity == $("#prodQty").val()) {
+					$('.quantity-right-plus').prop('disabled', true);
+				} else {
+					$('[name=qty]').val(quantity + 1);
+				}
+
+			});
+
+
+        $('.quantity-left-minus').click(function (e) {
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            var quantity = parseInt($('[name=qty]').val());
+
+            // If is not undefined
+
+            // Increment
+            if (quantity <= 1) {
+                alert(quantity + "개 이상부터 구매하실 수 있습니다.");
+            } else {
+                $('[name=qty]').val(quantity - 1);
+            }
+
+        });
+    });
+</script>
+
+
 </body>
 </html>
 <jsp:include page="common/footer.jsp"/>
-
-
-
-

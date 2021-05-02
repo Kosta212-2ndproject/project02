@@ -14,28 +14,38 @@ public interface ProductDAO {
 	List<ProductDTO> selectAll(int pageNo, String category, String order, String values) throws SQLException;
 
 	/**
+	 * 상품재고에 따른 매진임박
+	 */
+	List<ProductDTO> selectAllByQty() throws SQLException;
+
+	/**
 	 * 상품상세 조회
 	 */
 	ProductDTO selectByProductDetail(int prodId) throws SQLException;
 
 	/**
 	 * 상품등록
-	 * 
+	 *
 	 * @return : 1-삽입성공 , 0 - 삽입실패
 	 */
 	int insertProduct(ProductDTO productDTO) throws SQLException;
 
 	/**
 	 * 상품번호에 해당하는 상품 삭제
-	 * 
+	 *
 	 * @return : 1-삭제성공 , 0 - 삭제실패
 	 */
 	int deleteProduct(int prodId) throws SQLException;
 
 	/**
 	 * 상품 수정
-	 * 
+	 *
 	 * @return : 1-수정성공 , 0 - 수정실패
 	 */
 	int updateProduct(ProductDTO productDTO) throws SQLException;
+
+	/**
+	 * 상품 금액 가져오기
+	 */
+	int selectByOriginPrice(int prodId) throws SQLException;
 }

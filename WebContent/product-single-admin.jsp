@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style.css">
 
-<SCRIPT language=javascript>
+<SCRIPT>
 	function sendUpdate() {
 		document.requestForm.methodName.value = "updateForm";
 		document.requestForm.submit();
@@ -36,7 +36,8 @@
 		document.requestForm.methodName.value = "delete";
 		document.requestForm.submit();
 	}
-</script>
+</SCRIPT>
+
 
 
 </HEAD>
@@ -48,11 +49,11 @@
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate mb-5 text-center">
 					<p class="breadcrumbs mb-0">
-						<span class="mr-2"><a href="index.jsp">
+						<span class="mr-2"><a href="indexAdmin.jsp">
 								Home <i class="fa fa-chevron-right"></i>
-							</a></span> <span><a href="product.html">
-								Products <i class="fa fa-chevron-right"></i>
-							</a></span> <span>Products Single <i class="fa fa-chevron-right"></i></span>
+							</a></span> <span><a href="${path}/front?key=prod&methodName=selectAllByAdmin">
+								상품관리 <i class="fa fa-chevron-right"></i>
+							</a></span> </span>
 					</p>
 					<h2 class="mb-0 bread">Products Single</h2>
 				</div>
@@ -116,12 +117,13 @@
 						<div class="input-group col-md-6 d-flex mb-3"></div>
 						<div class="w-100"></div>
 						<div class="col-md-12">
-							<p style="color: #000;">${prod.prodQty}piece available</p>
+							<p style="color: #000;">재고 : <span style="color: red; font-size:25px">${prod.prodQty} </span> 개&emsp;&emsp; 배송비 : 2500원</p>
 						</div>
 					</div>
 					<p>
 						<a href="front?key=prod&methodName=updateForm&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">수정하기</a>
-						<a href="front?key=prod&methodName=deleteProduct&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5">삭제하기</a>
+						<a href="front?key=prod&methodName=deleteProduct&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">삭제하기</a>
+						<input type="button" value="전체List" class="btn btn-primary py-3 px-5 mr-2" onClick="location.href='front?key=prod&methodName=selectAllByAdmin'">
 					</p>
 				</div>
 			</div>
@@ -268,7 +270,8 @@
 	<script src="js/google-map.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 	<script src="js/main.js"></script>
-
+	
+	
 </body>
 </html>
 <jsp:include page="common/footerAdmin.jsp" />

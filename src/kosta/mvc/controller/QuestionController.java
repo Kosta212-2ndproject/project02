@@ -38,6 +38,21 @@ public class QuestionController implements Controller {
 	
 	
 	/**
+	 * 질문 전체 보기 / 관리자 
+	 * */
+	public ModelAndView selectAllforAdmin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
+
+		List<QuestionDTO> question = questionService.selectAll();
+		request.setAttribute("question", question);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("questionSelect.jsp");
+		
+		return mv;
+	}
+	
+	
+	/**
 	 * 질문등록
 	 * */
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response)
@@ -56,8 +71,8 @@ public class QuestionController implements Controller {
 //		 String qRegdate;
 
 		//session 에서 가져와야
-		 String userId = "kim";
-		
+		String userId = (String) request.getSession().getAttribute("userId");
+		System.out.println(userId);
 		 String prodId = m.getParameter("prodId");
 		 String qField = m.getParameter("qField");
 		 String qTitle= m.getParameter("qTitle");
@@ -99,6 +114,7 @@ public class QuestionController implements Controller {
 	public ModelAndView selectByQuestionNum(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
 
+		response.setContentType("text/html;charset=UTF-8");
 //		 int qNum;
 //		 int prodId;
 //		 String userId;
@@ -148,6 +164,8 @@ public class QuestionController implements Controller {
 	 * */
 	public ModelAndView update(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
+		response.setContentType("text/html;charset=UTF-8");
+
 
 		String saveDir = request.getServletContext().getRealPath("/save");// ★
 		String encoding = "UTF-8";
@@ -192,6 +210,8 @@ public class QuestionController implements Controller {
 
 	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
+		response.setContentType("text/html;charset=UTF-8");
+
 		String qNum = request.getParameter("qNum");
 		questionService.delete(Integer.parseInt(qNum));
 		
@@ -241,6 +261,7 @@ public class QuestionController implements Controller {
 	public ModelAndView answerInsert(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
 		
+		response.setContentType("text/html;charset=UTF-8");
 
 		//session 에서 가져와야
 			String qNum = request.getParameter("qNum");
@@ -279,6 +300,7 @@ public class QuestionController implements Controller {
 	 * */
 	public ModelAndView selectByAnswerNum(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
+		response.setContentType("text/html;charset=UTF-8");
 
 		// session 에서 가져와야
 		//String userId = "kim";
@@ -307,6 +329,9 @@ public class QuestionController implements Controller {
 	 * */
 	public ModelAndView deleteAnswer(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
+		
+		response.setContentType("text/html;charset=UTF-8");
+
 		String qNum = request.getParameter("qNum");
 		String aNum = request.getParameter("aNum");
 		String prodId = request.getParameter("prodId");
