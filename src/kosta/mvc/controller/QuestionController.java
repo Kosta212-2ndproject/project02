@@ -38,6 +38,21 @@ public class QuestionController implements Controller {
 	
 	
 	/**
+	 * 질문 전체 보기 / 관리자 
+	 * */
+	public ModelAndView selectAllforAdmin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
+
+		List<QuestionDTO> question = questionService.selectAll();
+		request.setAttribute("question", question);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("questionSelect.jsp");
+		
+		return mv;
+	}
+	
+	
+	/**
 	 * 질문등록
 	 * */
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response)
@@ -50,24 +65,27 @@ public class QuestionController implements Controller {
 		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 		
 		
-//		 int qNum;
-//		 int prodId;
-//		 String userId;
-//		 String qRegdate;
 
 		//session 에서 가져와야
-		 String userId = "kim";
-		
+		String userId = (String) request.getSession().getAttribute("userId");
+		System.out.println(userId);
 		 String prodId = m.getParameter("prodId");
 		 String qField = m.getParameter("qField");
 		 String qTitle= m.getParameter("qTitle");
 		 String qContent= m.getParameter("qContent");
 		 String qFiles= m.getParameter("qFiles");
 		 String qShowstatus= m.getParameter("qShowstatus");
-		 
-		 QuestionDTO  question = new QuestionDTO(0, userId, Integer.parseInt(prodId), qField, qTitle, qContent, 
-				 qFiles, null, Integer.parseInt(qShowstatus));
-		
+		 QuestionDTO  question = null;
+		 if(qShowstatus == null) {
+			question = new QuestionDTO(0, userId, Integer.parseInt(prodId), qField, qTitle, qContent, 
+					 qFiles, null, 1);
+			 
+		 }else {
+			 
+			 question = new QuestionDTO(0, userId, Integer.parseInt(prodId), qField, qTitle, qContent, 
+					 qFiles, null, Integer.parseInt(qShowstatus));
+		 }
+	
 		
 		//파일 첨부가 되었다면, 
 			if(m.getFilesystemName("qFiles") != null) {//뭔가 첨부가 되었다면
@@ -99,6 +117,7 @@ public class QuestionController implements Controller {
 	public ModelAndView selectByQuestionNum(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
 
+		response.setContentType("text/html;charset=UTF-8");
 //		 int qNum;
 //		 int prodId;
 //		 String userId;
@@ -148,6 +167,8 @@ public class QuestionController implements Controller {
 	 * */
 	public ModelAndView update(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
+		response.setContentType("text/html;charset=UTF-8");
+
 
 		String saveDir = request.getServletContext().getRealPath("/save");// ★
 		String encoding = "UTF-8";
@@ -167,17 +188,34 @@ public class QuestionController implements Controller {
 		String qShowstatus = m.getParameter("qShowstatus");
 		
 		String qFilesOrigin = m.getParameter("qFilesOrigin");
+		
+		
+		QuestionDTO  question = null;
+		if(qShowstatus == null) {
+			
+			question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
+					null, qRegdate, 1);
+		}else {
+			
+			question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
+					null, qRegdate, Integer.parseInt(qShowstatus));
+		}
 
-		QuestionDTO question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
-				null, qRegdate, Integer.parseInt(qShowstatus));
 
 		// 파일 첨부가 되었다면,
 		if (m.getFilesystemName("qFiles") != null) {// 뭔가 첨부가 되었다면
 			question.setqFiles(request.getContextPath() + "/save/" + m.getFilesystemName("qFiles"));
 
 		} else {
-			question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
-					qFilesOrigin, qRegdate, Integer.parseInt(qShowstatus));
+			if(qShowstatus ==null) {
+				question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
+						qFilesOrigin, qRegdate, 1);
+				
+			}else {
+				
+				question = new QuestionDTO(Integer.parseInt(qNum), userId, Integer.parseInt(prodId), qField, qTitle, qContent,
+						qFilesOrigin, qRegdate, Integer.parseInt(qShowstatus));
+			}
 		}
 
 		questionService.update(question);
@@ -192,6 +230,8 @@ public class QuestionController implements Controller {
 
 	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
+		response.setContentType("text/html;charset=UTF-8");
+
 		String qNum = request.getParameter("qNum");
 		questionService.delete(Integer.parseInt(qNum));
 		
@@ -241,6 +281,7 @@ public class QuestionController implements Controller {
 	public ModelAndView answerInsert(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
 		
+		response.setContentType("text/html;charset=UTF-8");
 
 		//session 에서 가져와야
 			String qNum = request.getParameter("qNum");
@@ -271,6 +312,7 @@ public class QuestionController implements Controller {
 			return mv;
 	}
 	
+	
 
 	/**
 	 * 
@@ -279,6 +321,7 @@ public class QuestionController implements Controller {
 	 * */
 	public ModelAndView selectByAnswerNum(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
+		response.setContentType("text/html;charset=UTF-8");
 
 		// session 에서 가져와야
 		//String userId = "kim";
@@ -307,6 +350,9 @@ public class QuestionController implements Controller {
 	 * */
 	public ModelAndView deleteAnswer(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
+		
+		response.setContentType("text/html;charset=UTF-8");
+
 		String qNum = request.getParameter("qNum");
 		String aNum = request.getParameter("aNum");
 		String prodId = request.getParameter("prodId");

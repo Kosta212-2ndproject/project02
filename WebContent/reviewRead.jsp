@@ -87,6 +87,9 @@
 					<label for="userId">User ID </label>
 						<h3>${review.userId}</h3>
 						<hr>
+					<label for="prodId">Product ID </label>
+						<h3>${review.prodId}</h3>
+						<hr>
 						<c:forEach var="i" begin="1" end="${review.reviewStarScope}">
 							<i class="fa fa-star"></i>
 						</c:forEach><span>${review.reviewStarScope}.0</span>
@@ -107,9 +110,34 @@
                     <input type=hidden name="reviewId" value="${review.reviewId}"> 
 					<input type=hidden name="key" value="review"> 
 					<input type=hidden name="methodName"> 
-					<input type=button value="edit" onClick="sendUpdate()" class="btn py-3 px-4 btn-primary"> 
-					<input type=button value="delete" onClick="sendDelete()" class="btn py-3 px-4 btn-primary">
-                    
+					
+					<!-- 	<input type=button value="edit" onClick="sendUpdate()" class="btn py-3 px-4 btn-primary"> 
+						<input type=button value="delete" onClick="sendDelete()" class="btn py-3 px-4 btn-primary"> -->
+					
+					<c:set var="id" value="${userId}"/>
+					<c:set var="reviewId" value="${review.userId}"/>
+					<c:if test="${id eq reviewId}">
+						<input type=button value="edit" onClick="sendUpdate()" class="btn py-3 px-4 btn-primary"> 
+						<input type=button value="delete" onClick="sendDelete()" class="btn py-3 px-4 btn-primary">
+                    </c:if> 
+                  
+          			<%-- <%
+                    	String userId = (String)request.getSession().getAttribute("userId");
+                    	if(userId.equals("${review.reviewId}")){
+                    %>
+					
+						<input type=button value="edit" onClick="sendUpdate()" class="btn py-3 px-4 btn-primary"> 
+						<input type=button value="delete" onClick="sendDelete()" class="btn py-3 px-4 btn-primary">
+						
+					<%
+                    	}
+					%>	  --%>
+					
+					
+					
+		
+					
+					
                   </div>
 
                 </form>

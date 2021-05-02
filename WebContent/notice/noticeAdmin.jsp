@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:include page="../common/header.jsp" />
+<jsp:include page="../common/headerAdmin.jsp" />
 
 <!DOCTYPE html>
 <html>
@@ -53,7 +53,7 @@
 				class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate mb-5 text-center">
 					<p class="breadcrumbs mb-0">
-						<span class="mr-2"><a href="index.jsp">Home <i
+						<span class="mr-2"><a href="indexAdmin.jsp">Home <i
 								class="fa fa-chevron-right"></i></a></span> <span>Notice <i
 							class="fa fa-chevron-right"></i></span>
 					</p>
@@ -79,7 +79,7 @@
 							<div class="col-lg-6 d-flex align-items-stretch ftco-animate">
 								<div class="blog-entry d-md-flex">
 									<a
-										href="front?key=notice&methodName=selectByNoticeNumforUser&nNum=${notice.nNum}"
+										href="front?key=notice&methodName=selectByNoticeNum&nNum=${notice.nNum}"
 										class="block-20 img"
 										style="background-image: url('${notice.nImage}');"> </a>
 									<div class="text p-4 bg-light">
@@ -125,7 +125,7 @@
 
 								<ul>
 									<c:if test="${(startPage-p.blockcount) > 0}">
-										<li><a href="front?key=notice&methodName=select&pageNo=${startPage-1}">&lt;</a></li>
+										<li><a href="front?key=notice&methodName=selectAdmin&pageNo=${startPage-1}">&lt;</a></li>
 									</c:if>
 
 									<c:forEach var='i' begin='${startPage}' end='${(startPage-1)+p.blockcount}'>
@@ -133,12 +133,12 @@
 											<c:set var="doneLoop" value="true" />
 										</c:if>
 										<c:if test="${not doneLoop}">
-											<li class="${i==pageNo? 'active':page}"><a href="${path}/front?key=notice&methodName=select&pageNo=${i}">${i}</a></li>
+											<li class="${i==pageNo? 'active':page}"><a href="${path}/front?key=notice&methodName=selectAdmin&pageNo=${i}"> ${i} </a>
 										</c:if>
 
 									</c:forEach>
 									<c:if test="${(startPage+p.blockcount)<=p.pageCnt}">
-										<li><a href="front?key=notice&methodName=select&pageNo=${startPage+p.blockcount}">&gt;</a></li>
+										<li><a href="front?key=notice&methodName=selectAdmin&pageNo=${startPage+p.blockcount}">&gt;</a></li>
 									</c:if>
 								</ul>
 							</div>
@@ -151,7 +151,7 @@
 			<div class="block-27">
 				<ul>
 
-			<%-- 		
+					
 					<div class="row justify-content-center">
 						<div class="col-md-4">
 							<a href="${path}/front?key=notice&methodName=uploadForm"
@@ -159,7 +159,7 @@
 								class="fa fa-long-arrow-right"></span>
 							</a>
 						</div>
-					</div> --%>
+					</div>
 					<br>
 					<br>
 					<br>
@@ -167,7 +167,6 @@
 			</div>
 		</div>
 	</div>
-
 
 
 	<!-- contents -->
@@ -203,4 +202,4 @@
 
 </body>
 </html>
-<jsp:include page="../common/footer.jsp" />
+<jsp:include page="../common/footerAdmin.jsp" />

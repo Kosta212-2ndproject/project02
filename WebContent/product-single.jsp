@@ -90,27 +90,7 @@
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
 					<h3>${requestScope.prod.prodName}${requestScope.prod.prodNameEng}</h3>
-					<div class="rating d-flex">
-						<p class="text-left mr-4">
-							<a href="#" class="mr-2">5.0</a> <a href="#"> <span
-								class="fa fa-star"></span>
-							</a> <a href="#"> <span class="fa fa-star"></span>
-							</a> <a href="#"> <span class="fa fa-star"></span>
-							</a> <a href="#"> <span class="fa fa-star"></span>
-							</a> <a href="#"> <span class="fa fa-star"></span>
-							</a>
-						</p>
-						<p class="text-left mr-4">
-							<a href="#" class="mr-2" style="color: #000;"> 100 <span
-								style="color: #bbb;">Rating</span>
-							</a>
-						</p>
-						<p class="text-left">
-							<a href="#" class="mr-2" style="color: #000;"> 500 <span
-								style="color: #bbb;">Sold</span>
-							</a>
-						</p>
-					</div>
+					<br>
 					<p class="price">
 						<span><fmt:formatNumber value="${prod.prodPrice}"
 								pattern="#,###원" /></span>
@@ -140,9 +120,9 @@
 						</div>
 						<div class="w-100"></div>
 						<div class="col-md-12">
-							<p style="color: #000;">
-								<input type="text" class="text-center" id="prodQty" value="${prod.prodQty}"/> piece available
-							</p>
+
+							<p style="color: #000;">재고 : <span style="color: red; font-size:25px">${prod.prodQty} </span> 개&emsp;&emsp; 배송비 : 2500원</p>
+
 						</div>
 					</div>
 					<p>
@@ -173,9 +153,9 @@
               <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
 
               <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Taste/Food Matching </a>
-
+			<c:if test="${not empty userId}">
              <a class="nav-link ftco-animate mr-lg-1" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Reviews</a>
-
+			</c:if>
              <a class="nav-link ftco-animate mr-lg-1" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">Q & A</a>
 
              <a class="nav-link ftco-animate" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="false">Q & A Board</a>
@@ -227,6 +207,7 @@
 								action="${path}/front?key=question&methodName=insert" method="post"
 								onSubmit='return checkValid()' enctype="multipart/form-data" id="contactForm" novalidate="novalidate">
 									<input type="hidden" name="prodId" value="${prod.prodId}"/>
+									<input type="hidden" name="userId" value="${session.userId}"/>
 
 									<div class="col-md-12">
 										<div class="form-group">
@@ -249,6 +230,7 @@
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
+													<c:if test="${not empty userId}">
 												<fieldset>
 													<legend> 공개 / 비공개 </legend>
 													<input type="radio" id="product" name="qShowstatus" value="0">
@@ -256,6 +238,7 @@
 													<input type="radio" id="order" name="qShowstatus" value="1">
 													<label for="order">	공개 </label><br />
 												</fieldset>
+													</c:if>
 											</div>
 									</div>
 									<div class="col-md-12">
@@ -318,6 +301,207 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
+
+  <script>
+	$(document).ready(function(){
+
+		var quantitiy=0;
+		   $('.quantity-right-plus').click(function(e){
+		        
+		        // Stop acting like a button
+		        e.preventDefault();
+		        // Get the field name
+		        var quantity = parseInt($('#quantity').val());
+		        
+		        // If is not undefined
+		            
+		            $('#quantity').val(quantity + 1);
+
+		          
+		            // Increment
+		        
+		    });
+
+		     $('.quantity-left-minus').click(function(e){
+		        // Stop acting like a button
+		        e.preventDefault();
+		        // Get the field name
+		        var quantity = parseInt($('#quantity').val());
+		        
+		        // If is not undefined
+		      
+		            // Increment
+		            if(quantity>0){
+		            $('#quantity').val(quantity - 1);
+		            }
+		    });
+	});//end of ready
+</script>	    
+
+<script type="text/javascript">
+	
+	
+	$(document).ready(function() {
+		
+		
+		///////////////////////////////////////////////////
+	 	
+		//alert("${prod.prodId}")
+		//var isRun=false;
+		$(document).on("click","#v-pills-3-tab", function(){
+			//alert(22)
+			var sessionId = "<%=session.getAttribute("userId")%>"
+			$.ajax({
+   			 url:"${path}/reviewSelect" , // 서버요청주소
+   			 type: "post", //method방식 = 전송방식(get, post, put, delete)
+   			 dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
+   		     data: {prodId : "${prod.prodId}"} ,  //서버에게 보낼 parameter정보 
+   			 success : function(result){
+   			   //alert(result)
+   			  /* 	setTimeout(function () {
+   			  		isRun = false;
+				},10000000); */
+   				let str = "<table id='table'><tr>";
+   				str += "<th> 회원아이디 </th>";
+   				str += "<th> 제목 </th>";
+   				str += "<th> 내용 </th>";
+   				str += "<th> 별점 </th>";
+   				str += "<th> 등록일 </th>";
+   				str += "<th> 사진 </th>";
+   				str += "<th> 조회수 </th>";
+				$.each(result, function(index, item) {
+					str += "<tr>"
+					str += "<td>" + item.userId + "</td>"
+					if(sessionId != null){
+						str += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"&reviewUserId="+item.userId+"'>" + item.reviewTitle + "</td>"
+					}else{
+						str += "<td>" + item.reviewTitle + "</td>"
+					}
+					str += "<td>" + item.reviewContent + "</td>"
+					str += "<td>" + item.reviewStarScope + "</td>"
+					str += "<td>" + item.reviewRegdate + "</td>"
+					str += "<td><img width='175' height='200' src='"+item.reviewImgUrl+"'></td>";
+					str += "<td>" + item.reviewVcount + "</td>"
+					//str += "<td><input type='button' value='delete'/></td>"
+					str += "</tr>"
+				});
+				str += "</table>"
+
+				
+				//겹치는 css클래스 명이 있을 경우 , id 를 줘서 unique 하게 처리하면 됨 
+				//브라우저에서 지원하는 소스코드 활용해서 css 적용해보면서 할 것!  
+				//->미리 어떤식으로 적용되는지 확인 후, 실제 코드에서 변경해 주면됨 
+				//$(".col-md-7").after(str);//형제노드로추가되는 것. 
+				$("#minjoo").html(str);// 해당영역 안에 추가되는 것 , 덮어쓰기됨  
+				
+				
+   			 } , //성공했을때 함수
+   			 error: function(err){
+   				 alert(err+"발생했어요^^")
+   			 } //오류발생했을때 함수 
+   			 
+   		 });//ajax끝
+			
+		})//end of on		
+		
+	})//end of ready
+
+</script> 
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		//Q&A Board
+		//alert("${prod.prodId}")
+			$(document).on("click","#v-pills-5-tab", function(){ 
+				var sessionId = "<%=session.getAttribute("userId")%>"
+				//alert(sessionId)				
+				$.ajax({
+	   			 		url:"${path}/boardSelect" , // 서버요청주소 
+	   			 		type: "post", //method방식 = 전송방식(get, post, put, delete)
+	   			 		dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
+	   		     		data: {prodId : "${prod.prodId}"} ,  //서버에게 보낼 parameter정보 
+	   			 		success : function(result){
+	   			   		//alert(result)
+	   			   		var str="<table><tr>";
+	   			   		str += "<th> No. </th>";
+						str += "<th> ID </th>";
+						str += "<th> Category </th>";
+						str += "<th> Title </th>";
+						str += "<th> Date </th>";
+						str += "<th> public | private </th>";	
+						str += "</tr>"
+   							$.each(result, function(index , questionDTO){
+			   				//alert(questionDTO.qNum +"," + questionDTO.answerList) 
+								str += "<tr>"
+								str += "<td>"+ questionDTO.qNum +"</td>"
+								str += "<td>"+ questionDTO.userId +"</td>"
+								str += "<td>"+ questionDTO.qField +"</td>"
+								if(questionDTO.qShowstatus == '0'){
+									if(sessionId == "203448231" || sessionId == questionDTO.userId){
+										str += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+questionDTO.qNum+"&prodId="+questionDTO.prodId+"'>" + questionDTO.qTitle + "</td>"
+										
+									}else{
+										str += "<td>" + questionDTO.qTitle + "</td>"
+									}
+								}else{
+										str += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+questionDTO.qNum+"&prodId="+questionDTO.prodId+"'>" + questionDTO.qTitle + "</td>"
+								}
+								str += "<td>"+ questionDTO.qRegdate +"</td>"
+								if(questionDTO.qShowstatus == '0'){
+									str += "<td id='securityCheck'><img src='images/security.png' width='20' height='20'/></td>"	
+								}else{
+									str += "<td id='securityCheck'><img src='images/public.svg' width='20' height='20'/></td>"	
+								}
+								str += "</tr>"
+			   					
+			   					$.each(questionDTO.answerList, function(index, answerDTO) {
+			   					  		
+									str += "<tr>"
+									str += "<td>" + answerDTO.aNum + "</td>"
+									str += "<td>" + answerDTO.aAnsId + "</td>"
+									str += "<td>" + questionDTO.qField + " 답변</td>"
+									str += "<td><a href='front?key=question&methodName=selectByAnswerNum&aNum="+answerDTO.aNum+"&qNum="+questionDTO.qNum+"'><img src='images/reply.jpeg' width='20' height='20'/>" + questionDTO.qTitle + "</td>"
+									str += "<td>" + answerDTO.aRegdate + "</td>"
+									if(questionDTO.qShowstatus == '0'){
+									str += "<td id='securityCheck'><img src='images/security.png' width='20' height='20'/></td>"	
+									}else{
+									str += "<td id='securityCheck'><img src='images/public.svg' width='20' height='20'/></td>"	
+									}
+									str += "</tr>"
+									str += "<tr>"
+									
+								})//end of 2nd each
+			   			
+			   							
+							})//end of 1st each
+	   			   			$("#minjoo2").html(str)
+	   							
+	   			 		}, //성공했을때 함수
+	   			 		error: function(err){
+	   				 	alert(err+"발생했어요^^")
+	   			 		} //오류발생했을때 함수 
+				});//ajax끝
+	   			 
+	   		}); // end of on
+	   		 
+	   		 
+	   		
+	 		///////////////////////////////////////////////////
+	 			 	
+	 			 	jQuery.each(jQuery('textarea[data-autoresize]'), function() { 
+	 			 		var offset = this.offsetHeight - this.clientHeight; 
+	 			 		var resizeTextarea = function(el) { 
+	 			 			jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset); }; 
+	 			 			jQuery(this).on('keyup input', function() { 
+	 			 				resizeTextarea(this); }).removeAttr('data-autoresize'); 
+	 			 			});
+	 		     
+	 			 	///////////////////////////////////////////////////
+		
+	})//end of ready
+
+</script>			 
+
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
 <script src="js/popper.min.js"></script>
@@ -360,6 +544,7 @@
 				}
 
 			});
+
 
         $('.quantity-left-minus').click(function (e) {
             // Stop acting like a button

@@ -212,6 +212,8 @@
                <h3 class="mb-4 billing-heading">결제 세부 정보</h3>
                <div class="row align-items-end">
 
+
+
                   <div class="col-md-6">
                      <div class="form-group">
                         <label for="firstname">수령인</label>

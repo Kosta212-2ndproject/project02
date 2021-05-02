@@ -24,9 +24,9 @@
 	function checkValid() {
 		var f = window.document.searchForm;
 
-		if (f.values.value == "") {
+		if (f.keyWord.value == "") {
 			alert("검색어를 입력해 주세요.");
-			f.values.focus();
+			f.keyWord.focus();
 			return false;
 		}
 		return true;
@@ -42,14 +42,13 @@
 				<div class="col-md-6 d-flex align-items-center">
 					<p class="mb-0 phone pl-md-2">
 						<a href="#" class="mr-2">
-							<span class="fa fa-phone mr-1"></span> +00 1234 567
+							<span class="fa fa-phone mr-1"></span> +82 031 123 456
 						</a>
 						<a href="#">
-							<span class="fa fa-paper-plane mr-1"></span> youremail@email.com
+							<span class="fa fa-paper-plane mr-1"></span> jjan212@naver.com
 						</a>
 					</p>
 				</div>
-					
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media mr-4">
 			    		<p class="mb-0 d-flex">
@@ -146,7 +145,12 @@
 					<li class="nav-item active"><a href="index.jsp" class="nav-link">Home</a></li>
 					<li class="nav-item active"><a href="front?key=prod&methodName=selectAll" class="nav-link">Shop</a>
 					<li class="nav-item active"><a href="front?key=notice&methodName=select" class="nav-link">Notice</a></li>
-					<li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
+					<c:if test="${not empty userId}">
+						<li class="nav-item active"><a href="front?key=user&methodName=select" class="nav-link">MyPage</a></li>
+					</c:if>
+
+					<li class="nav-item active"><a href="contact.jsp" class="nav-link">Contact</a></li>
+
 				</ul>
 			</div>
 		</div>
