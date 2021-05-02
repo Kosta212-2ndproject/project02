@@ -158,7 +158,7 @@ $(function () {
         orderNo = $(this).attr("name");
         totalPrice = $("#totalPrice").val();
         alert("totalPrice: " + totalPrice);
-    })
+    });
 
     $('#modal_btn_cancel').on('click', function (e) {    // modal 버튼
         e.preventDefault();
@@ -178,4 +178,5 @@ $(function () {
             }
         });
     });
+
 });
