@@ -22,11 +22,11 @@
 
 <SCRIPT language=javascript>
 	function checkValid() {
-		var f = window.document.searchFrom;
+		var f = window.document.searchForm;
 
-		if (f.keyWord.value == "") {
+		if (f.values.value == "") {
 			alert("검색어를 입력해 주세요.");
-			f.keyWord.focus();
+			f.values.focus();
 			return false;
 		}
 		return true;
@@ -83,7 +83,7 @@
 				JJAN <span>ㅉ ㅏ ㄴ</span>
 			</a>
 
-			<form name="searchFrom" action="front" method="post" onSubmit='return checkValid()'>
+			<form name="searchForm" action="front" method="post" onSubmit='return checkValid()'>
 				<input class="input" type="text" name="values" placeholder="상품명 또는 국가 입력">
 				<input type="hidden" name="key" value="prod">
 				<input type="hidden" name="methodName" value="selectAllByAdmin">

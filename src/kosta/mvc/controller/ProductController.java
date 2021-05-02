@@ -51,9 +51,11 @@ public class ProductController implements Controller {
 		}
 
 		List<ProductDTO> listAll = prodService.selectAll(Integer.parseInt(pageNo), category, order, values);
-
+		List<ProductDTO> listQty = prodService.selectAllByQty();
+		
 		request.setAttribute("listAll", listAll);
-
+		request.setAttribute("listQty", listQty);
+		
 		request.setAttribute("pageNo", pageNo);
 		request.setAttribute("category", category);
 		request.setAttribute("values", values);

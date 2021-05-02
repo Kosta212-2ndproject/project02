@@ -47,7 +47,7 @@ $(function () {
                 pg: 'html5_inicis',   // pg사 KG이니시스
                 pay_method: 'card',   // 결제 방식
                 // 주문번호는 : YYMMDD_{제품코드}{구매수량(3자리)}{넘버} + $(this).attr("id");
-                merchant_uid: $(this).attr("id"), // + new Date().getTime(),
+                merchant_uid: $(this).attr("id") + new Date().getTime(),
                 name: '주문: ' + $(this).parent().prev().prev().text(),  // 주문명 주문명은 16글자 이내를 권장한다.
                 amount: $(this).parent().prev().text(), // 가격
                 display: {card_quota: [1, 2, 3, 4, 5, 6]}, // 할부개월수
@@ -72,7 +72,13 @@ $(function () {
                     }).done(function (data) {
                         //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
                         if (everythings_fine) {
-                           alert(data);
+                            var msg = '결제가 완료되었습니다.';
+                            msg += '\n고유ID : ' + rsp.imp_uid;
+                            msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                            msg += '\n결제 금액 : ' + rsp.paid_amount;
+                            msg += '카드 승인번호 : ' + rsp.apply_num;
+
+                            alert(msg);
                         } else {
                             //[3] 아직 제대로 결제가 되지 않았습니다.
                             //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.

@@ -6,12 +6,17 @@ import java.util.List;
 import kosta.mvc.dto.ProductDTO;
 
 public interface ProductService {
-
+	
 	/**
 	 * 상품 검색 메소드 호출
 	 */
 	List<ProductDTO> selectAll(int pageNo, String category, String order, String values) throws SQLException;
-
+	
+	/**
+	 * 상품 매진 상품 검색 메소드 호출
+	 */
+	List<ProductDTO> selectAllByQty() throws SQLException;
+	
 	/**
 	 * ProductDAOImpl의 상품 상세 조회 메소드 호출
 	 */
