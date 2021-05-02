@@ -12,16 +12,14 @@ $(document).ready(function () {
 
 
 function isChecked() {
-    // if ($("input:checkbox[name='agree']").not(":checked")) {
-    //     alert("약관을 동의해주세요.");
-    // } else if ( $("input:radio[id='card']").not(":checked")
-    //     || $("input:radio[id='phone']").not(":checked")
-    //     || $("input:radio[id='cultureland']").not(":checked")) {
-    //     alert("결제 방식을 선택해주세요.");
-    //     return;
-    // } else {
-    //     productBuy();
-    // }
+    if (!$("input:checkbox[name='agree']").on('click')) {
+        alert("약관을 동의해주세요.");
+    } else if ( $(".mr-2 pay-method").val() == null) {
+        console.log($(".mr-2 pay-method").val());
+        alert("결제 방식을 선택해주세요.");
+    } else {
+        // productBuy();
+    }
 };
 
 function phoneNumCheck() {
@@ -70,16 +68,7 @@ function addressUpdate() {
 }
 
 
-function funcs() {
-
-    alert();
-
-}
-
 function productBuy() {
-
-
-    // alert($('input[class="mr-2 pay-method"]:checked').val());
 
     IMP.request_pay({
         pg: 'html5_inicis',   // pg사 KG이니시스

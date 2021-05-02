@@ -141,7 +141,7 @@
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">아니요. 취소안할게요.</button>
-            <button type="button" id="r_cancel_all" class="btn btn-primary">네. 취소하겠습니다.</button>
+            <button type="button" id="r_cancel_all" class="btn btn-primary" data-dismiss="modal">네. 취소하겠습니다.</button>
          </div>
       </div>
    </div>
@@ -172,7 +172,7 @@
 <table class="table" id="cashListTable">
    <thead>
    <tr>
-      <th class="text-center">#</th>
+      <th class="text-center" id="totalShowTable" width="100px" style="font-size: 14px">#</th>
       <th class="text-left" style="font-size: 15px">&nbsp;&nbsp;&nbsp;가맹점 고유번호<br>&nbsp;&nbsp; 주문번호</th>
       <th class="text-left" style="font-size: 15px">&nbsp;&nbsp;&nbsp;결제금액<br> &nbsp;&nbsp;(취소금액)</th>
       <th class="text-left" style="font-size: 15px">&nbsp;&nbsp;&nbsp; 구분<br>&nbsp;&nbsp; (클릭)</th>
@@ -188,9 +188,12 @@
 
    </tbody>
 </table>
+<form action="" id="totalShow">
 
-<form action="" id="button-page">
 </form>
+
+<%--<form action="" id="button-page">--%>
+<%--</form>--%>
 
 <!-- 페이지 버튼 -->
 <nav aria-label="Page navigation example">

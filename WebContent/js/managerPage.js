@@ -75,12 +75,12 @@ function payList(e) {
             buttonOption: e
         },											//서버에게 보낼 parameter 정보
         success: function (result) {
-            console.log(result);
+            // console.log(result);
             var str = "";
             $.each(result.list, function (index, value) {
                 // 가맹점 고유번호(주문번호)
                 str += `<tr>`;
-                str += `<td class="text-center">${index + 1}</td>`;
+                str += `<td class="text-center">${index+1}</td>`;
                 str += `<td class="text-left">${value.impUid}<br>${value.merchantUid}</td>`;
 
                 // 결제금액(취소금액)
@@ -116,7 +116,7 @@ function payList(e) {
 
                 // 결제상세
                 str += `<td>`;
-                if(value.status != 'failed') {
+                if (value.status != 'failed') {
                     str += `${value.cardName}<br>(${cardQuotaFunc(value.cardQuota)})`;
                 }
                 str += `</td>`;
@@ -132,7 +132,7 @@ function payList(e) {
                 str += `</td>`;
 
                 // 결제시각
-                if(value.status != 'failed') {
+                if (value.status != 'failed') {
                     str += `<td> ${unixTimeStampFunc(value.paidAt.time)}</td>`;
                 } else {
                     str += `<td></td>`;
@@ -140,23 +140,31 @@ function payList(e) {
 
                 // 상태
                 str += `<td>`;
-                if(value.status == 'cancelled') {
+                if (value.status == 'cancelled') {
                     str += `<a href="javascript:void(window.open('${value.receiptUrl}', 'INICIS Receipt Auth','width=430, height=600'))" id="cancelReceipt" class="badge badge-warning" style="font-size: 13px">환불영수증</a><br>`;
                 } else {
                     str += `${cardStatus(value.status)}`;
                 }
                 if (value.status == 'paid') {
                     str += `<a href="#" id="cancelBtn" name="${value.merchantUid}" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal" style="font: 13px bold; font-weight: bold;">취소하기</a>`;
-                } else if(value.status == 'cancelled') {
+                } else if (value.status == 'cancelled') {
                     str += `[${unixTimeStampFunc(value.cancelledAt.time)}] ₩${value.cancelAmount}<br> (${value.cancelReason})`;
-                } else if(value.status == 'failed') {
+                } else if (value.status == 'failed') {
                     str += `사용자가 결제를 취소했습니다.`;
                 }
                 str += `</td>`;
                 str += `</tr>`;
+
             });
 
-            // $("#cashListTable tbody tr:eq(0)").after(str);
+            var totalCount = result.total;
+            // var totalShow = `<span class="text-left" style="color: white; font: 15px bold">전체: ${totalCount}건</span>`;
+
+            $("#totalShowTable").text("전체 : " + totalCount + " 건");
+            //
+            // $("#totalShow").empty();
+            // $("#totalShow").append(totalShow);
+
             $("#cashListTable tr:gt(0)").remove();
             $("tbody").after(str);
 
@@ -177,7 +185,7 @@ function payList(e) {
             var left = pageStartNumber - 1;
             var right = pageEndNumber + 1;
 
-            var form = document.getElementById("button-page");
+            // var form = document.getElementById("button-page");
             $("#button-page").empty();
             $("#pageBtns").empty();
             // $("#pageBtns li:gt(0)").remove();
@@ -232,7 +240,7 @@ function payList(e) {
 
         }, //성공했을 때 함수
 
-    error: function (request, status, error) {
+        error: function (request, status, error) {
             alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
         }
     });   // ajax 끝
@@ -263,7 +271,6 @@ $(function () {
             success: function (data) {
                 alert("result: " + data);
                 alert("취소가 되었습니다.");
-                $(this).modal('hide');
             }
         });
     });
