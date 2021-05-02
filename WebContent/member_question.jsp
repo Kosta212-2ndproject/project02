@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/review.css">
 
 </head>
 
@@ -31,8 +32,8 @@
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate mb-5 text-center">
-					<p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.jsp"> Home <i class="fa fa-chevron-right"></i></a></span> <span>회원탈퇴 <i class="fa fa-chevron-right"></i></span></p>
-					<h2 class="mb-0 bread">회원탈퇴</h2>
+					<p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.jsp"> Home <i class="fa fa-chevron-right"></i></a></span> <span>회원정보 <i class="fa fa-chevron-right"></i></span></p>
+					<h2 class="mb-0 bread">회원정보</h2>
 				</div>
 			</div>
 		</div>
@@ -48,25 +49,20 @@
 					
 					<!-- 본문 타이틀 -->
 					<div class="row mb-4">
-						<div class="col-md-12 d-flex justify-content-between align-items-center">
-							<h4 class="product-select">회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해주세요</h4>
-						</div>
+						<!-- <div class="col-md-12 d-flex justify-content-between align-items-center">
+							<h4 class="product-select">회원정보</h4>
+						</div> -->
 					</div>
 					
 					<!-- 본문 내용 -->
-					<div class="row">
-						<ul>
-							<li>이 서비스에서 탈퇴하셔도 네이버 이용약관은 철회되지 않습니다. 이용약관 철회는 네이버를 이용해주세요.</li>
-							<li>탈퇴 후 가입한 정보는 1년간 보관됩니다.</li>
-							<li>탈퇴 후에도 작성한 리뷰는 그대로 남아 있습니다.</li>
-						</ul>
+					<div class="p-4 bg-light">
+						<div id="minjooQuestionAll">
+						
+						</div>
 					</div>
 					
 					<!-- 본문 하단 -->
 					<div class="row mt-5">
-						<div class="col text-center">
-							<a class="btn btn-primary py-2 px-3" id="confirm">탈퇴합니다</a>
-						</div>
 					</div>
 				</div>
 				
@@ -111,14 +107,71 @@
 	<script src="js/google-map.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 	<script src="js/main.js"></script></body>
-	
+
 	<script type="text/javascript">
 		$(function() {
-			$("#confirm").click(function() {
-				if(confirm("정말 탈퇴하시겠습니까?")) {
-					location.href = "front?key=member&methodName=leaveMember";
-				}
-			})
+			function printQuestion() {
+				var sessionId = "<%=session.getAttribute("userId")%>"		
+				$.ajax({
+	   			 		url:"${path}/questionSelectByUser" , // 서버요청주소   
+	   			 		type: "post", //method방식 = 전송방식(get, post, put, delete)
+	   			 		dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
+	   		     		//data: {prodId : "${prod.prodId}" } ,  //서버에게 보낼 parameter정보 
+	   			 		success : function(result){
+	   			   		//alert(result)
+	   			   		var str="<table><tr>";
+	   			   		str += "<th> No. </th>";
+						str += "<th> ID </th>";
+						str += "<th> Category </th>";
+						str += "<th> Title </th>";
+						str += "<th> Date </th>";
+						str += "<th> public | private </th>";	
+						str += "</tr>"
+   							$.each(result, function(index , questionDTO){
+			   				//alert(questionDTO.qNum +"," + questionDTO.answerList)
+								str += "<tr>"
+								str += "<td>"+ questionDTO.qNum +"</td>"
+								str += "<td>"+ questionDTO.userId +"</td>"
+								str += "<td>"+ questionDTO.qField +"</td>"
+								str += "<td><a href='front?key=question&methodName=selectByQuestionNum&qNum="+questionDTO.qNum+"&prodId="+questionDTO.prodId+"'>" + questionDTO.qTitle + "</td>"
+								str += "<td>"+ questionDTO.qRegdate +"</td>"
+								if(questionDTO.qShowstatus == '0'){
+									str += "<td id='securityCheck'><img src='images/security.png' width='20' height='20'/></td>"	
+								}else{
+									str += "<td id='securityCheck'><img src='images/public.svg' width='20' height='20'/></td>"	
+								}
+								str += "</tr>"
+			   					
+			   					$.each(questionDTO.answerList, function(index, answerDTO) {
+			   					  		
+									str += "<tr>"
+									str += "<td>" + answerDTO.aNum + "</td>"
+									str += "<td>" + answerDTO.aAnsId + "</td>"
+									str += "<td>" + questionDTO.qField + " 답변</td>"
+									str += "<td><a href='front?key=question&methodName=selectByAnswerNum&aNum="+answerDTO.aNum+"&qNum="+questionDTO.qNum+"'><img src='images/reply.jpeg' width='20' height='20'/>" + questionDTO.qTitle + "</td>"
+									str += "<td>" + answerDTO.aRegdate + "</td>"
+									if(questionDTO.qShowstatus == '0'){
+									str += "<td id='securityCheck'><img src='images/security.png' width='20' height='20'/></td>"	
+									}else{
+									str += "<td id='securityCheck'><img src='images/public.svg' width='20' height='20'/></td>"	
+									}
+									str += "</tr>"
+									str += "<tr>"
+									
+								})//end of 2nd each
+			   			
+			   							
+							})//end of 1st each
+	   			   			$("#minjooQuestionAll").html(str)
+	   							
+	   			 		}, //성공했을때 함수
+	   			 		error: function(err){
+	   				 	alert(err+"발생했어요^^")
+	   			 		} //오류발생했을때 함수 
+				});//ajax끝
+			}
+			
+			printQuestion();
 		});
 	</script>
 </body>

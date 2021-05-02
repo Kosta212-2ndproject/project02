@@ -62,7 +62,6 @@
 		        	<p class="mb-0">
 		        		<c:choose>
 		        			<c:when test="${not empty userId}">
-		        				<a href="${pageContext.request.contextPath}/front?key=member&methodName=readMemberInfo">Info</a>
 		        				<a href="${pageContext.request.contextPath}/front?key=member&methodName=logout">Logout</a>
 		        			</c:when>
 		        			<c:otherwise>
@@ -147,7 +146,7 @@
 					<li class="nav-item active"><a href="front?key=prod&methodName=selectAll" class="nav-link">Shop</a>
 					<li class="nav-item active"><a href="front?key=notice&methodName=select" class="nav-link">Notice</a></li>
 					<c:if test="${not empty userId}">
-						<li class="nav-item active"><a href="front?key=user&methodName=select" class="nav-link">MyPage</a></li>
+						<li class="nav-item active"><a href="front?key=member&methodName=readMemberInfo" class="nav-link">MyPage</a></li>
 					</c:if>
 
 					<li class="nav-item active"><a href="contact.jsp" class="nav-link">Contact</a></li>

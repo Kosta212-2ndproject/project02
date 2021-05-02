@@ -2,6 +2,7 @@ package kosta.mvc.controller;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,12 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kosta.mvc.dto.MemberDTO;
+import kosta.mvc.dto.QuestionDTO;
+import kosta.mvc.dto.ReviewDTO;
 import kosta.mvc.service.MemberService;
 import kosta.mvc.service.MemberServiceImpl;
+import kosta.mvc.service.QuestionService;
+import kosta.mvc.service.QuestionServiceImpl;
+import kosta.mvc.service.ReviewService;
+import kosta.mvc.service.ReviewServiceImpl;
 
 public class MemberController implements Controller {
 	
 	private MemberService memberService = new MemberServiceImpl();
+	private QuestionService questionService = new QuestionServiceImpl();
+	private ReviewService reviewService = new ReviewServiceImpl();
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -123,5 +132,40 @@ public class MemberController implements Controller {
 		session.invalidate();
 		
 		return new ModelAndView("index.jsp", true);
+	}
+	
+	/**
+	 * 회원리뷰조회
+	 */
+	public ModelAndView memberReview(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		String userId = (String) request.getSession().getAttribute("userId");
+		System.out.println(userId);
+	
+		List<ReviewDTO> review = reviewService.selectByUserId(userId);
+
+		request.setAttribute("review", review);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member_review.jsp");
+		return mv;
+	}
+	
+	/**
+	 * 회원질문조회
+	 */
+	public ModelAndView memberQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		String userId = (String) request.getSession().getAttribute("userId");
+		System.out.println(userId);
+		
+		List<QuestionDTO> question = questionService.selectByUserId(userId);
+
+		request.setAttribute("question", question);
+		
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("member_question.jsp");
+		return mv;
 	}
 }

@@ -162,12 +162,11 @@
 						<div class="categories">
 							<h3>Member Menu</h3>
 							<ul class="p-0">
-								<li><a href="#">회원정보 <span class="fa fa-chevron-right"></span></a></li>
+								<li><a href="front?key=member&methodName=readMemberInfo">회원정보 <span class="fa fa-chevron-right"></span></a></li>
 								<li><a href="#">주문내역 <span class="fa fa-chevron-right"></span></a></li>
-								<li><a href="#">Rum <span class="fa fa-chevron-right"></span></a></li>
-								<li><a href="#">Tequila <span class="fa fa-chevron-right"></span></a></li>
-								<li><a href="#">Vodka <span class="fa fa-chevron-right"></span></a></li>
-								<li><a href="#">회원탈퇴 <span class="fa fa-chevron-right"></span></a></li>
+								<li><a href="front?key=member&methodName=memberReview">리뷰목록 <span class="fa fa-chevron-right"></span></a></li>
+								<li><a href="front?key=member&methodName=memberQuestion">질문목록 <span class="fa fa-chevron-right"></span></a></li>
+								<li><a href="member_leave.jsp">회원탈퇴 <span class="fa fa-chevron-right"></span></a></li>
 							</ul>
 						</div>
 					</div>

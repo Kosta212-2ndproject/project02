@@ -9,6 +9,7 @@
 
 <head>
 <title>ㅉ ㅏ ㄴ</title>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -21,6 +22,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/review.css">
 
 </head>
 
@@ -31,8 +33,8 @@
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate mb-5 text-center">
-					<p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.jsp"> Home <i class="fa fa-chevron-right"></i></a></span> <span>회원탈퇴 <i class="fa fa-chevron-right"></i></span></p>
-					<h2 class="mb-0 bread">회원탈퇴</h2>
+					<p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.jsp"> Home <i class="fa fa-chevron-right"></i></a></span> <span>회원정보 <i class="fa fa-chevron-right"></i></span></p>
+					<h2 class="mb-0 bread">회원정보</h2>
 				</div>
 			</div>
 		</div>
@@ -48,25 +50,20 @@
 					
 					<!-- 본문 타이틀 -->
 					<div class="row mb-4">
-						<div class="col-md-12 d-flex justify-content-between align-items-center">
-							<h4 class="product-select">회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해주세요</h4>
-						</div>
+						<!-- <div class="col-md-12 d-flex justify-content-between align-items-center">
+							<h4 class="product-select">회원정보</h4>
+						</div> -->
 					</div>
 					
 					<!-- 본문 내용 -->
-					<div class="row">
-						<ul>
-							<li>이 서비스에서 탈퇴하셔도 네이버 이용약관은 철회되지 않습니다. 이용약관 철회는 네이버를 이용해주세요.</li>
-							<li>탈퇴 후 가입한 정보는 1년간 보관됩니다.</li>
-							<li>탈퇴 후에도 작성한 리뷰는 그대로 남아 있습니다.</li>
-						</ul>
+					<div class="p-4 bg-light">
+						<div id="minjooReviewAll">
+						
+						</div>
 					</div>
 					
 					<!-- 본문 하단 -->
 					<div class="row mt-5">
-						<div class="col text-center">
-							<a class="btn btn-primary py-2 px-3" id="confirm">탈퇴합니다</a>
-						</div>
 					</div>
 				</div>
 				
@@ -114,11 +111,52 @@
 	
 	<script type="text/javascript">
 		$(function() {
-			$("#confirm").click(function() {
-				if(confirm("정말 탈퇴하시겠습니까?")) {
-					location.href = "front?key=member&methodName=leaveMember";
-				}
-			})
+			
+			function printReview() {
+				var sessionId = "<%=session.getAttribute("userId")%>"
+				$.ajax({
+		   			 url:"${path}/reviewSelectByUser" , // 서버요청주소
+		   			 type: "post", //method방식 = 전송방식(get, post, put, delete)
+		   			 dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
+		   		     data: {userId : "${userId}" } ,  //서버에게 보낼 parameter정보 
+		   			 success : function(result){
+		   				let str = "<table id='table'><tr>";
+		   				str += "<th> 회원아이디 </th>";
+		   				str += "<th> 제목 </th>";
+		   				str += "<th> 내용 </th>";
+		   				str += "<th> 별점 </th>";
+		   				str += "<th> 등록일 </th>";
+		   				//str += "<th> 사진 </th>";
+		   				str += "<th> 조회수 </th>";
+						$.each(result, function(index, item) {
+							str += "<tr>"
+							str += "<td>" + item.userId + "</td>"
+							str += "<td><a href='front?key=review&methodName=selectByReviewId&reviewId="+item.reviewId+"&prodId="+item.prodId+"'>" + item.reviewTitle + "</td>"
+							str += "<td>" + item.reviewContent + "</td>"
+							str += "<td>" + item.reviewStarScope + "</td>"
+							str += "<td>" + item.reviewRegdate + "</td>"
+							//str += "<td><img width='175' height='200' src='"+item.reviewImgUrl+"'></td>";
+							str += "<td>" + item.reviewVcount + "</td>"
+							//str += "<td><input type='button' value='delete'/></td>"
+							str += "</tr>"
+						});
+						str += "</table>"
+
+						//겹치는 css클래스 명이 있을 경우 , id 를 줘서 unique 하게 처리하면 됨 
+						//브라우저에서 지원하는 소스코드 활용해서 css 적용해보면서 할 것!  
+						//->미리 어떤식으로 적용되는지 확인 후, 실제 코드에서 변경해 주면됨 
+						//$(".col-md-7").after(str);//형제노드로추가되는 것. 
+						$("#minjooReviewAll").html(str);// 해당영역 안에 추가되는 것 , 덮어쓰기됨  
+						
+						
+		   			 } , //성공했을때 함수
+		   			 error: function(err){
+		   				 alert(err+"발생했어요^^")
+		   			 } //오류발생했을때 함수 
+		   			 
+		   		 });//ajax끝
+			}
+			printReview();
 		});
 	</script>
 </body>
