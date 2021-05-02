@@ -134,7 +134,7 @@
 						</div>
 						<div class="w-100"></div>
 						<div class="col-md-12">
-							<p style="color: #000;">${prod.prodQty}pieceavailable</p>
+							<p style="color: #000;">재고 : <span style="color: red; font-size:25px">${prod.prodQty} </span> 개&emsp;&emsp; 배송비 : 2500원</p>
 						</div>
 					</div>
 					<p>

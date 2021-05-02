@@ -117,13 +117,13 @@
 						<div class="input-group col-md-6 d-flex mb-3"></div>
 						<div class="w-100"></div>
 						<div class="col-md-12">
-							<p style="color: #000;">${prod.prodQty}piece available</p>
+							<p style="color: #000;">재고 : <span style="color: red; font-size:25px">${prod.prodQty} </span> 개&emsp;&emsp; 배송비 : 2500원</p>
 						</div>
 					</div>
 					<p>
 						<a href="front?key=prod&methodName=updateForm&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">수정하기</a>
 						<a href="front?key=prod&methodName=deleteProduct&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">삭제하기</a>
-						<input type="button" value="리스트" class="btn btn-primary py-3 px-5 mr-2" onClick="location.href='${path}/front?key=prod&methodName=selectAllByAdmin'">
+						<input type="button" value="전체List" class="btn btn-primary py-3 px-5 mr-2" onClick="location.href='front?key=prod&methodName=selectAllByAdmin'">
 					</p>
 				</div>
 			</div>
