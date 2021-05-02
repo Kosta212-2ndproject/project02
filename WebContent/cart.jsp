@@ -163,7 +163,7 @@
 					<div class="cart-total mb-3">
 						<h3>Cart Totals</h3>
 						<p class="d-flex total-price">
-							<span>Total</span> <span id="totalP" class="commaN">${total}</span>원
+							<span>Total</span> <span name="totalP" class="commaN">${total}</span>원
 						</p>
 					</div>
 					<p><a href="#" name="buyNow" class="btn btn-primary py-3 px-5">구매하기</a>
@@ -219,12 +219,14 @@
 			// Get the field name
 			var quantity = parseInt($('[name=qty]').val());
 			let price = $(this).attr("name");
+			let tot = (quantity+1)*price;
 			if (quantity == $("#prodQty").val()) {
 				$('.quantity-right-plus').prop('disabled', true);
 			} else {
 				$('[name=qty]').val(quantity + 1);
 			}
-			
+			alert(tot);
+			$('[name=totalP]').text(total);
 			$('[name=productPerId]').val();
 			
 			//전체 금액
