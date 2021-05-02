@@ -6,7 +6,6 @@
 <%
 	request.setCharacterEncoding("UTF-8");
    String prodId = request.getParameter("prodId");
-
 %>
 
 <!DOCTYPE html>
@@ -121,14 +120,15 @@
 						<div class="w-100"></div>
 						<div class="col-md-12">
 
-							<p style="color: #000;">재고 : <span style="color: red; font-size:25px">${prod.prodQty} </span> 개&emsp;&emsp; 배송비 : 2500원</p>
+							<p style="color: #000;">재고 : <span style="color: red; font-size:25px" id="prodDBQty" value="${prod.prodQty}">${prod.prodQty} </span> 개&emsp;&emsp; 배송비 : 2500원</p>
 
 						</div>
 					</div>
 					<c:if test="${not empty userId}">
 					<p>
+						<input type="hidden" name="checkoutBuyBtnValue" value="<%=session.getAttribute("userId") %>">
 						<a href="${path}/front?key=cart&methodName=insertCart&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">Add
-							to Cart</a> <a href="cart.html" class="btn btn-primary py-3 px-5">Buy
+							to Cart</a> <a name="buyNow" class="btn btn-primary py-3 px-5">Buy
 							now</a>
 					</p>
 					</c:if>
@@ -524,24 +524,32 @@
 <script>
     $(document).ready(function () {
 
+
+
 			$("[name=buyNow]").click(function () {
 				//alert(1)
 				// alert(  $("[name=qty]").val() );
 
-				$("[name=userInputQty]").val($("[name=qty]").val());
-				$("#checkout").submit();
+
+				if($("[name=checkoutBuyBtnValue]").val() == null) {
+					alert("로그인을 해주세요");
+				} else {
+					$("[name=userInputQty]").val($("[name=qty]").val());
+					$("#checkout").submit();
+				}
+
 
 			});
 
 			var quantitiy = 0;
 
 			$('.quantity-right-plus').click(function (e) {
-
+				// alert($("#prodDBQty").val());
 				e.preventDefault();
 				// Get the field name
 				var quantity = parseInt($('[name=qty]').val());
 
-				if (quantity == $("#prodQty").val()) {
+				if (quantity == $("#prodDBQty").val()) {
 					$('.quantity-right-plus').prop('disabled', true);
 				} else {
 					$('[name=qty]').val(quantity + 1);
