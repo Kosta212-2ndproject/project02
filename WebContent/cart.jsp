@@ -67,7 +67,7 @@
 								<th>Product</th>
 								<th>Price</th>
 								<th>Quantity</th>
-								<th>Total</th>
+								<th>Order</th>
 								<th>&nbsp;</th>
 							</tr>
 						</thead>
@@ -102,20 +102,21 @@
 													<span>${prodDto.prodName}</span> <span>${prodDto.prodNameEng}</span>
 												</div>
 											</td>
-											<td width="150"><fmt:formatNumber value="${prodDto.prodPrice}" pattern="#,###원" /></td>
+											<td width="150"><fmt:formatNumber value="${prodDto.prodPrice}"
+													pattern="#,###원" /></td>
 											<td class="quantity">
 											<div class="row mt-4">
 												<div class="input-group col-md-10 d-flex mb-3">
 													<span class="input-group-btn mr-2">
-														<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="" name="${prodDto.prodPrice}">
+														<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
 															<i class="fa fa-minus"></i>
 														</button>
 													</span> 
-													<input type="text" id="quantity" name="quantity" size="20"
+													<input type="text" id="qty" name="qty" size="20"
 														class="quantity form-control input-number" value="1"
 														min="1" max="100"> 
 													<span class="input-group-btn ml-2">
-														<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="" name="${prodDto.prodPrice}">
+														<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
 															<i class="fa fa-plus"></i>
 														</button>
 													</span>
@@ -128,7 +129,7 @@
 											</div>
 											</td>
 											<!-- 각 상품 총 금액 -->
-											<td width="150"><span name="productPerId">${prodDto.prodPrice}</span>원</td>
+											<td><a href="#" name="buyNow" class="btn btn-primary py-3 px-6">주문하기</a></td>
 											<td><span style="color: red;" class="fa fa-close"
 												data-dismiss="alert"
 												onclick="location.href='${path}/front?key=cart&methodName=deleteCart&prodId=${prodDto.prodId}'"
@@ -137,23 +138,21 @@
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
-
-
-
 						
 
 						</tbody>
 					</table>
-					<!-- form action="checkout.jsp" id="checkout" method="post">
-						<input type="hidden" name="prodId" value="${prodId}"/>
+					
+					<form action="checkout.jsp" id="checkout" method="post">
+						<input type="hidden" name="prodId" value="${prod.prodId}"/>
 						<input type="hidden" name="imgUrl" value="${prod.prodImgUrl}"/>
 						<input type="hidden" name="name" value="${prod.prodName}"/>
 						<input type="hidden" name="nameEng" value="${prod.prodNameEng}"/>
 						<input type="hidden" name="price" value="${prod.prodPrice}"/>
-						<input type="hidden" name="dbQty" value="${prodQty}"/>
+						<input type="hidden" name="dbQty" value="${prod.prodQty}"/>
 						<input type="hidden" name="userInputQty" value=""/>
+					</form>
 					
-					</form-->
 					
 				</div>
 			</div>
@@ -162,10 +161,10 @@
 					<div class="cart-total mb-3">
 						<h3>Cart Totals</h3>
 						<p class="d-flex total-price">
-							<span>Total</span> <span id="totalP" class="commaN">${total}</span>원
+							<span>Total</span> <span id="totalP">${total}</span>원
 						</p>
 					</div>
-					<p><a href="checkout.html" name="buyNow" class="btn btn-primary py-3 px-5">구매하기</a>
+					<p><a href="#" name="buyNow" class="btn btn-primary py-3 px-5">구매하기</a>
 					
 				</div>
 			</div>
@@ -204,101 +203,39 @@
 	<script src="js/main.js"></script>
 
 	<script>
-		$(document).ready(function() {
-
-			var quantitiy = 0;
-			
-			//수량 증가
-			$('.quantity-right-plus').click(function(e) {
-				let plusEv = $(this).parent().prev();
-				plusEv.val( (parseInt(plusEv.val()) +1) );
-
-				e.preventDefault();
-				//총금액
-				let price = $(this).attr("name");
-				let tot = plusEv.val()*price;
-				
-				if(plusEv.val()=="${prodQty}"){
-					alert("더이상 구매하실수 없습니다.");
-					plusEv.val("${prodQty}");
-				}
-				
-				$(this).parent().parent().parent().parent().next().find("span").text(tot);
-				
-				//전체 금액
-				
-				totalCal();
-
+    $(document).ready(function () {
+			$("[name=buyNow]").click(function () {
+				//alert(1)
+				alert(  $("[name=qty]").val() );
+				$("[name=userInputQty]").val($("[name=qty]").val());
+				$("#checkout").submit();
 			});
-			
-		
-
-			//수량감소
-			$('.quantity-left-minus').click(function(e) {
-				// Stop acting like a button
+			var quantitiy = 0;
+			$('.quantity-right-plus').click(function (e) {
 				e.preventDefault();
 				// Get the field name
-				//var quantity = parseInt($('#quantity').val());
-
-				// If is not undefined
-				
-				let minusEv = $(this).parent().next();
-				minusEv.val( (parseInt(minusEv.val()) - 1) );
-
-				
-				if (minusEv.val() == 0) {
-					alert("1 개 이상부터 구매하실 수 있습니다.");
-					minusEv.val("1")
+				var quantity = parseInt($('[name=qty]').val());
+				if (quantity == $("#prodQty").val()) {
+					$('.quantity-right-plus').prop('disabled', true);
+				} else {
+					$('[name=qty]').val(quantity + 1);
 				}
-				
-				//총금액
-				let price = $(this).attr("name");
-				let tot = minusEv.val()*price;
-				
-				$(this).parent().parent().parent().parent().next().find("span").text(tot);
-				
-				totalCal();
-				
 			});
-			
-			//전체 금액 구하기
-			
-			function totalCal(){
-				var total=0;
-				 $("[name=productPerId]").each(function(index, item){
-					 //alert(index+" , "+ item); 
-					 total+=parseInt($(this).text())
-				 });
-				 
-				 $("#totalP").text(total);
-				 
-			}
-			
-			totalCal();
-			
-			//콤마 처리
-			
-			function commaNum(num){
-				var len, point, str;
-				num = num+"";
-				point = num.length % 3
-				len = num.length;
-				
-				str= num.subString(0,point);
-				while(point<len){
-					if(str!="") str+= ",";
-					str+= num.subString(point, point + 3);
-					point += 3;
-				}
-				return str;
-			}
-			for(i=0; i<$(".commaN").length;i++){
-				$(".commaN").eq(i).text(commaNum($(".commaN").eq(i).html()));
-			}
-			
-
-		});
-	</script>
+        $('.quantity-left-minus').click(function (e) {
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            var quantity = parseInt($('[name=qty]').val());
+            // If is not undefined
+            // Increment
+            if (quantity <= 1) {
+                alert(quantity + "개 이상부터 구매하실 수 있습니다.");
+            } else {
+                $('[name=qty]').val(quantity - 1);
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
