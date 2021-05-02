@@ -60,27 +60,32 @@
 					
 					<!-- 본문 내용 -->
 					<div class="row mb-3">
-						<form name="member_form" method="post" action="#" class="billing-form">
+						<form name="member_form" method="post" action="front" class="billing-form">
+							<input type=hidden name="key" value="member">
+							<input type=hidden name="methodName" value="updateMember">
+							<input type="hidden" name="userBirth" value="${member.userBirth}">
+							<input type="hidden" name="userGender" value="${member.userGender}">
+							
 							<h3 class="mb-4 billing-heading">회원정보</h3>
 							<div class="row align-items-end">
 								<div class="col-md-11">
 									<div class="form-group">
 										<label for="userName">이름</label> 
-										<input type="text" class="form-control" id="userName" value="${member.userName}" readonly>
+										<input type="text" class="form-control" name="userName" value="${member.userName}">
 									</div>
 								</div>
 								
 								<div class="col-md-11">
 									<div class="form-group">
 										<label for="userHp">전화번호</label> 
-										<input type="text" class="form-control" id="userHp" value="${member.userHp}">
+										<input type="text" class="form-control" name="userHp" value="${member.userHp}">
 									</div>
 								</div>
 								
 								<div class="col-md-11">
 									<div class="form-group">
 										<label for="userEmail">E-Mail</label> 
-										<input type="text" class="form-control" id="userEmail" value="${member.userEmail}">
+										<input type="text" class="form-control" name="userEmail" value="${member.userEmail}">
 									</div>
 								</div>
 								
@@ -88,7 +93,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="postcodezip">우편번호</label> 
-										<input type="text" class="form-control" id="post-code" value="${member.userZipcode}" readonly>
+										<input type="text" class="form-control" id="post-code" name="userZipcode" value="${member.userZipcode}" readonly>
 									</div>
 								</div>
 								<div class="col-md-2">
@@ -101,7 +106,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="streetaddress">최근 배송지</label>
-										<input type="text" class="form-control" id="address" value="${member.userAddr}" readonly>
+										<input type="text" class="form-control" id="address" name="userAddr" value="${member.userAddr}" readonly>
 									</div>
 								</div>
 								<div class="col-md-5">
@@ -114,7 +119,7 @@
 								<div class="col-md-11">
 									<div class="form-group">
 										<label for="phone">상세 주소</label>
-										<input type="text" class="form-control" id="detail-address" value="${member.userAddrDetail}">
+										<input type="text" class="form-control" id="detail-address" name="userAddrDetail" value="${member.userAddrDetail}">
 									</div>
 								</div>
 								
@@ -122,13 +127,13 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="userRegDate">가입일</label>
-										<input type="text" class="form-control" id="userRegDate" value="${member.userRegDate}" readonly>
+										<input type="text" class="form-control" name="userRegDate" value="${member.userRegDate}" readonly>
 									</div>
 								</div>
 								<div class="col-md-5">
 									<div class="form-group">
 										<label for="userBuyCount">누적구매수</label>
-										<input type="text" class="form-control" id="userBuyCount" value="${member.userBuyCount}" readonly>
+										<input type="text" class="form-control" name="userBuyCount" value="${member.userBuyCount}" readonly>
 									</div>
 								</div>
 								
@@ -136,7 +141,7 @@
 								<div class="col-md-12">
 									<div class="form-group mt-4">
 										<div class="radio">
-											<a class="btn btn-primary py-2 px-3" href="javascript:insertAddress()">정보 수정하기</a>
+											<a class="btn btn-primary py-2 px-3" href="javascript:member_form.submit();">정보 수정하기</a>
 										</div>
 									</div>
 
@@ -170,6 +175,8 @@
 			</div>
 		</div>
 	</section>
+	
+
 
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">

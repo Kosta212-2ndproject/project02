@@ -18,7 +18,7 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		int result = 0;
 		String sql = "INSERT INTO USERLIST(USER_ID, USER_NAME, USER_PW, USER_HP, USER_EMAIL, USER_BIRTH, USER_GENDER, USER_STATE, USER_REGDATE, USER_BUYCOUNT) "
-				+ "VALUES(?, ?, '1234', ?, ?, ?, ?, 1, SYSDATE, 0)";
+				+ "VALUES(?, ?, '1234', ?, ?, ?, ?, 1, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), 0)";
 		
 		System.out.println("DAO userId : "+memberDTO.getUserId());
 
@@ -48,7 +48,8 @@ public class MemberDAOImpl implements MemberDAO {
 		ResultSet rs = null;
 		
 		MemberDTO memberDTO = null;
-		String sql = "SELECT * FROM USERLIST WHERE USER_ID=?";
+		String sql = "SELECT USER_ID, USER_NAME, USER_PW, USER_HP, USER_ZIPCODE, USER_ADDR, USER_ADDRDETAIL, USER_EMAIL, USER_BIRTH, USER_GENDER, USER_STATE, USER_REGDATE, USER_BUYCOUNT "
+				+ "FROM USERLIST WHERE USER_ID=?";
 		
 		try {
 			con = DbUtil.getConnection();
@@ -76,6 +77,7 @@ public class MemberDAOImpl implements MemberDAO {
 				memberDTO = new MemberDTO(userId, userName, userPw, userHp, userZipcode, userAddr, userAddrDetail, 
 						userEmail, userBirth, userGender, userState, userRegDate, userBuyCount);
 				
+				System.out.println(userRegDate);
 			}
 			
 		} catch (SQLException e) {
@@ -92,7 +94,7 @@ public class MemberDAOImpl implements MemberDAO {
 		ResultSet rs = null;
 		
 		List<MemberDTO> memberList = new ArrayList<MemberDTO>();
-		String sql = "SELECT * FROM USERLIST";
+		String sql = "SELECT USER_ID, USER_NAME, USER_PW, USER_HP, USER_ZIPCODE, USER_ADDR, USER_ADDRDETAIL, USER_EMAIL, USER_BIRTH, USER_GENDER, USER_STATE, USER_REGDATE, USER_BUYCOUNT FROM USERLIST";
 		
 		try {
 			con = DbUtil.getConnection();
@@ -131,21 +133,36 @@ public class MemberDAOImpl implements MemberDAO {
 		PreparedStatement ps = null;
 		
 		int result = 0;
-		String sql = "INSERT INTO USERLIST(USER_ID, USER_NAME, USER_PW, USER_HP, USER_EMAIL, USER_BIRTH, USER_GENDER, USER_STATE, USER_REGDATE, USER_BUYCOUNT) "
-				+ "VALUES(?, ?, '1234', ?, ?, ?, ?, 1, SYSDATE, 0)";
+		String sql = "INSERT INTO USERLIST(USER_ID, USER_NAME, USER_PW, USER_HP, USER_ZIPCODE, USER_ADDR, USER_ADDRDETAIL, USER_EMAIL, USER_BIRTH, USER_GENDER, USER_STATE, USER_REGDATE, USER_BUYCOUNT) "
+				+ "VALUES(?, ?, '1234', ?, ?, ?, ?, ?, ?, ?, 1, ?, ?)";
 		
 		try {
 			con = DbUtil.getConnection();
+			con.setAutoCommit(false);
+			
+			result = deleteMember(con, nowMemberDTO);
+			
+			if(result==0) {
+				con.rollback();
+				throw new SQLException("회원이 없습니다");
+			}
+			
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, nowMemberDTO.getUserId());
 			ps.setString(2, nowMemberDTO.getUserName());
 			ps.setString(3, nowMemberDTO.getUserHp());
-			ps.setString(4, nowMemberDTO.getUserEmail());
-			ps.setString(5, nowMemberDTO.getUserBirth());
-			ps.setString(6, nowMemberDTO.getUserGender());
+			ps.setString(4, nowMemberDTO.getUserZipcode());
+			ps.setString(5, nowMemberDTO.getUserAddr());
+			ps.setString(6, nowMemberDTO.getUserAddrDetail());
+			ps.setString(7, nowMemberDTO.getUserEmail());
+			ps.setString(8, nowMemberDTO.getUserBirth());
+			ps.setString(9, nowMemberDTO.getUserGender());
+			ps.setString(10, nowMemberDTO.getUserRegDate());
+			ps.setInt(11, nowMemberDTO.getUserBuyCount());
 			
 			result = ps.executeUpdate();
+			con.commit();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -182,8 +199,49 @@ public class MemberDAOImpl implements MemberDAO {
 		return result;
 	}
 	
-//	public int deleteMember(Connection con, MemberDTO nowMemberDTO) {
-//		
-//		
-//	}
+	public int deleteMember(Connection con, MemberDTO nowMemberDTO) {
+		PreparedStatement ps = null;
+		
+		int result = 0;
+		String sql = "DELETE FROM USERLIST WHERE USER_ID=?";
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, nowMemberDTO.getUserId());
+			
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DbUtil.dbClose(ps, null);
+		}
+		return result;
+	}
+
+	@Override
+	public int leaveMember(String userId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		int result = 0;
+		String sql = "update userlist set user_state=0 where user_id=?";
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, userId);
+			
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DbUtil.dbClose(ps, null);
+		}
+		return result;
+	}
 }

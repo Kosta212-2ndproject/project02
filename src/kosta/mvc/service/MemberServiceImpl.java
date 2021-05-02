@@ -29,4 +29,16 @@ public class MemberServiceImpl implements MemberService {
 		return memberDTO;
 	}
 
+	@Override
+	public void updateMember(MemberDTO memberDTO) throws SQLException {
+		int result = memberDAO.updateMember(memberDTO);
+		if(result==0) throw new SQLException("수정되지 않았습니다");
+	}
+
+	@Override
+	public void leaveMember(String userId) throws SQLException {
+		int result = memberDAO.leaveMember(userId);
+		if(result==0) throw new SQLException("탈퇴되지 않았습니다. 운영자에게 문의 해 주세요.");
+	}
+
 }

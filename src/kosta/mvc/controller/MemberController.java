@@ -79,4 +79,49 @@ public class MemberController implements Controller {
 		ModelAndView mv = new ModelAndView("member_detail.jsp", false);
 		return mv;
 	}
+	
+	/**
+	 * 회원정보수정
+	 */
+	public ModelAndView updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		HttpSession session = request.getSession();
+		
+		String userId = (String)session.getAttribute("userId");
+		String userName = request.getParameter("userName");
+		String userHp = request.getParameter("userHp");
+		String userZipcode = request.getParameter("userZipcode");
+		String userAddr = request.getParameter("userAddr");
+		String userAddrDetail = request.getParameter("userAddrDetail");
+		String userEmail=request.getParameter("userEmail");
+		String userBirth = request.getParameter("userBirth");
+		String userGender = request.getParameter("userGender");
+		String userRegDate = request.getParameter("userRegDate");
+		int userBuyCount = Integer.parseInt(request.getParameter("userBuyCount"));
+		
+		MemberDTO memberDTO = new MemberDTO(userId, userName, "1234", userHp, userZipcode, userAddr, userAddrDetail, userEmail, userBirth, userGender, 1, userRegDate, userBuyCount);
+		
+		memberService.updateMember(memberDTO);
+		
+		memberDTO = memberService.readMemberInfo(userId);
+		request.setAttribute("member", memberDTO);
+		
+		// 데이터를 가지고 가므로 forward 방식 사용! false
+		ModelAndView mv = new ModelAndView("member_detail.jsp", false);
+		return mv;
+	}
+	
+	/**
+	 * 회원탈퇴
+	 */
+	public ModelAndView leaveMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		
+		String userId = (String)session.getAttribute("userId");
+		
+		memberService.leaveMember(userId);
+		session.invalidate();
+		
+		return new ModelAndView("index.jsp", true);
+	}
 }
