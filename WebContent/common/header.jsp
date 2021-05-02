@@ -83,8 +83,8 @@
 				JJAN <span>ㅉ ㅏ ㄴ</span>
 			</a>
 			<div class="order-lg-last btn-group" id="ftco-nav">
-				<a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" class="order-lg-last btn-group" ><span class="flaticon-shopping-bag" style="width:30px;"></span></a><br>
-      			<a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}" class="order-lg-last btn-group"><span class="flaticon-heart"></span></a>
+				<a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" class="navbar-brand" ><span class="flaticon-shopping-bag" style="width:30px; font-size:20px;"></span></a><br>
+      			<a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}" class="navbar-brand"><span class="flaticon-heart" style="font-size:20px;"></span></a>
 			</div>
 
 			<form name="searchForm" action="front" method="post" onSubmit='return checkValid()'>
