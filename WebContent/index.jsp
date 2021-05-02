@@ -86,6 +86,7 @@
 		</div>
 	</section>
 
+
 	<section class="ftco-section ftco-no-pb">
 		<div class="container">
 			<div class="row">
@@ -93,11 +94,14 @@
 				<div class="col-md-6 wrap-about pl-md-5 ftco-animate py-5">
 					<div class="heading-section">
 						<span class="subheading">Since 2021</span>
-						<h2 class="mb-4">Desire Meets A New Taste</h2>
 
-						<p>&nbsp;&nbsp;JJAN은 전세계의 와인과 최고의 명품 와인부터 가성비의 와인까지<br>다양한 포트폴리오를 구성하고 있습니다.</p>
-						<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.</p>
-						<p class="year">
+						<h2 class="mb-4" align = "center">Our JJAN for Good Moments</h2>
+
+						<p align = "center">&nbsp;&nbsp;JJAN은 전세계의 와인과 최고의 명품 와인부터 가성비의 와인까지<br>다양한 포트폴리오를 구성하고 있습니다.</p>
+						<p style = "font-size: 17px; font: bold" align = "center">"와인이 있는 곳에는 슬픔과 걱정이 날아간다." <br> - 파스퇴르 - <br>"와인은 세상에서 가장 고상한 것이다. "<br> 
+						- 헤밍웨이 -  </p>
+						<p class="year" align = "center">
+
 							<strong class="number" data-number="107">0</strong> <span>개의 다양한 와인을 즐겨보세요</span>
 						</p>
 					</div>

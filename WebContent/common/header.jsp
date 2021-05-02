@@ -149,7 +149,9 @@
 					<c:if test="${not empty userId}">
 						<li class="nav-item active"><a href="front?key=user&methodName=select" class="nav-link">MyPage</a></li>
 					</c:if>
-					<li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
+
+					<li class="nav-item active"><a href="contact.jsp" class="nav-link">Contact</a></li>
+
 				</ul>
 			</div>
 		</div>
