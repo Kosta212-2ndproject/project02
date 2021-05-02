@@ -67,7 +67,7 @@
 								<th>Product</th>
 								<th>Price</th>
 								<th>Quantity</th>
-								<th>total</th>
+								<th>Total</th>
 								<th>&nbsp;</th>
 							</tr>
 						</thead>
@@ -102,8 +102,7 @@
 													<span>${prodDto.prodName}</span> <span>${prodDto.prodNameEng}</span>
 												</div>
 											</td>
-											<td><fmt:formatNumber value="${prodDto.prodPrice}"
-													pattern="#,###원" /></td>
+											<td><fmt:formatNumber value="${prodDto.prodPrice}" pattern="#,###원" /></td>
 											<td class="quantity">
 											<div class="row mt-4">
 												<div class="input-group col-md-10 d-flex mb-3">

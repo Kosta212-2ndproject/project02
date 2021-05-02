@@ -90,10 +90,10 @@
 											<div class="img d-flex align-items-center justify-content-center" style= "background-image: url('${prodDtoQty.prodImgUrl}'); background-size: contain; height:200px">
 												<div class="desc">
 													<p class="meta-prod d-flex">
-														<a href="#" class="d-flex align-items-center justify-content-center">
+														<a href="${path}/front?key=cart&methodName=insertCart&prodId=${prodDtoQty.prodId}" class="d-flex align-items-center justify-content-center">
 															<span class="flaticon-shopping-bag"></span>
 														</a>
-														<a href="#" class="d-flex align-items-center justify-content-center">
+														<a href="${path}/front?key=wish&methodName=insertWish&prodId=${prodDtoQty.prodId}" class="d-flex align-items-center justify-content-center">
 															<span class="flaticon-heart"></span>
 														</a>
 														<a href="${path}/front?key=prod&methodName=selectByProductDetail&prodId=${prodDtoQty.prodId}" class="d-flex align-items-center justify-content-center">
@@ -423,7 +423,7 @@
 							style="background-image: url('${wishDto.prodImgUrl}');"></a>
 						<div class="text">
 							<h3 class="heading">
-								<a href="${path}/front?key=prod&methodName=selectByProductDetail&prodId=${wishDto.prodId}">${wishDto.prodName} ${wishDto.prodNameEng}</a>
+								<a href="${path}/front?key=prod&methodName=selectByProductDetail&prodId=${wishDto.prodId}">${wishDto.prodName}<br> ${wishDto.prodNameEng}</a>
 							</h3>
 							<div class="meta">
 							</div>

@@ -21,6 +21,7 @@ public interface MemberDAO {
 	/**
 	 * 회원정보수정
 	 */
+	int updateMember(MemberDTO memberDTO) throws SQLException;
 	
 	/**
 	 * 관리자 : 전체 회원 조회
@@ -31,4 +32,9 @@ public interface MemberDAO {
 	 * 회원가입 여부 체크
 	 */
 	boolean isMember(String userId) throws SQLException;
+	
+	/**
+	 * 회원탈퇴
+	 */
+	int leaveMember(String userId) throws SQLException;
 }

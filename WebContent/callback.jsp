@@ -27,7 +27,7 @@
 			String clientSecret = "0lBeAhGWLC";//애플리케이션 클라이언트 시크릿값";
 			String code = request.getParameter("code");
 			String state = request.getParameter("state");
-			String redirectURI = URLEncoder.encode("http://localhost:8080/callback.jsp", "UTF-8");
+			String redirectURI = URLEncoder.encode("http://localhost/callback.jsp", "UTF-8");
 
 			String apiURL;
 			apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
@@ -124,16 +124,6 @@
 					mobile = (String)resObj.get("mobile");
 					
 					birth = birthyear + "-" + birthday;
-					
-					System.out.println("naverCode : " + naverCode + "\n");
-					System.out.println("name : " + name + "\n");
-					System.out.println("email : " + email + "\n");
-					System.out.println("gender : " + gender + "\n");
-					System.out.println("birthday : " + birthday + "\n");
-					System.out.println("age : " + age + "\n");
-					System.out.println("birthyear : " + birthyear + "\n");
-					System.out.println("mobile : " + mobile + "\n");
-					
 					
 				} catch (Exception e) {
 					e.printStackTrace();
