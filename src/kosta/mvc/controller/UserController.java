@@ -32,7 +32,7 @@ public class UserController implements Controller {
 		return null;
 	}
  
-	
+	 
 	/**
 	 * MyPage 클릭시 나오는 화면 
 	 * */
