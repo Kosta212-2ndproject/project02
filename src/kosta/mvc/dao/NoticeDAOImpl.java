@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import kosta.mvc.dto.NoticeDTO;
 import kosta.mvc.paging.PageCnt;
 import kosta.mvc.util.DbUtil;
@@ -52,13 +50,13 @@ public class NoticeDAOImpl implements NoticeDAO {
 		//rownum도 하나의 컬럼으로서 추가되는 것! ResultSet 가져올 때 유의해서 작성할 것!
 		//서브쿼리에 있는 쿼리문은 상관없다, 왜냐? ->실질적으로 select 되는 건 서브쿼리가 아니기 때문이다 
 		
-		String sql = "SELECT B.RNUM, B.N_TITLE,B.N_CONTENT,B.N_IMAGE,B.N_REGDATE,B.N_VIEWCOUNT,B.N_FIELD "
+		String sql = "SELECT B.N_NUM,B.N_TITLE,B.N_CONTENT,B.N_IMAGE,B.N_REGDATE,B.N_VIEWCOUNT,B.N_FIELD "
 				+ "FROM("
 				+ "SELECT ROWNUM AS RNUM,A.N_NUM, A.N_TITLE,A.N_CONTENT,A.N_IMAGE,A.N_REGDATE,A.N_VIEWCOUNT,A.N_FIELD "
 				+ "FROM ("
 				+ "    select N_NUM, N_TITLE,N_CONTENT,N_IMAGE,N_REGDATE,N_VIEWCOUNT,N_FIELD from NOTICE "
 				+ "    order by N_REGDATE desc) A "
-				+ "    WHERE ROWNUM <= ?) B"
+				+ "    WHERE ROWNUM <= ?) B "
 				+ " WHERE B.RNUM >=?";
 		try {//ORA-00904: "A"."N_FIELD": 부적합한 식별자
 			

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:include page="../common/header.jsp" />
+<jsp:include page="../common/headerAdmin.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +42,7 @@
 					<p class="breadcrumbs mb-0">
 						<span class="mr-2"><a href="index.jsp">Home <i
 								class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a
-							href="front?key=notice&methodName=select">Notice <i
+							href="front?key=notice&methodName=selectAdmin">Notice <i
 								class="fa fa-chevron-right"></i></a></span> <span>Notice Single <i
 							class="fa fa-chevron-right"></i></span>
 					</p>
@@ -66,7 +66,7 @@
 					<p>${nDTO.nContent}</p>
 					<p>
 					
-					<%-- <div class="row justify-content-center">
+					<div class="row justify-content-center">
 						<div class="col-md-4">
 							<a
 								href="${path}/front?key=notice&methodName=selectByNoticeNumAdmin&nNum=${nDTO.nNum}"
@@ -74,8 +74,8 @@
 								class="fa fa-long-arrow-right"></span>
 							</a>
 						</div>
-					</div> --%>
-					<br> <br> <br> <br>
+					</div>
+					<br> <br> 
 
 
 
@@ -94,8 +94,6 @@
 							<h5> Whatever you choose,<br> you are always right.</h5>
 						</div>
 					</div>
-
-
 
 
 				</div>
@@ -247,4 +245,4 @@
 
 </body>
 </html>
-<jsp:include page="../common/footer.jsp" />
+<jsp:include page="../common/footerAdmin.jsp" />

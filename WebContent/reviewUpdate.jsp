@@ -33,17 +33,17 @@ function checkValid() {
 		
 	if ( f.reviewTitle.value == "") {
 	    alert( "제목을 입력해 주세요." );
-	    f.model_num.focus();
+	    f.reviewTitle.focus();
 		return false;
     }
 	if ( f.reviewContent.value == "" ) {
 		alert( "내용을 입력해 주세요." );
-		f.model_name.focus();
+		f.reviewContent.focus();
 		return false;
 	}
 	if ( f.reviewStarScope.value == "" ) {
 		alert( "별점을 입력해 주세요." );
-		f.price.focus();
+		f.reviewStarScope.focus();
 		return false;
 	}
 	
@@ -92,11 +92,11 @@ function checkValid() {
                   </div>
                   <div class="form-group">
                     <label for="title">Title *</label>
-                    <input type="text" name="reviewTitle" class="form-control" id="email">
+                    <input type="text" name="reviewTitle" class="form-control" id="email" value="${review.reviewTitle}">
                   </div>
                   <div class="form-group">
                     <label for="star">Star * ( 1 | 2 | 3 | 4 | 5 )</label>
-                    <input type="text" name="reviewStarScope" class="form-control" id="website">
+                    <input type="text" name="reviewStarScope" class="form-control" id="website" value="${review.reviewStarScope}">
                   </div>
                   <div class="form-group">
                     <label for="file">file Upload</label>
