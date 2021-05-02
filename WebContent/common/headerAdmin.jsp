@@ -22,11 +22,11 @@
 
 <SCRIPT language=javascript>
 	function checkValid() {
-		var f = window.document.searchForm;
+		var f = window.document.searchFrom;
 
-		if (f.values.value == "") {
+		if (f.keyWord.value == "") {
 			alert("검색어를 입력해 주세요.");
-			f.values.focus();
+			f.keyWord.focus();
 			return false;
 		}
 		return true;
@@ -83,7 +83,7 @@
 				JJAN <span>ㅉ ㅏ ㄴ</span>
 			</a>
 
-			<form name="searchForm" action="front" method="post" onSubmit='return checkValid()'>
+			<form name="searchFrom" action="front" method="post" onSubmit='return checkValid()'>
 				<input class="input" type="text" name="values" placeholder="상품명 또는 국가 입력">
 				<input type="hidden" name="key" value="prod">
 				<input type="hidden" name="methodName" value="selectAllByAdmin">
@@ -153,7 +153,16 @@
 							<a class="dropdown-item" href="cart.html">Cart</a>
 							<a class="dropdown-item" href="checkout.html">Checkout</a>
 						</div></li>
-					<li class="nav-item active"><a href="front?key=notice&methodName=select" class="nav-link">Notice</a></li>
+						
+<!-- Minjoo Notice Admin start -->	
+					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</a>					
+						<div class="dropdown-menu" aria-labelledby="dropdown04">
+							<a class="dropdown-item" href="${path}/front?key=notice&methodName=selectAdmin">Notice </a>
+							<a class="dropdown-item" href="${path}/front?key=question&methodName=selectAllforAdmin">Q & A </a>
+							<a class="dropdown-item" href="${path}/front?key=review&methodName=selectAllforAdmin">Review </a>
+						</div>
+					</li>
+<!-- Minjoo Notice Admin end -->						
 					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 				</ul>
 			</div>

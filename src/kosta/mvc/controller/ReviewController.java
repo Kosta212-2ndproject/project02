@@ -49,6 +49,21 @@ public class ReviewController implements Controller {
 //	}
 
 	/**
+	 * review all for admin  
+	 * selectAllforAdmin
+	 * */
+	public ModelAndView selectAllforAdmin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, Exception {
+		
+		List<ReviewDTO> reviewList = reviewService.selectAll();
+		request.setAttribute("reviewList", reviewList);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("reviewSelect.jsp");
+		return mv;
+	}
+
+
+	/**
 	 * reviewId로 검색하기
 	 * */
 	public ModelAndView selectByReviewId(HttpServletRequest request, HttpServletResponse response)
@@ -59,9 +74,21 @@ public class ReviewController implements Controller {
 //
 //		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 //		String reviewId = m.getParameter("reviewId");
-		String reviewId =request.getParameter("reviewId");
 
-		ReviewDTO review = reviewService.selectReview(Integer.parseInt(reviewId), true);
+		
+		String userId = (String) request.getSession().getAttribute("userId");
+		System.out.println(userId);
+		String reviewId =request.getParameter("reviewId");
+		String reviewUserId =request.getParameter("reviewUserId");
+		ReviewDTO review = null;
+		if(userId.equals(reviewUserId)) {
+			
+			 review = reviewService.selectReview(Integer.parseInt(reviewId), false);
+		}else {
+			
+			 review = reviewService.selectReview(Integer.parseInt(reviewId), true);
+		}
+
 		request.setAttribute("review", review); //${requestScope.review}
 
 		ModelAndView mv = new ModelAndView();
@@ -91,10 +118,10 @@ public class ReviewController implements Controller {
 
 
 //		String prodId = m.getParameter("prodId");
-//		String prodId = "37197";
-		String prodId = "37198";
+		String prodId = "37197";
+//		String prodId = "37198";
 //		String userId = m.getParameter("userId");
-		String userId = "kim";
+		String userId = "188423671";
 		
 //		String oNum = m.getParameter("oNum");
 		String oNum = "50524";
@@ -119,8 +146,15 @@ public class ReviewController implements Controller {
 		}
 		
 		reviewService.insert(review);
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("index.jsp");
+		
+
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("index.jsp");
+
+		mv.setViewName("front?key=user&methodName=select&userId="+userId);
+		mv.setRedirect(true);
+		
 
 		return mv;
 
