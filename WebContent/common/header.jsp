@@ -82,6 +82,10 @@
 			<a class="navbar-brand" href="index.jsp">
 				JJAN <span>ㅉ ㅏ ㄴ</span>
 			</a>
+			<div class="order-lg-last btn-group" id="ftco-nav">
+				<a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" class="order-lg-last btn-group" ><span class="flaticon-shopping-bag" style="width:30px;"></span></a><br>
+      			<a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}" class="order-lg-last btn-group"><span class="flaticon-heart"></span></a>
+			</div>
 
 			<form name="searchForm" action="front" method="post" onSubmit='return checkValid()'>
 				<input class="input" type="text" name="values" placeholder="상품명 또는 국가 입력">
@@ -91,51 +95,7 @@
 				<input type="submit" value="검색">
 			</form>
 
-
-			<div class="order-lg-last btn-group">
-
-				<a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" class="order-lg-last btn-group"><span class="flaticon-shopping-bag" style="width:30px"></span></a><br>
-      			<a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}" class="order-lg-last btn-group"><span class="flaticon-heart"></span></a>
-
-					<div class="d-flex justify-content-center align-items-center">
-					</div>
-				</a>
-				<div class="dropdown-menu dropdown-menu-right">
-					<div class="dropdown-item d-flex align-items-start" href="#">
-						<div class="img" style="background-image: url(images/prod-1.jpg);"></div>
-						<div class="text pl-3">
-							<h4>Bacardi 151</h4>
-							<p class="mb-0">
-								<a href="#" class="price">$25.99</a>
-								<span class="quantity ml-3">Quantity: 01</span>
-							</p>
-						</div>
-					</div>
-					<div class="dropdown-item d-flex align-items-start" href="#">
-						<div class="img" style="background-image: url(images/prod-2.jpg);"></div>
-						<div class="text pl-3">
-							<h4>Jim Beam Kentucky Straight</h4>
-							<p class="mb-0">
-								<a href="#" class="price">$30.89</a>
-								<span class="quantity ml-3">Quantity: 02</span>
-							</p>
-						</div>
-					</div>
-					<div class="dropdown-item d-flex align-items-start" href="#">
-						<div class="img" style="background-image: url(images/prod-3.jpg);"></div>
-						<div class="text pl-3">
-							<h4>Citadelle</h4>
-							<p class="mb-0">
-								<a href="#" class="price">$22.50</a>
-								<span class="quantity ml-3">Quantity: 01</span>
-							</p>
-						</div>
-					</div>
-					<a class="dropdown-item text-center btn-link d-block w-100" href="cart.html">
-						View All <span class="ion-ios-arrow-round-forward"></span>
-					</a>
-				</div>
-			</div>
+			
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
