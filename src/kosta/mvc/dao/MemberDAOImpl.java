@@ -56,6 +56,8 @@ public class MemberDAOImpl implements MemberDAO {
 			
 			ps.setString(1, nowId);
 			
+			rs = ps.executeQuery();
+			
 			while(rs.next()) {
 				String userId = rs.getString(1);
 				String userName = rs.getString(2);

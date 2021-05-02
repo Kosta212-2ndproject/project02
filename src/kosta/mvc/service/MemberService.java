@@ -14,4 +14,9 @@ public interface MemberService {
 	 * 회원가입 여부 확인
 	 */
 	boolean isMember(String userId) throws SQLException;
+	
+	/**
+	 * 회원정보조회
+	 */
+	MemberDTO readMemberInfo(String nowId);
 }

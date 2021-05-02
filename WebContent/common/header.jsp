@@ -79,6 +79,7 @@
 		        	<p class="mb-0">
 		        		<c:choose>
 		        			<c:when test="${not empty userId}">
+		        				<a href="${pageContext.request.contextPath}/front?key=member&methodName=readMemberInfo">Info</a>
 		        				<a href="${pageContext.request.contextPath}/front?key=member&methodName=logout">Logout</a>
 		        			</c:when>
 		        			<c:otherwise>

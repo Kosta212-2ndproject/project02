@@ -23,4 +23,10 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	@Override
+	public MemberDTO readMemberInfo(String nowId) {
+		MemberDTO memberDTO = memberDAO.readMemberInfo(nowId);
+		return memberDTO;
+	}
+
 }

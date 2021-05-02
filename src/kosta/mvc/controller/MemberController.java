@@ -16,7 +16,7 @@ public class MemberController implements Controller {
 	
 	private MemberService memberService = new MemberServiceImpl();
 
-	
+	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		return null;
 	}
@@ -61,12 +61,22 @@ public class MemberController implements Controller {
 		return new ModelAndView("index.jsp", true);
 	}
 
-
-	
-	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, Exception {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * 회원정보조회
+	 */
+	public ModelAndView readMemberInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		HttpSession session = request.getSession();
+		String nowId = (String)session.getAttribute("userId");
+		
+		System.out.println(nowId);
+		
+		MemberDTO memberDTO = memberService.readMemberInfo(nowId);
+		
+		request.setAttribute("member", memberDTO); // 뷰로 전달될 데이터 -> ${member}
+		
+		// 데이터를 가지고 가므로 forward 방식 사용! false
+		ModelAndView mv = new ModelAndView("member_detail.jsp", false);
+		return mv;
 	}
-	
 }
