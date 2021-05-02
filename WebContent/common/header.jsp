@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/style.css">
 
-<SCRIPT language=javascript>
+<SCRIPT>
 	function checkValid() {
 		var f = window.document.searchForm;
 
@@ -143,13 +143,12 @@
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a href="index.jsp" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 					<li class="nav-item active"><a href="front?key=prod&methodName=selectAll" class="nav-link">Shop</a>
 					<li class="nav-item active"><a href="front?key=notice&methodName=select" class="nav-link">Notice</a></li>
 					<c:if test="${not empty userId}">
 						<li class="nav-item active"><a href="front?key=user&methodName=select" class="nav-link">MyPage</a></li>
 					</c:if>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
 				</ul>
 			</div>
 		</div>
