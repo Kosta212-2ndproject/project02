@@ -42,6 +42,18 @@
     }
     
     </script>
+    <SCRIPT>
+	function checkValid() {
+		var f = window.document.searchForm;
+
+		if (f.keyWord.value == "") {
+			alert("검색어를 입력해 주세요.");
+			f.keyWord.focus();
+			return false;
+		}
+		return true;
+	}
+</SCRIPT>
 </head>
 <body>
 
@@ -114,10 +126,13 @@
 				<!-- .col-md-8 -->
 				<div class="col-lg-4 sidebar pl-lg-5 ftco-animate">
 					<div class="sidebar-box">
-						<form action="#" class="search-form">
+						<form name="searchForm" action="front" method="post" onSubmit='return checkValid()' class="search-form">
 							<div class="form-group">
-								<span class="fa fa-search"></span> <input type="text"
-									class="form-control" placeholder="Type a keyword and hit enter">
+								<span class="fa fa-search"></span> 
+								<input type="text" class="form-control" name="values" placeholder="상품명 | 국가">
+								<input type="hidden" name="key" value="prod">
+								<input type="hidden" name="methodName" value="selectAll">
+								<input type="hidden" name="category" value="keyWord">
 							</div>
 						</form>
 					</div>
@@ -132,76 +147,14 @@
 						</div>
 					</div>
 
-					<div class="sidebar-box ftco-animate">
-						<h3>highly recommended</h3>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(images/image_1.jpg);"></a>
-							<div class="text">
-								<h3 class="heading">
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="fa fa-calendar"></span> Apr. 18,
-											2020</a>
-									</div>
-									<div>
-										<a href="#"><span class="fa fa-user"></span> Admin</a>
-									</div>
-									<div>
-										<a href="#"><span class="fa fa-comment"></span> 19</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(images/image_2.jpg);"></a>
-							<div class="text">
-								<h3 class="heading">
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="fa fa-calendar"></span> Apr. 18,
-											2020</a>
-									</div>
-									<div>
-										<a href="#"><span class="fa fa-user"></span> Admin</a>
-									</div>
-									<div>
-										<a href="#"><span class="fa fa-comment"></span> 19</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(images/image_3.jpg);"></a>
-							<div class="text">
-								<h3 class="heading">
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="fa fa-calendar"></span> Apr. 18,
-											2020</a>
-									</div>
-									<div>
-										<a href="#"><span class="fa fa-user"></span> Admin</a>
-									</div>
-									<div>
-										<a href="#"><span class="fa fa-comment"></span> 19</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+						<div><h4>highly recommended</h4></div><br>
+					<div id="minjooRecentNotice" class="sidebar-box ftco-animate fadeInUp ftco-animated">
+<!-- loop -->						
 
+
+<!-- loop -->						
+						
+					</div>
 					<div class="sidebar-box ftco-animate">
 						<h3>Tag Cloud</h3>
 						<div class="tagcloud">
@@ -249,6 +202,50 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="js/google-map.js"></script>
 	<script src="js/main.js"></script>
+	
+	
+<script type="text/javascript">
+
+$(function () {
+	
+		$.ajax({
+				url:"${path}/recentNotice" , // 서버요청주소 
+		 		type: "post", //method방식 = 전송방식(get, post, put, delete)
+		 		dataType: "json", //서버가 응답해주는 데이터의 타입(html, text, xml, json 중의 한개)
+		 		success : function(result){
+					//alert(result)
+					let str ="";
+		 			$.each(result, function(i, notice) {
+		 				//alert(notice.nNum +" , "+ notice.nImage +" , "+ notice.nRegdate)
+		 				
+											
+						str +=`<div class="block-21 mb-4 d-flex">`;
+						str += "<a class='blog-img mr-4' style='background-image: url("+notice.nImage+");'></a>";
+						str += `<div class="text"><h5 class="heading">`;
+						str += "<a href='front?key=notice&methodName=selectByNoticeNum&nNum="+notice.nNum+"'>"+notice.nTitle+"</a>";
+						str += `</h5>`;
+						str += `<div class="meta"><div>`;
+						str += "<a href='#'><span class='fa fa-calendar'></span>"+notice.nRegdate+"</a>";
+						str += `</div><div>`;
+						str += `<a href="#"><span class="fa fa-user"></span> Admin</a>`
+						str += `</div>`;
+						str += `<div>`;
+						str += "<a href='#'><span class='fa fa-eye'></span>"+notice.nViewCount+"</a>";
+						str += `</div></div></div></div>`;
+						
+						
+						
+		 			});//end of each
+		 			
+		 			$("#minjooRecentNotice").html(str); 
+		 		},
+		 		error: function(err){
+   				 	alert(err+"발생했어요^^")
+   			 	} //
+		});//end of ajax
+})//end of function
+</script>
+	
 
 </body>
 </html>
