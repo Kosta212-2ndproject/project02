@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="common/header.jsp" />
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
 <title>Liquor Store - Free Bootstrap 4 Template by Colorlib</title>
 <meta charset="utf-8">
