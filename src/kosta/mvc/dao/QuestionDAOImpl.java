@@ -119,6 +119,10 @@ public class QuestionDAOImpl implements QuestionDAO {
 				QuestionDTO question = new QuestionDTO(qNum, userId, prodId, qField, qTitle, qContent, qFiles, qRegdate, qShowstatus);
 						
 				list.add(question);
+				
+				
+				List<AnswerDTO> answerList = this.answerList(con, rs.getInt(1));
+				question.setAnswerList(answerList); 
 			}
 			
 		}finally {
