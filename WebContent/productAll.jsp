@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="css/style.css">
 
 <SCRIPT language=javascript>
-	function checkValid() {
+	function checkValid1() {
 		var f = window.document.optionForm;
 
 		if (f.order.value == "0") {
@@ -119,7 +119,7 @@
 					<div class="row mb-4">
 						<div class="col-md-12 d-flex justify-content-between align-items-center">
 							<h4 class="product-select">Select Types of Products</h4>
-							<form name="optionForm" action="front" method="post" onSubmit='return checkValid()'>
+							<form name="optionForm" action="front" method="post" onSubmit='return checkValid1()'>
 								<input type="hidden" name="key" value="prod">
 								<input type="hidden" name="methodName" value="selectAll">
 								<input type="hidden" name="category" value="${category}">
