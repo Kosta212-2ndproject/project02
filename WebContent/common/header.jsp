@@ -93,9 +93,8 @@
 
 			<div class="order-lg-last btn-group">
 
-
-				<a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" class="flaticon-shopping-bag"></a><br>
-      			<a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}" class="flaticon-heart"></a>
+				<a href="${path}/front?key=cart&methodName=selectCartByUserId&userId=${userId}" class="order-lg-last btn-group"><span class="flaticon-shopping-bag" style="width:30px"></span></a><br>
+      			<a href="${path}/front?key=wish&methodName=selectWishByUserId&userId=${userId}" class="order-lg-last btn-group"><span class="flaticon-heart"></span></a>
 
 					<div class="d-flex justify-content-center align-items-center">
 					</div>
