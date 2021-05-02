@@ -28,20 +28,6 @@
 
 <link rel="stylesheet" href="../css/flaticon.css">
 <link rel="stylesheet" href="../css/style.css">
-
-<script type="text/javascript">
-    function sendUpdate(){
-    	document.requestForm.methodName.value ="updateForm";
-    	document.requestForm.submit();
-    }
-
-    function sendDelete(){
-    	
-    	document.requestForm.methodName.value ="delete";
-    	document.requestForm.submit();
-    }
-    
-    </script>
 </head>
 <body>
 
@@ -66,33 +52,32 @@
 		</div>
 	</section>
 
-
 	<section class="ftco-section ftco-degree-bg">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 ftco-animate">
 					<p>
-						<img src="${nDTO.nImage}" alt="" class="img-fluid" />
+						<img src="${nDTO.nImage}" alt="" class="img-fluid">
+						
+						<!-- <img src="${nDTO.nImage}" alt="" class="img-fluid"> -->
+						
 					</p>
 					<h2 class="mb-3">${nDTO.nTitle}</h2>
 					<p>${nDTO.nContent}</p>
 					<p>
-					<form name="requestForm" method=post action="${path}/front">
-						</tr>
+					
+					<div class="row justify-content-center">
+						<div class="col-md-4">
+							<a
+								href="${path}/front?key=notice&methodName=selectByNoticeNumAdmin&nNum=${nDTO.nNum}"
+								class="btn btn-primary d-block"> Notice Update & Delete <span
+								class="fa fa-long-arrow-right"></span>
+							</a>
+						</div>
+					</div>
+					<br> <br> 
 
 
-						<tr>
-							<td height="20" colspan="4" align="center" valign="middle">
-								<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. --> 
-								<input type=hidden name="nNum" value="${nDTO.nNum}"> 
-								<input type=hidden name="key" value="notice"> 
-								<input type=hidden name="methodName"> 
-								<div class="row justify-content-center">
-								<input type=button value="Update" class="btn btn-primary d-block" class="fa fa-long-arrow-right" onClick="sendUpdate()"><br>
-								<span></span><input type=button value="Delete" class="btn btn-primary d-block" class="fa fa-long-arrow-right" onClick="sendDelete()"><br>
-								</div>
-					</form>
-					<br>
 
 
 
@@ -109,6 +94,7 @@
 							<h5> Whatever you choose,<br> you are always right.</h5>
 						</div>
 					</div>
+
 
 				</div>
 				<!-- .col-md-8 -->

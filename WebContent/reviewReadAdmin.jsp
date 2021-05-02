@@ -28,12 +28,17 @@
 <link rel="stylesheet" href="../css/style.css">
 
 <script type="text/javascript">
+    function sendUpdate(){
+    	document.requestForm.methodName.value ="updateForm";
+    	document.requestForm.submit();
+    }
 
     function sendDelete(){
     	
-    	document.requestForm.methodName.value ="deleteAnswer";
+    	document.requestForm.methodName.value ="delete";
     	document.requestForm.submit();
     }
+    
 </script>
 
 </HEAD>
@@ -50,11 +55,11 @@
 					<p class="breadcrumbs mb-0">
 						<span class="mr-2"><a href="index.jsp">Home <i
 								class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a
-							href="front?key=notice&methodName=select">Q & A <i
-								class="fa fa-chevron-right"></i></a></span> <span>Q & A Single <i
+							href="front?key=notice&methodName=select">Review <i
+								class="fa fa-chevron-right"></i></a></span> <span>Review Single <i
 							class="fa fa-chevron-right"></i></span>
 					</p>
-					<h2 class="mb-0 bread">Answer Single</h2>
+					<h2 class="mb-0 bread">Review Single</h2>
 				</div>
 			</div>
 		</div>
@@ -63,78 +68,48 @@
 	<br>
 	<br>
 	<br>
-	<!--  Question 내용  -->
-	<div class="comment-form-wrap pt-5">
-		<div class="form-group">
-			<!-- Question image and text -->
-			<div class="about-author d-flex p-4 bg-light">
-			
-			<c:choose>
-				<c:when test="${question.qFiles != null}">
-				<div class="bio mr-5">
-					<img src="${question.qFiles}" alt="No Image"
-						class="img-fluid mb-4">
-				</div>
-				</c:when>
-				<c:when test="${question.qFiles == null}">
-				 <div class="bio mr-5">
-					<!-- <h3>No Image</h3> -->
-				</div>
-				</c:when>
-			</c:choose>
-
-				<div class="desc">
-					<label for="userId">User ID </label>
-					<h3>${question.userId}</h3>
-					<hr>
-					<label for="reviewRegdate">Date </label>
-					<h3>${question.qRegdate}</h3>
-					<hr>
-					<label for="reviewTitle">Title </label>
-					<h3>${question.qTitle}</h3>
-					<hr>
-					<label for="reviewContent">Contents </label>
-					<h3>${question.qContent }</h3>
-
-				</div>
-			</div>
-		</div>
-	</div>
-	<br>
-	<br>
-	<!-- Answer text -->              
-               <div class="comment-form-wrap pt-5">
+	
+	
+<!--  리뷰 내용  -->
+              <div class="comment-form-wrap pt-5">
+                
+                
                 <form name="requestForm" method=post action="${path}/front" class="p-5 bg-light">
+                
                   <div class="form-group">
-<!-- Answer text -->
+<!-- review image and text -->
 				<div class="about-author d-flex p-4 bg-light">
-					
+					<div class="bio mr-5">
+						<img src="${review.reviewImgUrl}" alt="Image placeholder"
+							class="img-fluid mb-4">
+					</div>
 					<div class="desc">
-					<label for="aAnsId">User ID </label>
-						<h3>${answer.aAnsId}</h3>
+					<label for="userId">User ID </label>
+						<h3>${review.userId}</h3>
 						<hr>
-					<label for="aRegdate">Date </label>
-						<h3>${answer.aRegdate}</h3>
+						<c:forEach var="i" begin="1" end="${review.reviewStarScope}">
+							<i class="fa fa-star"></i>
+						</c:forEach><span>${review.reviewStarScope}.0</span>
 						<hr>
-					 
-					 <label for="aContent">Contents </label>
-						<h3>${answer.aContent }</h3>
+					<label for="reviewRegdate">Date </label>
+						<h3>${review.reviewRegdate}</h3>
+						<hr>
+					 <label for="reviewTitle">Title </label>
+						<h3>${review.reviewTitle}</h3>
+						<hr>
+					 <label for="reviewContent">Contents </label>
+						<h3>${review.reviewContent }</h3>
 						
 					</div>
 				</div>
 
-                    <input type=hidden name="qNum" value="${question.qNum}"> 
-                    <input type=hidden name="aNum" value="${answer.aNum}"> 
-                    <input type=hidden name="prodId" value="${question.prodId}"> 
-                    <input type=hidden name="aAnsId" value="admin"> 
-					<input type=hidden name="key" value="question"> 
+                    <input type=hidden name="prodId" value="${review.prodId}"> 
+                    <input type=hidden name="reviewId" value="${review.reviewId}"> 
+					<input type=hidden name="key" value="review"> 
 					<input type=hidden name="methodName"> 
-					
-					<c:set var="id" value="${userId}"/>
-					<c:set var="adminId" value="203448231"/>
-					<c:if test="${id eq adminId}">
-					<input type=button value="deleteAnswer" onClick="sendDelete()" class="btn py-3 px-4 btn-primary">
-                    </c:if>
+					<input type=button value="edit" onClick="sendUpdate()" class="btn py-3 px-4 btn-primary"> 
+					<input type=button value="delete" onClick="sendDelete()" class="btn py-3 px-4 btn-primary">
+                    
                   </div>
 
                 </form>

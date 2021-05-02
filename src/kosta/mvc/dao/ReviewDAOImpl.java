@@ -238,5 +238,35 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return reviewDTO;
 	}
 
+	/**
+	 * 별점 높은 후기 3개 select
+	 * select rownum as rnum, A.user_id, A.review_title, A.review_content, A.review_star_scope, A.review_img_url from ( select user_id, review_title, review_content, review_star_scope, review_img_url from review order by review_star_scope desc) A where rownum between 1 and 3;
+	 * */
+	@Override
+	public List<ReviewDTO> bestReviewselect() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
+		String sql = "select rownum as rnum, A.user_id, A.review_title, A.review_content, A.review_star_scope, A.review_img_url from ( select user_id, review_title, review_content, review_star_scope, review_img_url from review order by review_star_scope desc) A where rownum between 1 and 3";
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+//				ReviewDTO review = new ReviewDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), 
+//						rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getInt(10));
+				ReviewDTO review = new ReviewDTO(rs.getInt(1), rs.getString("USER_ID"), rs.getString("REVIEW_TITLE"), rs.getString("REVIEW_CONTENT"), rs.getInt("REVIEW_STAR_SCOPE"), rs.getString("REVIEW_IMG_URL"));
+				list.add(review);
+			}
+			
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return list;
+	}
+
 
 }

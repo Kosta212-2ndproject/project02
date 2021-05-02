@@ -31,21 +31,13 @@
 function checkValid() {
     var f = window.document.writeForm;
 		
-	if ( f.reviewTitle.value == "") {
-	    alert( "제목을 입력해 주세요." );
-	    f.model_num.focus();
-		return false;
-    }
-	if ( f.reviewContent.value == "" ) {
+
+	if ( f.aContent.value == "" ) {
 		alert( "내용을 입력해 주세요." );
-		f.model_name.focus();
+		f.aContent.focus();
 		return false;
 	}
-	if ( f.reviewStarScope.value == "" ) {
-		alert( "별점을 입력해 주세요." );
-		f.price.focus();
-		return false;
-	}
+	
 	
     return true;
 }

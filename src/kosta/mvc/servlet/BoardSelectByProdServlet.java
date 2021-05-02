@@ -10,23 +10,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import kosta.mvc.dao.QuestionDAO;
 import kosta.mvc.dao.QuestionDAOImpl;
+import kosta.mvc.dao.ReviewDAO;
+import kosta.mvc.dao.ReviewDAOImpl;
 import kosta.mvc.dto.QuestionDTO;
+import kosta.mvc.dto.ReviewDTO;
 import net.sf.json.JSONArray;
 
-@WebServlet("/boardSelect")
-public class BoardSelectServlet extends HttpServlet {
+@WebServlet("/boardSelectByProd")
+public class BoardSelectByProdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setContentType("text/html;charset=UTF-8");
-		HttpSession session = request.getSession();
-		String userId = (String) request.getSession().getAttribute("userId");
-		session.setAttribute("userId", userId);
 
 		String proId = request.getParameter("prodId");
 		System.out.println(proId);

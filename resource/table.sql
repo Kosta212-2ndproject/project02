@@ -288,9 +288,9 @@ using(O_NO) join userlist
 using(user_id) join ORDERLINE
 using(o_no);
 
-
-
-delete review where PROD_ID=45732;
+select * from question
+delete question where q_num between 14 and 21;
+delete review where PROD_ID=37197;
 commit
 
 SELECT
