@@ -6,7 +6,6 @@
 <%
 	request.setCharacterEncoding("UTF-8");
    String prodId = request.getParameter("prodId");
-
 %>
 
 <!DOCTYPE html>
@@ -40,7 +39,6 @@
 }
 </style>
 <script type="text/javascript">
-
     		function setThumbnail(event) {
     			var reader = new FileReader();
     			reader.onload = function(event) {
@@ -48,12 +46,10 @@
     				img.setAttribute("width","50");
     				img.setAttribute("height","50");
     				img.setAttribute("src", event.target.result);
-
     				document.querySelector("div#image_container").appendChild(img);
     			};
     			reader.readAsDataURL(event.target.files[0]);
     		}
-
     </script>
 
 </head>
@@ -127,7 +123,7 @@
 					</div>
 					<p>
 						<a href="${path}/front?key=cart&methodName=insertCart&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">Add
-							to Cart</a> <a href="cart.html" class="btn btn-primary py-3 px-5">Buy
+							to Cart</a> <a href="#" name="buyNow" class="btn btn-primary py-3 px-5">Buy
 							now</a>
 					</p>
 
@@ -521,47 +517,36 @@
 
 <script>
     $(document).ready(function () {
-
 			$("[name=buyNow]").click(function () {
 				//alert(1)
+				alert( ${prod.prodPrice} );
 				alert(  $("[name=qty]").val() );
-
 				$("[name=userInputQty]").val($("[name=qty]").val());
 				$("#checkout").submit();
 			});
-
 			var quantitiy = 0;
-
 			$('.quantity-right-plus').click(function (e) {
-
 				e.preventDefault();
 				// Get the field name
 				var quantity = parseInt($('[name=qty]').val());
-
 				if (quantity == $("#prodQty").val()) {
 					$('.quantity-right-plus').prop('disabled', true);
 				} else {
 					$('[name=qty]').val(quantity + 1);
 				}
-
 			});
-
-
         $('.quantity-left-minus').click(function (e) {
             // Stop acting like a button
             e.preventDefault();
             // Get the field name
             var quantity = parseInt($('[name=qty]').val());
-
             // If is not undefined
-
             // Increment
             if (quantity <= 1) {
                 alert(quantity + "개 이상부터 구매하실 수 있습니다.");
             } else {
                 $('[name=qty]').val(quantity - 1);
             }
-
         });
     });
 </script>
