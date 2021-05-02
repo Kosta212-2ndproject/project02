@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Liquor Store - Free Bootstrap 4 Template by Colorlib</title>
+<title>JJAN ㅉ ㅏ ㄴ</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/style.css">
 
-<SCRIPT language=javascript>
+<SCRIPT>
 	function checkValid() {
 		var f = window.document.searchFrom;
 
@@ -42,10 +42,10 @@
 				<div class="col-md-6 d-flex align-items-center">
 					<p class="mb-0 phone pl-md-2">
 						<a href="#" class="mr-2">
-							<span class="fa fa-phone mr-1"></span> +00 1234 567
+							<span class="fa fa-phone mr-1"></span> +82 031 123 456
 						</a>
 						<a href="#">
-							<span class="fa fa-paper-plane mr-1"></span> youremail@email.com
+							<span class="fa fa-paper-plane mr-1"></span> jjan212@naver.com
 						</a>
 					</p>
 				</div>
@@ -145,10 +145,10 @@
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a href="indexAdmin.jsp" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+					<li class="nav-item active"><a href="front?key=prod&methodName=selectAllByAdmin" class="nav-link">상품관리</a></li>
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
-							<a class="dropdown-item" href="front?key=prod&methodName=selectAllByAdmin">상품관리</a>
+							<a class="dropdown-item" href="cart.html">???</a>
 							<a class="dropdown-item" href="product-single.html">Single Product</a>
 							<a class="dropdown-item" href="cart.html">Cart</a>
 							<a class="dropdown-item" href="checkout.html">Checkout</a>

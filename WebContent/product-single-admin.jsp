@@ -71,36 +71,7 @@
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
 					<h3>${requestScope.prod.prodName}${requestScope.prod.prodNameEng}</h3>
-					<div class="rating d-flex">
-						<p class="text-left mr-4">
-							<a href="#" class="mr-2">5.0</a>
-							<a href="#">
-								<span class="fa fa-star"></span>
-							</a>
-							<a href="#">
-								<span class="fa fa-star"></span>
-							</a>
-							<a href="#">
-								<span class="fa fa-star"></span>
-							</a>
-							<a href="#">
-								<span class="fa fa-star"></span>
-							</a>
-							<a href="#">
-								<span class="fa fa-star"></span>
-							</a>
-						</p>
-						<p class="text-left mr-4">
-							<a href="#" class="mr-2" style="color: #000;">
-								100 <span style="color: #bbb;">Rating</span>
-							</a>
-						</p>
-						<p class="text-left">
-							<a href="#" class="mr-2" style="color: #000;">
-								500 <span style="color: #bbb;">Sold</span>
-							</a>
-						</p>
-					</div>
+					<br>
 					<p class="price">
 						<span><fmt:formatNumber value="${prod.prodPrice}" pattern="#,###원" /></span>
 					</p>
@@ -117,13 +88,13 @@
 						<div class="input-group col-md-6 d-flex mb-3"></div>
 						<div class="w-100"></div>
 						<div class="col-md-12">
-							<p style="color: #000;">${prod.prodQty}piece available</p>
+							<p style="color: #000;">재고 : <span style="color: red; font-size:25px">${prod.prodQty} </span> 개&emsp;&emsp; 배송비 : 2500원</p>
 						</div>
 					</div>
 					<p>
 						<a href="front?key=prod&methodName=updateForm&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">수정하기</a>
 						<a href="front?key=prod&methodName=deleteProduct&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">삭제하기</a>
-						<input type="button" value="리스트" class="btn btn-primary py-3 px-5 mr-2" onClick="location.href='${path}/front?key=prod&methodName=selectAllByAdmin'">
+						<input type="button" value="전체List" class="btn btn-primary py-3 px-5 mr-2" onClick="location.href='front?key=prod&methodName=selectAllByAdmin'">
 					</p>
 				</div>
 			</div>
@@ -138,7 +109,7 @@
 
 						<a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Taste/Food Matching </a>
 
-						<a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Reviews</a>
+						
 
 					</div>
 				</div>
@@ -164,81 +135,7 @@
 							</div>
 						</div>
 						<div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
-							<div class="row p-4">
-								<div class="col-md-7">
-									<h3 class="mb-4">23 Reviews</h3>
-									<div class="review">
-										<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-										<div class="desc">
-											<h4>
-												<span class="text-left">Jacob Webb</span> <span class="text-right">25 April 2020</span>
-											</h4>
-											<p class="star">
-												<span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-												</span> <span class="text-right"><a href="#" class="reply">
-														<i class="icon-reply"></i>
-													</a></span>
-											</p>
-											<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-										</div>
-									</div>
-									<div class="review">
-										<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-										<div class="desc">
-											<h4>
-												<span class="text-left">Jacob Webb</span> <span class="text-right">25 April 2020</span>
-											</h4>
-											<p class="star">
-												<span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-												</span> <span class="text-right"><a href="#" class="reply">
-														<i class="icon-reply"></i>
-													</a></span>
-											</p>
-											<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-										</div>
-									</div>
-									<div class="review">
-										<div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
-										<div class="desc">
-											<h4>
-												<span class="text-left">Jacob Webb</span> <span class="text-right">25 April 2020</span>
-											</h4>
-											<p class="star">
-												<span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-												</span> <span class="text-right"><a href="#" class="reply">
-														<i class="icon-reply"></i>
-													</a></span>
-											</p>
-											<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="rating-wrap">
-										<h3 class="mb-4">Give a Review</h3>
-										<p class="star">
-											<span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> (98%)
-											</span> <span>20 Reviews</span>
-										</p>
-										<p class="star">
-											<span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> (85%)
-											</span> <span>10 Reviews</span>
-										</p>
-										<p class="star">
-											<span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> (98%)
-											</span> <span>5 Reviews</span>
-										</p>
-										<p class="star">
-											<span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> (98%)
-											</span> <span>0 Reviews</span>
-										</p>
-										<p class="star">
-											<span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> (98%)
-											</span> <span>0 Reviews</span>
-										</p>
-									</div>
-								</div>
-							</div>
+							
 						</div>
 					</div>
 				</div>

@@ -3,7 +3,6 @@ package kosta.mvc.servlet;
 import kosta.mvc.dao.OrderDAO;
 import kosta.mvc.dao.OrderDAOImpl;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
