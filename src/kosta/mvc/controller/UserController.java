@@ -31,7 +31,7 @@ public class UserController implements Controller {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+ 
 	
 	/**
 	 * MyPage 클릭시 나오는 화면 
