@@ -29,7 +29,7 @@
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/style.css">
 
-<SCRIPT language=javascript>
+<SCRIPT>
 	function checkValid1() {
 		var f = window.document.optionForm;
 
@@ -298,14 +298,40 @@
 														});
 									});
 				</script>
+				
+				<script> $(function(){ 
+					var $win = $(window); 
+					var top = $(window).scrollTop();   
+					var speed = 500; 
+					var easing = 'linear';  
+					var $layer = $('.float_sidebar');
+					var layerTopOffset = 0;  
+					$layer.css('position', 'relative').css('z-index', '1');
+					
+					
+					if (top > 50 ) 
+						$win.scrollTop(layerTopOffset+top); 
+					else 
+						$win.scrollTop(0); 
+					
+					$(window).scroll(function(){ 
+						yPosition = $win.scrollTop() - 400; 
+						if (yPosition < 460) 
+						{ 
+							yPosition = 0; 
+						} 
+						$layer.animate({"top":yPosition }, {duration:speed, easing:easing, queue:false}); 
+						}); 
+					}); 
+				</script>
 
 
-
+				
 
 
 				<div class="col-md-3">
-
-
+					<div class ="float_sidebar" >
+					
 					<div class="sidebar-box ftco-animate">
 
 						<a href="front?key=prod&methodName=selectAll">전체상품</a>
@@ -409,6 +435,7 @@
               </c:choose>
       		</form>
               </div>
+              	</div>
 					</div>
 
 				</div>
