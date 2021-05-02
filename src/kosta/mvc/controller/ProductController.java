@@ -11,15 +11,19 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kosta.mvc.dto.ProductDTO;
+import kosta.mvc.dto.WishDTO;
 import kosta.mvc.service.ProductService;
 import kosta.mvc.service.ProductServiceImpl;
+
+import kosta.mvc.service.WishService;
+import kosta.mvc.service.WishServiceImpl;
 
 /**
  * 상품관리 및 검색 Controller
  */
 public class ProductController implements Controller {
 	private ProductService prodService = new ProductServiceImpl();
-
+    private WishService wishService = new WishServiceImpl();
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -28,6 +32,15 @@ public class ProductController implements Controller {
 
 	// 상품검색 (user)
 	public ModelAndView selectAll(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//String userId = request.getSession().getAttribute("");
+		List<ProductDTO> listAll = prodService.selectAll();
+		
+		//위시리트를 가져오기
+		List<WishDTO> listWish= wishService.selectWish("cha");
+		
+		request.setAttribute("listAll", listAll);
+		request.setAttribute("listWish", listWish);
+		
 		String pageNo = request.getParameter("pageNo");
 		String category = request.getParameter("category"); // 값은 prodNation , prodType ,prodPrice,prodKeyword
 		String values = request.getParameter("values");// category에 해당하는 값....
@@ -48,6 +61,9 @@ public class ProductController implements Controller {
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("productAll.jsp");
+		
+		
+					
 		return mv;
 	}
 
