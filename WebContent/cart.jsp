@@ -67,7 +67,7 @@
 								<th>Product</th>
 								<th>Price</th>
 								<th>Quantity</th>
-								<th>Order</th>
+								<th>total</th>
 								<th>&nbsp;</th>
 							</tr>
 						</thead>
@@ -99,16 +99,16 @@
 											</td>
 											<td>
 												<div class="email">
-													<span>${prodDto.prodName}</span> <span>${prodDto.prodNameEng}</span>
+													<span>${prodDto.prodName} </span> <span>${prodDto.prodNameEng}</span>
 												</div>
 											</td>
-											<td width="150"><fmt:formatNumber value="${prodDto.prodPrice}"
+											<td><fmt:formatNumber value="${prodDto.prodPrice}"
 													pattern="#,###원" /></td>
 											<td class="quantity">
 											<div class="row mt-4">
 												<div class="input-group col-md-10 d-flex mb-3">
 													<span class="input-group-btn mr-2">
-														<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+														<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="" name="${prodDto.prodPrice}">
 															<i class="fa fa-minus"></i>
 														</button>
 													</span> 
@@ -116,20 +116,20 @@
 														class="quantity form-control input-number" value="1"
 														min="1" max="100"> 
 													<span class="input-group-btn ml-2">
-														<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+														<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="" name="${prodDto.prodPrice}">
 															<i class="fa fa-plus"></i>
 														</button>
 													</span>
 												</div>
 												<div class="w-100"></div>
 												<div class="col-md-8">
-													<p style="..."><input class="text center" id="prodQty" value="${prodDto.prodQty}"/>
+													<p style="..."><input class="text center" id="prodDBQty" value="${prodDto.prodQty}"/>
 													piece available</p>
 												</div>
 											</div>
 											</td>
 											<!-- 각 상품 총 금액 -->
-											<td><a href="#" name="buyNow" class="btn btn-primary py-3 px-6">주문하기</a></td>
+											<td><span name="productPerId">${prodDto.prodPrice}</span>원</td>
 											<td><span style="color: red;" class="fa fa-close"
 												data-dismiss="alert"
 												onclick="location.href='${path}/front?key=cart&methodName=deleteCart&prodId=${prodDto.prodId}'"
@@ -138,21 +138,23 @@
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
+
+
+
 						
 
 						</tbody>
 					</table>
-					
 					<form action="checkout.jsp" id="checkout" method="post">
-						<input type="hidden" name="prodId" value="${prod.prodId}"/>
-						<input type="hidden" name="imgUrl" value="${prod.prodImgUrl}"/>
-						<input type="hidden" name="name" value="${prod.prodName}"/>
-						<input type="hidden" name="nameEng" value="${prod.prodNameEng}"/>
-						<input type="hidden" name="price" value="${prod.prodPrice}"/>
-						<input type="hidden" name="dbQty" value="${prod.prodQty}"/>
+						<input type="hidden" name="prodId" value="${listAll[0].prodId}"/>
+						<input type="hidden" name="imgUrl" value="${listAll[0].prodImgUrl}"/>
+						<input type="hidden" name="name" value="${listAll[0].prodName}"/>
+						<input type="hidden" name="nameEng" value="${listAll[0].prodNameEng}"/>
+						<input type="hidden" name="price" value="${listAll[0].prodPrice}"/>
+						<input type="hidden" name="dbQty" value="${listAll[0].prodQty}"/>
 						<input type="hidden" name="userInputQty" value=""/>
-					</form>
 					
+					</form>
 					
 				</div>
 			</div>
@@ -161,7 +163,7 @@
 					<div class="cart-total mb-3">
 						<h3>Cart Totals</h3>
 						<p class="d-flex total-price">
-							<span>Total</span> <span id="totalP">${total}</span>원
+							<span>Total</span> <span id="totalP" class="commaN">${total}</span>원
 						</p>
 					</div>
 					<p><a href="#" name="buyNow" class="btn btn-primary py-3 px-5">구매하기</a>
@@ -203,39 +205,63 @@
 	<script src="js/main.js"></script>
 
 	<script>
-    $(document).ready(function () {
-			$("[name=buyNow]").click(function () {
-				//alert(1)
-				alert(  $("[name=qty]").val() );
-				$("[name=userInputQty]").val($("[name=qty]").val());
-				$("#checkout").submit();
-			});
-			var quantitiy = 0;
-			$('.quantity-right-plus').click(function (e) {
-				e.preventDefault();
-				// Get the field name
-				var quantity = parseInt($('[name=qty]').val());
-				if (quantity == $("#prodQty").val()) {
-					$('.quantity-right-plus').prop('disabled', true);
-				} else {
-					$('[name=qty]').val(quantity + 1);
-				}
-			});
-        $('.quantity-left-minus').click(function (e) {
-            // Stop acting like a button
-            e.preventDefault();
-            // Get the field name
-            var quantity = parseInt($('[name=qty]').val());
-            // If is not undefined
-            // Increment
-            if (quantity <= 1) {
-                alert(quantity + "개 이상부터 구매하실 수 있습니다.");
-            } else {
-                $('[name=qty]').val(quantity - 1);
-            }
-        });
+	$(document).ready(function () {
+		$("[name=buyNow]").click(function () {
+			//alert(1)
+			//alert( ${prod.prodPrice} );
+			//alert(  $("[name=qty]").val() );
+			$("[name=userInputQty]").val($("[name=qty]").val());
+			$("#checkout").submit();
+		});
+		var quantitiy = 0;
+		$('.quantity-right-plus').click(function (e) {
+			e.preventDefault();
+			// Get the field name
+			var quantity = parseInt($('[name=qty]').val());
+			let price = $(this).attr("name");
+			if (quantity == $("#prodQty").val()) {
+				$('.quantity-right-plus').prop('disabled', true);
+			} else {
+				$('[name=qty]').val(quantity + 1);
+			}
+			
+			$('[name=productPerId]').val();
+			
+			//전체 금액
+			
+			totalCal();
+		});
+		
+		
+    $('.quantity-left-minus').click(function (e) {
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var quantity = parseInt($('[name=qty]').val());
+        // If is not undefined
+        // Increment
+        if (quantity <= 1) {
+            alert(quantity + "개 이상부터 구매하실 수 있습니다.");
+        } else {
+            $('[name=qty]').val(quantity - 1);
+        }
     });
-</script>
+    
+    function totalCal(){
+		var total=0;
+		 $("[name=productPerId]").each(function(index, item){
+			 //alert(index+" , "+ item); 
+			 total+=parseInt($(this).text())
+		 });
+		 
+		 $("#totalP").text(total);
+		 
+	}
+	
+	
+	totalCal();
+});
+	</script>
 
 </body>
 </html>
