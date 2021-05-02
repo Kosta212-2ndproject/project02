@@ -132,7 +132,7 @@
 							<li><a href="front?key=notice&methodName=select">Notice <span
 									class="fa fa-chevron-right"></span></a></li>
 							<c:if test="${not empty userId}">
-							<li><a href="front?key=user&methodName=select">My Page <span
+							<li><a href="front?key=member&methodName=readMemberInfo">My Page <span
 									class="fa fa-chevron-right"></span></a></li>
 							</c:if>
 						</div>
