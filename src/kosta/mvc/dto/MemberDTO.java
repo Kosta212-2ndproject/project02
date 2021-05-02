@@ -16,8 +16,16 @@ public class MemberDTO {
 	private int userBuyCount;
 	
 	public MemberDTO() {}
+
+	public MemberDTO(String userId, String userZipcode, String userAddr, String userAddrDetail) {
+		this.userId = userId;
+		this.userZipcode = userZipcode;
+		this.userAddr = userAddr;
+		this.userAddrDetail = userAddrDetail;
+	}
+
 	public MemberDTO(String userId, String userName, String userPw, String userHp, String userEmail, String userBirth,
-			String userGender, int userState, String userRegDate, int userBuyCount) {
+						  String userGender, int userState, String userRegDate, int userBuyCount) {
 		super();
 		this.userId = userId;
 		this.userName = userName;

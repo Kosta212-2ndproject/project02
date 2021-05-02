@@ -117,15 +117,19 @@
 						<div class="w-100"></div>
 						<div class="col-md-12">
 
-							<p style="color: #000;">재고 : <span style="color: red; font-size:25px">${prod.prodQty} </span> 개&emsp;&emsp; 배송비 : 2500원</p>
+							<p style="color: #000;">재고 : <span style="color: red; font-size:25px" id="prodDBQty" value="${prod.prodQty}">${prod.prodQty} </span> 개&emsp;&emsp; 배송비 : 2500원</p>
 
 						</div>
 					</div>
+					<c:if test="${not empty userId}">
 					<p>
+						<input type="hidden" name="checkoutBuyBtnValue" value="<%=session.getAttribute("userId") %>">
 						<a href="${path}/front?key=cart&methodName=insertCart&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">Add
+
 							to Cart</a> <a href="#" name="buyNow" class="btn btn-primary py-3 px-5">Buy
 							now</a>
 					</p>
+					</c:if>
 
 					<form action="checkout.jsp" id="checkout" method="post">
 						<input type="hidden" name="prodId" value="<%= prodId %>"/>
@@ -300,39 +304,39 @@
 
 
   <script>
-	$(document).ready(function(){
-
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
-
-		          
-		            // Increment
-		        
-		    });
-
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-	});//end of ready
+	// $(document).ready(function(){
+	//
+	// 	var quantitiy=0;
+	// 	   $('.quantity-right-plus').click(function(e){
+	//
+	// 	        // Stop acting like a button
+	// 	        e.preventDefault();
+	// 	        // Get the field name
+	// 	        var quantity = parseInt($('#quantity').val());
+	//
+	// 	        // If is not undefined
+	//
+	// 	            $('#quantity').val(quantity + 1);
+	//
+	//
+	// 	            // Increment
+	//
+	// 	    });
+	//
+	// 	     $('.quantity-left-minus').click(function(e){
+	// 	        // Stop acting like a button
+	// 	        e.preventDefault();
+	// 	        // Get the field name
+	// 	        var quantity = parseInt($('#quantity').val());
+	//
+	// 	        // If is not undefined
+	//
+	// 	            // Increment
+	// 	            if(quantity>0){
+	// 	            $('#quantity').val(quantity - 1);
+	// 	            }
+	// 	    });
+	// });//end of ready
 </script>	    
 
 <script type="text/javascript">
@@ -519,8 +523,8 @@
     $(document).ready(function () {
 			$("[name=buyNow]").click(function () {
 				//alert(1)
-				alert( ${prod.prodPrice} );
-				alert(  $("[name=qty]").val() );
+				//alert( ${prod.prodPrice} );
+				//alert(  $("[name=qty]").val() );
 				$("[name=userInputQty]").val($("[name=qty]").val());
 				$("#checkout").submit();
 			});
