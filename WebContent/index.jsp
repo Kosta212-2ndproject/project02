@@ -26,7 +26,7 @@
    
 
 
-	<div class="hero-wrap" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+	<div class="hero-wrap" style="background-image: url('images/jjan.jpg');" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -51,33 +51,34 @@
 				<div class="col-md-4 d-flex">
 					<div class="intro d-lg-flex w-100 ftco-animate">
 						<div class="icon">
-							<span class="flaticon-support"></span>
+							<span class="fa fa-users"></span>
 						</div>
 						<div class="text">
-							<h2>Online Support 24/7</h2>
-							<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 d-flex">
-					<div class="intro color-1 d-lg-flex w-100 ftco-animate">
-						<div class="icon">
-							<span class="flaticon-cashback"></span>
-						</div>
-						<div class="text">
-							<h2>Money Back Guarantee</h2>
-							<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+							<h2>Member & Board</h2>
+							<p>최수빈  Member<br>&nbsp;/&nbsp;로그인, 회원관리<br>
+							<br>조민주 Board<br>&nbsp;/&nbsp;Q&A, Review, 공지</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 d-flex">
 					<div class="intro color-2 d-lg-flex w-100 ftco-animate">
 						<div class="icon">
-							<span class="flaticon-free-delivery"></span>
+							<span class="fa fa-shopping-cart"></span>
 						</div>
 						<div class="text">
-							<h2>Free Shipping &amp; Return</h2>
-							<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+							<h2>Shopping</h2>
+							<p>차영우 Cart&Wish<br>&nbsp;/&nbsp;장바구니, 좋아요<br><br>서정우 Product<br>&nbsp;/&nbsp;상품검색, 관리</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 d-flex">
+					<div class="intro color-1 d-lg-flex w-100 ftco-animate">
+						<div class="icon">
+							<span class="fa fa-money"></span>
+						</div>
+						<div class="text">
+							<h2>Payment</h2>
+							<p>김승원 Payment<br>&nbsp;/&nbsp;상품주문, 결제</p>
 						</div>
 					</div>
 				</div>
@@ -85,19 +86,23 @@
 		</div>
 	</section>
 
+
 	<section class="ftco-section ftco-no-pb">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url(images/image_5.jpg);"></div>
 				<div class="col-md-6 wrap-about pl-md-5 ftco-animate py-5">
 					<div class="heading-section">
-						<span class="subheading">Since 1905</span>
-						<h2 class="mb-4">Desire Meets A New Taste</h2>
+						<span class="subheading">Since 2021</span>
 
-						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-						<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.</p>
-						<p class="year">
-							<strong class="number" data-number="115">0</strong> <span>Years of Experience In Business</span>
+						<h2 class="mb-4" align = "center">Our JJAN for Good Moments</h2>
+
+						<p align = "center">&nbsp;&nbsp;JJAN은 전세계의 와인과 최고의 명품 와인부터 가성비의 와인까지<br>다양한 포트폴리오를 구성하고 있습니다.</p>
+						<p style = "font-size: 17px; font: bold" align = "center">"와인이 있는 곳에는 슬픔과 걱정이 날아간다." <br> - 파스퇴르 - <br>"와인은 세상에서 가장 고상한 것이다. "<br> 
+						- 헤밍웨이 -  </p>
+						<p class="year" align = "center">
+
+							<strong class="number" data-number="107">0</strong> <span>개의 다양한 와인을 즐겨보세요</span>
 						</p>
 					</div>
 

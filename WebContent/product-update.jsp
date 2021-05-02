@@ -27,7 +27,7 @@
 
 
 <SCRIPT>
-	function checkValid() {
+	function checkValid3() {
 		var f = window.document.updateForm;
 		if (f.prodName.value == "") {
 			alert("상품이름을 입력해 주세요.");
@@ -102,7 +102,7 @@
 <BODY>
 
 
-	<form name=updateForm method=post action="${path}/front" onSubmit="return checkValid()">
+	<form name=updateForm method=post action="${path}/front" onSubmit="return checkValid3()">
 		<input type="hidden" name="key" value="prod">
 		<input type="hidden" name="methodName" value="updateProduct">
 		<input type='hidden' name='prodId' value="${prod.prodId}">
@@ -176,7 +176,7 @@
 						<p>
 							<input type="submit" value="수정하기" class="btn btn-primary py-3 px-5 mr-2">
 							<input type="reset" value="다시쓰기" class="btn btn-primary py-3 px-5 mr-2">
-							<input type="button" value="리스트" class="btn btn-primary py-3 px-5 mr-2" onClick="location.href='${path}/front?key=prod&methodName=selectAllByAdmin'">
+							<input type="button" value="이전" class="btn btn-primary py-3 px-5 mr-2" onClick="location.href='javascript:history.back()'">
 						</p>
 					</div>
 					
