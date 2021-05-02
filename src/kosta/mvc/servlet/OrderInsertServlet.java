@@ -26,6 +26,7 @@ public class OrderInsertServlet extends HttpServlet {
 
 //      String prodId = request.getParameter("orderNum");
       Long prodId = new Long(request.getParameter("orderNum"));
+//      String userId = request.getParameter("userId");
       String userId = request.getParameter("userId");
       int orderPrice = Integer.parseInt(request.getParameter("orderPrice"));
       String addr = request.getParameter("addr");

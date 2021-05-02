@@ -99,7 +99,7 @@
 											</td>
 											<td>
 												<div class="email">
-													<span>${prodDto.prodName}</span> <span>${prodDto.prodNameEng}</span>
+													<span>${prodDto.prodName} </span> <span>${prodDto.prodNameEng}</span>
 												</div>
 											</td>
 											<td><fmt:formatNumber value="${prodDto.prodPrice}"
@@ -112,7 +112,7 @@
 															<i class="fa fa-minus"></i>
 														</button>
 													</span> 
-													<input type="text" id="quantity" name="quantity" size="20"
+													<input type="text" id="qty" name="qty" size="20"
 														class="quantity form-control input-number" value="1"
 														min="1" max="100"> 
 													<span class="input-group-btn ml-2">
@@ -123,7 +123,7 @@
 												</div>
 												<div class="w-100"></div>
 												<div class="col-md-8">
-													<p style="..."><input class="text center" id="prodQty" value="${prodDto.prodQty}"/>
+													<p style="..."><input class="text center" id="prodDBQty" value="${prodDto.prodQty}"/>
 													piece available</p>
 												</div>
 											</div>
@@ -145,16 +145,16 @@
 
 						</tbody>
 					</table>
-					<!-- form action="checkout.jsp" id="checkout" method="post">
-						<input type="hidden" name="prodId" value="${prodId}"/>
-						<input type="hidden" name="imgUrl" value="${prod.prodImgUrl}"/>
-						<input type="hidden" name="name" value="${prod.prodName}"/>
-						<input type="hidden" name="nameEng" value="${prod.prodNameEng}"/>
-						<input type="hidden" name="price" value="${prod.prodPrice}"/>
-						<input type="hidden" name="dbQty" value="${prodQty}"/>
+					<form action="checkout.jsp" id="checkout" method="post">
+						<input type="hidden" name="prodId" value="${listAll[0].prodId}"/>
+						<input type="hidden" name="imgUrl" value="${listAll[0].prodImgUrl}"/>
+						<input type="hidden" name="name" value="${listAll[0].prodName}"/>
+						<input type="hidden" name="nameEng" value="${listAll[0].prodNameEng}"/>
+						<input type="hidden" name="price" value="${listAll[0].prodPrice}"/>
+						<input type="hidden" name="dbQty" value="${listAll[0].prodQty}"/>
 						<input type="hidden" name="userInputQty" value=""/>
 					
-					</form-->
+					</form>
 					
 				</div>
 			</div>
@@ -166,7 +166,7 @@
 							<span>Total</span> <span id="totalP" class="commaN">${total}</span>원
 						</p>
 					</div>
-					<p><a href="checkout.html" name="buyNow" class="btn btn-primary py-3 px-5">구매하기</a>
+					<p><a href="#" name="buyNow" class="btn btn-primary py-3 px-5">구매하기</a>
 					
 				</div>
 			</div>
@@ -205,102 +205,62 @@
 	<script src="js/main.js"></script>
 
 	<script>
-		$(document).ready(function() {
-
-			var quantitiy = 0;
-			
-			//수량 증가
-			$('.quantity-right-plus').click(function(e) {
-				let plusEv = $(this).parent().prev();
-				plusEv.val( (parseInt(plusEv.val()) +1) );
-
-				e.preventDefault();
-				
-				//총금액
-				let price = $(this).attr("name");
-				let tot = plusEv.val()*price;
-				
-				if(plusEv.val()=="${prodQty}"){
-					alert("더이상 구매하실수 없습니다.");
-					plusEv.val("${prodQty}");
-				}
-				
-				$(this).parent().parent().parent().parent().next().find("span").text(tot);
-				
-				//전체 금액
-				
-				totalCal();
-
-			});
-			
-		
-
-			//수량감소
-			$('.quantity-left-minus').click(function(e) {
-				// Stop acting like a button
-				e.preventDefault();
-				// Get the field name
-				//var quantity = parseInt($('#quantity').val());
-
-				// If is not undefined
-				
-				let minusEv = $(this).parent().next();
-				minusEv.val( (parseInt(minusEv.val()) - 1) );
-
-				
-				if (minusEv.val() == 0) {
-					alert("1 개 이상부터 구매하실 수 있습니다.");
-					minusEv.val("1")
-				}
-				
-				//총금액
-				let price = $(this).attr("name");
-				let tot = minusEv.val()*price;
-				
-				$(this).parent().parent().parent().parent().next().find("span").text(tot);
-				
-				totalCal();
-				
-			});
-			
-			//전체 금액 구하기
-			
-			function totalCal(){
-				var total=0;
-				 $("[name=productPerId]").each(function(index, item){
-					 //alert(index+" , "+ item); 
-					 total+=parseInt($(this).text())
-				 });
-				 
-				 $("#totalP").text(total);
-				 
+	$(document).ready(function () {
+		$("[name=buyNow]").click(function () {
+			//alert(1)
+			//alert( ${prod.prodPrice} );
+			//alert(  $("[name=qty]").val() );
+			$("[name=userInputQty]").val($("[name=qty]").val());
+			$("#checkout").submit();
+		});
+		var quantitiy = 0;
+		$('.quantity-right-plus').click(function (e) {
+			e.preventDefault();
+			// Get the field name
+			var quantity = parseInt($('[name=qty]').val());
+			let price = $(this).attr("name");
+			if (quantity == $("#prodQty").val()) {
+				$('.quantity-right-plus').prop('disabled', true);
+			} else {
+				$('[name=qty]').val(quantity + 1);
 			}
 			
+			$('[name=productPerId]').val();
+			
+			//전체 금액
 			
 			totalCal();
-			
-			//콤마 처리
-			
-			function commaNum(num){
-				var len, point, str;
-				num = num+"";
-				point = num.length % 3
-				len = num.length;
-				
-				str= num.subString(0,point);
-				while(point<len){
-					if(str!="") str+= ",";
-					str+= num.subString(point, point + 3);
-					point += 3;
-				}
-				return str;
-			}
-			for(i=0; i<$(".commaN").length;i++){
-				$(".commaN").eq(i).text(commaNum($(".commaN").eq(i).html()));
-			}
-			
-
 		});
+		
+		
+    $('.quantity-left-minus').click(function (e) {
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var quantity = parseInt($('[name=qty]').val());
+        // If is not undefined
+        // Increment
+        if (quantity <= 1) {
+            alert(quantity + "개 이상부터 구매하실 수 있습니다.");
+        } else {
+            $('[name=qty]').val(quantity - 1);
+        }
+    });
+    
+    function totalCal(){
+		var total=0;
+		 $("[name=productPerId]").each(function(index, item){
+			 //alert(index+" , "+ item); 
+			 total+=parseInt($(this).text())
+		 });
+		 
+		 $("#totalP").text(total);
+		 
+	}
+	
+	
+	totalCal();
+});
 	</script>
 
 </body>

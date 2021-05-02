@@ -13,7 +13,7 @@ import kosta.mvc.util.DbUtil;
 
 public class QuestionDAOImpl implements QuestionDAO {
 
-	@Override
+	@Override 
 	public List<QuestionDTO> selectAll() throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -119,7 +119,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 				QuestionDTO question = new QuestionDTO(qNum, userId, prodId, qField, qTitle, qContent, qFiles, qRegdate, qShowstatus);
 						
 				list.add(question);
-				
+
 				List<AnswerDTO> answerList = this.answerList(con, rs.getInt(1));
 				question.setAnswerList(answerList); 
 			}

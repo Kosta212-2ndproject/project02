@@ -1,11 +1,8 @@
 package kosta.mvc.dao;
 
-import kosta.mvc.dto.OrderDTO;
-import kosta.mvc.dto.OrderLineDTO;
-import kosta.mvc.dto.PaymentHistoryDTO;
+import kosta.mvc.dto.*;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public interface OrderDAO {
 
@@ -41,4 +38,9 @@ public interface OrderDAO {
 
 
    int insertOrderLine(OrderLineDTO orderLineDTO) throws SQLException;
+
+   /**
+    * 해당하는 유저에 주소값 추가하기.
+    */
+   int updateAddress(MemberDTO memberDTO) throws SQLException;
 }

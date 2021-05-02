@@ -1,12 +1,10 @@
 package kosta.mvc.servlet;
 
-import com.google.gson.Gson;
 //import com.siot.IamportRestHttpClientJava.response.IamportResponse;
 //import com.siot.IamportRestHttpClientJava.response.Payment;
-import com.google.gson.GsonBuilder;
+
 import kosta.mvc.IamportClient;
 import kosta.mvc.response.IamportResponse;
-import kosta.mvc.response.Payment;
 import kosta.mvc.response.PaymentAll;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -18,16 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 
-@WebServlet(name = "PayHistoryServlet", value = "/payHistory")
-public class PayHistoryServlet extends HttpServlet {
+@WebServlet(name = "PaySearchDateServlet", value = "/paySearchDate")
+public class PaySearchDateServlet extends HttpServlet {
    IamportClient client;
 
 
@@ -43,9 +35,11 @@ public class PayHistoryServlet extends HttpServlet {
 
          String id = request.getParameter("option"); // status
          int page = Integer.parseInt(request.getParameter("buttonOption"));
+         long from = Long.parseLong(request.getParameter("startTime"));
+         long to = Long.parseLong(request.getParameter("endTime"));
 
          client = new IamportClient(api_key, api_secret);
-         IamportResponse<PaymentAll> paymentAll = client.selectAll(id, page,5);
+         IamportResponse<PaymentAll> paymentAll = client.selectDateSearch(id, page,5, from, to);
 
          JSONArray arr = JSONArray.fromObject(paymentAll.getResponse().getList());
          JSONObject obj = JSONObject.fromObject(paymentAll.getResponse());

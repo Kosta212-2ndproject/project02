@@ -1,9 +1,6 @@
 package kosta.mvc.dao;
 
-import kosta.mvc.dto.OrderDTO;
-import kosta.mvc.dto.OrderLineDTO;
-import kosta.mvc.dto.PaymentHistoryDTO;
-import kosta.mvc.dto.ProductDTO;
+import kosta.mvc.dto.*;
 import kosta.mvc.util.DbUtil;
 
 import java.sql.Connection;
@@ -172,6 +169,30 @@ public class OrderDAOImpl implements OrderDAO {
 //         ps.setInt(1, prodId);
 
          result = ps.executeUpdate();
+      } finally {
+         DbUtil.dbClose(ps, con);
+      }
+
+      return result;
+   }
+
+   @Override
+   public int updateAddress(MemberDTO memberDTO) throws SQLException {
+      Connection con = null;
+      PreparedStatement ps = null;
+      int result = 0;
+      String sql = "UPDATE USERLIST SET USER_ZIPCODE = ?, USER_ADDR = ?, USER_ADDRDETAIL = ? WHERE USER_ID = ?";
+
+      try {
+         con = DbUtil.getConnection();
+         ps = con.prepareStatement(sql);
+         ps.setString(1, memberDTO.getUserZipcode());
+         ps.setString(2, memberDTO.getUserAddr());
+         ps.setString(3, memberDTO.getUserAddrDetail());
+         ps.setString(4, memberDTO.getUserId());
+
+         result = ps.executeUpdate();
+
       } finally {
          DbUtil.dbClose(ps, con);
       }
