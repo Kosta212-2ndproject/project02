@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Liquor Store - Free Bootstrap 4 Template by Colorlib</title>
+<title>JJAN ㅉ ㅏ ㄴ</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
