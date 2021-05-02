@@ -5,6 +5,7 @@ import java.util.List;
 
 import kosta.mvc.dao.ReviewDAO;
 import kosta.mvc.dao.ReviewDAOImpl;
+import kosta.mvc.dto.NoticeDTO;
 import kosta.mvc.dto.ReviewDTO;
 
 public class ReviewServiceImpl implements ReviewService {
@@ -17,7 +18,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<ReviewDTO> selectByProdId(String prodId) throws SQLException {
+	public List<ReviewDTO> selectByProdId(int prodId) throws SQLException {
 		List<ReviewDTO> list = rDAO.selectByProdId(prodId);
 		return list;
 	}
@@ -51,6 +52,24 @@ public class ReviewServiceImpl implements ReviewService {
 		if(res == 0) {
 			throw new SQLException("수정되지 않았습니다.");
 		}
+		
+	}
+
+
+	@Override
+	public ReviewDTO selectReview(int reviewId, boolean flag) throws SQLException {
+		
+		if(flag) {
+			if(rDAO.increamentByReadnum(reviewId) == 0) {
+				//조회수 증가에 문제가 생김
+				throw new SQLException("조회수 증가에 오류가 있습니다.");
+			}
+		}
+		ReviewDTO rDTO = rDAO.selectReview(reviewId);
+		if(rDTO == null) {
+			throw new SQLException("정보를 검색하지 못했습니다.");
+		}
+		return rDTO;
 		
 	}
 

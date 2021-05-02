@@ -7,7 +7,7 @@ import kosta.mvc.dto.AnswerDTO;
 
 public interface AnswerDAO {
 	/**
-	  * 질문번호에 대한 답변글 검색하기
+	  * 질문번호에 대한 답변글 검색하기  
 	  * */
 	  List<AnswerDTO> selectByQNum(int qNum) throws SQLException;
 	  

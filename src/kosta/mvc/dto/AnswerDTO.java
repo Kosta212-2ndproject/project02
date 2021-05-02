@@ -2,7 +2,7 @@ package kosta.mvc.dto;
 
 public class AnswerDTO {
 	private int aNum;
-	private int qNum;
+	private int qNum;//question-parent
 	private String aContent;
 	private String aAnsId;
 	private String aRegdate;
