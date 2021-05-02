@@ -125,10 +125,13 @@
 
 						</div>
 					</div>
+					<c:if test="${not empty userId}">
 					<p>
 						<a href="${path}/front?key=cart&methodName=insertCart&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">Add
-							to Cart</a> <a href="#" name="buyNow" class="btn btn-primary py-3 px-5">구매하기</a>
+							to Cart</a> <a href="cart.html" class="btn btn-primary py-3 px-5">Buy
+							now</a>
 					</p>
+					</c:if>
 
 					<form action="checkout.jsp" id="checkout" method="post">
 						<input type="hidden" name="prodId" value="<%= prodId %>"/>
@@ -303,39 +306,39 @@
 
 
   <script>
-	$(document).ready(function(){
-
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
-
-		          
-		            // Increment
-		        
-		    });
-
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-	});//end of ready
+	// $(document).ready(function(){
+	//
+	// 	var quantitiy=0;
+	// 	   $('.quantity-right-plus').click(function(e){
+	//
+	// 	        // Stop acting like a button
+	// 	        e.preventDefault();
+	// 	        // Get the field name
+	// 	        var quantity = parseInt($('#quantity').val());
+	//
+	// 	        // If is not undefined
+	//
+	// 	            $('#quantity').val(quantity + 1);
+	//
+	//
+	// 	            // Increment
+	//
+	// 	    });
+	//
+	// 	     $('.quantity-left-minus').click(function(e){
+	// 	        // Stop acting like a button
+	// 	        e.preventDefault();
+	// 	        // Get the field name
+	// 	        var quantity = parseInt($('#quantity').val());
+	//
+	// 	        // If is not undefined
+	//
+	// 	            // Increment
+	// 	            if(quantity>0){
+	// 	            $('#quantity').val(quantity - 1);
+	// 	            }
+	// 	    });
+	// });//end of ready
 </script>	    
 
 <script type="text/javascript">
@@ -527,6 +530,7 @@
 
 				$("[name=userInputQty]").val($("[name=qty]").val());
 				$("#checkout").submit();
+
 			});
 
 			var quantitiy = 0;
