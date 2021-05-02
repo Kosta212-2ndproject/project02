@@ -3,6 +3,7 @@ package kosta.mvc.dao;
 import kosta.mvc.dto.*;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface OrderDAO {
 
@@ -43,4 +44,9 @@ public interface OrderDAO {
     * 해당하는 유저에 주소값 추가하기.
     */
    int updateAddress(MemberDTO memberDTO) throws SQLException;
+
+   /**
+    * 주문 전체 조회
+    */
+   List<OrderDTO> printAllOrders(String userId) throws SQLException;
 }

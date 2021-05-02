@@ -4,9 +4,10 @@
 
 <jsp:include page="common/header.jsp" />
 
+
+
 <!DOCTYPE html>
 <html>
-
 <head>
    <title>ㅉ ㅏ ㄴ</title>
    <meta charset="UTF-8">
@@ -35,39 +36,36 @@
          /*float: left;*/
          display: table-cell
       }
+
+      .text-left {
+         color: black;
+      }
    </style>
    <!-- Fonts -->
-   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+   <link rel="stylesheet" href="css/review.css">
+
 
    <!-- Icons -->
-   <link href="css/nucleo-icons.css" rel="stylesheet">
-   <link href="css/blk-design-system.css" rel="stylesheet">
-   <link href="scss/blk-design-system.scss" rel="stylesheets">
-   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
    <!-- Theme CSS -->
-   <link type="text/css" href="css/blk-design-system.min.css" rel="stylesheet">
 
    <!-- Core -->
    <script src="js/moment.min.js"></script>
    <script src="js/jquery.min.js"></script>
    <script src="js/jquery.sharrre.min.js"></script>
-   <script src="js/bootstrap-datetimepicker.js"></script>
    <%--   <script src="js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>--%>
    <script src="js/popper.min.js"></script>
    <script src="js/bootstrap.min.js"></script>
-   <script src="js/bootstrap-switch.js"></script>
-   <script src="js/nouislider.min.js"></script>
    <script src="js/chartjs.min.js"></script>
    <script src="js/perfect-scrollbar.jquery.min.js"></script>
-   <script src="js/managerPage.js"></script>
+   <script src="js/UserOrderHistory.js"></script>
 
    <!-- Theme JS -->
-   <script src="js/blk-design-system.js"></script>
+<%--   <script src="js/blk-design-system.js"></script>--%>
 </head>
 
-<body>
+<body onload="selectAll()">
 <!-- 헤더영역 -->
 <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_member_detail.jpg');" data-stellar-background-ratio="0.5">
    <div class="overlay"></div>
@@ -100,43 +98,24 @@
 
             <!-- 본문 내용 -->
             <div class="row mb-3">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="searchMenuBtn">
-                           <select id="payState">
-                              <option value="all">전체</option>
-                              <option value="ready">미결제</option>
-                              <option value="paid">결제완료</option>
-                              <option value="failed">결제실패</option>
-                              <option value="cancelled">결제취소</option>
-                           </select>
-                           &nbsp;&nbsp;&nbsp;
-                           <input type="text" id="startDate" class="form-control datepicker" style="width: 300px; font-size: 16px"/>
-                           &nbsp;&nbsp;
-                           <input type="text" id="endDate" class="form-control datepicker" style="width: 300px; font-size: 16px"/>
-                           &nbsp;&nbsp;&nbsp;
-                           <button type="button" class="btn btn-primary" onclick="searchDateFunc(1)" style="font-size: 16px">검색
-                           </button>
-                        </div>
-                     </div>
-                  </div>
-               </div>
 
+               <%
+                  String userName = (String) session.getAttribute("userName");
+                  String userId = (String) session.getAttribute("userId");
+               %>
+
+               <input type="hidden" id="userName" value="<%= userName.substring(0,4) %>">
+               <input type="hidden" id="userId" value="<%= userId %>">
                <!-- testTable -->
-               <table class="table" id="cashListTable">
+               <table class="table" id="cashListTable" style="width: 100%;">
                   <thead>
                   <tr>
-                     <th class="text-center" id="totalShowTable" width="100px" style="font-size: 14px">#</th>
-                     <th class="text-left" style="font-size: 15px">&nbsp;&nbsp;&nbsp;주문번호</th>
-                     <th class="text-left" style="font-size: 15px">&nbsp;&nbsp;&nbsp;결제금액</th>
-                     <th class="text-left" style="font-size: 15px">&nbsp;&nbsp;&nbsp;결제상태 </th>
-                     <th class="text-left" style="font-size: 15px">&nbsp;&nbsp;&nbsp;주문명</th>
-                     <th class="text-left" style="font-size: 15px">&nbsp;&nbsp;&nbsp;PG승인번호<br>&nbsp;&nbsp;(카드사승인번호)</th>
-                     <th class="text-left" style="font-size: 15px; width: 100px">&nbsp;&nbsp;&nbsp;결제상세</th>
-                     <th class="text-left" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;주문명<br>&nbsp;&nbsp;구매자(이름/이메일/휴대폰/주소)</th>
-                     <th class="text-left" style="font-size: 15px; width: 180px">&nbsp;&nbsp;&nbsp;결제시각</th>
-                     <th class="text-left" style="font-size: 15px; width: 250px">&nbsp;&nbsp;&nbsp;상태</th>
+                     <th class="" id="totalShowTable" style="font-size: 14px; color: black;">주문번호(상품번호)</th>
+                     <th class="" style="font-size: 15px; color: black;">결제금액</th>
+                     <th class="" style="font-size: 15px; color: black;">결제상태 </th>
+<%--                     <th class="" style="font-size: 15px; color: black;">우편번호<br>--%>
+                     <th class="" style="font-size: 15px; color: black;">주소<br>
+<%--                     <th class="" style="font-size: 15px; color: black;">이름<br>--%>
                   </tr>
                   </thead>
                   <tbody>
