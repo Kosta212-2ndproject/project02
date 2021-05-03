@@ -31,7 +31,7 @@
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate mb-5 text-center">
-					<p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.jsp"> Home <i class="fa fa-chevron-right"></i></a></span> <span>회원탈퇴 <i class="fa fa-chevron-right"></i></span></p>
+					<p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.jsp"> Home <i class="fa fa-chevron-right"></i></a></span> <span>MyPage <i class="fa fa-chevron-right"></i></span></p>
 					<h2 class="mb-0 bread">회원탈퇴</h2>
 				</div>
 			</div>
@@ -74,7 +74,7 @@
 				<div class="col-md-3">
 					<div class="sidebar-box ftco-animate">
 						<div class="categories">
-							<h3>Product Types</h3>
+							<h3>Member Menu</h3>
 							<ul class="p-0">
 								<li><a href="front?key=member&methodName=readMemberInfo">회원정보 <span class="fa fa-chevron-right"></span></a></li>
 								<li><a href="UserOrderHistory.jsp">주문내역 <span class="fa fa-chevron-right"></span></a></li>

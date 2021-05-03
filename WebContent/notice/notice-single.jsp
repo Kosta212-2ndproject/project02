@@ -214,7 +214,7 @@ $(function () {
 						str +=`<div class="block-21 mb-4 d-flex">`;
 						str += "<a class='blog-img mr-4' style='background-image: url("+notice.nImage+");'></a>";
 						str += `<div class="text"><h5 class="heading">`;
-						str += "<a href='front?key=notice&methodName=selectByNoticeNum&nNum="+notice.nNum+"'>"+notice.nTitle+"</a>";
+						str += "<a href='front?key=notice&methodName=selectByNoticeNumforUser&nNum="+notice.nNum+"'>"+notice.nTitle+"</a>";
 						str += `</h5>`;
 						str += `<div class="meta"><div>`;
 						str += "<a href='#'><span class='fa fa-calendar'></span>"+notice.nRegdate+"</a>";
