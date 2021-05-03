@@ -121,7 +121,7 @@
 
 						</div>
 					</div>
-					<c:if test="${not empty userId}">
+<%--					<c:if test="${not empty userId}">--%>
 					<p>
 						<input type="hidden" name="checkoutBuyBtnValue" value="<%=session.getAttribute("userId") %>">
 						<a href="${path}/front?key=cart&methodName=insertCart&prodId=${prod.prodId}" class="btn btn-primary py-3 px-5 mr-2">Add
@@ -129,7 +129,7 @@
 							to Cart</a> <a href="#" name="buyNow" class="btn btn-primary py-3 px-5">Buy
 							now</a>
 					</p>
-					</c:if>
+<%--					</c:if>--%>
 
 					<form action="checkout.jsp" id="checkout" method="post">
 						<input type="hidden" name="prodId" value="<%= prodId %>"/>

@@ -13,6 +13,11 @@ function payStateOp() {
 //     searchDateFunc(1);
 // });
 
+function cardType() {
+
+}
+
+
 function cardStatus(status) {
     if (status == "paid") {
         return `<span class="badge badge-success" style="font: 13px bolid; font-weight: bold;">결제완료</span><br>`
@@ -304,7 +309,7 @@ function searchDateFunc(e) {
             $.each(result.list, function (index, value) {
                 // 가맹점 고유번호(주문번호)
                 str += `<tr>`;
-                str += `<td class="text-center">${index+1}</td>`;
+                str += `<td class="text-center">${index + 1}</td>`;
                 str += `<td class="text-left">${value.impUid}<br>${value.merchantUid}</td>`;
 
                 // 결제금액(취소금액)
@@ -321,11 +326,24 @@ function searchDateFunc(e) {
                         data-placement="right" title="UserAgent" data-content="${value.userAgent}" style="font: 12px bold; font-weight: bold;">
                     ${value.channel}
                 </button><br>`;
-                if (value.cardType == 0) {
-                    str += `<span class="badge badge-warning" style="font: 12px bold; font-weight: bold;">신용카드</span><br>`;
-                } else {
-                    str += `<span class="badge badge-warning" style="font: 12px bold; font-weight: bold;">카드</span><br>`;
+                console.log(value.cardType);
+                console.log(value.payMethod);
+                if (value.cardType == 0 && value.payMethod == 'card') {
+                    str += `<span class="badge badge-warning" style="font: 13px bold; font-weight: bold;">신용카드</span><br>`;
+                } else if(value.cardType == 0 && value.payMethod == 'phone') {
+                    str += `<span class="badge badge-warning" style="font: 13px bold; font-weight: bold;">휴대폰소액</span><br>`;
+                } else if(value.cardType == 0 && value.payMethod == 'point') {
+                    str += `<span class="badge badge-warning" style="font: 13px bold; font-weight: bold;">포인트결제</span><br>`;
+                } else if(value.cardType == 0 && value.payMethod == 'cultureland') {
+                    str += `<span class="badge badge-warning" style="font: 13px bold; font-weight: bold;">문화상품권</span><br>`;
+                } else if(value.cardType == 1) {
+                    str += `<span class="badge badge-warning" style="font: 13px bold; font-weight: bold;">체크카드</span><br>`;
                 }
+                // if (value.cardType == 0) {
+                //     str += `<span class="badge badge-warning" style="font: 12px bold; font-weight: bold;">신용카드</span><br>`;
+                // } else if (value.cardType == 1) {
+                //     str += `<span class="badge badge-warning" style="font: 12px bold; font-weight: bold;">체크카드</span><br>`;
+                // }
                 str += `</td>`;
 
                 // PG사 상점아이디
@@ -344,7 +362,7 @@ function searchDateFunc(e) {
 
                 // 결제상세
                 str += `<td>`;
-                if (value.status != 'failed') {
+                if (value.status != 'failed' && value.applyNum != "") {
                     str += `${value.cardName}<br>(${cardQuotaFunc(value.cardQuota)})`;
                 }
                 str += `</td>`;
@@ -376,7 +394,7 @@ function searchDateFunc(e) {
                 if (value.status == 'paid') {
                     str += `<a href="#" id="cancelBtn" name="${value.merchantUid}" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal" style="font: 13px bold; font-weight: bold;">취소하기</a>`;
                 } else if (value.status == 'cancelled') {
-                    str += `[${unixTimeStampFunc(value.cancelledAt.time)}] ₩${value.cancelAmount}<br> (${value.cancelReason})`;
+                    str += `[${unixTimeStampFunc(value.cancelledAt.time)}] ₩${value.cancelAmount.toLocaleString()}<br> (${value.cancelReason})`;
                 } else if (value.status == 'failed') {
                     str += `${value.failReason}`;
                 }
@@ -386,7 +404,7 @@ function searchDateFunc(e) {
 
             $(function () {
                 $('[data-toggle="popover"]').popover();
-                $('#startDate').change(function() {
+                $('#startDate').change(function () {
                     var date = $("#startDate").val();
                     console.log(date);
                 });
@@ -426,7 +444,7 @@ function searchDateFunc(e) {
             for (let i = pageStartNumber; i <= pageEndNumber; i++) {
                 let btnNumber;
                 var currentNum = i;
-                if(e == i) {
+                if (e == i) {
                     btnNumber = `<li class="page-item active"><a class="page-link" href="javascript:searchDateFunc(${i});">${i}</a></li>`;
                 } else {
                     btnNumber = `<li class="page-item"><a class="page-link" href="javascript:searchDateFunc(${i});">${i}</a></li>`;
