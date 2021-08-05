@@ -24,9 +24,9 @@ public interface MemberDAO {
 	int updateMember(MemberDTO memberDTO) throws SQLException;
 	
 	/**
-	 * 관리자 : 전체 회원 조회
+	 * 회원목록조회
 	 */
-	List<MemberDTO> printAllMember();
+	List<MemberDTO> printAllMember() throws SQLException;
 	
 	/**
 	 * 회원가입 여부 체크

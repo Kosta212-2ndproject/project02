@@ -170,4 +170,26 @@ public class MemberController implements Controller {
 		mv.setViewName("member_question.jsp");
 		return mv;
 	}
+	
+	/**
+	 * 회원 목록 조회
+	 */
+	public ModelAndView memberSelectAll(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		List<MemberDTO> memberList = memberService.memberSelectAll();
+		
+		request.setAttribute("memberList", memberList);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member_admin.jsp");
+		return mv;
+	}
+	
+	/**
+	 * 관리자 회원 탈퇴
+	 */
+	public ModelAndView dismissMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		return null;
+	}
 }

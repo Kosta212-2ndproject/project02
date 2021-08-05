@@ -146,13 +146,8 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a href="indexAdmin.jsp" class="nav-link">Home</a></li>
 					<li class="nav-item active"><a href="front?key=prod&methodName=selectAllByAdmin" class="nav-link">상품관리</a></li>
-					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
-						<div class="dropdown-menu" aria-labelledby="dropdown04">
-							<a class="dropdown-item" href="cart.html">???</a>
-							<a class="dropdown-item" href="product-single.html">Single Product</a>
-							<a class="dropdown-item" href="cart.html">Cart</a>
-							<a class="dropdown-item" href="checkout.html">Checkout</a>
-						</div></li>
+					<li class="nav-item active"><a href="front?key=member&methodName=memberSelectAll" class="nav-link">회원관리</a></li>
+
 						
 <!-- Minjoo Notice Admin start -->	
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</a>					

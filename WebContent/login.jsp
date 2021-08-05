@@ -49,7 +49,10 @@
 				<c:when test="${empty userId}">
 					<fieldset>
 						<form class="form-horizontal">
-							<legend>Login</legend>
+							<legend style="text-align: center;">JJAN에 오신것을 환영합니다!</legend>
+							<hr>
+							<br>
+							<div style="text-align: center;">
 								<%
 							    String clientId = "02aCnvQyzJ_ywbAK8xrZ";//애플리케이션 클라이언트 아이디값";
 							    String redirectURI = URLEncoder.encode("http://localhost/callback.jsp", "UTF-8");
@@ -62,6 +65,7 @@
 							    session.setAttribute("state", state);
 							 %>
 							  <a href="<%=apiURL%>"><img height="50" src="images/Naver_Green.PNG"/></a>
+							</div>
 						</form>
 					</fieldset>
 				</c:when>

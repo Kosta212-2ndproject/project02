@@ -99,6 +99,7 @@ public class MemberDAOImpl implements MemberDAO {
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
 			
 			while(rs.next()) {
 				String userId = rs.getString(1);
@@ -227,7 +228,7 @@ public class MemberDAOImpl implements MemberDAO {
 		PreparedStatement ps = null;
 		
 		int result = 0;
-		String sql = "update userlist set user_state=0 where user_id=?";
+		String sql = "delete userlist where USER_ID=?";
 		
 		try {
 			con = DbUtil.getConnection();

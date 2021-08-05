@@ -1,6 +1,7 @@
 package kosta.mvc.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import kosta.mvc.dao.MemberDAO;
 import kosta.mvc.dao.MemberDAOImpl;
@@ -39,6 +40,12 @@ public class MemberServiceImpl implements MemberService {
 	public void leaveMember(String userId) throws SQLException {
 		int result = memberDAO.leaveMember(userId);
 		if(result==0) throw new SQLException("탈퇴되지 않았습니다. 운영자에게 문의 해 주세요.");
+	}
+
+	@Override
+	public List<MemberDTO> memberSelectAll() throws SQLException {
+		List<MemberDTO> memberList = memberDAO.printAllMember();
+		return memberList;
 	}
 
 }

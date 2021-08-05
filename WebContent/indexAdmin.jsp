@@ -143,7 +143,7 @@
  $(function () {
 	//alert(1)
 	 var sessionId = "<%=session.getAttribute("userId")%>"
-	 if(sessionId != "203448231"){
+	 if(sessionId != "185309265"){
 		 alert("관리자 접근 권한이 없습니다.")
 		 location.href="index.jsp";
 	 }
